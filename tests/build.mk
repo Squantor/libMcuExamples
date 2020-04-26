@@ -47,6 +47,7 @@ ifdef PROJECT
 BIN_PATH := bin/$(PROJECT)/$(CONFIG)
 OBJ_PATH := build/$(PROJECT)/$(CONFIG)
 EXECUTABLE := $(BIN_PATH)/$(PROJECT).elf
+SIZELOG_PATH := $(PROJECT)/
 else
 BIN_PATH := bin/$(CONFIG)
 OBJ_PATH := build/$(CONFIG)
@@ -77,8 +78,8 @@ $(OBJ_PATH)/build-tag:
 $(EXECUTABLE): $(OBJECTS)
 	$(TOOLCHAIN_PREFIX)$(CXX_COMPILER) $(LDFLAGS) $(OBJECTS) -Xlinker -Map="$@.map" -o $@ $(LIBS)
 	$(TOOLCHAIN_PREFIX)$(SIZE) -x --format=SysV $@ 
-	date >> size$(CONFIG).log
-	$(TOOLCHAIN_PREFIX)$(SIZE) $@ >> size$(CONFIG).log
+	date >> $(SIZELOG_PATH)size$(CONFIG).log
+	$(TOOLCHAIN_PREFIX)$(SIZE) $@ >> $(SIZELOG_PATH)size$(CONFIG).log
 	$(TOOLCHAIN_PREFIX)$(OBJCOPY) -R .stack -O binary $@ $(BIN_PATH)/$(PROJECT).bin
 	$(TOOLCHAIN_PREFIX)$(OBJDUMP) -h -S "$@" > "$(BIN_PATH)/$(PROJECT).lss"
 
