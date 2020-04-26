@@ -1,3 +1,6 @@
 [submodule "examples/LPC812_example/libMcuLL"]
 	path = examples/LPC812_example/libMcuLL
 	url = https://github.com/Squantor/libMcuLL.git
+[submodule "tests/libMcuLL"]
+	path = tests/libMcuLL
+	url = https://github.com/Squantor/libMcuLL.git
