@@ -24,9 +24,22 @@
 #
 # Version: 20200426
 
-ifndef PROJECT
-$(error no PROJECT defined!)
-else
-include $(PROJECT)/$(PROJECT).mk
-endif
+
+
+# project settings
+PRJNAME = LPC812M101JDH20_test_master
+TARGET = MCU
+MCU = LPC812M101JDH20
+BOARD = LPC812M101JDH20_nuclone
+
+
+# project sources
+FILES += LPC812M101JDH20_test_master/src/main_test_master.cpp \
+LPC812M101JDH20_test_master/src/master_test_gpio.cpp \
+LPC812M101JDH20_test_master/src/startup.cpp \
+common/src/$(BOARD).cpp common/src/systick.cpp common/src/test_sync.cpp
+
+LIBS += -lgcc
+INCLUDES += -ILPC812M101JDH20_test_master/inc -IlibMcuLL/inc -Icommon/inc
+
 
