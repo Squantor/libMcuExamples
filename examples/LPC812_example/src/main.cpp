@@ -4,10 +4,13 @@
  * its effect, you'll need to use debugger.
  */
 
+#include <board.hpp>
+
 volatile int var;
 
 int main()
 {
+    boardInit();
     while (1) {
         var ^= 0x55;
     }
