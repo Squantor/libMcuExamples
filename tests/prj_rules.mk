@@ -37,7 +37,7 @@ post-build: main-build
 
 #project hardware specific commands
 gdbbmp: all
-	$(TOOLCHAIN_PREFIX)$(GDB) -x ./gdb_scripts/bmp.txt
+	$(TOOLCHAIN_PREFIX)$(GDB) -x ./gdb_scripts/LPC812M101JDH20_test_master.txt
 .PHONY: gdbbmp
 
 tpwrdisable:
