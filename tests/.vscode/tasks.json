@@ -6,7 +6,7 @@
         {
             "label": "build",
             "type": "shell",
-            "command": "make",
+            "command": "make PROJECT=LPC812M101JDH20_test_master",
             "group": {
                 "kind": "build",
                 "isDefault": true
@@ -16,28 +16,10 @@
         {
             "label": "clean",
             "type": "shell",
-            "command": "make clean",
+            "command": "make  PROJECT=LPC812M101JDH20_test_master clean",
             "problemMatcher": [
                 "$gcc"
             ]
-        },
-        {
-            "type": "shell",
-            "label": "C/C++: cpp build active file",
-            "command": "/usr/bin/cpp",
-            "args": [
-                "-g",
-                "${file}",
-                "-o",
-                "${fileDirname}/${fileBasenameNoExtension}"
-            ],
-            "options": {
-                "cwd": "/usr/bin"
-            },
-            "problemMatcher": [
-                "$gcc"
-            ],
-            "group": "build"
         }
     ]
 }
