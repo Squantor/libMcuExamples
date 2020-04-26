@@ -42,10 +42,16 @@ CFLAGS += $(DEFINES)
 CXXFLAGS += $(DEFINES)
 ASMFLAGS += $(DEFINES)
 
-# create paths for build
+# for a multi project build pipeline
+ifdef PROJECT
+BIN_PATH := bin/$(PROJECT)/$(CONFIG)
+OBJ_PATH := build/$(PROJECT)/$(CONFIG)
+EXECUTABLE := $(BIN_PATH)/$(PRJNAME).elf
+else
 BIN_PATH := bin/$(CONFIG)
 OBJ_PATH := build/$(CONFIG)
 EXECUTABLE := $(BIN_PATH)/$(PRJNAME).elf
+endif
 
 # create lists of prerequisites for the build
 OBJECTS += $(addprefix $(OBJ_PATH)/, $(addsuffix .o,$(FILES)))
