@@ -46,11 +46,11 @@ ASMFLAGS += $(DEFINES)
 ifdef PROJECT
 BIN_PATH := bin/$(PROJECT)/$(CONFIG)
 OBJ_PATH := build/$(PROJECT)/$(CONFIG)
-EXECUTABLE := $(BIN_PATH)/$(PRJNAME).elf
+EXECUTABLE := $(BIN_PATH)/$(PROJECT).elf
 else
 BIN_PATH := bin/$(CONFIG)
 OBJ_PATH := build/$(CONFIG)
-EXECUTABLE := $(BIN_PATH)/$(PRJNAME).elf
+EXECUTABLE := $(BIN_PATH)/$(PROJECT).elf
 endif
 
 # create lists of prerequisites for the build
@@ -79,8 +79,8 @@ $(EXECUTABLE): $(OBJECTS)
 	$(TOOLCHAIN_PREFIX)$(SIZE) -x --format=SysV $@ 
 	date >> size$(CONFIG).log
 	$(TOOLCHAIN_PREFIX)$(SIZE) $@ >> size$(CONFIG).log
-	$(TOOLCHAIN_PREFIX)$(OBJCOPY) -R .stack -O binary $@ $(BIN_PATH)/$(PRJNAME).bin
-	$(TOOLCHAIN_PREFIX)$(OBJDUMP) -h -S "$@" > "$(BIN_PATH)/$(PRJNAME).lss"
+	$(TOOLCHAIN_PREFIX)$(OBJCOPY) -R .stack -O binary $@ $(BIN_PATH)/$(PROJECT).bin
+	$(TOOLCHAIN_PREFIX)$(OBJDUMP) -h -S "$@" > "$(BIN_PATH)/$(PROJECT).lss"
 
 $(OBJ_PATH)/%.c.o: %.c $(COMMONDEPS)
 	$(MKDIR) -p $(dir $@) 
