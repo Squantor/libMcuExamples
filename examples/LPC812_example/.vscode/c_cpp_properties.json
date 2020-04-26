@@ -3,7 +3,8 @@
         {
             "name": "Linux",
             "includePath": [
-                "${workspaceFolder}/inc"
+                "${workspaceFolder}/inc",
+                "${workspaceFolder}/libMcuLL/inc"
             ],
             "defines": [
                 "MCU=LPC812",

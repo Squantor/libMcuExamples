@@ -42,7 +42,7 @@ CXXFLAGS_debug += -Og -g3
 CXXFLAGS_release += -Os -g
 ASMFLAGS += -c -x assembler-with-cpp
 LDFLAGS +=  -nostdlib -Wl,--gc-sections -Wl,-print-memory-usage
-LDSCRIPT = -T"targets/$(MCU).ld"
 DEFINES_release += -DNDEBUG
 DEFINES_debug += -DDEBUG
+# TODO remove?
 DEFINES += -DMCU_$(MCU)

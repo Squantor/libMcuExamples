@@ -27,12 +27,12 @@
 # project settings
 PRJNAME = LPC812_example
 TARGET = MCU
-MCU = LPC812
+MCU = LPC812M101JDH20
 BOARD = dummy_board
 
 
 # project sources
 FILES += src/main.cpp src/startup.cpp src/$(BOARD).cpp
-INCLUDES += -Iinc
+INCLUDES += -Iinc -IlibMcuLL/inc
 
 
