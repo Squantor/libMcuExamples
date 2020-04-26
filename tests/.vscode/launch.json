@@ -8,9 +8,9 @@
             "name": "gdb",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/bin/debug/LPC812_example.elf",
+            "program": "${workspaceFolder}/bin/LPC812M101JDH20_test_master/debug/LPC812M101JDH20_test_master.elf",
             "args": [],
-            "stopAtEntry": true,
+            "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
             "environment": [],
             "externalConsole": false,
@@ -23,19 +23,11 @@
                 },
                 {
                     "description": "Load the file",
-                    "text": "file ${workspaceFolder}/bin/debug/LPC812_example.elf"
+                    "text": "file ${workspaceFolder}/bin/LPC812M101JDH20_test_master/debug/LPC812M101JDH20_test_master.elf"
                 },
                 {
                     "description": "Connect to black magic probe",
                     "text": "target extended-remote /dev/ttyBmpGdb0"
-                },
-                {
-                    "description": "Enable target power",
-                    "text": "mon tpwr enable"
-                },
-                {
-                    "description": "Wait for one second for power to stabilise",
-                    "text": "shell sleep 1"
                 },
                 {
                     "description": "scan SWD bus",
@@ -55,7 +47,7 @@
                 },
                 {
                     "description": "program the elf file",
-                    "text": "load ${workspaceFolder}/bin/debug/LPC812_example.elf"
+                    "text": "load ${workspaceFolder}/bin/LPC812M101JDH20_test_master/debug/LPC812M101JDH20_test_master.elf"
                 },
                 {
                     "description": "remap interrupt vectors to flash, again",
