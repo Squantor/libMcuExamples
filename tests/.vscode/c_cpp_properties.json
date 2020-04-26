@@ -4,6 +4,7 @@
             "name": "Linux",
             "includePath": [
                 "${workspaceFolder}/LPC812M101JDH20_test_master/inc",
+                "${workspaceFolder}/LPC812M101JDH20_test_slave/inc",
                 "${workspaceFolder}/libMcuLL/inc/",
                 "${workspaceFolder}/common/inc/"
             ],

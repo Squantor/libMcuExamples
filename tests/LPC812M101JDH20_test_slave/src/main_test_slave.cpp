@@ -75,5 +75,5 @@ int main()
     // for testing purposes, lets go for an infinite loop, okay?
     //} while(1);
     } while(testListSlave[i].setup != NULL);
-    //testsPassed();
+    testsPassed();
 }
