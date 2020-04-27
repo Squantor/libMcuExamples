@@ -3,8 +3,7 @@
         {
             "name": "Linux",
             "includePath": [
-                "${workspaceFolder}/LPC812_example/inc",
-                "${workspaceFolder}/LPC824_example/inc",
+                "${workspaceFolder}/LPC812_i2c_example/inc",
                 "${workspaceFolder}/libMcuLL/inc/"
             ],
             "defines": [
