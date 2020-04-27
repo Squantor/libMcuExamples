@@ -20,32 +20,22 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-# Project specific rules, a few predefined but feel free to add your own
+# project settings
 #
-# Version: 20200425
+# Version: 20200427
 
-# executed 
-pre-build:
-	@echo executing pre build steps
+# project settings
+PROJECT = LPC824_example
+MCU = LPC824M201JHI33
+TARGET = MCU
+BOARD = dummy_board
 
-.PHONY: pre-build
+# project sources
+FILES += $(PROJECT)/src/main.cpp \
+$(PROJECT)/src/startup.cpp \
+$(PROJECT)/src/$(BOARD).cpp
 
-post-build: main-build
-	@echo executing post build steps
-
-.PHONY: post-build
-
-#project hardware specific commands
-gdbbmp: all
-	$(TOOLCHAIN_PREFIX)$(GDB) -x ./gdb_scripts/bmp.txt
-.PHONY: gdbbmp
-
-tpwrdisable:
-	$(TOOLCHAIN_PREFIX)$(GDB) -x ./gdb_scripts/bmp_tpwr_disable.txt
-.PHONY: tpwrdisable
-
-tpwrenable:
-	$(TOOLCHAIN_PREFIX)$(GDB) -x ./gdb_scripts/bmp_tpwr_enable.txt
-.PHONY: tpwrenable
+LIBS += -lgcc
+INCLUDES += -IlibMcuLL/inc -I$(PROJECT)/inc
 
 
