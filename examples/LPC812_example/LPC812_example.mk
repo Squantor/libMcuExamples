@@ -25,15 +25,15 @@
 # Version: 20200427
 
 # project settings
-PROJECT ?= LPC812_example
+PROJECT = LPC812_example
 MCU = LPC812M101JDH20
 TARGET = MCU
 BOARD = dummy_board
 
 # project sources
-FILES += LPC812_example/src/main.cpp \
-LPC812_example/src/startup.cpp \
-LPC812_example/src/$(BOARD).cpp
+FILES += $(PROJECT)/src/main.cpp \
+$(PROJECT)/src/startup.cpp \
+$(PROJECT)/src/$(BOARD).cpp
 
 LIBS += -lgcc
 INCLUDES += -IlibMcuLL/inc -I$(PROJECT)/inc
