@@ -25,4 +25,8 @@ SOFTWARE.
 
 void boardInit(void)
 {
+    // Setup clocking
+    // Setup Pin muxing/settings
+    // Setup Uart
+    // Setup I2C
 }

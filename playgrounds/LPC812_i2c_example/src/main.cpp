@@ -5,13 +5,10 @@
  */
 #include <mcu_ll.h>
 #include <board.hpp>
-
-volatile int var;
-
 int main()
 {
     boardInit();
     while (1) {
-        var ^= 0x55;
+
     }
 }
