@@ -24,5 +24,11 @@
 
 # Version: 20200427
 
-# import compiler settings for the general controller type
-include targets/LPC812.mk
+# import compiler settings for the core in this microcontroller
+include targets/Cortex-M0plus.mk
+
+# Specific C files and linker scripts
+FILES += targets/LPC812.cpp
+DEFINES += -DMCU_$(MCU)
+LDSCRIPT = -T"targets/LPC812.ld"
+

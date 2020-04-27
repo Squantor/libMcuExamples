@@ -20,9 +20,15 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-# settings for the LPC812M101JDH20 Microcontroller
-
+# settings for the LPC824 Microcontroller
+#
 # Version: 20200427
 
-# import compiler settings for the general controller type
-include targets/LPC812.mk
+# import compiler settings for the core in this microcontroller
+include targets/Cortex-M0plus.mk
+
+# Specific C files and linker scripts
+FILES += targets/LPC824.cpp
+DEFINES += -DMCU_$(MCU)
+LDSCRIPT = -T"targets/LPC824.ld"
+
