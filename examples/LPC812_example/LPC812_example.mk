@@ -32,7 +32,6 @@ BOARD = dummy_board
 
 # project sources
 FILES += $(PROJECT)/src/main.cpp \
-$(PROJECT)/src/startup.cpp \
 $(PROJECT)/src/$(BOARD).cpp
 
 LIBS += -lgcc

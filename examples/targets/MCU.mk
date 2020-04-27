@@ -30,7 +30,7 @@ else
 include targets/$(MCU).mk
 endif
 
-# valid configurations like debug, release test, etcetera
+# valid configurations like debug, release, test, define them here
 CONFIGS = debug release
 
 # configuration specific flags
@@ -42,7 +42,7 @@ CXXFLAGS_debug += -Og -g3
 CXXFLAGS_release += -Os -g
 ASMFLAGS += -c -x assembler-with-cpp
 LDFLAGS +=  -nostdlib -Wl,--gc-sections -Wl,-print-memory-usage
+DEFINES += -D$(BOARD)
 DEFINES_release += -DNDEBUG
 DEFINES_debug += -DDEBUG
-# TODO remove?
-DEFINES += -DMCU_$(MCU) -D$(BOARD)
+

@@ -28,7 +28,7 @@
 include targets/Cortex-M0plus.mk
 
 # Specific C files and linker scripts
-FILES += targets/LPC824.cpp
+FILES += targets/LPC824.cpp targets/startup.cpp
 DEFINES += -DMCU_$(MCU)
 LDSCRIPT = -T"targets/LPC824.ld"
 
