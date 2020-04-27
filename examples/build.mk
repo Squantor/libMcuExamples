@@ -77,7 +77,6 @@ $(OBJ_PATH)/build-tag:
 
 $(EXECUTABLE): $(OBJECTS)
 	$(TOOLCHAIN_PREFIX)$(CXX_COMPILER) $(LDFLAGS) $(OBJECTS) -Xlinker -Map="$@.map" -o $@ $(LIBS)
-	$(TOOLCHAIN_PREFIX)$(SIZE) -x --format=SysV $@ 
 	date >> $(SIZELOG_PATH)size$(CONFIG).log
 	$(TOOLCHAIN_PREFIX)$(SIZE) $@ >> $(SIZELOG_PATH)size$(CONFIG).log
 	$(TOOLCHAIN_PREFIX)$(OBJCOPY) -R .stack -O binary $@ $(BIN_PATH)/$(PROJECT).bin
