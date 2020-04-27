@@ -4,3 +4,6 @@
 [submodule "tests/libMcuLL"]
 	path = tests/libMcuLL
 	url = https://github.com/Squantor/libMcuLL.git
+[submodule "playgrounds/LPC812_i2c_example/libMcuLL"]
+	path = playgrounds/LPC812_i2c_example/libMcuLL
+	url = https://github.com/Squantor/libMcuLL
