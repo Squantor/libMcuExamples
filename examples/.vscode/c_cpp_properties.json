@@ -3,10 +3,9 @@
         {
             "name": "Linux",
             "includePath": [
-                "${workspaceFolder}/LPC812M101JDH20_test_master/inc",
-                "${workspaceFolder}/LPC812M101JDH20_test_slave/inc",
-                "${workspaceFolder}/libMcuLL/inc/",
-                "${workspaceFolder}/common/inc/"
+                "${workspaceFolder}/LPC812_example/inc",
+                "${workspaceFolder}/LPC824_example/inc",
+                "${workspaceFolder}/libMcuLL/inc/"
             ],
             "defines": [
                 "MCU=MCU_LPC812M101JDH20",
