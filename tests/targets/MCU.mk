@@ -22,7 +22,7 @@
 
 # settings for the MCU target
 #
-# Version: 20200426
+# Version: 20200427
 
 ifndef MCU
 $(error MCU is not defined!)

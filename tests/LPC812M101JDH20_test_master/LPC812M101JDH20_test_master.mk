@@ -22,16 +22,13 @@
 
 # project settings
 #
-# Version: 20200426
-
-
+# Version: 20200427
 
 # project settings
 PROJECT ?= LPC812M101JDH20_test_master
-TARGET = MCU
 MCU = LPC812M101JDH20
+TARGET = MCU
 BOARD = LPC812M101JDH20_nuclone
-
 
 # project sources
 FILES += LPC812M101JDH20_test_master/src/main_test_master.cpp \
