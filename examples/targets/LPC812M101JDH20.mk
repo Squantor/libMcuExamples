@@ -20,9 +20,9 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-# settings for the LPC812 Microcontroller
-#
-# Version: 20200426
+# settings for the LPC812M101JDH20 Microcontroller
+
+# Version: 20200427
 
 # import compiler settings for the core in this microcontroller
 include targets/Cortex-M0plus.mk
