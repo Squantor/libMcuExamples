@@ -32,6 +32,7 @@ BOARD = dummy_board
 
 # project sources
 FILES += $(PROJECT)/src/main.cpp \
+$(PROJECT)/src/aeabi_romdiv_patch.s \
 $(PROJECT)/src/$(BOARD).cpp
 
 LIBS += -lgcc
