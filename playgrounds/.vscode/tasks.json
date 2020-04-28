@@ -4,9 +4,9 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "build LPC812 i2c example",
+            "label": "build LPC812 clock redesign",
             "type": "shell",
-            "command": "make PROJECT=LPC812_i2c_example",
+            "command": "make PROJECT=LPC812_clock_redesign",
             "group": {
                 "kind": "build",
                 "isDefault": true
@@ -16,7 +16,7 @@
         {
             "label": "clean",
             "type": "shell",
-            "command": "make  PROJECT=LPC812_i2c_example clean",
+            "command": "make  PROJECT=LPC812_clock_redesign clean",
             "problemMatcher": [
                 "$gcc"
             ]

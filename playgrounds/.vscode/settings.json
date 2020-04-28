@@ -8,7 +8,7 @@
     "C_Cpp.default.intelliSenseMode": "gcc-x64",
     "C_Cpp.default.systemIncludePath": [],
     "C_Cpp.default.includePath": [
-        "${workspaceFolder}/LPC812_i2c_example/inc",
+        "${workspaceFolder}/LPC812_clock_redesign/inc",
         "${workspaceFolder}/libMcuLL/inc/"
     ]
 }
