@@ -26,6 +26,9 @@ SOFTWARE.
 
 #define CLOCK_OUT   (15u)
 
+#define XTAL_FREQ   12000000
+#define CPU_FREQ    30000000
+
 void boardInit(void);
 
 #endif
