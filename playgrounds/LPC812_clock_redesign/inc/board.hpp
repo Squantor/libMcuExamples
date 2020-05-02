@@ -24,6 +24,8 @@ SOFTWARE.
 #ifndef BOARD_HPP
 #define BOARD_HPP
 
+#define CLOCK_OUT   (15u)
+
 void boardInit(void);
 
 #endif

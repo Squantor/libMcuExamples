@@ -9,6 +9,6 @@ int main()
 {
     boardInit();
     while (1) {
-
+        __WFI();
     }
 }

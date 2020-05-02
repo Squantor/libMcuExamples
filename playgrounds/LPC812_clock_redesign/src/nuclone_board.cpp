@@ -21,12 +21,15 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
+#include <mcu_ll.h>
 #include <board.hpp>
 
 void boardInit(void)
 {
+    // set pin as clock output
+    SwmInit();
+    SwmMovablePinAssign(SWM_CLKOUT_O, CLOCK_OUT);
+    SwmDeinit();
     // Setup clocking
     // Setup Pin muxing/settings
-    // Setup Uart
-    // Setup I2C
 }
