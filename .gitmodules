@@ -7,3 +7,9 @@
 [submodule "playgrounds/libMcuLL"]
 	path = playgrounds/libMcuLL
 	url = https://github.com/Squantor/libMcuLL.git
+[submodule "playgrounds/squantorLibC"]
+	path = playgrounds/squantorLibC
+	url = https://github.com/Squantor/squantorLibC.git
+[submodule "playgrounds/squantorLibEmbeddedC"]
+	path = playgrounds/squantorLibEmbeddedC
+	url = https://github.com/Squantor/squantorLibEmbeddedC.git
