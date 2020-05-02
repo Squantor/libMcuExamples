@@ -5,10 +5,10 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "debug LPC812 clock redesign",
+            "name": "debug LPC812 uart example",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/bin/LPC812_clock_redesign/debug/LPC812_clock_redesign.elf",
+            "program": "${workspaceFolder}/bin/LPC812_uart_example/debug/LPC812_uart_example.elf",
             "args": [],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
@@ -23,7 +23,7 @@
                 },
                 {
                     "description": "Load the file",
-                    "text": "file ${workspaceFolder}/bin/LPC812_clock_redesign/debug/LPC812_clock_redesign.elf"
+                    "text": "file ${workspaceFolder}/bin/LPC812_uart_example/debug/LPC812_uart_example.elf"
                 },
                 {
                     "description": "Connect to black magic probe",
@@ -47,7 +47,7 @@
                 },
                 {
                     "description": "program the elf file",
-                    "text": "load ${workspaceFolder}/bin/LPC812_clock_redesign/debug/LPC812_clock_redesign.elf"
+                    "text": "load ${workspaceFolder}/bin/LPC812_uart_example/debug/LPC812_uart_example.elf"
                 },
                 {
                     "description": "remap interrupt vectors to flash, again",

@@ -6,7 +6,7 @@
         {
             "label": "build",
             "type": "shell",
-            "command": "make PROJECT=LPC812_clock_redesign",
+            "command": "make PROJECT=LPC812_uart_example",
             "group": {
                 "kind": "build",
                 "isDefault": true
@@ -16,7 +16,7 @@
         {
             "label": "clean",
             "type": "shell",
-            "command": "make  PROJECT=LPC812_clock_redesign clean",
+            "command": "make  PROJECT=LPC812_uart_example clean",
             "problemMatcher": [
                 "$gcc"
             ]

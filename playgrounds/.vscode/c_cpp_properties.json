@@ -3,7 +3,7 @@
         {
             "name": "Linux",
             "includePath": [
-                "${workspaceFolder}/LPC812_clock_redesign/inc",
+                "${workspaceFolder}/LPC812_uart_example/inc",
                 "${workspaceFolder}/libMcuLL/inc/"
             ],
             "defines": [
