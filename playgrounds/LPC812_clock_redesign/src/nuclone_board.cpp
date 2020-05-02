@@ -70,8 +70,8 @@ void boardInit(void)
     SwmMovablePinAssign(SWM_CLKOUT_O, PIN_CLOCK_OUT);
 	IoconPinSetMode(LPC_IOCON, IOCON_CLOCK_OUT, PIN_MODE_INACTIVE);
 
-    ClockDisablePeriphClock(SYSCTL_CLOCK_SWM);
-    ClockSetCLKOUTSource(SYSCTL_CLKOUTSRC_IRC, 0);
+    ClockSetCLKOUTSource(SYSCTL_CLKOUTSRC_MAINSYSCLK, 1);
+	ClockDisablePeriphClock(SYSCTL_CLOCK_SWM);
     // Setup clocking
     //setupXtalClocking(XTAL_FREQ, CPU_FREQ);
     // Setup Pin muxing/settings
