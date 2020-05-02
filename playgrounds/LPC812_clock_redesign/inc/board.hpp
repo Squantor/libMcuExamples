@@ -24,7 +24,8 @@ SOFTWARE.
 #ifndef BOARD_HPP
 #define BOARD_HPP
 
-#define CLOCK_OUT   (13u)
+#define PIN_CLOCK_OUT   (13u)
+#define IOCON_CLOCK_OUT IOCON_PIO13
 
 #define XTAL_FREQ   12000000
 #define CPU_FREQ    30000000

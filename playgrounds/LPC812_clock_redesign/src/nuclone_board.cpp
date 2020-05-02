@@ -64,9 +64,13 @@ bool setupXtalClocking(const uint32_t xtalFreq, const uint32_t outFreq)
 void boardInit(void)
 {
     // set pin as clock output
-    SwmInit();
-    SwmMovablePinAssign(SWM_CLKOUT_O, CLOCK_OUT);
-    SwmDeinit();
+    ClockEnablePeriphClock(SYSCTL_CLOCK_SWM);
+	ClockEnablePeriphClock(SYSCTL_CLOCK_IOCON);
+	
+    SwmMovablePinAssign(SWM_CLKOUT_O, PIN_CLOCK_OUT);
+	IoconPinSetMode(LPC_IOCON, IOCON_CLOCK_OUT, PIN_MODE_INACTIVE);
+
+    ClockDisablePeriphClock(SYSCTL_CLOCK_SWM);
     ClockSetCLKOUTSource(SYSCTL_CLKOUTSRC_IRC, 0);
     // Setup clocking
     //setupXtalClocking(XTAL_FREQ, CPU_FREQ);
