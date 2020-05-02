@@ -67,7 +67,8 @@ void boardInit(void)
     SwmInit();
     SwmMovablePinAssign(SWM_CLKOUT_O, CLOCK_OUT);
     SwmDeinit();
+    ClockSetCLKOUTSource(SYSCTL_CLKOUTSRC_IRC, 0);
     // Setup clocking
-    setupXtalClocking(XTAL_FREQ, CPU_FREQ);
+    //setupXtalClocking(XTAL_FREQ, CPU_FREQ);
     // Setup Pin muxing/settings
 }
