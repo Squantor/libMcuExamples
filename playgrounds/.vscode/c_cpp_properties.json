@@ -7,7 +7,7 @@
                 "${workspaceFolder}/libMcuLL/inc/"
             ],
             "defines": [
-                "MCU=MCU_LPC812M101JDH20",
+                "MCU_LPC812M101JDH20",
                 "DEBUG"
             ],
             "browse": {
