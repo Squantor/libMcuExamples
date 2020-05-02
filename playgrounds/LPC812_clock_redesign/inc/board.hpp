@@ -27,8 +27,13 @@ SOFTWARE.
 #define PIN_CLOCK_OUT   (13u)
 #define IOCON_CLOCK_OUT IOCON_PIO13
 
-#define XTAL_FREQ   12000000
-#define CPU_FREQ    30000000
+#define IOCON_XTAL_IN   IOCON_PIO8
+#define IOCON_XTAL_OUT  IOCON_PIO9
+
+#define XTAL_FREQ   (12000000u)
+#define CPU_FREQ    (30000000u)
+#define AHB_FREQ    (30000000u)
+#define MAIN_FREQ   (60000000u)
 
 void boardInit(void);
 
