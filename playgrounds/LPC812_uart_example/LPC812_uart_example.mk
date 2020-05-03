@@ -37,4 +37,7 @@ $(PROJECT)/src/$(BOARD).cpp
 LIBS += -lgcc
 INCLUDES += -IlibMcuLL/inc -I$(PROJECT)/inc
 
+# includes of additional libraries
+include squantorLibC/squantorLibC.mk
+include squantorLibEmbeddedC/squantorLibEmbeddedC.mk
 
