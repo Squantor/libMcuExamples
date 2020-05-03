@@ -6,7 +6,7 @@
         {
             "label": "build",
             "type": "shell",
-            "command": "make PROJECT=LPC812_uart_example CONFIG=release",
+            "command": "make PROJECT=LPC812_uart_example CONFIG=debug",
             "group": {
                 "kind": "build",
                 "isDefault": true
