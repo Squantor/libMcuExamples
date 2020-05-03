@@ -35,13 +35,13 @@ SOFTWARE.
 #define UART_DEBUG          LPC_USART0
 #define UART_BAUD_RATE      (115200u)
 
-#define MAIN_CLOCK_SOURCE   SYSCTL_MAINCLKSRC_PLLOUT
+#define CLOCK_MAIN_SOURCE   SYSCTL_MAINCLKSRC_PLLOUT
 
-#define XTAL_FREQ           (12000000u)
-#define EXT_CLK_FREQ        (0u)
-#define CPU_FREQ            (30000000u)
-#define AHB_FREQ            (30000000u)
-#define MAIN_FREQ           (60000000u)
+#define CLOCK_XTAL          (12000000u)
+#define CLOCK_EXT_IN        (0u)
+#define CLOCK_CPU           (30000000u)
+#define CLOCK_AHB           (30000000u)
+#define CLOCK_MAIN          (60000000u)
 
 void boardInit(void);
 
