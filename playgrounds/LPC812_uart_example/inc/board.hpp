@@ -24,11 +24,17 @@ SOFTWARE.
 #ifndef BOARD_HPP
 #define BOARD_HPP
 
-#define PIN_CLOCK_OUT   (13u)
-#define IOCON_CLOCK_OUT IOCON_PIO13
+#include <mcu_ll.h>
 
 #define IOCON_XTAL_IN   IOCON_PIO8
 #define IOCON_XTAL_OUT  IOCON_PIO9
+
+#define IOCON_UART_TX   IOCON_PIO13
+#define PIN_UART_TX     (13u)
+#define IOCON_UART_RX   IOCON_PIO17
+#define PIN_UART_RX     (17u)
+
+#define UART_DEBUG      LPC_USART0
 
 #define XTAL_FREQ   (12000000u)
 #define CPU_FREQ    (30000000u)

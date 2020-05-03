@@ -34,6 +34,10 @@ void boardInit(void)
     IoconPinSetMode(LPC_IOCON, IOCON_XTAL_IN, PIN_MODE_INACTIVE);
     IoconPinSetMode(LPC_IOCON, IOCON_XTAL_OUT, PIN_MODE_INACTIVE);
     // TODO setup uart pins
+    IoconPinSetMode(LPC_IOCON, IOCON_UART_RX, PIN_MODE_PULLUP);
+    IoconPinSetMode(LPC_IOCON, IOCON_UART_TX, PIN_MODE_INACTIVE);
+    SwmMovablePinAssign(SWM_U0_TXD_O, PIN_UART_TX);
+    SwmMovablePinAssign(SWM_U0_RXD_I, PIN_UART_RX);
     ClockDisablePeriphClock(SYSCTL_CLOCK_SWM);
 
     // setup system clocks
