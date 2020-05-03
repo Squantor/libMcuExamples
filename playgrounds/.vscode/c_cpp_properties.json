@@ -4,7 +4,10 @@
             "name": "Linux",
             "includePath": [
                 "${workspaceFolder}/LPC812_uart_example/inc",
-                "${workspaceFolder}/libMcuLL/inc/"
+                "${workspaceFolder}/libMcuLL/inc/",
+                "${workspaceFolder}/squantorLibC/inc/",
+                "${workspaceFolder}/squantorLibC/inc_internal/",
+                "${workspaceFolder}/squantorLibEmbeddedC/inc/"
             ],
             "defines": [
                 "MCU_LPC812M101JDH20",
