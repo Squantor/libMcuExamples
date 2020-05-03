@@ -31,10 +31,14 @@ Simple uart example
 
 int main()
 {
+    uint8_t character;
     boardInit();
     while (1) {
-        while(UartGetStatus(UART_DEBUG) & UART_STAT_TXRDY == 0) 
+        while((UartGetStatus(UART_DEBUG) & UART_STAT_RXRDY) == 0) 
             ;
-        UartSendByte(UART_DEBUG, 'H');
+        character = UartReadByte(UART_DEBUG);
+        while((UartGetStatus(UART_DEBUG) & UART_STAT_TXRDY) == 0) 
+            ;
+        UartSendByte(UART_DEBUG, character);
     }
 }
