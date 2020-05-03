@@ -21,8 +21,8 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
-#include <mcu_ll.h>
 #include <board.hpp>
+#include <mcu_ll.h>
 
 void boardInit(void)
 {
@@ -53,4 +53,10 @@ void boardInit(void)
     ClockSetMainClockSource(SYSCTL_MAINCLKSRC_PLLOUT);
 
     // setup UART peripheral
+    UartInit(UART_DEBUG);
+    UartConfigData(UART_DEBUG, UART_CFG_DATALEN_8 | UART_CFG_PARITY_NONE | UART_CFG_STOPLEN_1);
+    ClockSetUSARTNBaseClockRate((UART_BAUD_RATE * 16), true);
+    UartSetBaud(UART_DEBUG, UART_BAUD_RATE);
+    UartEnable(UART_DEBUG);
+    UartTXEnable(UART_DEBUG);
 }
