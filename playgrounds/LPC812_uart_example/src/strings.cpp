@@ -1,7 +1,7 @@
 /*
 MIT License
 
-Copyright (c) 2020 Bart Bilos
+Copyright (c) 2019 Bart Bilos
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -21,29 +21,11 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
-
 /*
-Simple uart example
+Common used strings
 */
 
-#include <board.hpp>
-#include <mcu_ll.h>
-#include <stream_uart.hpp>
 #include <strings.hpp>
-#include <print.h>
 
-
-int main()
-{
-    uint8_t character;
-    boardInit();
-    dsPuts(&streamUart, strHello);
-    while (1) {
-        while((UartGetStatus(UART_DEBUG) & UART_STAT_RXRDY) == 0) 
-            ;
-        character = UartReadByte(UART_DEBUG);
-        while((UartGetStatus(UART_DEBUG) & UART_STAT_TXRDY) == 0) 
-            ;
-        UartSendByte(UART_DEBUG, character);
-    }
-}
+const char strHello[] = "UART example";
+const char strCrLf[] = "\r\n";
