@@ -33,6 +33,8 @@ int main()
 {
     boardInit();
     while (1) {
-        __NOP();
+        while(UartGetStatus(UART_DEBUG) & UART_STAT_TXRDY == 0) 
+            ;
+        UartSendByte(UART_DEBUG, 'H');
     }
 }
