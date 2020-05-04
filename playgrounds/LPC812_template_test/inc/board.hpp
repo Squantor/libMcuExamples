@@ -35,6 +35,10 @@ SOFTWARE.
 #define UART_DEBUG          LPC_USART0
 #define UART_BAUD_RATE      (115200u)
 
+//test pins
+#define IOCON_TEST_PIN      IOCON_PIO0
+#define PIN_TEST_PIN        (0u)
+
 #define CLOCK_MAIN_SOURCE   SYSCTL_MAINCLKSRC_PLLOUT
 
 #define CLOCK_XTAL          (12000000u)

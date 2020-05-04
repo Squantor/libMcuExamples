@@ -23,6 +23,7 @@ SOFTWARE.
 */
 #include <board.hpp>
 #include <mcu_ll.h>
+#include <LPC81X_gpio.hpp>
 
 void boardInit(void)
 {
@@ -33,11 +34,14 @@ void boardInit(void)
     SwmFixedPinEnable(SWM_FIXED_XTALOUT, true);
     IoconPinSetMode(LPC_IOCON, IOCON_XTAL_IN, PIN_MODE_INACTIVE);
     IoconPinSetMode(LPC_IOCON, IOCON_XTAL_OUT, PIN_MODE_INACTIVE);
-    // TODO setup uart pins
+    // setup uart pins
     IoconPinSetMode(LPC_IOCON, IOCON_UART_RX, PIN_MODE_PULLUP);
     IoconPinSetMode(LPC_IOCON, IOCON_UART_TX, PIN_MODE_INACTIVE);
     SwmMovablePinAssign(SWM_U0_TXD_O, PIN_UART_TX);
     SwmMovablePinAssign(SWM_U0_RXD_I, PIN_UART_RX);
+    // test pins
+    IoconPinSetMode(LPC_IOCON, IOCON_TEST_PIN, PIN_MODE_INACTIVE);
+    
     ClockDisablePeriphClock(SYSCTL_CLOCK_SWM);
 
     // setup system clocks
@@ -59,4 +63,6 @@ void boardInit(void)
     UartSetBaud(UART_DEBUG, UART_BAUD_RATE);
     UartEnable(UART_DEBUG);
     UartTXEnable(UART_DEBUG);
+    // setup digital pins
+    mcuLL::GpioSetPinDir(0, PIN_TEST_PIN, true);
 }
