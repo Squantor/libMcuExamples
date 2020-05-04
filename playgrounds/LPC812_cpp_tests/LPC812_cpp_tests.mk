@@ -29,7 +29,7 @@ include squantorLibC/squantorLibC.mk
 include squantorLibEmbeddedC/squantorLibEmbeddedC.mk
 
 # project settings
-PROJECT = LPC812_uart_example
+PROJECT ?= LPC812_cpp_tests
 MCU = LPC812M101JDH20
 TARGET = MCU
 BOARD ?= nuclone_board
