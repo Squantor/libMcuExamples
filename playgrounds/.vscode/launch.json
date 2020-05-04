@@ -5,10 +5,10 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "debug LPC812 uart example",
+            "name": "debug LPC812 template test",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/bin/LPC812_uart_example/debug/LPC812_uart_example.elf",
+            "program": "${workspaceFolder}/bin/LPC812_template_test/debug/LPC812_template_test.elf",
             "args": [],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
@@ -23,7 +23,7 @@
                 },
                 {
                     "description": "Load the file",
-                    "text": "file ${workspaceFolder}/bin/LPC812_uart_example/debug/LPC812_uart_example.elf"
+                    "text": "file ${workspaceFolder}/bin/LPC812_template_test/debug/LPC812_template_test.elf"
                 },
                 {
                     "description": "Connect to black magic probe",
@@ -47,7 +47,7 @@
                 },
                 {
                     "description": "program the elf file",
-                    "text": "load ${workspaceFolder}/bin/LPC812_uart_example/debug/LPC812_uart_example.elf"
+                    "text": "load ${workspaceFolder}/bin/LPC812_template_test/debug/LPC812_template_test.elf"
                 },
                 {
                     "description": "remap interrupt vectors to flash, again",
