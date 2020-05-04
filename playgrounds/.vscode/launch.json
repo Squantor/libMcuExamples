@@ -5,10 +5,10 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "debug LPC812 template test",
+            "name": "debug LPC812 c++ tests",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/bin/LPC812_template_test/debug/LPC812_template_test.elf",
+            "program": "${workspaceFolder}/bin/LPC812_cpp_tests/debug/LPC812_cpp_tests.elf",
             "args": [],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
@@ -23,7 +23,7 @@
                 },
                 {
                     "description": "Load the file",
-                    "text": "file ${workspaceFolder}/bin/LPC812_template_test/debug/LPC812_template_test.elf"
+                    "text": "file ${workspaceFolder}/bin/LPC812_cpp_tests/debug/LPC812_cpp_tests.elf"
                 },
                 {
                     "description": "Connect to black magic probe",
@@ -47,7 +47,7 @@
                 },
                 {
                     "description": "program the elf file",
-                    "text": "load ${workspaceFolder}/bin/LPC812_template_test/debug/LPC812_template_test.elf"
+                    "text": "load ${workspaceFolder}/bin/LPC812_cpp_tests/debug/LPC812_cpp_tests.elf"
                 },
                 {
                     "description": "remap interrupt vectors to flash, again",

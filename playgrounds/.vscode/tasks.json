@@ -6,7 +6,7 @@
         {
             "label": "build",
             "type": "shell",
-            "command": "make PROJECT=LPC812_template_test CONFIG=debug",
+            "command": "make PROJECT=LPC812_cpp_tests CONFIG=debug",
             "group": {
                 "kind": "build",
                 "isDefault": true
@@ -16,7 +16,7 @@
         {
             "label": "clean",
             "type": "shell",
-            "command": "make  PROJECT=LPC812_template_test clean",
+            "command": "make  PROJECT=LPC812_cpp_tests clean",
             "problemMatcher": [
                 "$gcc"
             ]
