@@ -32,9 +32,6 @@ extern void Dummy_Handler(void);
 
 void NMI_Handler(void) __attribute__((weak, alias("Dummy_Handler")));
 void HardFault_Handler(void) __attribute__((weak, alias("Dummy_Handler")));
-void MemManage_Handler(void) __attribute__((weak, alias("Dummy_Handler")));
-void BusFault_Handler(void) __attribute__((weak, alias("Dummy_Handler")));
-void UsageFault_Handler(void) __attribute__((weak, alias("Dummy_Handler")));
 void SVC_Handler(void) __attribute__((weak, alias("Dummy_Handler")));
 void PendSV_Handler(void) __attribute__((weak, alias("Dummy_Handler")));
 void SysTick_Handler(void) __attribute__((weak, alias("Dummy_Handler")));
@@ -54,9 +51,9 @@ void (* const core_vector_table[16])(void) = {
     Reset_Handler,
     NMI_Handler,
     HardFault_Handler,
-    MemManage_Handler,
-    BusFault_Handler,
-    UsageFault_Handler,
+    0,
+    0,
+    0,
     0,
     0,
     0,

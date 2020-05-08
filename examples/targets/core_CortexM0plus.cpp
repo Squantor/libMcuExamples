@@ -32,8 +32,7 @@ void Dummy_Handler(void);
 } // extern "C"
 #endif
 
-#include "cortexm_irqs_lpc.cpp"
-#include "isr_lpc81X.cpp"
+#include "cortexm0plus_irqs.cpp"
 
 void Dummy_Handler(void) {
     while (1);

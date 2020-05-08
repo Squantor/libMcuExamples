@@ -32,7 +32,7 @@ void Dummy_Handler(void);
 } // extern "C"
 #endif
 
-#include "cortexm_irqs_standard.cpp"
+#include "cortexm0_irqs.cpp"
 
 void Dummy_Handler(void) {
     while (1);
