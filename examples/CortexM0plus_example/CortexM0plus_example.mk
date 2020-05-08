@@ -20,14 +20,21 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-# settings for the a generic Cortex M0+ microcontroller
-
+# project settings
+#
 # Version: 20200427
 
-# import compiler settings for the core in this microcontroller
-include targets/core_CortexM0plus.mk
+# project settings
+PROJECT = CortexM0plus_example
+MCU = CortexM0plus
+TARGET = MCU
+BOARD = dummy_board
 
-# Specific C files and linker scripts
-FILES += targets/core_CortexM0plus.cpp targets/startup.cpp
-DEFINES += -DMCU_$(MCU)
-LDSCRIPT = -T"targets/core_CortexM0plus.ld"
+# project sources
+FILES += $(PROJECT)/src/main.cpp \
+$(PROJECT)/src/$(BOARD).cpp
+
+LIBS += -lgcc
+INCLUDES += -IlibMcuLL/inc -I$(PROJECT)/inc
+
+
