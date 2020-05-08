@@ -20,7 +20,7 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-# settings for the LPC812M101JDH20 Microcontroller
+# settings for the a generic Cortex M0+ microcontroller
 
 # Version: 20200427
 
@@ -31,4 +31,3 @@ include targets/core_Cortex-M0plus.mk
 FILES += targets/LPC812.cpp targets/startup.cpp
 DEFINES += -DMCU_$(MCU)
 LDSCRIPT = -T"targets/LPC812.ld"
-

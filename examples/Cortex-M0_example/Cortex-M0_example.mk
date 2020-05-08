@@ -20,15 +20,21 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-# settings for the LPC812M101JDH20 Microcontroller
-
+# project settings
+#
 # Version: 20200427
 
-# import compiler settings for the core in this microcontroller
-include targets/core_Cortex-M0plus.mk
+# project settings
+PROJECT = Cortex-M0_example
+MCU = CortexM0
+TARGET = MCU
+BOARD = dummy_board
 
-# Specific C files and linker scripts
-FILES += targets/LPC812.cpp targets/startup.cpp
-DEFINES += -DMCU_$(MCU)
-LDSCRIPT = -T"targets/LPC812.ld"
+# project sources
+FILES += $(PROJECT)/src/main.cpp \
+$(PROJECT)/src/$(BOARD).cpp
+
+LIBS += -lgcc
+INCLUDES += -IlibMcuLL/inc -I$(PROJECT)/inc
+
 

@@ -22,7 +22,7 @@
 
 # settings for the Cortex-M0+ Core
 #
-# Version: 20200425
+# Version: 20200508
 
 # Tool settings
 MAKE := make
