@@ -25,7 +25,7 @@
 # Version: 20200427
 
 # project settings
-PROJECT = Cortex-M0_example
+PROJECT = CortexM0_example
 MCU = CortexM0
 TARGET = MCU
 BOARD = dummy_board
