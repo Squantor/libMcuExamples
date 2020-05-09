@@ -30,4 +30,4 @@ include targets/core_CortexM0.mk
 # Specific C files and linker scripts
 FILES += targets/core_CortexM0.cpp targets/startup.cpp
 DEFINES += -DMCU_$(MCU)
-LDSCRIPT = -T"targets/core_CortexM0.ld"
+LDSCRIPT = -T"targets/core_CortexMgeneric.ld"
