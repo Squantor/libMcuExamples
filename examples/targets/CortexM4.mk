@@ -20,24 +20,14 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-# project settings
-#
-# Version: 20200625
+# settings for the a generic Cortex M0+ microcontroller
 
-# includes of additional libraries
-include squantorLibC/squantorLibC.mk
-include squantorLibEmbeddedC/squantorLibEmbeddedC.mk
+# Version: 20200427
 
-# project settings
-MCU = LPC812M101JDH20
-TARGET = MCU
-BOARD = dummy_board
+# import compiler settings for the core in this microcontroller
+include targets/core_CortexM0.mk
 
-# project sources
-FILES += $(PROJECT)/src/main.cpp \
-$(PROJECT)/src/$(BOARD).cpp
-
-LIBS +=
-INCLUDES += -IlibMcuLL/inc -I$(PROJECT)/inc
-
-
+# Specific C files and linker scripts
+FILES += targets/core_CortexM0.cpp targets/startup.cpp
+DEFINES += -DMCU_$(MCU)
+LDSCRIPT = -T"targets/core_CortexMgeneric.ld"

@@ -1,11 +1,11 @@
-file bin/LPC812_clock_redesign/debug/LPC812_clock_redesign.elf
+file bin/debug/LPC812_example.elf
 target extended-remote /dev/ttyBmpGdb0
 shell sleep 1
 monitor swdp_scan
 attach 1
 set mem inaccessible-by-default off
 set {int}0x40048000 = 2
-load bin/LPC812_clock_redesign/debug/LPC812_clock_redesign.elf
+load bin/debug/bin/debug/LPC812_example.elf
 set {int}0x40048000 = 2
 compare-sections
 b main

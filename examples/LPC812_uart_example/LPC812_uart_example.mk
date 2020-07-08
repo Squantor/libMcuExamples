@@ -22,14 +22,13 @@
 
 # project settings
 #
-# Version: 20200427
+# Version: 20200625
 
 # includes of additional libraries
 include squantorLibC/squantorLibC.mk
 include squantorLibEmbeddedC/squantorLibEmbeddedC.mk
 
 # project settings
-PROJECT = LPC812_uart_example
 MCU = LPC812M101JDH20
 TARGET = MCU
 BOARD ?= nuclone_board
@@ -40,6 +39,6 @@ $(PROJECT)/src/$(BOARD).cpp \
 $(PROJECT)/src/stream_uart.cpp \
 $(PROJECT)/src/main.cpp
 
-LIBS += -lgcc
+LIBS +=
 INCLUDES += -IlibMcuLL/inc -I$(PROJECT)/inc
 

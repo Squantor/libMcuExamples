@@ -20,24 +20,36 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-# project settings
+# settings for the PC target
 #
-# Version: 20200625
+# Version: 20200426
 
-# includes of additional libraries
-include squantorLibC/squantorLibC.mk
-include squantorLibEmbeddedC/squantorLibEmbeddedC.mk
+# Tool settings
+MAKE := make
+MKDIR := mkdir
+RM := rm
+TOOLCHAIN_PREFIX := 
+C_COMPILER := gcc
+CXX_COMPILER := g++
+GDB := gdb
+SIZE := size
+AR := ar
+OBJDUMP := objdump
+OBJCOPY := objcopy
+TOUCH := touch
 
-# project settings
-MCU = LPC812M101JDH20
-TARGET = MCU
-BOARD = dummy_board
+# valid configurations like debug, release test, etcetera
+CONFIGS = debug release
 
-# project sources
-FILES += $(PROJECT)/src/main.cpp \
-$(PROJECT)/src/$(BOARD).cpp
-
-LIBS +=
-INCLUDES += -IlibMcuLL/inc -I$(PROJECT)/inc
-
-
+#default flags
+CFLAGS = -std=gnu11 -Wall -Wextra -c
+CFLAGS_debug = -O0 -g3
+CFLAGS_release = -O2 -g
+CXXFLAGS = -std=c++17 -Wall -Wextra -c
+CXXFLAGS_debug = -O0 -g3
+CXXFLAGS_release = -O2 -g
+ASMFLAGS = -c -x assembler-with-cpp
+LDFLAGS +=
+DEFINES_release += -DNDEBUG
+DEFINES_debug += -DDEBUG
+DEFINES += -DMCU_$(MCU)

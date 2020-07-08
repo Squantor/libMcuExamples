@@ -22,10 +22,9 @@
 
 # project settings
 #
-# Version: 20200427
+# Version: 20200625
 
 # project settings
-PROJECT = LPC812_clock_redesign
 MCU = LPC812M101JDH20
 TARGET = MCU
 BOARD ?= nuclone_board
@@ -34,7 +33,7 @@ BOARD ?= nuclone_board
 FILES += $(PROJECT)/src/main.cpp \
 $(PROJECT)/src/$(BOARD).cpp
 
-LIBS += -lgcc
+LIBS +=
 INCLUDES += -IlibMcuLL/inc -I$(PROJECT)/inc
 
 

@@ -25,7 +25,7 @@
 # Version: 20200427
 
 # import compiler settings for the core in this microcontroller
-include targets/Cortex-M0plus.mk
+include targets/core_CortexM0plus.mk
 
 # Specific C files and linker scripts
 FILES += targets/LPC812.cpp targets/startup.cpp

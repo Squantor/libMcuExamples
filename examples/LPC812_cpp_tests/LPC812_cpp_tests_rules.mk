@@ -20,24 +20,32 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-# project settings
+# Project specific rules, a few predefined but feel free to add your own
 #
-# Version: 20200625
+# Version: 20200425
 
-# includes of additional libraries
-include squantorLibC/squantorLibC.mk
-include squantorLibEmbeddedC/squantorLibEmbeddedC.mk
+# executed 
+pre-build:
+	@echo executing pre build steps
 
-# project settings
-MCU = LPC812M101JDH20
-TARGET = MCU
-BOARD = dummy_board
+.PHONY: pre-build
 
-# project sources
-FILES += $(PROJECT)/src/main.cpp \
-$(PROJECT)/src/$(BOARD).cpp
+post-build: main-build
+	@echo executing post build steps
 
-LIBS +=
-INCLUDES += -IlibMcuLL/inc -I$(PROJECT)/inc
+.PHONY: post-build
+
+#project hardware specific commands
+gdbbmp: all
+	$(TOOLCHAIN_PREFIX)$(GDB) -x ./gdb_scripts/$(PROJECT).txt
+.PHONY: gdbbmp
+
+tpwrdisable:
+	$(TOOLCHAIN_PREFIX)$(GDB) -x ./gdb_scripts/bmp_tpwr_disable.txt
+.PHONY: tpwrdisable
+
+tpwrenable:
+	$(TOOLCHAIN_PREFIX)$(GDB) -x ./gdb_scripts/bmp_tpwr_enable.txt
+.PHONY: tpwrenable
 
 

@@ -20,24 +20,27 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-# project settings
+# settings for the Cortex-M0+ Core
 #
-# Version: 20200625
+# Version: 20200508
 
-# includes of additional libraries
-include squantorLibC/squantorLibC.mk
-include squantorLibEmbeddedC/squantorLibEmbeddedC.mk
+# Tool settings
+MAKE := make
+MKDIR := mkdir
+RM := rm
+TOOLCHAIN_PREFIX := arm-none-eabi-
+C_COMPILER := gcc
+CXX_COMPILER := g++
+GDB := gdb
+SIZE := size
+AR := ar
+OBJDUMP := objdump
+OBJCOPY := objcopy
+TOUCH := touch
 
-# project settings
-MCU = LPC812M101JDH20
-TARGET = MCU
-BOARD = dummy_board
-
-# project sources
-FILES += $(PROJECT)/src/main.cpp \
-$(PROJECT)/src/$(BOARD).cpp
-
-LIBS +=
-INCLUDES += -IlibMcuLL/inc -I$(PROJECT)/inc
-
+# Core flags
+CFLAGS += -mcpu=cortex-m0plus -mthumb
+CXXFLAGS += -mcpu=cortex-m0plus -mthumb
+ASMFLAGS += -mcpu=cortex-m0plus -mthumb
+LDFLAGS += -mcpu=cortex-m0plus -mthumb
 

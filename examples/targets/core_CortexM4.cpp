@@ -1,7 +1,7 @@
 /*
 MIT License
 
-Copyright (c) 2019 Bart Bilos
+Copyright (c) 2020 Bart Bilos
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -32,8 +32,7 @@ void Dummy_Handler(void);
 } // extern "C"
 #endif
 
-#include "cortexm_irqs_lpc.cpp"
-#include "isr_lpc82X.cpp"
+#include "cortexm4_irqs.cpp"
 
 void Dummy_Handler(void) {
     while (1);

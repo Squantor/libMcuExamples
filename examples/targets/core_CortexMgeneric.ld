@@ -22,19 +22,12 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
-#if defined (__cplusplus)
-extern "C" {
-#endif
-
-void Dummy_Handler(void);
-
-#if defined (__cplusplus)
-} // extern "C"
-#endif
-
-#include "cortexm_irqs_lpc.cpp"
-#include "isr_lpc82X.cpp"
-
-void Dummy_Handler(void) {
-    while (1);
+/* */
+MEMORY
+{
+    rom   :   ORIGIN = 0x00000000, LENGTH = 4K
+    ram   :   ORIGIN = 0x10000000, LENGTH = 1K
 }
+
+/* Include main link script. Note: it will be searched in -L paths. */
+INCLUDE targets/linkscript.ld
