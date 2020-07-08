@@ -1,9 +1,6 @@
 [submodule "tests/libMcuLL"]
 	path = tests/libMcuLL
 	url = https://github.com/Squantor/libMcuLL.git
-[submodule "examples/libMcuLL"]
-	path = examples/libMcuLL
-	url = https://github.com/Squantor/libMcuLL.git
 [submodule "playgrounds/libMcuLL"]
 	path = playgrounds/libMcuLL
 	url = https://github.com/Squantor/libMcuLL.git
