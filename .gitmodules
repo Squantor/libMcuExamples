@@ -2,11 +2,11 @@
 	path = tests/libMcuLL
 	url = https://github.com/Squantor/libMcuLL.git
 [submodule "playgrounds/libMcuLL"]
-	path = playgrounds/libMcuLL
+	path = examples/libMcuLL
 	url = https://github.com/Squantor/libMcuLL.git
 [submodule "playgrounds/squantorLibC"]
-	path = playgrounds/squantorLibC
+	path = examples/squantorLibC
 	url = https://github.com/Squantor/squantorLibC.git
 [submodule "playgrounds/squantorLibEmbeddedC"]
-	path = playgrounds/squantorLibEmbeddedC
+	path = examples/squantorLibEmbeddedC
 	url = https://github.com/Squantor/squantorLibEmbeddedC.git
