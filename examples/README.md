@@ -23,10 +23,11 @@ make PROJECT=LPC812_uart_example tpwrenable
 The black magic probe is capable of powering the target, these commands enable/disable this function.
 ### Depedencies
 The projects have a few dependencies:
-* [LibMcuLl](https://github.com/Squantor/libMcuLL)
-* [squantorLibC](https://github.com/Squantor/squantorLibC)
-* [squantorLibEmbeddedC](https://github.com/Squantor/squantorLibEmbeddedC)
+* [LibMcuLl](https://github.com/Squantor/libMcuLL) for the chip specific routines
+* [squantorLibC](https://github.com/Squantor/squantorLibC) contains a minimal LibC implementation
+* [squantorLibEmbeddedC](https://github.com/Squantor/squantorLibEmbeddedC) contains various routines useful in embedded systems
 * squantorLibEmbeddedCpp
+
 Do not forget to clone with ```--recurse-submodules```.
 ## Usage
 You will need the following hardware to try out these projects:
