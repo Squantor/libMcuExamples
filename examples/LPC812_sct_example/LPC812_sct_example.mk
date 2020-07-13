@@ -31,7 +31,8 @@ BOARD = nuclone_board
 
 # project sources
 FILES += $(PROJECT)/src/main.cpp \
-$(PROJECT)/src/$(BOARD).cpp
+$(PROJECT)/src/$(BOARD).cpp \
+$(PROJECT)/src/rep_int.cpp
 
 INCLUDES += -IlibMcuLL/inc -I$(PROJECT)/inc
 
