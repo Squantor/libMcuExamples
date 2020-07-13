@@ -27,11 +27,22 @@ Project demonstrating the SCT cookbook examples
 */
 #include <board.hpp>
 #include <mcu_ll.h>
+#include <sct_cookbook.hpp>
+
+volatile uint32_t dummy;
+
+extern "C" {
+    void SCT_IRQHandler(void)
+    {
+        dummy++;
+    }
+}
 
 int main()
 {
+    dummy = 0;
     boardInit();
-
+    setupRepetitiveInterrupt();
     while (1) {
         __WFI();
     }
