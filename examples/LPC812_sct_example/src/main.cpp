@@ -41,9 +41,12 @@ extern "C" {
 int main()
 {
     dummy = 0;
+    volatile uint32_t loopcount = 0;
     boardInit();
     setupRepetitiveInterrupt();
-    while (1) {
-        __WFI();
+    while (1) 
+    {
+        loopcount++;
+        loopcount++;
     }
 }

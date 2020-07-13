@@ -27,10 +27,14 @@ SOFTWARE.
 void setupRepetitiveInterrupt(void)
 {
     SctInit(LPC_SCT);
-    SctSetControl(LPC_SCT, SCT_CONFIG_32BIT_COUNTER | SCT_CONFIG_AUTOLIMIT_U);
-    SctSetMatchCount(LPC_SCT, SCT_MATCH_0, ClockGetSystemClockRate()); // one interrupt per second
-    SctSetEventStateMask(LPC_SCT, SCT_EVT_0_IDX, 0xFFFFFFFF);
-    SctSetEventControl(LPC_SCT, SCT_EVT_0_IDX, SCT_EV_CTRL_COMBMODE(SCT_COMBMODE_MATCH));
+    //SctSetControl(LPC_SCT, SCT_CONFIG_32BIT_COUNTER | SCT_CONFIG_AUTOLIMIT_U);
+    LPC_SCT->CONFIG = (1 << 0) | (1 << 17);
+    //SctSetMatchCount(LPC_SCT, SCT_MATCH_0, ClockGetSystemClockRate()); // one interrupt per second
+    LPC_SCT->MATCHREL[0].U = ClockGetSystemClockRate();
+    //SctSetEventStateMask(LPC_SCT, SCT_EVT_0_IDX, 0xFFFFFFFF);
+    LPC_SCT->EV[0].STATE = 0xFFFFFFFF;
+    //SctSetEventControl(LPC_SCT, SCT_EVT_0_IDX, SCT_EV_CTRL_COMBMODE(SCT_COMBMODE_MATCH));
+    LPC_SCT->EV[0].CTRL = (1 << 12);
     
     LPC_SCT->EVEN = (1 << 0); // event 0 generates an interrupt
     NVIC_EnableIRQ(SCT_IRQn); // enable SCTimer/PWM interrupt
