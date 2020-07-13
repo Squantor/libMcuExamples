@@ -24,6 +24,17 @@ SOFTWARE.
 #ifndef BOARD_HPP
 #define BOARD_HPP
 
+#define IOCON_XTAL_IN       IOCON_PIO8
+#define IOCON_XTAL_OUT      IOCON_PIO9
+
+#define CLOCK_MAIN_SOURCE   SYSCTL_MAINCLKSRC_PLLOUT
+
+#define CLOCK_XTAL          (12000000u)
+#define CLOCK_EXT_IN        (0u)
+#define CLOCK_CPU           (30000000u)
+#define CLOCK_AHB           (30000000u)
+#define CLOCK_MAIN          (60000000u)
+
 void boardInit(void);
 
 #endif
