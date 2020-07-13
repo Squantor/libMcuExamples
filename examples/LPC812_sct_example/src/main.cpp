@@ -35,6 +35,7 @@ extern "C" {
     void SCT_IRQHandler(void)
     {
         dummy++;
+        SctClearEventFlag(LPC_SCT, SCT_EVT_0);
     }
 }
 
