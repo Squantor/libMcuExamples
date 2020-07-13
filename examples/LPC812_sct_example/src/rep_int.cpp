@@ -26,10 +26,11 @@ SOFTWARE.
 
 void setupRepetitiveInterrupt(void)
 {
-    LPC_SCT->CONFIG = (1 << 0) | (1 << 17); // unified 32-bit timer, auto limit
-    LPC_SCT->MATCHREL[0].U = ClockGetSystemClockRate()/1; // match 0 @ 100 Hz = 10 msec
-    LPC_SCT->EV[0].STATE = 0xFFFFFFFF; // event 0 happens in all states
-    LPC_SCT->EV[0].CTRL = (1 << 12); // match 0 condition only
+    SctInit(LPC_SCT);
+    SctSetControl(LPC_SCT, SCT_CONFIG_32BIT_COUNTER | SCT_CONFIG_AUTOLIMIT_U);
+    SctSetMatchCount(LPC_SCT, SCT_MATCH_0, ClockGetSystemClockRate()); // one interrupt per second
+    SctSetEventStateMask(LPC_SCT, SCT_EVT_0_IDX, 0xFFFFFFFF);
+    SctSetEventControl(LPC_SCT, SCT_EVT_0_IDX, SCT_EV_CTRL_COMBMODE(SCT_COMBMODE_MATCH));
     
     LPC_SCT->EVEN = (1 << 0); // event 0 generates an interrupt
     NVIC_EnableIRQ(SCT_IRQn); // enable SCTimer/PWM interrupt
