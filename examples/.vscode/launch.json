@@ -27,7 +27,7 @@
                 },
                 {
                     "description": "Connect to black magic probe",
-                    "text": "target extended-remote /dev/ttyBmpGdb1"
+                    "text": "target extended-remote /dev/ttyBmpGdb0"
                 },
                 {
                     "description": "scan SWD bus",
