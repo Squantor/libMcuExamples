@@ -34,7 +34,7 @@ extern "C" {
     void SCT_IRQHandler(void)
     {
         interruptCounter++;
-        SctClearEventFlag(LPC_SCT, SCT_EVT_0);
+        SctClearEventFlag(LPC_SCT, SCT_EVT_0_BIT);
     }
 }
 
@@ -45,10 +45,10 @@ void setupSct(void)
     // set interrupt rate to one second
     SctSetMatchReload(LPC_SCT, SCT_MATCH_0, ClockGetSystemClockRate());
     // allow event in all states
-    SctSetEventStateMask(LPC_SCT, SCT_EVT_0_IDX, 0x03);
-    SctSetEventControl(LPC_SCT, SCT_EVT_0_IDX, SCT_EV_CTRL_COMBMODE(SCT_COMBMODE_MATCH) | SCT_EV_CTRL_MATCHSEL(SCT_MATCH_0));
+    SctSetEventStateMask(LPC_SCT, SCT_EVT_0_VAL, 0x03);
+    SctSetEventControl(LPC_SCT, SCT_EVT_0_VAL, SCT_EV_CTRL_COMBMODE(SCT_COMBMODE_MATCH) | SCT_EV_CTRL_MATCHSEL(SCT_MATCH_0));
     
-    SctEnableEventInt(LPC_SCT, SCT_EVT_0);
+    SctEnableEventInt(LPC_SCT, SCT_EVT_0_BIT);
     NVIC_EnableIRQ(SCT_IRQn);
     // clear sct halt to run the timer
     SctClearControl(LPC_SCT, SCT_CTRL_HALT_L);
