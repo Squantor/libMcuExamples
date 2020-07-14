@@ -21,20 +21,31 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
-
 /*
-Project demonstrating the SCT cookbook examples
+    blink pin at 1 Hz
 */
 #include <board.hpp>
 #include <mcu_ll.h>
 #include <sct_cookbook.hpp>
 
-int main()
+void setupSct(void)
 {
-    boardInit();
-    setupSct();
-    while (1) 
-    {
-        __NOP();
-    }
+    SctInit(LPC_SCT);
+    // setup SCT out0 to pin 17
+    ClockEnablePeriphClock(SYSCTL_CLOCK_SWM);
+    ClockEnablePeriphClock(SYSCTL_CLOCK_IOCON);
+    IoconPinSetMode(LPC_IOCON, IOCON_LED, PIN_MODE_INACTIVE);
+    SwmMovablePinAssign(SWM_CTOUT_0_O, PIN_LED);
+    ClockDisablePeriphClock(SYSCTL_CLOCK_IOCON);
+    ClockDisablePeriphClock(SYSCTL_CLOCK_SWM);
+    
+    LPC_SCT->CONFIG |= 1;
+    LPC_SCT->MATCHREL[0].U = ClockGetSystemClockRate();
+    LPC_SCT->EV[0].STATE = (1 << 0);
+    LPC_SCT->EV[0].CTRL = (0 << 0) | (1 << 12) | (1 << 14) | (1 << 15);
+    LPC_SCT->EV[1].STATE = (1 << 1);
+    LPC_SCT->EV[1].CTRL = (0 << 0) | (1 << 12) | (1 << 14) | (0 << 15);
+    LPC_SCT->OUT[0].SET = (1 << 0);
+    LPC_SCT->OUT[0].CLR = (1 << 1);
+    SctClearControl(LPC_SCT, SCT_CTRL_HALT_L);
 }

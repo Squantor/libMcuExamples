@@ -22,6 +22,10 @@
                     "ignoreFailures": true
                 },
                 {
+                    "description": "Set the debugger architecture",
+                    "text": "set architecture armv6-m"
+                },
+                {
                     "description": "Load the file",
                     "text": "file ${workspaceFolder}/bin/LPC812_sct_example/debug/LPC812_sct_example.elf"
                 },
