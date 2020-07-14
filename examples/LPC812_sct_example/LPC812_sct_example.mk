@@ -33,6 +33,10 @@ BOARD = nuclone_board
 FILES += $(PROJECT)/src/main.cpp \
 $(PROJECT)/src/$(BOARD).cpp \
 $(PROJECT)/src/blinky_match.cpp
+
+# add one of these files to the sources to run the example
+#$(PROJECT)/src/rep_int.cpp
+#$(PROJECT)/src/blinky_match.cpp
 #$(PROJECT)/src/match_toggle.cpp
 #$(PROJECT)/src/simple_pwm.cpp
 

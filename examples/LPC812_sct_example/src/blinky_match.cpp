@@ -39,31 +39,26 @@ void setupSct(void)
     ClockDisablePeriphClock(SYSCTL_CLOCK_SWM);
 
     SctInit(LPC_SCT);    
-    //LPC_SCT->CONFIG |= 1;
     SctConfig(LPC_SCT, SCT_CONFIG_32BIT_COUNTER);
-    //LPC_SCT->MATCHREL[0].U = ClockGetSystemClockRate();
     SctSetMatchReload(LPC_SCT, SCT_MATCH_0, ClockGetSystemClockRate());
-    // LPC_SCT->EV[0].STATE = (1 << 0);
+    // Set SCT to pingpong between state 0 and 1 and clear and set the output
     SctSetEventStateMask(LPC_SCT, SCT_EVT_0_VAL, SCT_STATE_0_BIT);
-    //LPC_SCT->EV[0].CTRL = (0 << 0) | (1 << 12) | (1 << 14) | (1 << 15);
     SctSetEventControl(LPC_SCT, SCT_EVT_0_VAL, 
         SCT_EV_CTRL_MATCHSEL(SCT_MATCH_0) | 
         SCT_EV_CTRL_COMBMODE(SCT_COMBMODE_MATCH) |
         SCT_EV_CTRL_STATELD_LOAD | 
         SCT_EV_CTRL_STATEV(SCT_STATE_1_VAL));
-    //LPC_SCT->EV[1].STATE = (1 << 1);
     SctSetEventStateMask(LPC_SCT, SCT_EVT_1_VAL, SCT_STATE_1_BIT);
-    //LPC_SCT->EV[1].CTRL = (0 << 0) | (1 << 12) | (1 << 14) | (0 << 15);
     SctSetEventControl(LPC_SCT, SCT_EVT_1_VAL, 
         SCT_EV_CTRL_MATCHSEL(SCT_MATCH_0) | 
         SCT_EV_CTRL_COMBMODE(SCT_COMBMODE_MATCH) |
         SCT_EV_CTRL_STATELD_LOAD | 
         SCT_EV_CTRL_STATEV(SCT_STATE_0_VAL));
-    //LPC_SCT->OUT[0].SET = (1 << 0);
+    // event 0 clears sets output 0, event 1 clears it
     SctSetOutputSet(LPC_SCT, SCT_OUT_0_VALUE, SCT_EVT_0_BIT);
-    //LPC_SCT->OUT[0].CLR = (1 << 1);
     SctSetOutputClear(LPC_SCT, SCT_OUT_0_VALUE, SCT_EVT_1_BIT);
-    //LPC_SCT->LIMIT_L = 0x0003;
+    // event 0 and 1 limit the counter
     SctSetLimitL(LPC_SCT, SCT_EVT_0_BIT | SCT_EVT_1_BIT);
+    // start the timer
     SctClearControl(LPC_SCT, SCT_CTRL_HALT_L);
 }
