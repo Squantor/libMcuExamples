@@ -47,5 +47,6 @@ void setupSct(void)
     LPC_SCT->EV[1].CTRL = (0 << 0) | (1 << 12) | (1 << 14) | (0 << 15);
     LPC_SCT->OUT[0].SET = (1 << 0);
     LPC_SCT->OUT[0].CLR = (1 << 1);
+    LPC_SCT->LIMIT_L = 0x0003;
     SctClearControl(LPC_SCT, SCT_CTRL_HALT_L);
 }
