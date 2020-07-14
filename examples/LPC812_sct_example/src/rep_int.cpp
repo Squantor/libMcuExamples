@@ -21,22 +21,35 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
+/*
+    Repetative interrupt example
+*/
+#include <board.hpp>
 #include <mcu_ll.h>
 #include <sct_cookbook.hpp>
 
-void setupRepetitiveInterrupt(void)
+volatile static uint32_t interruptCounter = 0;
+
+extern "C" {
+    void SCT_IRQHandler(void)
+    {
+        interruptCounter++;
+        SctClearEventFlag(LPC_SCT, SCT_EVT_0);
+    }
+}
+
+void setupSct(void)
 {
     SctInit(LPC_SCT);
-    //SctSetControl(LPC_SCT, SCT_CONFIG_32BIT_COUNTER | SCT_CONFIG_AUTOLIMIT_U);
-    LPC_SCT->CONFIG = (1 << 0) | (1 << 17);
-    //SctSetMatchCount(LPC_SCT, SCT_MATCH_0, ClockGetSystemClockRate()); // one interrupt per second
-    LPC_SCT->MATCHREL[0].U = ClockGetSystemClockRate();
-    //SctSetEventStateMask(LPC_SCT, SCT_EVT_0_IDX, 0xFFFFFFFF);
-    LPC_SCT->EV[0].STATE = 0xFFFFFFFF;
-    //SctSetEventControl(LPC_SCT, SCT_EVT_0_IDX, SCT_EV_CTRL_COMBMODE(SCT_COMBMODE_MATCH));
-    LPC_SCT->EV[0].CTRL = (1 << 12);
+    SctConfig(LPC_SCT, SCT_CONFIG_32BIT_COUNTER | SCT_CONFIG_AUTOLIMIT_U);
+    // set interrupt rate to one second
+    SctSetMatchReload(LPC_SCT, SCT_MATCH_0, ClockGetSystemClockRate());
+    // allow event in all states
+    SctSetEventStateMask(LPC_SCT, SCT_EVT_0_IDX, 0x03);
+    SctSetEventControl(LPC_SCT, SCT_EVT_0_IDX, SCT_EV_CTRL_COMBMODE(SCT_COMBMODE_MATCH) | SCT_EV_CTRL_MATCHSEL(SCT_MATCH_0));
     
-    LPC_SCT->EVEN = (1 << 0); // event 0 generates an interrupt
-    NVIC_EnableIRQ(SCT_IRQn); // enable SCTimer/PWM interrupt
-    LPC_SCT->CTRL_U &= ~(1 << 2); // unhalt by clearing bit 2 of the CTRL
+    SctEnableEventInt(LPC_SCT, SCT_EVT_0);
+    NVIC_EnableIRQ(SCT_IRQn);
+    // clear sct halt to run the timer
+    SctClearControl(LPC_SCT, SCT_CTRL_HALT_L);
 }

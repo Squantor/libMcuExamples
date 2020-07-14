@@ -27,6 +27,6 @@ Prototypes of all the SCT cookbook examples
 #ifndef SCT_COOKBOOK_HPP
 #define SCT_COOKBOOK_HPP
 
-void setupRepetitiveInterrupt(void);
+void setupSct(void);
 
 #endif

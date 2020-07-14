@@ -32,7 +32,11 @@ BOARD = nuclone_board
 # project sources
 FILES += $(PROJECT)/src/main.cpp \
 $(PROJECT)/src/$(BOARD).cpp \
+# uncomment the source file of the example that you want to run
 $(PROJECT)/src/rep_int.cpp
+#$(PROJECT)/src/blinky_match.cpp
+#$(PROJECT)/src/match_toggle.cpp
+#$(PROJECT)/src/simple_pwm.cpp
 
 INCLUDES += -IlibMcuLL/inc -I$(PROJECT)/inc
 
