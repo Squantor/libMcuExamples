@@ -38,7 +38,21 @@ void exampleSetup(void)
     ClockDisablePeriphClock(SYSCTL_CLOCK_IOCON);
     ClockDisablePeriphClock(SYSCTL_CLOCK_SWM);
 
-    SctInit(LPC_SCT);    
+    SctInit(LPC_SCT);
+    LPC_SCT->CONFIG |= (1 << 17);
+    // divide clock by 250 to get a 120Khz rate
+    LPC_SCT->CTRL_L |= (249 << 5);
+    // 2Hz rate
+    LPC_SCT->MATCHREL[0].L = 60000-1;
+
+    LPC_SCT->EV[0].STATE = 0xFFFF;
+    LPC_SCT->EV[0].CTRL = (1 << 12);
+
+    LPC_SCT->OUT[0].SET = (1 << 0);
+    LPC_SCT->OUT[0].CLR = (1 << 0);
+    LPC_SCT->RES = (3 << 0);
+
+    LPC_SCT->CTRL_L &= ~(1 << 2);
 }
 
 void exampleLoop(void)
