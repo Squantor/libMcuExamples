@@ -51,7 +51,7 @@ void exampleSetup(void)
     SctSetEventInt(LPC_SCT, SCT_EVENT_0_BIT);
     NVIC_EnableIRQ(SCT_IRQn);
     // clear sct halt to run the timer
-    SctClearControlU(LPC_SCT, SCT_CTRL_HALT_L);
+    SctClearControl(LPC_SCT, SCT_CTRL_HALT_L);
 }
 
 void exampleLoop(void)

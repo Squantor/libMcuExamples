@@ -60,7 +60,7 @@ void exampleSetup(void)
     // event 0 and 1 limit the counter
     SctLimitL(LPC_SCT, SCT_EVENT_0_BIT | SCT_EVENT_1_BIT);
     // start the timer
-    SctClearControlU(LPC_SCT, SCT_CTRL_HALT_L);
+    SctClearControl(LPC_SCT, SCT_CTRL_HALT_L);
 }
 
 void exampleLoop(void)
