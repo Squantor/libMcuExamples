@@ -30,7 +30,7 @@ TARGET = MCU
 BOARD = nuclone_board
 
 # valid examples
-EXAMPLES = rep_int blinky_match
+EXAMPLES = rep_int blinky_match match_toggle
 
 # check if valid example is defined
 ifndef EXAMPLE
@@ -42,15 +42,10 @@ $(error Unknown example $(EXAMPLE)! Possible choices: $(EXAMPLES))
 endif
 endif
 
-
-
 # project sources
 FILES += $(PROJECT)/src/main.cpp \
 $(PROJECT)/src/$(BOARD).cpp \
 $(PROJECT)/src/$(EXAMPLE).cpp
-
-#$(PROJECT)/src/match_toggle.cpp
-#$(PROJECT)/src/simple_pwm.cpp
 
 INCLUDES += -IlibMcuLL/inc -I$(PROJECT)/inc
 
