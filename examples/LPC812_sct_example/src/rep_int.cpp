@@ -43,15 +43,15 @@ void exampleSetup(void)
     SctInit(LPC_SCT);
     SctConfig(LPC_SCT, SCT_CONFIG_32BIT_COUNTER | SCT_CONFIG_AUTOLIMIT_U);
     // set interrupt rate to one second
-    SctSetMatchReloadU(LPC_SCT, SCT_MATCH_0, ClockGetSystemClockRate());
+    SctMatchReloadU(LPC_SCT, SCT_MATCH_0, ClockGetSystemClockRate());
     // allow event in all states
     SctSetEventStateMask(LPC_SCT, SCT_EVENT_0_VAL, 0x03);
     SctSetEventControl(LPC_SCT, SCT_EVENT_0_VAL, SCT_EV_CTRL_COMBMODE(SCT_COMBMODE_MATCH) | SCT_EV_CTRL_MATCHSEL(SCT_MATCH_0));
     
-    SctEnableEventInt(LPC_SCT, SCT_EVENT_0_BIT);
+    SctSetEventInt(LPC_SCT, SCT_EVENT_0_BIT);
     NVIC_EnableIRQ(SCT_IRQn);
     // clear sct halt to run the timer
-    SctClearControl(LPC_SCT, SCT_CTRL_HALT_L);
+    SctClearControlU(LPC_SCT, SCT_CTRL_HALT_L);
 }
 
 void exampleLoop(void)

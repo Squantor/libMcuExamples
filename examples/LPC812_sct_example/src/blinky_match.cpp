@@ -40,7 +40,7 @@ void exampleSetup(void)
 
     SctInit(LPC_SCT);    
     SctConfig(LPC_SCT, SCT_CONFIG_32BIT_COUNTER);
-    SctSetMatchReloadU(LPC_SCT, SCT_MATCH_0, ClockGetSystemClockRate());
+    SctMatchReloadU(LPC_SCT, SCT_MATCH_0, ClockGetSystemClockRate());
     // Set SCT to pingpong between state 0 and 1 and clear and set the output
     SctSetEventStateMask(LPC_SCT, SCT_EVENT_0_VAL, SCT_STATE_0_BIT);
     SctSetEventControl(LPC_SCT, SCT_EVENT_0_VAL, 
@@ -58,9 +58,9 @@ void exampleSetup(void)
     SctSetOutputSet(LPC_SCT, SCT_OUTPUT_0_VALUE, SCT_EVENT_0_BIT);
     SctSetOutputClear(LPC_SCT, SCT_OUTPUT_0_VALUE, SCT_EVENT_1_BIT);
     // event 0 and 1 limit the counter
-    SctSetLimitL(LPC_SCT, SCT_EVENT_0_BIT | SCT_EVENT_1_BIT);
+    SctLimitL(LPC_SCT, SCT_EVENT_0_BIT | SCT_EVENT_1_BIT);
     // start the timer
-    SctClearControl(LPC_SCT, SCT_CTRL_HALT_L);
+    SctClearControlU(LPC_SCT, SCT_CTRL_HALT_L);
 }
 
 void exampleLoop(void)
