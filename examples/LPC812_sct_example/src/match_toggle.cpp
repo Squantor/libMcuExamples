@@ -39,20 +39,30 @@ void exampleSetup(void)
     ClockDisablePeriphClock(SYSCTL_CLOCK_SWM);
 
     SctInit(LPC_SCT);
-    LPC_SCT->CONFIG |= (1 << 17);
+    //LPC_SCT->CONFIG |= (1 << 17);
+    SctConfig(LPC_SCT, SCT_CONFIG_16BIT_COUNTER | SCT_CONFIG_AUTOLIMIT_L);
     // divide clock by 250 to get a 120Khz rate
-    LPC_SCT->CTRL_L |= (249 << 5);
+    //LPC_SCT->CTRL_L |= (249 << 5);
+    // TODO make low control set
+    SctSetControlU(LPC_SCT, SCT_CTRL_PRE_L(249));
     // 2Hz rate
-    LPC_SCT->MATCHREL[0].L = 60000-1;
+    //LPC_SCT->MATCHREL[0].L = 60000-1;
+    SctMatchReloadL(LPC_SCT, SCT_MATCH_0, 60000-1);
 
-    LPC_SCT->EV[0].STATE = 0xFFFF;
-    LPC_SCT->EV[0].CTRL = (1 << 12);
+    //LPC_SCT->EV[0].STATE = 0xFFFF;
+    SctSetEventStateMask(LPC_SCT, SCT_EVENT_0_VAL, SCT_STATE_0_BIT | SCT_STATE_1_BIT);
+    //LPC_SCT->EV[0].CTRL = (1 << 12);
+    SctSetEventControl(LPC_SCT, SCT_EVENT_0_VAL, SCT_EV_CTRL_COMBMODE(SCT_COMBMODE_MATCH));
 
-    LPC_SCT->OUT[0].SET = (1 << 0);
-    LPC_SCT->OUT[0].CLR = (1 << 0);
-    LPC_SCT->RES = (3 << 0);
+    //LPC_SCT->OUT[0].SET = (1 << 0);
+    SctSetOutputSet(LPC_SCT, SCT_OUTPUT_0_VALUE, SCT_EVENT_0_BIT);
+    //LPC_SCT->OUT[0].CLR = (1 << 0);
+    SctSetOutputClear(LPC_SCT, SCT_OUTPUT_0_VALUE, SCT_EVENT_0_BIT);
+    //LPC_SCT->RES = (3 << 0);
+    SctSetupConflictResolution(LPC_SCT, SCT_RES(SCT_OUTPUT_0_VALUE, SCT_RES_TOGGLE));
 
-    LPC_SCT->CTRL_L &= ~(1 << 2);
+    //LPC_SCT->CTRL_L &= ~(1 << 2);
+    SctClearControlL(LPC_SCT, SCT_CTRL_HALT_L);
 }
 
 void exampleLoop(void)
