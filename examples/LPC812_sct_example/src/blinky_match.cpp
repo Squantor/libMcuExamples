@@ -28,7 +28,7 @@ SOFTWARE.
 #include <mcu_ll.h>
 #include <sct_cookbook.hpp>
 
-void setupSct(void)
+void exampleSetup(void)
 {
     // setup SCT out0 to pin 17
     ClockEnablePeriphClock(SYSCTL_CLOCK_SWM);
@@ -65,5 +65,5 @@ void setupSct(void)
 
 void exampleLoop(void)
 {
-    
+    __NOP();
 }

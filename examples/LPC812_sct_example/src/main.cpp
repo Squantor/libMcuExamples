@@ -32,7 +32,7 @@ Project demonstrating the SCT cookbook examples
 int main()
 {
     boardInit();
-    setupSct();
+    exampleSetup();
     while (1) 
     {
         exampleLoop();

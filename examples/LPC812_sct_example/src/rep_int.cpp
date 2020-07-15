@@ -38,7 +38,7 @@ extern "C" {
     }
 }
 
-void setupSct(void)
+void exampleSetup(void)
 {
     SctInit(LPC_SCT);
     SctConfig(LPC_SCT, SCT_CONFIG_32BIT_COUNTER | SCT_CONFIG_AUTOLIMIT_U);
@@ -56,5 +56,5 @@ void setupSct(void)
 
 void exampleLoop(void)
 {
-    
+    __NOP();
 }
