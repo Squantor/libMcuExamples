@@ -40,25 +40,25 @@ void exampleSetup(void)
 
     SctInit(LPC_SCT);    
     SctConfig(LPC_SCT, SCT_CONFIG_32BIT_COUNTER);
-    SctSetMatchReload(LPC_SCT, SCT_MATCH_0, ClockGetSystemClockRate());
+    SctSetMatchReloadU(LPC_SCT, SCT_MATCH_0, ClockGetSystemClockRate());
     // Set SCT to pingpong between state 0 and 1 and clear and set the output
-    SctSetEventStateMask(LPC_SCT, SCT_EVT_0_VAL, SCT_STATE_0_BIT);
-    SctSetEventControl(LPC_SCT, SCT_EVT_0_VAL, 
+    SctSetEventStateMask(LPC_SCT, SCT_EVENT_0_VAL, SCT_STATE_0_BIT);
+    SctSetEventControl(LPC_SCT, SCT_EVENT_0_VAL, 
         SCT_EV_CTRL_MATCHSEL(SCT_MATCH_0) | 
         SCT_EV_CTRL_COMBMODE(SCT_COMBMODE_MATCH) |
         SCT_EV_CTRL_STATELD_LOAD | 
         SCT_EV_CTRL_STATEV(SCT_STATE_1_VAL));
-    SctSetEventStateMask(LPC_SCT, SCT_EVT_1_VAL, SCT_STATE_1_BIT);
-    SctSetEventControl(LPC_SCT, SCT_EVT_1_VAL, 
+    SctSetEventStateMask(LPC_SCT, SCT_EVENT_1_VAL, SCT_STATE_1_BIT);
+    SctSetEventControl(LPC_SCT, SCT_EVENT_1_VAL, 
         SCT_EV_CTRL_MATCHSEL(SCT_MATCH_0) | 
         SCT_EV_CTRL_COMBMODE(SCT_COMBMODE_MATCH) |
         SCT_EV_CTRL_STATELD_LOAD | 
         SCT_EV_CTRL_STATEV(SCT_STATE_0_VAL));
     // event 0 clears sets output 0, event 1 clears it
-    SctSetOutputSet(LPC_SCT, SCT_OUT_0_VALUE, SCT_EVT_0_BIT);
-    SctSetOutputClear(LPC_SCT, SCT_OUT_0_VALUE, SCT_EVT_1_BIT);
+    SctSetOutputSet(LPC_SCT, SCT_OUTPUT_0_VALUE, SCT_EVENT_0_BIT);
+    SctSetOutputClear(LPC_SCT, SCT_OUTPUT_0_VALUE, SCT_EVENT_1_BIT);
     // event 0 and 1 limit the counter
-    SctSetLimitL(LPC_SCT, SCT_EVT_0_BIT | SCT_EVT_1_BIT);
+    SctSetLimitL(LPC_SCT, SCT_EVENT_0_BIT | SCT_EVENT_1_BIT);
     // start the timer
     SctClearControl(LPC_SCT, SCT_CTRL_HALT_L);
 }
