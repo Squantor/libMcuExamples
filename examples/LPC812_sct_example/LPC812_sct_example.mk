@@ -29,14 +29,26 @@ MCU = LPC812M101JDH20
 TARGET = MCU
 BOARD = nuclone_board
 
+# valid examples
+EXAMPLES = rep_int blinky_match
+
+# check if valid example is defined
+ifndef EXAMPLE
+$(error No example is defined, define with EXAMPLES=examplefile . \
+You can choose from: $(EXAMPLES))
+else
+ifeq (, $(findstring $(EXAMPLE),$(EXAMPLES)))
+$(error Unknown example $(EXAMPLE)! Possible choices: $(EXAMPLES))
+endif
+endif
+
+
+
 # project sources
 FILES += $(PROJECT)/src/main.cpp \
 $(PROJECT)/src/$(BOARD).cpp \
-$(PROJECT)/src/blinky_match.cpp
+$(PROJECT)/src/$(EXAMPLE).cpp
 
-# add one of these files to the sources to run the example
-#$(PROJECT)/src/rep_int.cpp
-#$(PROJECT)/src/blinky_match.cpp
 #$(PROJECT)/src/match_toggle.cpp
 #$(PROJECT)/src/simple_pwm.cpp
 
