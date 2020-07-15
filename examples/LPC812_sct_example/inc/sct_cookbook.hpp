@@ -28,5 +28,6 @@ Prototypes of all the SCT cookbook examples
 #define SCT_COOKBOOK_HPP
 
 void setupSct(void);
+void exampleLoop(void);
 
 #endif

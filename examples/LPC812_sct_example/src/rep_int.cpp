@@ -53,3 +53,8 @@ void setupSct(void)
     // clear sct halt to run the timer
     SctClearControl(LPC_SCT, SCT_CTRL_HALT_L);
 }
+
+void exampleLoop(void)
+{
+    
+}

@@ -35,6 +35,6 @@ int main()
     setupSct();
     while (1) 
     {
-        __NOP();
+        exampleLoop();
     }
 }
