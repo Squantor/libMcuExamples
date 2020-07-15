@@ -6,7 +6,7 @@
         {
             "label": "build",
             "type": "shell",
-            "command": "make PROJECT=LPC812_sct_example CONFIG=debug",
+            "command": "make PROJECT=LPC812_sct_example EXAMPLE=blinky_match CONFIG=debug",
             "group": {
                 "kind": "build",
                 "isDefault": true
@@ -16,7 +16,7 @@
         {
             "label": "clean",
             "type": "shell",
-            "command": "make  PROJECT=LPC812_sct_example clean",
+            "command": "make  PROJECT=LPC812_sct_example EXAMPLE=blinky_match clean",
             "problemMatcher": [
                 "$gcc"
             ]
