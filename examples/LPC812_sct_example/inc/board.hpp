@@ -35,8 +35,18 @@ SOFTWARE.
 #define CLOCK_AHB           (30000000u)
 #define CLOCK_MAIN          (60000000u)
 
-#define IOCON_LED           IOCON_PIO17
-#define PIN_LED             (17u)
+#define IOCON_LED_0         IOCON_PIO17
+#define PIN_LED_0           (17u)
+#define IOCON_LED_1         IOCON_PIO13
+#define PIN_LED_1           (13u)
+#define IOCON_LED_2         IOCON_PIO12
+#define PIN_LED_2           (12u)
+#define IOCON_BUTTON        IOCON_PIO4
+#define PIN_BUTTON          (4u)
+#define IOCON_TOGGLE        IOCON_PIO16
+#define PIN_TOGGLE          (16u)
+
+
 
 void boardInit(void);
 
