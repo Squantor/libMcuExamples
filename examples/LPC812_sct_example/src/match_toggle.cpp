@@ -48,7 +48,7 @@ void exampleSetup(void)
     SctSetEventControl(LPC_SCT, SCT_EVENT_0_VAL, SCT_EV_CTRL_COMBMODE(SCT_COMBMODE_MATCH));
     SctSetOutputSet(LPC_SCT, SCT_OUTPUT_0_VALUE, SCT_EVENT_0_BIT);
     SctSetOutputClear(LPC_SCT, SCT_OUTPUT_0_VALUE, SCT_EVENT_0_BIT);
-    SctSetupConflictResolution(LPC_SCT, SCT_RES(SCT_OUTPUT_0_VALUE, SCT_RES_TOGGLE));
+    SctConflictResolution(LPC_SCT, SCT_RES(SCT_OUTPUT_0_VALUE, SCT_RES_TOGGLE));
     // start Low timer
     SctClearControl(LPC_SCT, SCT_CTRL_HALT_L);
 }
