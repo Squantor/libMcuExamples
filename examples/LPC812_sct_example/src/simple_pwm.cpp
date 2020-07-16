@@ -22,11 +22,24 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 /*
-    blink pin at 1 Hz using the match toggle
+    Simple PWM example
 */
 #include <board.hpp>
 #include <mcu_ll.h>
 #include <sct_cookbook.hpp>
+
+// minimum amount of ticks per second at 30MHz clock
+#define TICKS_PER_S         (2)
+
+volatile uint32_t ticks = 0;
+
+extern "C" 
+{
+    void SysTick_Handler(void)
+    {
+        ticks++;
+    }
+}
 
 void exampleSetup(void)
 {
@@ -37,12 +50,36 @@ void exampleSetup(void)
     SwmMovablePinAssign(SWM_CTOUT_0_O, PIN_LED);
     ClockDisablePeriphClock(SYSCTL_CLOCK_IOCON);
     ClockDisablePeriphClock(SYSCTL_CLOCK_SWM);
-
+    SysTick_Config(CLOCK_AHB / TICKS_PER_S);
+    
     SctInit(LPC_SCT);
+    LPC_SCT->CONFIG |= (1 << 17);
+    // divide 30MHz bus clock by 30 to get 1MHz timebase
+    LPC_SCT->CTRL_L |= (30-1) << 5;
+    LPC_SCT->MATCHREL[0].L = 10-1;
+    LPC_SCT->MATCHREL[1].L = 1;
+    LPC_SCT->EV[0].STATE = 0xFFFF;
+    LPC_SCT->EV[0].CTRL = (1 << 12);
+    LPC_SCT->EV[1].STATE = 0xFFFF;
+    LPC_SCT->EV[1].CTRL = (1 << 0) | (1 << 12);
+    LPC_SCT->OUT[0].SET = (1 << 0);
+    LPC_SCT->OUT[0].CLR = (1 << 1);
+    LPC_SCT->CTRL_L &= ~(1 << 2);
 
 }
 
 void exampleLoop(void)
 {
-    __NOP();
+    static uint16_t brightness = 0;
+    static uint32_t currentTicks = 0;
+    if(currentTicks != ticks)
+    {
+        currentTicks = ticks;
+        brightness++;
+        if(brightness > 9)
+        {
+            brightness = 0;
+        }
+        LPC_SCT->MATCHREL[1].L = brightness;
+    }
 }
