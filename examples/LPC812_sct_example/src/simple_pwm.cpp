@@ -29,7 +29,8 @@ SOFTWARE.
 #include <sct_cookbook.hpp>
 
 // minimum amount of ticks per second at 30MHz clock
-#define TICKS_PER_S         (2)
+#define TICKS_PER_S     (2)
+#define MAX_PWM         (10)
 
 volatile uint32_t ticks = 0;
 
@@ -53,33 +54,34 @@ void exampleSetup(void)
     SysTick_Config(CLOCK_AHB / TICKS_PER_S);
     
     SctInit(LPC_SCT);
-    LPC_SCT->CONFIG |= (1 << 17);
+    SctConfig(LPC_SCT, SCT_CONFIG_16BIT_COUNTER | SCT_CONFIG_AUTOLIMIT_L);
     // divide 30MHz bus clock by 30 to get 1MHz timebase
-    LPC_SCT->CTRL_L |= (30-1) << 5;
-    LPC_SCT->MATCHREL[0].L = 10-1;
-    LPC_SCT->MATCHREL[1].L = 1;
-    LPC_SCT->EV[0].STATE = 0xFFFF;
-    LPC_SCT->EV[0].CTRL = (1 << 12);
-    LPC_SCT->EV[1].STATE = 0xFFFF;
-    LPC_SCT->EV[1].CTRL = (1 << 0) | (1 << 12);
-    LPC_SCT->OUT[0].SET = (1 << 0);
-    LPC_SCT->OUT[0].CLR = (1 << 1);
-    LPC_SCT->CTRL_L &= ~(1 << 2);
-
+    SctSetControl(LPC_SCT, SCT_CTRL_PRE_L(30-1));
+    SctMatchReloadL(LPC_SCT, SCT_MATCH_0, MAX_PWM-1);
+    SctMatchReloadL(LPC_SCT, SCT_MATCH_1, 1);
+    SctSetEventStateMask(LPC_SCT, SCT_EVENT_0_VAL, SCT_STATE_0_BIT | SCT_STATE_1_BIT);
+    SctSetEventControl(LPC_SCT, SCT_EVENT_0_VAL, SCT_EV_CTRL_COMBMODE(SCT_COMBMODE_MATCH));
+    SctSetEventStateMask(LPC_SCT, SCT_EVENT_1_VAL, SCT_STATE_0_BIT | SCT_STATE_1_BIT);
+    SctSetEventControl(LPC_SCT, SCT_EVENT_1_VAL, SCT_EV_CTRL_COMBMODE(SCT_COMBMODE_MATCH) | SCT_EV_CTRL_MATCHSEL(SCT_MATCH_1));
+    SctSetOutputSet(LPC_SCT, SCT_OUTPUT_0_VALUE, SCT_EVENT_0_BIT);
+    SctSetOutputClear(LPC_SCT, SCT_OUTPUT_0_VALUE, SCT_EVENT_1_BIT);
+    SctClearControl(LPC_SCT, SCT_CTRL_HALT_L);
 }
 
 void exampleLoop(void)
 {
     static uint16_t brightness = 0;
     static uint32_t currentTicks = 0;
+    // if a tick has elapsed
     if(currentTicks != ticks)
     {
+        // increase brightness
         currentTicks = ticks;
         brightness++;
-        if(brightness > 9)
+        if(brightness > MAX_PWM)
         {
             brightness = 0;
         }
-        LPC_SCT->MATCHREL[1].L = brightness;
+        SctMatchReloadL(LPC_SCT, SCT_MATCH_1, brightness);
     }
 }
