@@ -90,17 +90,28 @@ void exampleSetup(void)
         SCT_EV_CTRL_COMBMODE(SCT_COMBMODE_AND) |
         SCT_EV_CTRL_STATEV(SCT_STATE_0_VAL) |
         SCT_EV_CTRL_STATELD_LOAD );
-    SctSetEventStateMask(LPC_SCT, SCT_EVENT_4_VAL, SCT_STATE_0_BIT);
+    SctSetEventStateMask(LPC_SCT, SCT_EVENT_4_VAL, SCT_STATE_1_BIT);
     SctSetEventControl(LPC_SCT, SCT_EVENT_4_VAL, 
-        SCT_EV_CTRL_MATCHSEL(SCT_MATCH_3) |
+        SCT_EV_CTRL_MATCHSEL(SCT_MATCH_2) |
         SCT_EV_CTRL_COMBMODE(SCT_COMBMODE_MATCH) );
-    SctSetEventStateMask(LPC_SCT, SCT_EVENT_5_VAL, SCT_STATE_0_BIT);
+    SctSetEventStateMask(LPC_SCT, SCT_EVENT_5_VAL, SCT_STATE_1_BIT);
     SctSetEventControl(LPC_SCT, SCT_EVENT_5_VAL, 
-        SCT_EV_CTRL_MATCHSEL(SCT_MATCH_4) |
+        SCT_EV_CTRL_MATCHSEL(SCT_MATCH_1) |
         SCT_EV_CTRL_COMBMODE(SCT_COMBMODE_MATCH) );    
-    
+    SctOutputSet(LPC_SCT, SCT_OUTPUT_0_VALUE, 
+        SCT_EVENT_0_BIT |
+        SCT_EVENT_3_BIT |
+        SCT_EVENT_5_BIT );
+    SctOutputClear(LPC_SCT, SCT_OUTPUT_0_VALUE,
+        SCT_EVENT_4_BIT);
+    SctOutputSet(LPC_SCT, SCT_OUTPUT_1_VALUE,
+        SCT_EVENT_0_BIT |
+        SCT_EVENT_1_BIT |
+        SCT_EVENT_3_BIT );
+    SctOutputClear(LPC_SCT, SCT_OUTPUT_1_VALUE,
+        SCT_EVENT_2_BIT);
+    SctSet
 
-    
 }
 
 void exampleLoop(void)

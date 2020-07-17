@@ -55,8 +55,8 @@ void exampleSetup(void)
         SCT_EV_CTRL_STATELD_LOAD | 
         SCT_EV_CTRL_STATEV(SCT_STATE_0_VAL));
     // event 0 clears sets output 0, event 1 clears it
-    SctSetOutputSet(LPC_SCT, SCT_OUTPUT_0_VALUE, SCT_EVENT_0_BIT);
-    SctSetOutputClear(LPC_SCT, SCT_OUTPUT_0_VALUE, SCT_EVENT_1_BIT);
+    SctOutputSet(LPC_SCT, SCT_OUTPUT_0_VALUE, SCT_EVENT_0_BIT);
+    SctOutputClear(LPC_SCT, SCT_OUTPUT_0_VALUE, SCT_EVENT_1_BIT);
     // event 0 and 1 limit the counter
     SctLimitL(LPC_SCT, SCT_EVENT_0_BIT | SCT_EVENT_1_BIT);
     // start the timer

@@ -46,8 +46,8 @@ void exampleSetup(void)
     SctMatchReloadL(LPC_SCT, SCT_MATCH_0, 60000-1);
     SctSetEventStateMask(LPC_SCT, SCT_EVENT_0_VAL, SCT_STATE_0_BIT | SCT_STATE_1_BIT);
     SctSetEventControl(LPC_SCT, SCT_EVENT_0_VAL, SCT_EV_CTRL_COMBMODE(SCT_COMBMODE_MATCH));
-    SctSetOutputSet(LPC_SCT, SCT_OUTPUT_0_VALUE, SCT_EVENT_0_BIT);
-    SctSetOutputClear(LPC_SCT, SCT_OUTPUT_0_VALUE, SCT_EVENT_0_BIT);
+    SctOutputSet(LPC_SCT, SCT_OUTPUT_0_VALUE, SCT_EVENT_0_BIT);
+    SctOutputClear(LPC_SCT, SCT_OUTPUT_0_VALUE, SCT_EVENT_0_BIT);
     SctConflictResolution(LPC_SCT, SCT_RES(SCT_OUTPUT_0_VALUE, SCT_RES_TOGGLE));
     // start Low timer
     SctClearControl(LPC_SCT, SCT_CTRL_HALT_L);
