@@ -50,7 +50,7 @@ void exampleSetup(void)
     IoconPinSetMode(LPC_IOCON, IOCON_LED_0, PIN_MODE_INACTIVE);
     IoconPinSetMode(LPC_IOCON, IOCON_LED_1, PIN_MODE_INACTIVE);
     IoconPinSetMode(LPC_IOCON, IOCON_LED_2, PIN_MODE_INACTIVE);
-    IoconPinSetMode(LPC_IOCON, IOCON_BUTTON, PIN_MODE_INACTIVE);
+    IoconPinSetMode(LPC_IOCON, IOCON_BUTTON, PIN_MODE_PULLUP);
     SwmMovablePinAssign(SWM_CTOUT_0_O, PIN_LED_0);
     SwmMovablePinAssign(SWM_CTOUT_1_O, PIN_LED_1);
     SwmMovablePinAssign(SWM_CTIN_0_I, PIN_BUTTON);
@@ -62,7 +62,7 @@ void exampleSetup(void)
     SysTick_Config(CLOCK_AHB / TICKS_PER_S);
     
     SctInit(LPC_SCT);
-    SctControl(LPC_SCT, SCT_CONFIG_32BIT_COUNTER | SCT_CONFIG_AUTOLIMIT_U);
+    SctConfig(LPC_SCT, SCT_CONFIG_32BIT_COUNTER | SCT_CONFIG_AUTOLIMIT_U);
     SctMatchReloadU(LPC_SCT, SCT_MATCH_0, 30000000);    // cycle speed
     SctMatchReloadU(LPC_SCT, SCT_MATCH_1, 20000000);    // LED 1 off
     SctMatchReloadU(LPC_SCT, SCT_MATCH_2, 10000000);    // LED 1 on
@@ -110,7 +110,10 @@ void exampleSetup(void)
         SCT_EVENT_3_BIT );
     SctOutputClear(LPC_SCT, SCT_OUTPUT_1_VALUE,
         SCT_EVENT_2_BIT);
-    SctSet
+    //SctOutput(LPC_SCT, SCT_OUTPUT_0_VALUE | SCT_OUTPUT_1_VALUE);
+    LPC_SCT->OUTPUT |= 3;
+    // start the timer
+    SctClearControl(LPC_SCT, SCT_CTRL_HALT_U);
 
 }
 
