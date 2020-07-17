@@ -83,7 +83,7 @@ void exampleSetup(void)
     SctSetEventControl(LPC_SCT, SCT_EVENT_2_VAL, 
         SCT_EV_CTRL_MATCHSEL(SCT_MATCH_4) |
         SCT_EV_CTRL_COMBMODE(SCT_COMBMODE_MATCH) );
-    SctSetEventStateMask(LPC_SCT, SCT_EVENT_3_VAL, SCT_STATE_0_BIT);
+    SctSetEventStateMask(LPC_SCT, SCT_EVENT_3_VAL, SCT_STATE_1_BIT);
     SctSetEventControl(LPC_SCT, SCT_EVENT_3_VAL, 
         SCT_EV_CTRL_MATCHSEL(SCT_MATCH_0) |
         SCT_EV_CTRL_IOCOND(SCT_IOCOND_HIGH) |
@@ -99,19 +99,18 @@ void exampleSetup(void)
         SCT_EV_CTRL_MATCHSEL(SCT_MATCH_1) |
         SCT_EV_CTRL_COMBMODE(SCT_COMBMODE_MATCH) );    
     SctOutputSet(LPC_SCT, SCT_OUTPUT_0_VALUE, 
+        SCT_EVENT_4_BIT );
+    SctOutputClear(LPC_SCT, SCT_OUTPUT_0_VALUE,
         SCT_EVENT_0_BIT |
         SCT_EVENT_3_BIT |
         SCT_EVENT_5_BIT );
-    SctOutputClear(LPC_SCT, SCT_OUTPUT_0_VALUE,
-        SCT_EVENT_4_BIT);
     SctOutputSet(LPC_SCT, SCT_OUTPUT_1_VALUE,
-        SCT_EVENT_0_BIT |
-        SCT_EVENT_1_BIT |
-        SCT_EVENT_3_BIT );
+        SCT_EVENT_2_BIT );
     SctOutputClear(LPC_SCT, SCT_OUTPUT_1_VALUE,
-        SCT_EVENT_2_BIT);
-    //SctOutput(LPC_SCT, SCT_OUTPUT_0_VALUE | SCT_OUTPUT_1_VALUE);
-    LPC_SCT->OUTPUT |= 3;
+        SCT_EVENT_0_BIT |
+        SCT_EVENT_1_BIT | 
+        SCT_EVENT_3_BIT );
+    SctOutput(LPC_SCT, SCT_OUTPUT_0_VALUE | SCT_OUTPUT_1_VALUE);
     // start the timer
     SctClearControl(LPC_SCT, SCT_CTRL_HALT_U);
 
