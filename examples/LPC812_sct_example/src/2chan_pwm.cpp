@@ -63,11 +63,11 @@ void exampleSetup(void)
     
     SctInit(LPC_SCT);
     SctControl(LPC_SCT, SCT_CONFIG_32BIT_COUNTER | SCT_CONFIG_AUTOLIMIT_U);
-    SctMatchReloadU(LPC_SCT, SCT_MATCH_0, 30000000);
-    SctMatchReloadU(LPC_SCT, SCT_MATCH_1, 20000000);
-    SctMatchReloadU(LPC_SCT, SCT_MATCH_2, 10000000);
-    SctMatchReloadU(LPC_SCT, SCT_MATCH_3, 20000000);
-    SctMatchReloadU(LPC_SCT, SCT_MATCH_4, 10000000);
+    SctMatchReloadU(LPC_SCT, SCT_MATCH_0, 30000000);    // cycle speed
+    SctMatchReloadU(LPC_SCT, SCT_MATCH_1, 20000000);    // LED 1 off
+    SctMatchReloadU(LPC_SCT, SCT_MATCH_2, 10000000);    // LED 1 on
+    SctMatchReloadU(LPC_SCT, SCT_MATCH_3, 20000000);    // LED 0 off
+    SctMatchReloadU(LPC_SCT, SCT_MATCH_4, 10000000);    // LED 0 on
     SctSetEventStateMask(LPC_SCT, SCT_EVENT_0_VAL, SCT_STATE_0_BIT);
     SctSetEventControl(LPC_SCT, SCT_EVENT_0_VAL, 
         SCT_EV_CTRL_MATCHSEL(SCT_MATCH_0) |
@@ -75,6 +75,31 @@ void exampleSetup(void)
         SCT_EV_CTRL_COMBMODE(SCT_COMBMODE_AND) |
         SCT_EV_CTRL_STATEV(SCT_STATE_1_VAL) |
         SCT_EV_CTRL_STATELD_LOAD );
+    SctSetEventStateMask(LPC_SCT, SCT_EVENT_1_VAL, SCT_STATE_0_BIT);
+    SctSetEventControl(LPC_SCT, SCT_EVENT_1_VAL, 
+        SCT_EV_CTRL_MATCHSEL(SCT_MATCH_3) |
+        SCT_EV_CTRL_COMBMODE(SCT_COMBMODE_MATCH) );
+    SctSetEventStateMask(LPC_SCT, SCT_EVENT_2_VAL, SCT_STATE_0_BIT);
+    SctSetEventControl(LPC_SCT, SCT_EVENT_2_VAL, 
+        SCT_EV_CTRL_MATCHSEL(SCT_MATCH_4) |
+        SCT_EV_CTRL_COMBMODE(SCT_COMBMODE_MATCH) );
+    SctSetEventStateMask(LPC_SCT, SCT_EVENT_3_VAL, SCT_STATE_0_BIT);
+    SctSetEventControl(LPC_SCT, SCT_EVENT_3_VAL, 
+        SCT_EV_CTRL_MATCHSEL(SCT_MATCH_0) |
+        SCT_EV_CTRL_IOCOND(SCT_IOCOND_HIGH) |
+        SCT_EV_CTRL_COMBMODE(SCT_COMBMODE_AND) |
+        SCT_EV_CTRL_STATEV(SCT_STATE_0_VAL) |
+        SCT_EV_CTRL_STATELD_LOAD );
+    SctSetEventStateMask(LPC_SCT, SCT_EVENT_4_VAL, SCT_STATE_0_BIT);
+    SctSetEventControl(LPC_SCT, SCT_EVENT_4_VAL, 
+        SCT_EV_CTRL_MATCHSEL(SCT_MATCH_3) |
+        SCT_EV_CTRL_COMBMODE(SCT_COMBMODE_MATCH) );
+    SctSetEventStateMask(LPC_SCT, SCT_EVENT_5_VAL, SCT_STATE_0_BIT);
+    SctSetEventControl(LPC_SCT, SCT_EVENT_5_VAL, 
+        SCT_EV_CTRL_MATCHSEL(SCT_MATCH_4) |
+        SCT_EV_CTRL_COMBMODE(SCT_COMBMODE_MATCH) );    
+    
+
     
 }
 
