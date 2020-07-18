@@ -10,6 +10,7 @@ Possible options are:
 * ```blinky_match``` demonstrating a blinking LED with the 32 bit timer on a match event
 * ```match_toggle``` demonstrating a blinking LED with the Low 16 bit timer on match event with use of the toggle functionality
 * ```simple_pwm``` demonstrating a pwm generator that increments step by step by a systick event, uses a 16bit timer
+* ```center_pwm``` demonstrating a pwm generator that uses a up/down counter to center the pwm, incremented step by step by a systick event, uses a 16 bit timer
 * ```2chan_pwm``` demonstrating a two channel PWM generator and switching between those depending on an external input, this external input is periodically turned on ad off by another pin. See the required hardware for pinning.
 ## Hardware
 The following hardware was used:
@@ -23,11 +24,12 @@ One LED with series resistor on PIN17.
 ### Match toggle
 One LED with series resistor on PIN17.
 ### simple pwm
-One LED with series resistor on PIN17
+One LED with series resistor on PIN17.
+### center_pwm
+One LED with series resistor on PIN17.
 ### 2 channel pwm
-One LED on PIN17 and one LED on PIN13, one wire from PIN16 to PIN4
+One LED on PIN17 and one LED on PIN13, one wire from PIN16 to PIN4.
 ## TODO
-* implement the center aligned PWM example
 * implement the PWM with deadtime example
 * implement the match reload example
 * implement the four channel PWM example
