@@ -30,7 +30,7 @@ TARGET = MCU
 BOARD = nuclone_board
 
 # valid examples
-EXAMPLES = rep_int blinky_match match_toggle simple_pwm 2chan_pwm
+EXAMPLES = rep_int blinky_match match_toggle simple_pwm center_pwm 2chan_pwm
 
 # check if valid example is defined
 ifndef EXAMPLE
