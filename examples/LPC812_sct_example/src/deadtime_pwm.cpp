@@ -50,6 +50,7 @@ extern "C"
     void SCT_IRQHandler(void)
     {
         __NOP();
+        SctClearEventFlag(LPC_SCT, SCT_EVENT_1_BIT);
     }
 }
 
@@ -66,6 +67,8 @@ void exampleSetup(void)
     SwmMovablePinAssign(SWM_CTIN_0_I, PIN_BUTTON);
     ClockDisablePeriphClock(SYSCTL_CLOCK_IOCON);
     ClockDisablePeriphClock(SYSCTL_CLOCK_SWM);
+    ClockEnablePeriphClock(SYSCTL_CLOCK_GPIO);
+    GpioSetPinDIROutput(LPC_GPIO_PORT, 0, PIN_TOGGLE);
     SysTick_Config(CLOCK_AHB / TICKS_PER_S);
        
     SctInit(LPC_SCT);
@@ -101,8 +104,9 @@ void exampleSetup(void)
         SCT_CONFLICTRES(SCT_OUTPUT_1_VALUE, SCT_CONFLICTRES_TOGGLE) );
     SctOutput(LPC_SCT, SCT_OUTPUT_STATE(SCT_OUTPUT_0_VALUE, 1) | SCT_OUTPUT_STATE(SCT_OUTPUT_1_VALUE, 0));
 
-    //SctStopL(LPC_SCT, SCT_EVENT_0_BIT);
-    //SctEventInt(LPC_SCT, SCT_EVENT_1_BIT);
+    SctStopL(LPC_SCT, SCT_EVENT_0_BIT);
+    SctEventInt(LPC_SCT, SCT_EVENT_1_BIT);
+    SctStartL(LPC_SCT, SCT_EVENT_1_BIT);
 
     NVIC_EnableIRQ(SCT_IRQn);
 
@@ -122,6 +126,8 @@ void exampleLoop(void)
         if(dutycycle > MAX_DUTY-20)
         {
             dutycycle = 0;
+            // toggle to shut down PWM outputs
+            GpioSetPinToggle(LPC_GPIO_PORT, 0, PIN_TOGGLE);
         }
         SctSetConfig(LPC_SCT, SCT_CONFIG_NORELOAD_L);
         SctMatchReloadL(LPC_SCT, SCT_MATCH_1, dutycycle+1);
