@@ -30,10 +30,10 @@ SOFTWARE.
 
 // minimum amount of ticks per second at 30MHz clock
 #define TICKS_PER_S     (2)
-#define MAX_DUTY        (10)
+#define MAX_DUTY        (180)
 
 #define PWM_DUTY_0      (130)
-#define PWM_DUTY_1      (135)
+#define PWM_DUTY_1      (140)
 #define PWM_PERIOD      (180)
 
 
@@ -45,6 +45,11 @@ extern "C"
     void SysTick_Handler(void)
     {
         ticks++;
+    }
+
+    void SCT_IRQHandler(void)
+    {
+        __NOP();
     }
 }
 
@@ -64,7 +69,10 @@ void exampleSetup(void)
     SysTick_Config(CLOCK_AHB / TICKS_PER_S);
        
     SctInit(LPC_SCT);
+
     SctConfig(LPC_SCT, SCT_CONFIG_16BIT_COUNTER | SCT_CONFIG_AUTOLIMIT_L);
+    SctSetControl(LPC_SCT, SCT_CTRL_BIDIR_L(1));
+
     SctMatchCountL(LPC_SCT, SCT_MATCH_0, PWM_PERIOD);
     SctMatchReloadL(LPC_SCT, SCT_MATCH_0, PWM_PERIOD);
     SctMatchCountL(LPC_SCT, SCT_MATCH_1, PWM_DUTY_0);
@@ -74,15 +82,31 @@ void exampleSetup(void)
 
     SctSetEventStateMask(LPC_SCT, SCT_EVENT_0_VAL, SCT_STATE_0_BIT | SCT_STATE_1_BIT);
     SctSetEventControl(LPC_SCT, SCT_EVENT_0_VAL, SCT_EV_CTRL_IOCOND(SCT_IOCOND_FALL) | SCT_EV_CTRL_COMBMODE(SCT_COMBMODE_IO));
+
     SctSetEventStateMask(LPC_SCT, SCT_EVENT_1_VAL, SCT_STATE_0_BIT | SCT_STATE_1_BIT);
     SctSetEventControl(LPC_SCT, SCT_EVENT_1_VAL, SCT_EV_CTRL_IOCOND(SCT_IOCOND_RISE) | SCT_EV_CTRL_COMBMODE(SCT_COMBMODE_IO));
 
     SctSetEventStateMask(LPC_SCT, SCT_EVENT_2_VAL, SCT_STATE_0_BIT | SCT_STATE_1_BIT);
     SctSetEventControl(LPC_SCT, SCT_EVENT_2_VAL, SCT_EV_CTRL_MATCHSEL(SCT_MATCH_1) | SCT_EV_CTRL_COMBMODE(SCT_COMBMODE_MATCH));
+
     SctSetEventStateMask(LPC_SCT, SCT_EVENT_3_VAL, SCT_STATE_0_BIT | SCT_STATE_1_BIT);
     SctSetEventControl(LPC_SCT, SCT_EVENT_3_VAL, SCT_EV_CTRL_MATCHSEL(SCT_MATCH_2) | SCT_EV_CTRL_COMBMODE(SCT_COMBMODE_MATCH));
 
-    
+    SctOutputSet(LPC_SCT, SCT_OUTPUT_0_VALUE, SCT_EVENT_0_BIT | SCT_EVENT_2_BIT);
+    SctOutputClear(LPC_SCT, SCT_OUTPUT_0_VALUE, SCT_EVENT_2_BIT);
+    SctOutputSet(LPC_SCT, SCT_OUTPUT_1_VALUE, SCT_EVENT_3_BIT);
+    SctOutputClear(LPC_SCT, SCT_OUTPUT_1_VALUE, SCT_EVENT_0_BIT | SCT_EVENT_3_BIT);
+    SctConflictResolution(LPC_SCT, 
+        SCT_CONFLICTRES(SCT_OUTPUT_0_VALUE, SCT_CONFLICTRES_TOGGLE) | 
+        SCT_CONFLICTRES(SCT_OUTPUT_1_VALUE, SCT_CONFLICTRES_TOGGLE) );
+    SctOutput(LPC_SCT, SCT_OUTPUT_STATE(SCT_OUTPUT_0_VALUE, 1) | SCT_OUTPUT_STATE(SCT_OUTPUT_1_VALUE, 0));
+
+    //SctStopL(LPC_SCT, SCT_EVENT_0_BIT);
+    //SctEventInt(LPC_SCT, SCT_EVENT_1_BIT);
+
+    NVIC_EnableIRQ(SCT_IRQn);
+
+    SctClearControl(LPC_SCT, SCT_CTRL_HALT_L);
 }
 
 void exampleLoop(void)
@@ -94,11 +118,14 @@ void exampleLoop(void)
     {
         // increase brightness
         currentTicks = ticks;
-        dutycycle++;
-        if(dutycycle > MAX_DUTY)
+        dutycycle+=10;
+        if(dutycycle > MAX_DUTY-20)
         {
             dutycycle = 0;
         }
-        SctMatchReloadL(LPC_SCT, SCT_MATCH_1, dutycycle);
+        SctSetConfig(LPC_SCT, SCT_CONFIG_NORELOAD_L);
+        SctMatchReloadL(LPC_SCT, SCT_MATCH_1, dutycycle+1);
+        SctMatchReloadL(LPC_SCT, SCT_MATCH_2, dutycycle+9);
+        SctClearConfig(LPC_SCT, SCT_CONFIG_NORELOAD_L);
     }
 }
