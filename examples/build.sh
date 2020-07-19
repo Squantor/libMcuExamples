@@ -18,4 +18,6 @@ make -j18 PROJECT=LPC812_sct_example CONFIG=release EXAMPLE=center_pwm
 make -j18 PROJECT=LPC812_sct_example CONFIG=debug EXAMPLE=center_pwm
 make -j18 PROJECT=LPC812_sct_example CONFIG=release EXAMPLE=2chan_pwm
 make -j18 PROJECT=LPC812_sct_example CONFIG=debug EXAMPLE=2chan_pwm
+make -j18 PROJECT=LPC812_sct_example CONFIG=release EXAMPLE=deadtime_pwm
+make -j18 PROJECT=LPC812_sct_example CONFIG=debug EXAMPLE=deadtime_pwm
 make -j18 PROJECT=LPC812_uart_example clean
