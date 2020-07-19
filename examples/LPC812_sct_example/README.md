@@ -12,6 +12,7 @@ Possible options are:
 * ```simple_pwm``` demonstrating a pwm generator that increments step by step by a systick event, uses a 16bit timer
 * ```center_pwm``` demonstrating a pwm generator that uses a up/down counter to center the pwm, incremented step by step by a systick event, uses a 16 bit timer
 * ```2chan_pwm``` demonstrating a two channel PWM generator and switching between those depending on an external input, this external input is periodically turned on ad off by another pin. See the required hardware for pinning.
+* ```deadtime_pwm``` demonstrating a two channel PWM generator with deadtime, output disable and update reload registers while the timer is running.
 ## Hardware
 The following hardware was used:
 * [Black Magic Probe](https://github.com/blacksphere/blackmagic/wiki)
@@ -23,14 +24,15 @@ No additional hardware required, place a breakpoint in the ISR to observe operat
 One LED with series resistor on PIN17.
 ### Match toggle
 One LED with series resistor on PIN17.
-### simple pwm
+### Simple PWM
 One LED with series resistor on PIN17.
-### center_pwm
+### Centered PWM
 One LED with series resistor on PIN17.
-### 2 channel pwm
+### 2 channel PWM
 One LED on PIN17 and one LED on PIN13, one wire from PIN16 to PIN4.
+### Deadtime PWM
+Two leds, one on PIN17 and other on PIN13, one wire from PIN16 to PIN4.
 ## TODO
-* implement the PWM with deadtime example
 * implement the match reload example
 * implement the four channel PWM example
 * implement the decoding PWM example
