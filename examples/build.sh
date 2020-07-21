@@ -14,6 +14,8 @@ make -j18 PROJECT=LPC812_sct_example CONFIG=release EXAMPLE=blinky_match
 make -j18 PROJECT=LPC812_sct_example CONFIG=debug EXAMPLE=blinky_match
 make -j18 PROJECT=LPC812_sct_example CONFIG=release EXAMPLE=match_toggle
 make -j18 PROJECT=LPC812_sct_example CONFIG=debug EXAMPLE=match_toggle
+make -j18 PROJECT=LPC812_sct_example CONFIG=release EXAMPLE=simple_pwm
+make -j18 PROJECT=LPC812_sct_example CONFIG=debug EXAMPLE=simple_pwm
 make -j18 PROJECT=LPC812_sct_example CONFIG=release EXAMPLE=center_pwm
 make -j18 PROJECT=LPC812_sct_example CONFIG=debug EXAMPLE=center_pwm
 make -j18 PROJECT=LPC812_sct_example CONFIG=release EXAMPLE=2chan_pwm
