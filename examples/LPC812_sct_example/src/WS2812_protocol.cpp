@@ -48,23 +48,20 @@ extern "C"
 
 void exampleSetup(void)
 {
-    // setup SCT out0,1,2,2 to pin 17,13,12,14
     ClockEnablePeriphClock(SYSCTL_CLOCK_SWM);
     ClockEnablePeriphClock(SYSCTL_CLOCK_IOCON);
-    IoconPinSetMode(LPC_IOCON, IOCON_LED_0, PIN_MODE_INACTIVE);
-    IoconPinSetMode(LPC_IOCON, IOCON_LED_1, PIN_MODE_INACTIVE);
-    IoconPinSetMode(LPC_IOCON, IOCON_LED_2, PIN_MODE_INACTIVE);
-    IoconPinSetMode(LPC_IOCON, IOCON_LED_3, PIN_MODE_INACTIVE);
-    IoconPinSetMode(LPC_IOCON, IOCON_BUTTON, PIN_MODE_PULLUP);
-    SwmMovablePinAssign(SWM_CTOUT_0_O, PIN_LED_0);
-    SwmMovablePinAssign(SWM_CTOUT_1_O, PIN_LED_1);
-    SwmMovablePinAssign(SWM_CTOUT_2_O, PIN_LED_2);
-    SwmMovablePinAssign(SWM_CTOUT_3_O, PIN_LED_3);
-    SwmMovablePinAssign(SWM_CTIN_0_I, PIN_BUTTON);
+    IoconPinSetMode(LPC_IOCON, IOCON_SPI_MOSI, PIN_MODE_INACTIVE);
+    IoconPinSetMode(LPC_IOCON, IOCON_SPI_SCK, PIN_MODE_INACTIVE);
+    IoconPinSetMode(LPC_IOCON, IOCON_WS2812_OUT, PIN_MODE_INACTIVE);
+    SwmMovablePinAssign(SWM_SPI0_MOSI_IO, PIN_SPI_MOSI);
+    SwmMovablePinAssign(SWM_SPI1_SCK_IO, PIN_SPI_SCK);
+    SwmMovablePinAssign(SWM_CTOUT_0_O, PIN_WS2812_OUT);
+    // connect the SCT inputs to the SPI outputs
+    SwmMovablePinAssign(SWM_CTIN_0_I, PIN_SPI_SCK);
+    SwmMovablePinAssign(SWM_CTIN_1_I, PIN_SPI_MOSI);
     ClockDisablePeriphClock(SYSCTL_CLOCK_IOCON);
     ClockDisablePeriphClock(SYSCTL_CLOCK_SWM);
     ClockEnablePeriphClock(SYSCTL_CLOCK_GPIO);
-    GpioSetPinDIROutput(LPC_GPIO_PORT, 0, PIN_TOGGLE);
 
     SysTick_Config(CLOCK_AHB / TICKS_PER_S);
     
