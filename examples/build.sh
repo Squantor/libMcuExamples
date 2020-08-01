@@ -24,4 +24,6 @@ make -j18 PROJECT=LPC812_sct_example CONFIG=release EXAMPLE=deadtime_pwm
 make -j18 PROJECT=LPC812_sct_example CONFIG=debug EXAMPLE=deadtime_pwm
 make -j18 PROJECT=LPC812_sct_example CONFIG=release EXAMPLE=4chan_pwm
 make -j18 PROJECT=LPC812_sct_example CONFIG=debug EXAMPLE=4chan_pwm
+make -j18 PROJECT=LPC812_sct_example CONFIG=release EXAMPLE=WS2812_protocol
+make -j18 PROJECT=LPC812_sct_example CONFIG=debug EXAMPLE=WS2812_protocol
 make -j18 PROJECT=LPC812_uart_example clean
