@@ -76,7 +76,6 @@ void exampleSetup(void)
 
 void exampleLoop(void)
 {
-    static bool pinstate = true;
     static uint32_t currentTicks = 5;
     // virtual button that gets pressed 5 seconds
     // wait for 10 ticks to elapse

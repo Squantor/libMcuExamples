@@ -48,6 +48,14 @@ SOFTWARE.
 #define IOCON_TOGGLE        IOCON_PIO16
 #define PIN_TOGGLE          (16u)
 
+#define IOCON_SPI_MOSI      IOCON_PIO13
+#define PIN_SPI_MOSI        (13)
+#define IOCON_SPI_SCK       IOCON_PIO12
+#define PIN_SPI_SCK         (12)
+
+#define IOCON_WS2812_OUT    IOCON_PIO14
+#define PIN_WS2812_OUT      (14)
+
 
 
 void boardInit(void);
