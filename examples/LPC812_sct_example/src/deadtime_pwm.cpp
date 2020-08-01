@@ -76,11 +76,11 @@ void exampleSetup(void)
     SctConfig(LPC_SCT, SCT_CONFIG_16BIT_COUNTER | SCT_CONFIG_AUTOLIMIT_L);
     SctSetControl(LPC_SCT, SCT_CTRL_BIDIR_L(1));
 
-    SctMatchCountL(LPC_SCT, SCT_MATCH_0, PWM_PERIOD);
+    SctMatchL(LPC_SCT, SCT_MATCH_0, PWM_PERIOD);
     SctMatchReloadL(LPC_SCT, SCT_MATCH_0, PWM_PERIOD);
-    SctMatchCountL(LPC_SCT, SCT_MATCH_1, PWM_DUTY_0);
+    SctMatchL(LPC_SCT, SCT_MATCH_1, PWM_DUTY_0);
     SctMatchReloadL(LPC_SCT, SCT_MATCH_1, PWM_DUTY_0);
-    SctMatchCountL(LPC_SCT, SCT_MATCH_2, PWM_DUTY_1);
+    SctMatchL(LPC_SCT, SCT_MATCH_2, PWM_DUTY_1);
     SctMatchReloadL(LPC_SCT, SCT_MATCH_2, PWM_DUTY_1);
 
     SctSetEventStateMask(LPC_SCT, SCT_EVENT_0_VAL, SCT_STATE_0_BIT | SCT_STATE_1_BIT);
