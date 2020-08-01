@@ -59,7 +59,7 @@ extern "C"
 
 void exampleSetup(void)
 {
-    // setup SCT out0,1,2 to pin 17,13,12
+    // setup SCT out0,1,2,2 to pin 17,13,12,14
     ClockEnablePeriphClock(SYSCTL_CLOCK_SWM);
     ClockEnablePeriphClock(SYSCTL_CLOCK_IOCON);
     IoconPinSetMode(LPC_IOCON, IOCON_LED_0, PIN_MODE_INACTIVE);
@@ -113,8 +113,8 @@ void exampleSetup(void)
     SctOutputClear(LPC_SCT, SCT_OUTPUT_1_VALUE, SCT_EVENT_2_BIT | SCT_EVENT_5_BIT);
     SctOutputSet(LPC_SCT, SCT_OUTPUT_2_VALUE, SCT_EVENT_3_BIT | SCT_EVENT_5_BIT);
     SctOutputClear(LPC_SCT, SCT_OUTPUT_2_VALUE, SCT_EVENT_0_BIT);
-    SctOutputSet(LPC_SCT, SCT_OUTPUT_2_VALUE, SCT_EVENT_4_BIT | SCT_EVENT_5_BIT);
-    SctOutputClear(LPC_SCT, SCT_OUTPUT_2_VALUE, SCT_EVENT_0_BIT);
+    SctOutputSet(LPC_SCT, SCT_OUTPUT_3_VALUE, SCT_EVENT_4_BIT | SCT_EVENT_5_BIT);
+    SctOutputClear(LPC_SCT, SCT_OUTPUT_3_VALUE, SCT_EVENT_0_BIT);
     SctOutput(LPC_SCT, 
         SCT_OUTPUT_STATE(SCT_OUTPUT_0_VALUE, 0) |
         SCT_OUTPUT_STATE(SCT_OUTPUT_1_VALUE, 0) |
@@ -133,16 +133,25 @@ void exampleSetup(void)
     NVIC_EnableIRQ(SCT_IRQn);
 
     SctClearControl(LPC_SCT, SCT_CTRL_HALT_U);
+    GpioSetPinState(LPC_GPIO_PORT, 0, PIN_TOGGLE, true);
 
 }
 
+#define TICKS_DELAY_ABORT   5
+
 void exampleLoop(void)
 {
+    static bool pinstate = true;
     static uint32_t currentTicks = 5;
     // virtual button that gets pressed 5 seconds
     // wait for 10 ticks to elapse
     if(currentTicks < ticks)
     {
-        currentTicks = ticks+5;
+        pinstate = !pinstate;
+        currentTicks = ticks + TICKS_DELAY_ABORT;
+        GpioSetPinState(LPC_GPIO_PORT, 0, PIN_TOGGLE, pinstate);
+        // pin is high, reenable timer
+        if(pinstate)
+            SctClearControl(LPC_SCT, SCT_CTRL_HALT_U);
     }
 }
