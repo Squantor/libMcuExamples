@@ -51,6 +51,7 @@ extern "C"
     {
         SctClearEventFlag(LPC_SCT, SCT_EVENT_0_BIT);
         SctClearEventFlag(LPC_SCT, SCT_EVENT_5_BIT);
+        __NOP();
     }
 }
 
@@ -64,9 +65,12 @@ void exampleSetup(void)
     IoconPinSetMode(LPC_IOCON, IOCON_LED_0, PIN_MODE_INACTIVE);
     IoconPinSetMode(LPC_IOCON, IOCON_LED_1, PIN_MODE_INACTIVE);
     IoconPinSetMode(LPC_IOCON, IOCON_LED_2, PIN_MODE_INACTIVE);
+    IoconPinSetMode(LPC_IOCON, IOCON_LED_3, PIN_MODE_INACTIVE);
     IoconPinSetMode(LPC_IOCON, IOCON_BUTTON, PIN_MODE_PULLUP);
     SwmMovablePinAssign(SWM_CTOUT_0_O, PIN_LED_0);
     SwmMovablePinAssign(SWM_CTOUT_1_O, PIN_LED_1);
+    SwmMovablePinAssign(SWM_CTOUT_2_O, PIN_LED_2);
+    SwmMovablePinAssign(SWM_CTOUT_3_O, PIN_LED_3);
     SwmMovablePinAssign(SWM_CTIN_0_I, PIN_BUTTON);
     ClockDisablePeriphClock(SYSCTL_CLOCK_IOCON);
     ClockDisablePeriphClock(SYSCTL_CLOCK_SWM);
