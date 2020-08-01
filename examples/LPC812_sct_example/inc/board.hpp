@@ -41,6 +41,8 @@ SOFTWARE.
 #define PIN_LED_1           (13u)
 #define IOCON_LED_2         IOCON_PIO12
 #define PIN_LED_2           (12u)
+#define IOCON_LED_3         IOCON_PIO14
+#define PIN_LED_3           (14u)
 #define IOCON_BUTTON        IOCON_PIO4
 #define PIN_BUTTON          (4u)
 #define IOCON_TOGGLE        IOCON_PIO16
