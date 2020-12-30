@@ -22,24 +22,20 @@
 
 # project settings
 #
-# Version: 20200426
+# Version: 20201230
 
-
+include libMcuLL/libMcuLL.mk
 
 # project settings
-PROJECT ?= LPC812M101JDH20_test_master
-TARGET = MCU
 MCU = LPC812M101JDH20
+TARGET = MCU
 BOARD = LPC812M101JDH20_nuclone
 
-
 # project sources
-FILES += LPC812M101JDH20_test_slave/src/main_test_slave.cpp \
-LPC812M101JDH20_test_slave/src/slave_test_gpio.cpp \
-LPC812M101JDH20_test_slave/src/startup.cpp \
+FILES += $(PROJECT)/src/main_test_slave.cpp \
+$(PROJECT)/src/slave_test_gpio.cpp \
 common/src/$(BOARD).cpp common/src/systick.cpp common/src/test_sync.cpp
 
-LIBS += -lgcc
-INCLUDES += -ILPC812M101JDH20_test_slave/inc -IlibMcuLL/inc -Icommon/inc
+INCLUDES += -I$(PROJECT)/inc -Icommon/inc
 
 

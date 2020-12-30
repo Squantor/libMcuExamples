@@ -22,7 +22,6 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 #include <cstddef>
-#include <mcu_ll.h>
 #include <board.hpp>
 #include <systick.hpp>
 #include <test_sync.hpp>

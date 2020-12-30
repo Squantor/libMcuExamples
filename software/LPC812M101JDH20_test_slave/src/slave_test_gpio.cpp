@@ -22,7 +22,6 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 #include <slave_test_gpio.hpp>
-#include <mcu_ll.h>
 #include <board.hpp>
 #include <systick.hpp>
 
@@ -33,12 +32,6 @@ static testStatus_t slaveTestGpioCleanup(void)
     IoconPinSetMode(LPC_IOCON, TEST_GPIO_OUT_IOCON, PIN_MODE_PULLUP);
     GpioSetPinDir(LPC_GPIO_PORT, 0, TEST_GPIO_IN_GPIO, false);
     GpioSetPinDir(LPC_GPIO_PORT, 0, TEST_GPIO_OUT_GPIO, false);
-    return testCompleted;
-}
-
-static testStatus_t slaveTestGpioOutSetup()
-{
-    IoconPinSetMode(LPC_IOCON, TEST_GPIO_OUT_IOCON, PIN_MODE_INACTIVE);
     return testCompleted;
 }
 

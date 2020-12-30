@@ -30,10 +30,15 @@ SOFTWARE.
 #define IOCON_XTAL_IN   IOCON_PIO8
 #define IOCON_XTAL_OUT  IOCON_PIO9
 
-#define XTAL_FREQ   (12000000u)
-#define CPU_FREQ    (30000000u)
-#define AHB_FREQ    (30000000u)
-#define MAIN_FREQ   (60000000u)
+#define CLOCK_MAIN_SOURCE   SYSCTL_MAINCLKSRC_PLLOUT
+
+#define CLOCK_XTAL          (12000000u)
+#define CLOCK_EXT_IN        (0u)
+#define CLOCK_CPU           (30000000u)
+#define CLOCK_AHB           (30000000u)
+#define CLOCK_MAIN          (60000000u)
+
+#include <mcu_ll.h>
 
 void boardInit(void);
 

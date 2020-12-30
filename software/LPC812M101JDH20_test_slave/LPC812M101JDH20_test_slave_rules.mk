@@ -20,22 +20,32 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-# project settings
+# Project specific rules, a few predefined but feel free to add your own
 #
-# Version: 20201230
+# Version: 20200722
 
-include libMcuLL/libMcuLL.mk
+# executed 
+pre-build:
+	$(U) "executing pre build steps"
 
-# project settings
-MCU = LPC812M101JDH20
-TARGET = MCU
-BOARD = LPC812M101JDH20_nuclone
+.PHONY: pre-build
 
-# project sources
-FILES += $(PROJECT)/src/main_test_master.cpp \
-$(PROJECT)/src/master_test_gpio.cpp \
-common/src/$(BOARD).cpp common/src/systick.cpp common/src/test_sync.cpp
+post-build: main-build
+	$(U) "executing post build steps"
 
-INCLUDES += -ILPC812M101JDH20_test_master/inc -Icommon/inc
+.PHONY: post-build
+
+#project hardware specific commands
+gdbbmp: all
+	$(TOOLCHAIN_PREFIX)$(GDB) -x ./gdb_scripts/$(PROJECT).txt
+.PHONY: gdbbmp
+
+tpwrdisable:
+	$(TOOLCHAIN_PREFIX)$(GDB) -x ./gdb_scripts/bmp_tpwr_disable.txt
+.PHONY: tpwrdisable
+
+tpwrenable:
+	$(TOOLCHAIN_PREFIX)$(GDB) -x ./gdb_scripts/bmp_tpwr_enable.txt
+.PHONY: tpwrenable
 
 

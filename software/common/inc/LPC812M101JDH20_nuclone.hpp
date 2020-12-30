@@ -24,7 +24,13 @@ SOFTWARE.
 #ifndef LPC812M101JDH20_NUCLONE
 #define LPC812M101JDH20_NUCLONE
 
-#include <mcu_ll.h>
+#define CLOCK_MAIN_SOURCE   SYSCTL_MAINCLKSRC_PLLOUT
+
+#define CLOCK_XTAL          (12000000u)
+#define CLOCK_EXT_IN        (0u)
+#define CLOCK_CPU           (30000000u)
+#define CLOCK_AHB           (30000000u)
+#define CLOCK_MAIN          (60000000u)
 
 // outside uart communications
 #define UART_OUT_TXD    (13)
@@ -57,6 +63,9 @@ SOFTWARE.
 
 // how many ticks per second
 #define TICKS_PER_S     (100)
+
+// include halfway to make sure we configure libMcuLL correctly
+#include <mcu_ll.h>
 
 static inline void syncSetupGpio(void)
 {

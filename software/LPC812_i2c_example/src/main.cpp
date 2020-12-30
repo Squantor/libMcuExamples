@@ -3,8 +3,8 @@
  * can be compiled and run on any Cortex-M MCU. However, to see
  * its effect, you'll need to use debugger.
  */
-#include <mcu_ll.h>
 #include <board.hpp>
+
 int main()
 {
     boardInit();

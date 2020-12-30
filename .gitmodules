@@ -13,3 +13,9 @@
 [submodule "software/libMcuLL"]
 	path = software/libMcuLL
 	url = git@github.com:Squantor/libMcuLL.git
+[submodule "software/squantorLibEmbeddedC"]
+	path = software/squantorLibEmbeddedC
+	url = git@github.com:Squantor/squantorLibEmbeddedC.git
+[submodule "software/squantorLibC"]
+	path = software/squantorLibC
+	url = git@github.com:Squantor/squantorLibC.git
