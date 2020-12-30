@@ -1,24 +1,29 @@
 # build all the templates and clean afterwards
 #!/bin/bash
-make -j18 PROJECT=PC CONFIG=release
-make -j18 PROJECT=PC CONFIG=debug
-make -j18 PROJECT=PC doc
-make -j18 PROJECT=PC_bare CONFIG=release
-make -j18 PROJECT=PC_bare CONFIG=debug
-make -j18 PROJECT=PC_bare doc
-make -j18 PROJECT=LPC824 CONFIG=release
-make -j18 PROJECT=LPC824 CONFIG=debug
-make -j18 PROJECT=LPC824 doc
-make -j18 PROJECT=LPC812 CONFIG=release
-make -j18 PROJECT=LPC812 CONFIG=debug
-make -j18 PROJECT=LPC812 doc
-make -j18 PROJECT=CortexM0 CONFIG=release
-make -j18 PROJECT=CortexM0 CONFIG=debug
-make -j18 PROJECT=CortexM0plus CONFIG=release
-make -j18 PROJECT=CortexM0plus CONFIG=debug
-make -j18 PROJECT=CortexM3 CONFIG=release
-make -j18 PROJECT=CortexM3 CONFIG=debug
-make -j18 PROJECT=CortexM4 CONFIG=release
-make -j18 PROJECT=CortexM4 CONFIG=debug
-make -j18 PROJECT=CortexM7 CONFIG=release
-make -j18 PROJECT=CortexM7 CONFIG=debug
+make -j18 PROJECT=LPC812_clock_redesign CONFIG=release
+make -j18 PROJECT=LPC812_clock_redesign CONFIG=debug
+make -j18 PROJECT=LPC812_cpp_tests CONFIG=release
+make -j18 PROJECT=LPC812_cpp_tests CONFIG=debug
+make -j18 PROJECT=LPC812_i2c_example CONFIG=release
+make -j18 PROJECT=LPC812_i2c_example CONFIG=debug
+make -j18 PROJECT=LPC812_uart_example CONFIG=release
+make -j18 PROJECT=LPC812_uart_example CONFIG=debug
+make -j18 PROJECT=LPC812_sct_example CONFIG=release EXAMPLE=rep_int
+make -j18 PROJECT=LPC812_sct_example CONFIG=debug EXAMPLE=rep_int
+make -j18 PROJECT=LPC812_sct_example CONFIG=release EXAMPLE=blinky_match
+make -j18 PROJECT=LPC812_sct_example CONFIG=debug EXAMPLE=blinky_match
+make -j18 PROJECT=LPC812_sct_example CONFIG=release EXAMPLE=match_toggle
+make -j18 PROJECT=LPC812_sct_example CONFIG=debug EXAMPLE=match_toggle
+make -j18 PROJECT=LPC812_sct_example CONFIG=release EXAMPLE=simple_pwm
+make -j18 PROJECT=LPC812_sct_example CONFIG=debug EXAMPLE=simple_pwm
+make -j18 PROJECT=LPC812_sct_example CONFIG=release EXAMPLE=center_pwm
+make -j18 PROJECT=LPC812_sct_example CONFIG=debug EXAMPLE=center_pwm
+make -j18 PROJECT=LPC812_sct_example CONFIG=release EXAMPLE=2chan_pwm
+make -j18 PROJECT=LPC812_sct_example CONFIG=debug EXAMPLE=2chan_pwm
+make -j18 PROJECT=LPC812_sct_example CONFIG=release EXAMPLE=deadtime_pwm
+make -j18 PROJECT=LPC812_sct_example CONFIG=debug EXAMPLE=deadtime_pwm
+make -j18 PROJECT=LPC812_sct_example CONFIG=release EXAMPLE=4chan_pwm
+make -j18 PROJECT=LPC812_sct_example CONFIG=debug EXAMPLE=4chan_pwm
+make -j18 PROJECT=LPC812_sct_example CONFIG=release EXAMPLE=WS2812_protocol
+make -j18 PROJECT=LPC812_sct_example CONFIG=debug EXAMPLE=WS2812_protocol
+make -j18 clean

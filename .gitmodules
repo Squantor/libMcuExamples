@@ -10,3 +10,6 @@
 [submodule "playgrounds/squantorLibEmbeddedC"]
 	path = examples/squantorLibEmbeddedC
 	url = https://github.com/Squantor/squantorLibEmbeddedC.git
+[submodule "software/libMcuLL"]
+	path = software/libMcuLL
+	url = git@github.com:Squantor/libMcuLL.git
