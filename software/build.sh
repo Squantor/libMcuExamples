@@ -26,4 +26,8 @@ make -j18 PROJECT=LPC812_sct_example CONFIG=release EXAMPLE=4chan_pwm
 make -j18 PROJECT=LPC812_sct_example CONFIG=debug EXAMPLE=4chan_pwm
 make -j18 PROJECT=LPC812_sct_example CONFIG=release EXAMPLE=WS2812_protocol
 make -j18 PROJECT=LPC812_sct_example CONFIG=debug EXAMPLE=WS2812_protocol
+make -j18 PROJECT=LPC812M101JDH20_test_master CONFIG=release
+make -j18 PROJECT=LPC812M101JDH20_test_master CONFIG=debug
+make -j18 PROJECT=LPC812M101JDH20_test_slave CONFIG=release
+make -j18 PROJECT=LPC812M101JDH20_test_slave CONFIG=debug
 make -j18 clean
