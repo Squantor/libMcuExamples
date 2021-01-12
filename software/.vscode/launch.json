@@ -5,11 +5,11 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "debug LPC824 example",
+            "name": "debug LPC824M201DH20 blinky",
             "type": "cppdbg",
             "request": "launch",
             "targetArchitecture": "x86_64",
-            "program": "${workspaceFolder}/bin/LPC824/debug/LPC824.elf",
+            "program": "${workspaceFolder}/bin/LPC824M201DH20_blinky/debug/LPC824M201DH20_blinky.elf",
             "args": [],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
@@ -28,7 +28,7 @@
                 },
                 {
                     "description": "Load the file",
-                    "text": "file ${workspaceFolder}/bin/LPC824/debug/LPC824.elf"
+                    "text": "file ${workspaceFolder}/bin/LPC824M201DH20_blinky/debug/LPC824M201DH20_blinky.elf"
                 },
                 {
                     "description": "Connect to black magic probe",
@@ -52,7 +52,7 @@
                 },
                 {
                     "description": "program the elf file",
-                    "text": "load ${workspaceFolder}/bin/LPC824/debug/LPC824.elf"
+                    "text": "load ${workspaceFolder}/bin/LPC824M201DH20_blinky/debug/LPC824M201DH20_blinky.elf"
                 },
                 {
                     "description": "remap interrupt vectors to flash, again",
@@ -63,7 +63,7 @@
                     "text": "compare-sections"
                 },
             ],
-            "preLaunchTask": "build LPC824 example",
+            "preLaunchTask": "build LPC824M201DH20 blinky example",
             "miDebuggerPath": "/home/abilos/programs/gcc-arm-none-eabi-9-2020-q2-update/bin//arm-none-eabi-gdb",
         },
 

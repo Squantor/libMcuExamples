@@ -4,9 +4,9 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "build LPC824 example",
+            "label": "build LPC824M201DH20 blinky example",
             "type": "shell",
-            "command": "make PROJECT=LPC824 -j20",
+            "command": "make PROJECT=LPC824M201DH20_blinky -j20",
             "group": {
                 "kind": "build",
                 "isDefault": true
