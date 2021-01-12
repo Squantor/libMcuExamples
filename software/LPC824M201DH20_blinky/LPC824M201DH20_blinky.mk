@@ -32,7 +32,7 @@ include libEmbedded/libEmbedded.mk
 # project settings
 MCU = LPC824M201DH20
 TARGET = MCU
-BOARD = nuclone_LPC824M201JDH20
+BOARD = nuclone_LPC824M201DH20
 
 # project sources
 FILES += $(PROJECT)/src/main.cpp \
