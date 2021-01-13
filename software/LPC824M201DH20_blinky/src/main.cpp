@@ -5,14 +5,21 @@
  * For conditions of distribution and use, see LICENSE file
  */
 /*
- * This is simple example file which does do any I/O and thus
- * can be compiled and run on any Cortex-M MCU. However, to see
- * its effect, you'll need to use debugger.
+ * Simple example blink program for the Nuclone LPC824M201DH20.
+ * Using 12MHz Crystal + PLL as the clock source with systick.
  */
 #include <nuclone_LPC824M201DH20.hpp>
 #include <mcu_ll.h>
 
 volatile int var;
+
+extern "C" 
+{
+    void SysTick_Handler(void)
+    {
+        GpioSetPinToggle(LPC_GPIO_PORT, 0, PIN_LED);
+    }
+}
 
 int main()
 {

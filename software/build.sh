@@ -30,4 +30,6 @@ make -j18 PROJECT=LPC812M101JDH20_test_master CONFIG=release
 make -j18 PROJECT=LPC812M101JDH20_test_master CONFIG=debug
 make -j18 PROJECT=LPC812M101JDH20_test_slave CONFIG=release
 make -j18 PROJECT=LPC812M101JDH20_test_slave CONFIG=debug
+make -j18 PROJECT=LPC824M201DH20_blinky CONFIG=release
+make -j18 PROJECT=LPC824M201DH20_blinky CONFIG=debug
 make -j18 clean
