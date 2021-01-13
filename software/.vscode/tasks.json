@@ -4,9 +4,9 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "build LPC824M201DH20 blinky example",
+            "label": "build LPC845M301HI48 blinky example",
             "type": "shell",
-            "command": "make PROJECT=LPC824M201DH20_blinky -j20",
+            "command": "make PROJECT=LPC845M301HI48_blinky -j20",
             "group": {
                 "kind": "build",
                 "isDefault": true
@@ -14,16 +14,9 @@
             "problemMatcher": "$gcc"
         },
         {
-            "label": "build LPC812 example",
-            "type": "shell",
-            "command": "make PROJECT=LPC812 -j20",
-            "group": "build",
-            "problemMatcher": "$gcc"
-        },
-        {
             "label": "clean",
             "type": "shell",
-            "command": "make  PROJECT=LPC812 clean",
+            "command": "make clean",
             "problemMatcher": [
                 "$gcc"
             ]
