@@ -7,6 +7,7 @@
 # Version: 20210113
 
 #additional library includes
+include libMcuLL/libMcuLL.mk
 include squantorLibC/squantorLibC.mk
 include squantorLibEmbeddedC/squantorLibEmbeddedC.mk
 include libEmbedded/libEmbedded.mk
