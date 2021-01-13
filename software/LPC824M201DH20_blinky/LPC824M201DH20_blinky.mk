@@ -20,6 +20,6 @@ BOARD = nuclone_LPC824M201DH20
 FILES += $(PROJECT)/src/main.cpp \
 $(PROJECT)/src/$(BOARD).cpp
 
-INCLUDES += -IlibMcuLL/inc -I$(PROJECT)/inc
+INCLUDES += -I$(PROJECT)/inc
 
 
