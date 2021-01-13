@@ -10,7 +10,7 @@
  * its effect, you'll need to use debugger.
  */
 #include <board.hpp>
-//#include <mcu_ll.h>
+#include <mcu_ll.h>
 
 volatile int var;
 
