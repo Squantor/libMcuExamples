@@ -10,12 +10,25 @@
  * its effect, you'll need to use debugger.
  */
 #include <nuclone_LPC845M301BD48.hpp>
-#include <mcu_ll.h>
 
 volatile int var;
+volatile bool pinmode;
+
+extern "C" 
+{
+    void SysTick_Handler(void)
+    {
+        if(pinmode)
+            ioconSetupPin(IOCON, IOCON_LED, IOCON_MODE(IOCON_MODE_INACTIVE));
+        else
+            ioconSetupPin(IOCON, IOCON_LED, IOCON_MODE(IOCON_MODE_PULLUP));
+        pinmode = !pinmode;
+    }
+}
 
 int main()
 {
+    pinmode = false;
     boardInit();
     while (1) {
         var ^= 0x55;

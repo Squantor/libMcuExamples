@@ -15,6 +15,14 @@
 #define CLOCK_AHB           (30000000u)
 #define CLOCK_MAIN          (60000000u)
 
+#include <mcu_ll.h>
+
+#define TICKS_PER_S         4
+
+#define IOCON_LED           IOCON_PIO0_13
+#define PORT_LED            (0u)
+#define PIN_LED             (13u)
+
 void boardInit(void);
 
 #endif
