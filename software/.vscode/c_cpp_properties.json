@@ -10,7 +10,7 @@
                 "${workspaceFolder}/libEmbedded/inc/"
             ],
             "defines": [
-                "LPC845M301HI48",
+                "MCU_LPC845M301BD48",
                 "DEBUG"
             ],
             "browse": {

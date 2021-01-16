@@ -4,7 +4,7 @@
 
 # project settings
 #
-# Version: 20210113
+# Version: 20210116
 
 #additional library includes
 include libMcuLL/libMcuLL.mk
@@ -15,7 +15,7 @@ include libEmbedded/libEmbedded.mk
 # project settings
 MCU = LPC845M301BD48
 TARGET = MCU
-BOARD = dummy_board
+BOARD = nuclone_LPC845M301BD48
 
 # project sources
 FILES += $(PROJECT)/src/main.cpp \

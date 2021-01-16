@@ -9,7 +9,7 @@
  * can be compiled and run on any Cortex-M MCU. However, to see
  * its effect, you'll need to use debugger.
  */
-#include <board.hpp>
+#include <nuclone_LPC845M301BD48.hpp>
 #include <mcu_ll.h>
 
 volatile int var;
