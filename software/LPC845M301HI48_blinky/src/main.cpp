@@ -19,7 +19,7 @@ extern "C"
     void SysTick_Handler(void)
     {
         if(pinmode)
-            ioconSetupPin(IOCON, IOCON_LED, IOCON_MODE(IOCON_MODE_INACTIVE));
+            ioconSetupPin(IOCON, IOCON_LED, IOCON_MODE(IOCON_MODE_PULLDOWN));
         else
             ioconSetupPin(IOCON, IOCON_LED, IOCON_MODE(IOCON_MODE_PULLUP));
         pinmode = !pinmode;
