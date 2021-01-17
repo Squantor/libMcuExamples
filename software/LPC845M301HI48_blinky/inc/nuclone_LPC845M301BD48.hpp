@@ -19,6 +19,9 @@
 
 #define TICKS_PER_S         4
 
+#define IOCON_XTAL_IN       IOCON_PIO0_8
+#define IOCON_XTAL_OUT      IOCON_PIO0_9
+
 #define IOCON_LED           IOCON_PIO0_13
 #define PORT_LED            (0u)
 #define PIN_LED             (13u)
