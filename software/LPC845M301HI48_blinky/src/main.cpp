@@ -19,9 +19,9 @@ extern "C"
     void SysTick_Handler(void)
     {
         if(pinmode)
-            ioconSetupPin(IOCON, IOCON_LED, IOCON_MODE(IOCON_MODE_PULLDOWN));
+            gpioPinWrite(GPIO, PORT_LED, PIN_LED, 1);
         else
-            ioconSetupPin(IOCON, IOCON_LED, IOCON_MODE(IOCON_MODE_PULLUP));
+            gpioPinWrite(GPIO, PORT_LED, PIN_LED, 0);
         pinmode = !pinmode;
     }
 }

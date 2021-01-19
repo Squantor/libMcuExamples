@@ -23,7 +23,7 @@
 #define IOCON_XTAL_OUT      IOCON_PIO0_9
 
 #define IOCON_LED           IOCON_PIO0_13
-#define PORT_LED            (0u)
+#define PORT_LED            GPIO_PORT0
 #define PIN_LED             (13u)
 
 void boardInit(void);

@@ -13,6 +13,8 @@ void boardInit(void)
     ioconSetupPin(IOCON, IOCON_XTAL_IN, IOCON_MODE(IOCON_MODE_INACTIVE));
     ioconSetupPin(IOCON, IOCON_XTAL_OUT, IOCON_MODE(IOCON_MODE_INACTIVE));
     swmEnableFixedPin(SWM_EN0_XTALIN | SWM_EN0_XTALOUT, SWM_EN1_NONE);
+    gpioSetPinDIROutput(GPIO, PORT_LED, PIN_LED);
+    gpioPinWrite(GPIO, PORT_LED, PIN_LED, 0);
     // disable all unneeded clocks
     sysconlDisableClocks(SYSCON, CLKCTRL0_SWM, CLKCTRL1_NONE);
     // setup systick
