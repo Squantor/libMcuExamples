@@ -26,11 +26,6 @@
 #define PORT_LED            GPIO_PORT0
 #define PIN_LED             (13u)
 
-#define IOCON_CLKOUT        IOCON_PIO0_12
-#define SWM_PORTPIN_CLKOUT  SWM_PORTPIN_P0_12
-#define PORT_CLKOUT         GPIO_PORT0
-#define PIN_CLKOUT          (12u)
-
 void boardInit(void);
 
 #endif
