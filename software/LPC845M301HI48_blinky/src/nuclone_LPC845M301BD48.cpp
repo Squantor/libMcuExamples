@@ -24,6 +24,11 @@ void crudeDelay(uint32_t iterations)
 void boardInit(void)
 {
     sysconEnableClocks(SYSCON, CLKCTRL0_IOCON | CLKCTRL0_GPIO0 | CLKCTRL0_SWM, CLKCTRL1_NONE);
+    // setup SCKOUT
+    SwmMovablePinAssign(SWM0, SWM_CLKOUT, SWM_PORTPIN_CLKOUT);
+    sysconClkoutDivider(SYSCON, 1);
+    sysconClkoutSource(SYSCON, CLKOUT_MAIN);
+
     ioconSetupPin(IOCON, IOCON_LED, IOCON_MODE_INACTIVE);
     ioconSetupPin(IOCON, IOCON_XTAL_IN, IOCON_MODE_INACTIVE);
     ioconSetupPin(IOCON, IOCON_XTAL_OUT, IOCON_MODE_INACTIVE);
@@ -34,16 +39,21 @@ void boardInit(void)
     crudeDelay(6000);
     sysconExternalClockSelect(SYSCON, EXTCLKSEL_SYSOSC);
     sysconMainClockSelect(SYSCON, MAINCLKSEL_EXTCLK);
-    SwmMovablePinAssign(SWM0, SWM_CLKOUT, SWM_PORTPIN_CLKOUT);
+    sysconSysPllClockSelect(SYSCON, SYSPLLCLKSEL_EXTCLK);
+    sysconPowerDisable(SYSCON, PDRUNCFG_SYSPLL);
+    // setup PLL for 60MHz, divide to 30 with AHB divider
+    sysconPllControl(SYSCON, 4, SYSPLLCTRL_POSTDIV_4);
+    sysconPowerEnable(SYSCON, PDRUNCFG_SYSPLL);
+    while (sysconPllStatus(SYSCON) == 0)
+        ;
+    sysconMainClockDivider(SYSCON, 2);
+    sysconMainClockPllSelect(SYSCON, MAINCLKPLLSEL_SYSPLL);
     gpioSetPinDIROutput(GPIO, PORT_LED, PIN_LED);
     gpioSetPinDIROutput(GPIO, PORT_LED, PIN_CLKOUT);
     gpioPinWrite(GPIO, PORT_LED, PIN_LED, 0);
     gpioPinWrite(GPIO, PORT_LED, PIN_CLKOUT, 0);
     // disable all unneeded clocks
     sysconDisableClocks(SYSCON, CLKCTRL0_SWM, CLKCTRL1_NONE);
-    // setup SCKOUT
-    sysconClkoutDivider(SYSCON, 1);
-    sysconClkoutSource(SYSCON, CLKOUT_MAIN);
     // setup systick
     SysTick_Config(CLOCK_AHB / TICKS_PER_S);
 }

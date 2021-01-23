@@ -18,15 +18,7 @@ extern "C"
 {
     void SysTick_Handler(void)
     {
-        if(pinmode)
-        {
-            gpioPinWrite(GPIO, PORT_LED, PIN_LED, 1);
-        }
-        else
-        {
-            gpioPinWrite(GPIO, PORT_LED, PIN_LED, 0);
-        }   
-        pinmode = !pinmode;
+        gpioPortToggle(GPIO, PORT_LED, 1 << PIN_LED);
     }
 }
 
