@@ -26,7 +26,8 @@ bin/
 
 #miscellanious generated files
 *.log
+disassemblies/
 
-#eclipse stuff
-.settings/
-*.launch
+# doxygen output
+documentation/
+
