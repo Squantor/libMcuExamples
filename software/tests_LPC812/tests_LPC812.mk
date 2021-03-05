@@ -22,4 +22,6 @@ $(PROJECT)/src/$(BOARD).cpp
 
 INCLUDES += -I$(PROJECT)/inc
 
+DEFINES += -DMINUNIT_MAX_TESTS=50
+
 

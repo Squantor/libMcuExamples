@@ -7,6 +7,16 @@
 #ifndef BOARD_HPP
 #define BOARD_HPP
 
+// we just run from crystal, we will switch PLL in some of the tests
+#define CLOCK_XTAL          (12000000u)
+#define CLOCK_EXT_IN        (0u)
+#define CLOCK_CPU           (12000000u)
+#define CLOCK_AHB           (12000000u)
+#define CLOCK_MAIN          (12000000u)
+
+#include <mcu_ll.h>
+
 void boardInit(void);
+
 
 #endif

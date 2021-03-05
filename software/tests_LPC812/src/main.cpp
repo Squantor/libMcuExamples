@@ -4,15 +4,26 @@
  * Copyright (c) 2021 Bart Bilos
  * For conditions of distribution and use, see LICENSE file
  */
-#include <mcu_ll.h>
 #include <board.hpp>
+#include <MinUnit.h>
 
-volatile int var;
+void printStringStdout( const char* string )
+{
+   volatile const char* data = string;
+}
 
 int main()
 {
     boardInit();
-    while (1) {
-        var ^= 0x55;
+    minunitRun();
+    if(minunitTestState.failures != 0)
+    {
+        printStringStdout("Test failures detected\n");
     }
+    else
+    {
+        printStringStdout("All tests passed\n");
+    }
+    while (1)
+        ;
 }
