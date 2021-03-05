@@ -1,0 +1,5 @@
+# doxygen settings to override from the default config
+PROJECT_NAME = "libMcuLl tests for the LPC812"
+OUTPUT_DIRECTORY = documentation/tests_LPC812
+INCLUDE_PATH = tests_LPC812/inc libMcull/inc
+INPUT = tests_LPC812/src tests_LPC812/inc libMcull/src
