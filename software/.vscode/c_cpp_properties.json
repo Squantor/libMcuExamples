@@ -7,8 +7,8 @@
                 "${workspaceFolder}/libMcuLL/inc/",
                 "${workspaceFolder}/squantorLibC/inc/",
                 "${workspaceFolder}/libEmbedded/inc/",
-                "${workspaceFolder}/squantorMinUnit/inc/"
-
+                "${workspaceFolder}/squantorMinUnit/inc/",
+                "${workspaceFolder}/common/inc/"
             ],
             "defines": [
                 "MCU_LPC812M101DH20",
