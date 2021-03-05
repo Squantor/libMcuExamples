@@ -16,7 +16,7 @@
         {
             "label": "clean",
             "type": "shell",
-            "command": "make clean",
+            "command": "make PROJECT=tests_LPC812 clean",
             "problemMatcher": [
                 "$gcc"
             ]
