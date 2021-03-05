@@ -11,8 +11,8 @@
 
             ],
             "defines": [
-                "LPC812M101DH20",
-                "DEBUG",
+                "MCU_LPC812M101DH20",
+                "DEBUG"
             ],
             "browse": {
                 "limitSymbolsToIncludedHeaders": false,
