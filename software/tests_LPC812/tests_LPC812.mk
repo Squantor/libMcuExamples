@@ -6,6 +6,11 @@
 #
 # Version: 20201220
 
+include libMcuLL/libMcuLL.mk
+include squantorLibC/squantorLibC.mk
+include libEmbedded/libEmbedded.mk
+include squantorMinUnit/squantorMinUnit.mk
+
 # project settings
 MCU = LPC812M101DH20
 TARGET = MCU
@@ -15,6 +20,6 @@ BOARD = nuclone_LPC812M101DH20_tests
 FILES += $(PROJECT)/src/main.cpp \
 $(PROJECT)/src/$(BOARD).cpp
 
-INCLUDES += -IlibMcuLL/inc -I$(PROJECT)/inc
+INCLUDES += -I$(PROJECT)/inc
 
 

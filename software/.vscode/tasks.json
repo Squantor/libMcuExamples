@@ -4,9 +4,9 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "build LPC845M301HI48 blinky example",
+            "label": "build LPC812 tests",
             "type": "shell",
-            "command": "make PROJECT=LPC845M301HI48_blinky -j20",
+            "command": "make PROJECT=tests_LPC812 -j20",
             "group": {
                 "kind": "build",
                 "isDefault": true
