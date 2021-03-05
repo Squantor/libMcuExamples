@@ -31,3 +31,5 @@ disassemblies/
 # doxygen output
 documentation/
 
+#vscode files that are better ignored
+settings.json
