@@ -18,9 +18,10 @@ BOARD = nuclone_LPC812M101DH20_tests
 
 # project sources
 FILES += $(PROJECT)/src/main.cpp \
-$(PROJECT)/src/$(BOARD).cpp
+$(PROJECT)/src/$(BOARD).cpp \
+common/src/stream_uart.cpp
 
-INCLUDES += -I$(PROJECT)/inc
+INCLUDES += -I$(PROJECT)/inc -Icommon/inc
 
 DEFINES += -DMINUNIT_MAX_TESTS=50
 

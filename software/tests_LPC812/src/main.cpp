@@ -6,10 +6,11 @@
  */
 #include <board.hpp>
 #include <MinUnit.h>
+#include <stream_uart.hpp>
 
 void printStringStdout( const char* string )
 {
-   volatile const char* data = string;
+   dsPuts(&streamUart, string);
 }
 
 int main()
