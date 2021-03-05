@@ -6,7 +6,7 @@
         {
             "label": "build LPC812 tests",
             "type": "shell",
-            "command": "make PROJECT=tests_LPC812 -j20",
+            "command": "make PROJECT=tests_LPC812 CONFIG=debug -j20",
             "group": {
                 "kind": "build",
                 "isDefault": true
