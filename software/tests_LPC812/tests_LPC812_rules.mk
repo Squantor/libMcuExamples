@@ -30,11 +30,11 @@ post-build: main-build generate-diassembly
 
 .PHONY: post-build
 
-DATESTRING := $(shell date +%Y%m%d%H%M%S)
+DATESTRING := $(shell date +%Y%m%d%H%M%S%N)
 
 # generate disassembly of currently built executable
 generate-diassembly: $(EXECUTABLE) $(PROJECT)/disassemblies/build-tag
-	$(C)$(TOOLCHAIN_PREFIX)$(OBJDUMP) -h --no-show-raw-insn --no-addresses -S "$(EXECUTABLE)" > "$(PROJECT)/disassemblies/$(PROJECT)_$(DATESTRING).lss"
+	$(C)$(TOOLCHAIN_PREFIX)$(OBJDUMP) -h --no-show-raw-insn --no-addresses -S "$(EXECUTABLE)" > "$(PROJECT)/disassemblies/$(PROJECT)_$(CONFIG)_$(DATESTRING).lss"
 
 .PHONY: generate-diassembly
 
