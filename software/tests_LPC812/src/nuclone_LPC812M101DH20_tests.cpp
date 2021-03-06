@@ -10,12 +10,22 @@ void boardInit(void)
 {
     ClockEnablePeriphClock(SYSCTL_CLOCK_SWM);
     ClockEnablePeriphClock(SYSCTL_CLOCK_IOCON);
+    SwmFixedPinEnable(SWM_FIXED_XTALIN, true);
+    SwmFixedPinEnable(SWM_FIXED_XTALOUT, true);
+    IoconPinSetMode(LPC_IOCON, IOCON_XTAL_IN, PIN_MODE_INACTIVE);
+    IoconPinSetMode(LPC_IOCON, IOCON_XTAL_OUT, PIN_MODE_INACTIVE);
     IoconPinSetMode(LPC_IOCON, IOCON_UART_RX, PIN_MODE_PULLUP);
     IoconPinSetMode(LPC_IOCON, IOCON_UART_TX, PIN_MODE_INACTIVE);
     SwmMovablePinAssign(SWM_U0_TXD_O, PIN_UART_TX);
     SwmMovablePinAssign(SWM_U0_RXD_I, PIN_UART_RX);
     ClockDisablePeriphClock(SYSCTL_CLOCK_SWM);
     ClockDisablePeriphClock(SYSCTL_CLOCK_IOCON);
+
+    // setup crystal oscillator and set as main clock
+    SysctlPowerUp(SYSCTL_SLPWAKE_SYSOSC_PD);
+    FmcSetFlashAccess(FLASHTIM_20MHZ_CPU);
+    ClockSetSystemPLLSource(SYSCTL_PLLCLKSRC_SYSOSC);
+    ClockSetMainClockSource(SYSCTL_MAINCLKSRC_PLLIN);
 
     // setup UART peripheral
     UartInit(UART_DEBUG);

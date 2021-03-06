@@ -7,6 +7,9 @@
 #ifndef BOARD_HPP
 #define BOARD_HPP
 
+#define IOCON_XTAL_IN       IOCON_PIO8
+#define IOCON_XTAL_OUT      IOCON_PIO9
+
 #define IOCON_UART_TX       IOCON_PIO13
 #define PIN_UART_TX         (13u)
 #define IOCON_UART_RX       IOCON_PIO17
