@@ -8,7 +8,7 @@
 #include <MinUnit.h>
 #include <stream_uart.hpp>
 
-void printStringStdout( const char* string )
+void minunitReport( const char* string )
 {
    dsPuts(&streamUart, string);
 }
@@ -19,11 +19,11 @@ int main()
     minunitRun();
     if(minunitTestState.failures != 0)
     {
-        printStringStdout("Test failures detected\n");
+        minunitReport("Test failures detected\n");
     }
     else
     {
-        printStringStdout("All tests passed\n");
+        minunitReport("All tests passed\n");
     }
     while (1)
         ;
