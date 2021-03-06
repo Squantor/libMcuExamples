@@ -23,4 +23,5 @@ common/src/stream_uart.cpp
 
 INCLUDES += -I$(PROJECT)/inc -Icommon/inc
 
-DEFINES += -DMINUNIT_MAX_TESTS=100
+DEFINES += -DMINUNIT_MAX_TESTS=100 
+#DEFINES += -DMINUNIT_REPORT_DISABLE # saves load of flash space
