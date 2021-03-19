@@ -5,11 +5,11 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "debug LPC812 tests",
+            "name": "debug LPC845M301BD48 tests",
             "type": "cppdbg",
             "request": "launch",
             "targetArchitecture": "x86_64",
-            "program": "${workspaceFolder}/bin/tests_LPC812/debug/tests_LPC812.elf",
+            "program": "${workspaceFolder}/bin/tests_LPC845M301BD48/debug/tests_LPC845M301BD48.elf",
             "args": [],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
@@ -24,11 +24,11 @@
                 },
                 {
                     "description": "setup architecture",
-                    "text": "set architecture armv7"
+                    "text": "set architecture armv6"
                 },
                 {
                     "description": "Load the file",
-                    "text": "file ${workspaceFolder}/bin/tests_LPC812/debug/tests_LPC812.elf"
+                    "text": "file ${workspaceFolder}/bin/tests_LPC845M301BD48/debug/tests_LPC845M301BD48.elf"
                 },
                 {
                     "description": "Connect to black magic probe",
@@ -52,7 +52,7 @@
                 },
                 {
                     "description": "program the elf file",
-                    "text": "load ${workspaceFolder}/bin/tests_LPC812/debug/tests_LPC812.elf"
+                    "text": "load ${workspaceFolder}/bin/tests_LPC845M301BD48/debug/tests_LPC845M301BD48.elf"
                 },
                 {
                     "description": "remap interrupt vectors to flash, again",
@@ -63,7 +63,7 @@
                     "text": "compare-sections"
                 },
             ],
-            "preLaunchTask": "build LPC812 tests",
+            "preLaunchTask": "build LPC845M301BD48 tests",
             "miDebuggerPath": "/home/abilos/programs/gcc-arm-none-eabi-10-2020-q4-major/bin//arm-none-eabi-gdb",
         },
 
