@@ -30,18 +30,11 @@ void boardInit(void)
     swmEnableFixedPin(SWM0, SWM_EN0_XTALIN | SWM_EN0_XTALOUT, SWM_EN1_NONE);
     sysconSysOscControl(SYSCON, SYSOSCCTRL_FREQ_1_20MHZ);
     sysconPowerEnable(SYSCON, PDRUNCFG_SYSOSC);
+    // wait until crystal oscillator stabilizes
     crudeDelay(6000);
     sysconExternalClockSelect(SYSCON, EXTCLKSEL_SYSOSC);
     sysconSysPllClockSelect(SYSCON, SYSPLLCLKSEL_EXTCLK);
-    sysconPowerDisable(SYSCON, PDRUNCFG_SYSPLL);
-    // setup PLL for 60MHz output
-    sysconPllControl(SYSCON, 4, SYSPLLCTRL_POSTDIV_4);
-    sysconPowerEnable(SYSCON, PDRUNCFG_SYSPLL);
-    while (sysconPllStatus(SYSCON) == 0)
-        ;
-    // divide 60MHz from Pll to 30MHz for the CPU
-    sysconMainClockDivider(SYSCON, 2);
-    sysconMainClockPllSelect(SYSCON, MAINCLKPLLSEL_SYSPLL);
+    sysconMainClockPllSelect(SYSCON, MAINCLKPLLSEL_PREPLL);
     // disable all unneeded clocks
     sysconDisableClocks(SYSCON, CLKCTRL0_SWM, CLKCTRL1_NONE);
     // setup systick
