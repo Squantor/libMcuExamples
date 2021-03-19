@@ -3,7 +3,7 @@
         {
             "name": "Linux",
             "includePath": [
-                "${workspaceFolder}/tests_LPC812/inc",
+                "${workspaceFolder}/tests_LPC845M301HI48/inc",
                 "${workspaceFolder}/libMcuLL/inc/",
                 "${workspaceFolder}/squantorLibC/inc/",
                 "${workspaceFolder}/libEmbedded/inc/",
@@ -11,7 +11,7 @@
                 "${workspaceFolder}/common/inc/"
             ],
             "defines": [
-                "MCU_LPC812M101DH20",
+                "LPC845M301BD48",
                 "DEBUG"
             ],
             "browse": {

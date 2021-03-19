@@ -22,6 +22,11 @@
 #define IOCON_XTAL_IN       IOCON_PIO0_8
 #define IOCON_XTAL_OUT      IOCON_PIO0_9
 
+#define IOCON_UART_TX       IOCON_PIO13
+#define PIN_UART_TX         (13u)
+#define IOCON_UART_RX       IOCON_PIO17
+#define PIN_UART_RX         (17u)
+
 #define IOCON_LED           IOCON_PIO0_13
 #define PORT_LED            GPIO_PORT0
 #define PIN_LED             (13u)
