@@ -12,19 +12,17 @@
 #include <nuclone_LPC845M301BD48.hpp>
 
 volatile int var;
-volatile bool pinmode;
 
 extern "C" 
 {
     void SysTick_Handler(void)
     {
-        gpioPortToggle(GPIO, PORT_LED, 1 << PIN_LED);
+
     }
 }
 
 int main()
 {
-    pinmode = false;
     boardInit();
     while (1) {
         var ^= 0x55;

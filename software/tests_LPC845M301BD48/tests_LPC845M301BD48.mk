@@ -17,11 +17,9 @@ MCU = LPC845M301BD48
 TARGET = MCU
 BOARD = nuclone_LPC845M301BD48
 
-
 # project sources
 FILES += $(PROJECT)/src/main.cpp \
-$(PROJECT)/src/$(BOARD).cpp \
-common/src/stream_uart.cpp
+$(PROJECT)/src/$(BOARD).cpp
 
 INCLUDES += -I$(PROJECT)/inc -Icommon/inc
 

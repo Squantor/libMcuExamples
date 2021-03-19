@@ -24,7 +24,6 @@ void crudeDelay(uint32_t iterations)
 void boardInit(void)
 {
     sysconEnableClocks(SYSCON, CLKCTRL0_IOCON | CLKCTRL0_GPIO0 | CLKCTRL0_SWM, CLKCTRL1_NONE);
-    ioconSetupPin(IOCON, IOCON_LED, IOCON_MODE_INACTIVE);
     // setup crystal oscillator and PLL to run core at 30MHz
     ioconSetupPin(IOCON, IOCON_XTAL_IN, IOCON_MODE_INACTIVE);
     ioconSetupPin(IOCON, IOCON_XTAL_OUT, IOCON_MODE_INACTIVE);
@@ -43,8 +42,6 @@ void boardInit(void)
     // divide 60MHz from Pll to 30MHz for the CPU
     sysconMainClockDivider(SYSCON, 2);
     sysconMainClockPllSelect(SYSCON, MAINCLKPLLSEL_SYSPLL);
-    gpioSetPinDIROutput(GPIO, PORT_LED, PIN_LED);
-    gpioPinWrite(GPIO, PORT_LED, PIN_LED, 0);
     // disable all unneeded clocks
     sysconDisableClocks(SYSCON, CLKCTRL0_SWM, CLKCTRL1_NONE);
     // setup systick

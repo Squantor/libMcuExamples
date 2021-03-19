@@ -27,9 +27,8 @@
 #define IOCON_UART_RX       IOCON_PIO17
 #define PIN_UART_RX         (17u)
 
-#define IOCON_LED           IOCON_PIO0_13
-#define PORT_LED            GPIO_PORT0
-#define PIN_LED             (13u)
+#define UART_DEBUG          LPC_USART0
+#define UART_BAUD_RATE      (115200u)
 
 void boardInit(void);
 

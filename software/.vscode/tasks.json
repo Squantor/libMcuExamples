@@ -4,9 +4,9 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "build LPC845M301HI48 tests",
+            "label": "build LPC845M301BD48 tests",
             "type": "shell",
-            "command": "make PROJECT=tests_LPC845M301HI48 CONFIG=debug -j20",
+            "command": "make PROJECT=tests_LPC845M301BD48 CONFIG=debug -j20",
             "group": {
                 "kind": "build",
                 "isDefault": true
@@ -16,7 +16,7 @@
         {
             "label": "clean",
             "type": "shell",
-            "command": "make PROJECT=tests_LPC845M301HI48 clean",
+            "command": "make PROJECT=tests_LPC845M301BD48 clean",
             "problemMatcher": [
                 "$gcc"
             ]
