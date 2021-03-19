@@ -19,7 +19,8 @@ BOARD = nuclone_LPC845M301BD48_tests
 
 # project sources
 FILES += $(PROJECT)/src/main.cpp \
-$(PROJECT)/src/$(BOARD).cpp
+$(PROJECT)/src/$(BOARD).cpp \
+$(PROJECT)/src/LPC845M301_teardown.cpp
 
 INCLUDES += -I$(PROJECT)/inc -Icommon/inc
 
