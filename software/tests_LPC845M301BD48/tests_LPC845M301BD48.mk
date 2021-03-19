@@ -15,7 +15,7 @@ include squantorMinUnit/squantorMinUnit.mk
 # project settings
 MCU = LPC845M301BD48
 TARGET = MCU
-BOARD = nuclone_LPC845M301BD48
+BOARD = nuclone_LPC845M301BD48_tests
 
 # project sources
 FILES += $(PROJECT)/src/main.cpp \
