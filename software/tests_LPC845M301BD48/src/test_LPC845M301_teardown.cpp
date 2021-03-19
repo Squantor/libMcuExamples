@@ -15,6 +15,7 @@ MINUNIT_ADD(LPC845M301teardown)
 {
     LPC845M301_teardown();
     // check IOCON registers
+    minUnitCheck(IOCON->PIO[IOCON_PIO0_17] == 0x000000B0);
     // check GPIO registers
 
 }
