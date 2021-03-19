@@ -10,6 +10,8 @@
  * its effect, you'll need to use debugger.
  */
 #include <nuclone_LPC845M301BD48.hpp>
+#include <MinUnit.h>
+#include <stream_uart.hpp>
 
 volatile int var;
 
@@ -21,10 +23,23 @@ extern "C"
     }
 }
 
+void minunitReport( const char* string )
+{
+
+}
+
 int main()
 {
     boardInit();
-    while (1) {
-        var ^= 0x55;
+    minunitRun();
+    if(minunitTestState.failures != 0)
+    {
+        minunitReport("Test failures detected\n");
     }
+    else
+    {
+        minunitReport("All tests passed\n");
+    }
+    while (1)
+        ;
 }
