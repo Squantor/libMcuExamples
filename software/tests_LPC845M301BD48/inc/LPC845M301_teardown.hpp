@@ -13,4 +13,10 @@
  */
 void LPC845M301_teardown(void);
 
+
+/** @brief checks if all registers are in their default states
+ *  @return false if a register is not properly set
+ */
+bool LPC845M301TeardownCorrect(void);
+
 #endif
