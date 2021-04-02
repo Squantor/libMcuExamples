@@ -10,21 +10,26 @@
 
 void LPC845M301_setup_gpio()
 {
-    sysconEnableClocks(SYSCON, CLKCTRL0_GPIO0, CLKCTRL1_NONE);
+    sysconEnableClocks(SYSCON, CLKCTRL0_GPIO0 | CLKCTRL0_GPIO1, CLKCTRL1_NONE);
+    sysconEnableResets(SYSCON, RESETCTRL0_GPIO0, 0x00);
 }
 
 MINUNIT_ADD(LPC845M301GpioPin)
 {
     LPC845M301_setup_gpio();    
-    // set output as low (it is default pulled up)
     gpioSetPinDIRInput(GPIO, PORT_TESTPIN_0_1, PIN_TESTPIN_0_1);
     gpioSetPinDIROutput(GPIO, PORT_TESTPIN_0_0, PIN_TESTPIN_0_0);
-    gpioPinWrite(GPIO, PORT_TESTPIN_0_0, PORT_TESTPIN_0_0, 0);
-    // sense if inputs are low
+    gpioPinWrite(GPIO, PORT_TESTPIN_0_0, PIN_TESTPIN_0_0, 0);
     minUnitCheck(gpioPinRead(GPIO, PORT_TESTPIN_0_1, PIN_TESTPIN_0_1) == 0);
-    // set output as high 
-    // sense if inputs are high
-    // switch around pins
+    gpioPinWrite(GPIO, PORT_TESTPIN_0_0, PIN_TESTPIN_0_0, 1);
+    minUnitCheck(gpioPinRead(GPIO, PORT_TESTPIN_0_1, PIN_TESTPIN_0_1) != 0);
+    // switch around
+    gpioSetPinDIRInput(GPIO, PORT_TESTPIN_0_0, PIN_TESTPIN_0_0);
+    gpioSetPinDIROutput(GPIO, PORT_TESTPIN_0_1, PIN_TESTPIN_0_1);
+    gpioPinWrite(GPIO, PORT_TESTPIN_0_1, PIN_TESTPIN_0_1, 0);
+    minUnitCheck(gpioPinRead(GPIO, PORT_TESTPIN_0_0, PIN_TESTPIN_0_0) == 0);
+    gpioPinWrite(GPIO, PORT_TESTPIN_0_1, PIN_TESTPIN_0_1, 1);
+    minUnitCheck(gpioPinRead(GPIO, PORT_TESTPIN_0_0, PIN_TESTPIN_0_0) != 0);
     LPC845M301_teardown();
     minUnitCheck(LPC845M301TeardownCorrect() == true);
 }
