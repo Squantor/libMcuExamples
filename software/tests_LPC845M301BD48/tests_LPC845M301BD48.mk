@@ -21,7 +21,8 @@ BOARD = nuclone_LPC845M301BD48_tests
 FILES += $(PROJECT)/src/main.cpp \
 $(PROJECT)/src/$(BOARD).cpp \
 $(PROJECT)/src/LPC845M301_teardown.cpp \
-$(PROJECT)/src/test_LPC845M301_teardown.cpp
+$(PROJECT)/src/test_LPC845M301_teardown.cpp \
+$(PROJECT)/src/test_LPC845M301_gpio.cpp
 
 INCLUDES += -I$(PROJECT)/inc -Icommon/inc
 
