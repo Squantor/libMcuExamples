@@ -28,6 +28,21 @@
 #define UART_DEBUG          LPC_USART0
 #define UART_BAUD_RATE      (115200u)
 
+// test pin pair 0, connected to eachother via 1KOhm resistor
+#define IOCON_TESTPIN_0_0   IOCON_PIN0_1
+#define PORT_TESTPIN_0_0    (GPIO_PORT0)
+#define PIN_TESTPIN_0_0     (1u)
+#define IOCON_TESTPIN_0_1   IOCON_PIN1_4
+#define PORT_TESTPIN_0_1    (GPIO_PORT1)
+#define PIN_TESTPIN_0_1     (4u)
+// test pin pair 1, connected to eachother via 1KOhm resistor
+#define IOCON_TESTPIN_1_0   IOCON_PIN0_15
+#define PORT_TESTPIN_1_0    (GPIO_PORT0)
+#define PIN_TESTPIN_1_0     (15u)
+#define IOCON_TESTPIN_1_1   IOCON_PIN1_3
+#define PORT_TESTPIN_1_1    (GPIO_PORT1)
+#define PIN_TESTPIN_1_1     (3u)
+
 void boardInit(void);
 
 #endif
