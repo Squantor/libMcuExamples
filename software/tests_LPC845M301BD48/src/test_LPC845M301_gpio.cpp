@@ -18,7 +18,7 @@ void LPC845M301_setup_gpio()
 
 MINUNIT_ADD(LPC845M301GpioPin)
 {
-    LPC845M301_setup_gpio();    
+    LPC845M301_setup_gpio();
     gpioSetPinDIRInput(GPIO, PORT_TESTPIN_0_1, PIN_TESTPIN_0_1);
     gpioSetPinDIROutput(GPIO, PORT_TESTPIN_0_0, PIN_TESTPIN_0_0);
     gpioPinWrite(GPIO, PORT_TESTPIN_0_0, PIN_TESTPIN_0_0, 0);
@@ -39,6 +39,7 @@ MINUNIT_ADD(LPC845M301GpioPin)
 // same tests as pins but checking a whole port
 MINUNIT_ADD(LPC845M301GpioPort)
 {
+    LPC845M301_setup_gpio();
     // check pin position assumptions
     minUnitCheck(PORT_TESTPIN_0_0 == PORT_TESTPIN_1_0);
     minUnitCheck(PORT_TESTPIN_0_1 == PORT_TESTPIN_1_1);
