@@ -39,12 +39,13 @@ MINUNIT_ADD(LPC845M301GpioPin)
 // same tests as pins but checking a whole port
 MINUNIT_ADD(LPC845M301GpioPort)
 {
-    // some prerequisite tests
+    // check pin position assumptions
     minUnitCheck(PORT_TESTPIN_0_0 == PORT_TESTPIN_1_0);
-    // set output as low (it is default pulled up)
+    minUnitCheck(PORT_TESTPIN_0_1 == PORT_TESTPIN_1_1);
+    // setup port0 as outputs and set it low
     gpioSetPortDir(GPIO, PORT_TESTPIN_0_0, BITPOS(PIN_TESTPIN_0_0) | BITPOS(PIN_TESTPIN_1_0));
     gpioPortWrite(GPIO, PORT_TESTPIN_0_0, gpioPortRead(GPIO, PORT_TESTPIN_0_0) & ~BITPOS(PIN_TESTPIN_0_0) & ~BITPOS(PIN_TESTPIN_1_0));
-    // sense input changes
+    // sense low levels on pits
     minUnitCheck((gpioPortRead(GPIO, 
         PORT_TESTPIN_0_0) & (BITPOS(PIN_TESTPIN_0_0) | BITPOS(PIN_TESTPIN_1_0))) == 0x00000000);
     // set output as high 
@@ -53,6 +54,18 @@ MINUNIT_ADD(LPC845M301GpioPort)
     minUnitCheck((gpioPortRead(GPIO, 
         PORT_TESTPIN_0_0) & (BITPOS(PIN_TESTPIN_0_0) | BITPOS(PIN_TESTPIN_1_0))) == (BITPOS(PIN_TESTPIN_0_0) | BITPOS(PIN_TESTPIN_1_0)));
     // switch around pins
+    gpioSetPortDir(GPIO, PORT_TESTPIN_0_0, 0x00000000);
+    gpioSetPortDir(GPIO, PORT_TESTPIN_0_1, BITPOS(PIN_TESTPIN_0_1) | BITPOS(PIN_TESTPIN_1_1));
+    gpioPortWrite(GPIO, PORT_TESTPIN_0_1, gpioPortRead(GPIO, PORT_TESTPIN_0_1) & ~BITPOS(PIN_TESTPIN_0_1) & ~BITPOS(PIN_TESTPIN_1_1));
+    // sense low levels on pits
+    minUnitCheck((gpioPortRead(GPIO, 
+        PORT_TESTPIN_0_1) & (BITPOS(PIN_TESTPIN_0_1) | BITPOS(PIN_TESTPIN_1_1))) == 0x00000000);
+    // set output as high 
+    gpioPortWrite(GPIO, PORT_TESTPIN_0_1, gpioPortRead(GPIO, PORT_TESTPIN_0_1) | BITPOS(PIN_TESTPIN_0_1) | BITPOS(PIN_TESTPIN_1_1));
+    // sense if inputs are high
+    minUnitCheck((gpioPortRead(GPIO, 
+        PORT_TESTPIN_0_1) & (BITPOS(PIN_TESTPIN_0_1) | BITPOS(PIN_TESTPIN_1_1))) == (BITPOS(PIN_TESTPIN_0_1) | BITPOS(PIN_TESTPIN_1_1)));
+
     LPC845M301_teardown();
     minUnitCheck(LPC845M301TeardownCorrect() == true);
 }
