@@ -19,7 +19,16 @@
 
 void LPC845M301_teardown(void)
 {
-
+    GPIO->DIR[0] = 0x00000000;
+    GPIO->DIR[1] = 0x00000000;
+    GPIO->MASK[0] = 0x00000000;
+    GPIO->MASK[1] = 0x00000000;
+    GPIO->PIN[0] = 0x00000000;
+    GPIO->PIN[1] = 0x00000000;
+    GPIO->SET[0] = 0x00000000;
+    GPIO->SET[1] = 0x00000000;
+    GPIO->DIRSET[0] = 0x00000000;
+    GPIO->DIRSET[1] = 0x00000000;
 }
 
 /** @brief resets all the registers to their default states
