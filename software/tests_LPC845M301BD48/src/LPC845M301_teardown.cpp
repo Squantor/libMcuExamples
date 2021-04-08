@@ -17,6 +17,8 @@
 #define IOCON_I2CPIN_DEFAULT    0x000000B0      /**< I2C pins have some bits extra and lose some bits */
 #define IOCON_XTAL_DEFAULT      0x00000080      /**< Crystal oscillator deviate from reset values */
 
+/** @brief resets all the registers to their default states
+ */
 void LPC845M301_teardown(void)
 {
     GPIO->DIR[0] = 0x00000000;
@@ -36,7 +38,7 @@ void LPC845M301_teardown(void)
     SYSCON->PRESETCTRL1 = 0x1F;
 }
 
-/** @brief resets all the registers to their default states
+/** @brief checks if all the registers to their default states
  *  @return if all registers are correctly torndown
  */
 bool LPC845M301TeardownCorrect(void)
@@ -99,6 +101,7 @@ bool LPC845M301TeardownCorrect(void)
     sysconDisableClocks(SYSCON, CLKCTRL0_IOCON, CLKCTRL1_NONE);
     // check SWM registers
     // check GPIO registers
+    sysconEnableClocks(SYSCON, CLKCTRL0_GPIO0 | CLKCTRL0_GPIO1, CLKCTRL1_NONE);
     TESTANDRETURN(GPIO->DIR[0] == 0x00000000);
     TESTANDRETURN(GPIO->DIR[1] == 0x00000000);
     TESTANDRETURN(GPIO->MASK[0] == 0x00000000);
@@ -107,6 +110,7 @@ bool LPC845M301TeardownCorrect(void)
     TESTANDRETURN(GPIO->SET[1] == 0x00000000);
     TESTANDRETURN(GPIO->DIRSET[0] == 0x00000000);
     TESTANDRETURN(GPIO->DIRSET[1] == 0x00000000);
+    sysconDisableClocks(SYSCON, CLKCTRL0_GPIO0 | CLKCTRL0_GPIO1, CLKCTRL1_NONE);
     // keep IOCON for last
     TESTANDRETURN(SYSCON->SYSAHBCLKCTRL0 == 0x17);
     TESTANDRETURN(SYSCON->SYSAHBCLKCTRL1 == 0x0);
