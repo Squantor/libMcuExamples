@@ -8,6 +8,8 @@
 #include <MinUnit.h>
 #include <LPC845M301_teardown.hpp>
 
+#define BITPOS(value) (1 << value)
+
 void LPC845M301_setup_gpio()
 {
     sysconEnableClocks(SYSCON, CLKCTRL0_GPIO0 | CLKCTRL0_GPIO1, CLKCTRL1_NONE);
@@ -37,10 +39,19 @@ MINUNIT_ADD(LPC845M301GpioPin)
 // same tests as pins but checking a whole port
 MINUNIT_ADD(LPC845M301GpioPort)
 {
+    // some prerequisite tests
+    minUnitCheck(PORT_TESTPIN_0_0 == PORT_TESTPIN_1_0);
     // set output as low (it is default pulled up)
-    // sense if inputs are low
+    gpioSetPortDir(GPIO, PORT_TESTPIN_0_0, BITPOS(PIN_TESTPIN_0_0) | BITPOS(PIN_TESTPIN_1_0));
+    gpioPortWrite(GPIO, PORT_TESTPIN_0_0, gpioPortRead(GPIO, PORT_TESTPIN_0_0) & ~BITPOS(PIN_TESTPIN_0_0) & ~BITPOS(PIN_TESTPIN_1_0));
+    // sense input changes
+    minUnitCheck((gpioPortRead(GPIO, 
+        PORT_TESTPIN_0_0) & (BITPOS(PIN_TESTPIN_0_0) | BITPOS(PIN_TESTPIN_1_0))) == 0x00000000);
     // set output as high 
+    gpioPortWrite(GPIO, PORT_TESTPIN_0_0, gpioPortRead(GPIO, PORT_TESTPIN_0_0) | BITPOS(PIN_TESTPIN_0_0) | BITPOS(PIN_TESTPIN_1_0));
     // sense if inputs are high
+    minUnitCheck((gpioPortRead(GPIO, 
+        PORT_TESTPIN_0_0) & (BITPOS(PIN_TESTPIN_0_0) | BITPOS(PIN_TESTPIN_1_0))) == (BITPOS(PIN_TESTPIN_0_0) | BITPOS(PIN_TESTPIN_1_0)));
     // switch around pins
     LPC845M301_teardown();
     minUnitCheck(LPC845M301TeardownCorrect() == true);
