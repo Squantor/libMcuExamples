@@ -16,7 +16,7 @@ void LPC845M301_setup_gpio()
     sysconEnableResets(SYSCON, RESETCTRL0_GPIO0, 0x00);
 }
 
-MINUNIT_ADD(LPC845M301GpioPin)
+MINUNIT_ADD(LPC845M301GpioPin, LPC845M301_setup_gpio, LPC845M301_teardown)
 {
     LPC845M301_setup_gpio();
     gpioSetPinDIRInput(GPIO, PORT_TESTPIN_0_1, PIN_TESTPIN_0_1);
@@ -32,14 +32,11 @@ MINUNIT_ADD(LPC845M301GpioPin)
     minUnitCheck(gpioPinRead(GPIO, PORT_TESTPIN_0_0, PIN_TESTPIN_0_0) == 0);
     gpioPinWrite(GPIO, PORT_TESTPIN_0_1, PIN_TESTPIN_0_1, 1);
     minUnitCheck(gpioPinRead(GPIO, PORT_TESTPIN_0_0, PIN_TESTPIN_0_0) != 0);
-    LPC845M301_teardown();
-    minUnitCheck(LPC845M301TeardownCorrect() == true);
 }
 
 // same tests as pins but checking a whole port
-MINUNIT_ADD(LPC845M301GpioPort)
+MINUNIT_ADD(LPC845M301GpioPort, LPC845M301_setup_gpio, LPC845M301_teardown)
 {
-    LPC845M301_setup_gpio();
     // check pin position assumptions
     minUnitCheck(PORT_TESTPIN_0_0 == PORT_TESTPIN_1_0);
     minUnitCheck(PORT_TESTPIN_0_1 == PORT_TESTPIN_1_1);
@@ -66,7 +63,4 @@ MINUNIT_ADD(LPC845M301GpioPort)
     // sense if inputs are high
     minUnitCheck((gpioPortRead(GPIO, 
         PORT_TESTPIN_0_1) & (BITPOS(PIN_TESTPIN_0_1) | BITPOS(PIN_TESTPIN_1_1))) == (BITPOS(PIN_TESTPIN_0_1) | BITPOS(PIN_TESTPIN_1_1)));
-
-    LPC845M301_teardown();
-    minUnitCheck(LPC845M301TeardownCorrect() == true);
 }

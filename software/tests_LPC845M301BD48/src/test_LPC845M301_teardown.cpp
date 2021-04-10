@@ -11,7 +11,7 @@
 #include <MinUnit.h>
 #include <LPC845M301_teardown.hpp>
 
-MINUNIT_ADD(LPC845M301teardown)
+MINUNIT_ADD(LPC845M301teardown, NULL, NULL)
 {
     LPC845M301_teardown();
     minUnitCheck(LPC845M301TeardownCorrect() == true);
