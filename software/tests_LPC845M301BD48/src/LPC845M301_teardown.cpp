@@ -21,6 +21,9 @@
  */
 void LPC845M301_teardown(void)
 {
+    sysconEnableClocks(SYSCON, CLKCTRL0_IOCON, CLKCTRL1_NONE);
+    sysconDisableClocks(SYSCON, CLKCTRL0_IOCON, CLKCTRL1_NONE);
+    
     sysconEnableResets(SYSCON, CLKCTRL0_GPIO0 | CLKCTRL0_GPIO1, CLKCTRL1_NONE);
     GPIO->DIR[0] = 0x00000000;
     GPIO->DIR[1] = 0x00000000;
