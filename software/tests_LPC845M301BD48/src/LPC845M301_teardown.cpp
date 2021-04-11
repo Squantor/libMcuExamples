@@ -11,6 +11,7 @@
 #include <nuclone_LPC845M301BD48_tests.hpp>
 #include <LPC845M301_teardown.hpp>
 #include <test_conditions.hpp>
+#include <MinUnit.h>
 
 #define IOCON_NORMAL_DEFAULT    0x000000B0      /**< Default value for most pins */
 #define IOCON_I2CPIN_MASK       (~0x00000400)   /**< some I2C pins have no default value, so mask them */
@@ -19,7 +20,7 @@
 
 /** @brief resets all the registers to their default states
  */
-void LPC845M301Teardown(void)
+MINUNIT_TEARDOWN(LPC845M301Teardown)
 {
     sysconEnableClocks(SYSCON, CLKCTRL0_IOCON, CLKCTRL1_NONE);
     sysconDisableClocks(SYSCON, CLKCTRL0_IOCON, CLKCTRL1_NONE);
@@ -41,6 +42,8 @@ void LPC845M301Teardown(void)
     SYSCON->SYSAHBCLKCTRL1 = 0x0;
     SYSCON->PRESETCTRL0 = 0xFFFFFFFF;
     SYSCON->PRESETCTRL1 = 0x1F;
+
+    minUnitCheck(LPC845M301TeardownCorrect() == true);
 }
 
 /** @brief checks if all the registers to their default states
