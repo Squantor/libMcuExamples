@@ -28,8 +28,12 @@ MINUNIT_SETUP(LPC845M301SetupIocon)
 MINUNIT_ADD(LPC845M301IoconPull, LPC845M301SetupIocon, LPC845M301Teardown)
 {
     // setup sensing GPIO to inputs and disable their pullups
-
+    gpioSetPortDir(GPIO, PORT_TESTPIN_0_0, 0);
+    ioconSetupPin(IOCON, IOCON_TESTPIN_0_0, IOCON_MODE_INACTIVE);
+    ioconSetupPin(IOCON, IOCON_TESTPIN_0_1, IOCON_MODE_INACTIVE);
     // check if high (Default pullups on LPC)
+    minUnitCheck(gpioPinRead(GPIO, PORT_TESTPIN_0_0, PIN_TESTPIN_0_0) == true);
+    minUnitCheck(gpioPinRead(GPIO, PORT_TESTPIN_0_1, PIN_TESTPIN_0_1) == true);
     // set iocon to pulldowns
     // check if low
     // set iocon to pullups
@@ -41,7 +45,7 @@ MINUNIT_ADD(LPC845M301IoconPull, LPC845M301SetupIocon, LPC845M301Teardown)
  */
 MINUNIT_ADD(LPC845M301IoconRepeater, LPC845M301SetupIocon, LPC845M301Teardown)
 {
-    
+    minUnitPass();
 }
 
 /**
@@ -49,7 +53,7 @@ MINUNIT_ADD(LPC845M301IoconRepeater, LPC845M301SetupIocon, LPC845M301Teardown)
  */
 MINUNIT_ADD(LPC845M301IoconOpenDrain, LPC845M301SetupIocon, LPC845M301Teardown)
 {
-    
+    minUnitPass();
 }
 
 /* Some tests that are still to do:
