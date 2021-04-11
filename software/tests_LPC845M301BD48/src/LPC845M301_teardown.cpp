@@ -19,7 +19,7 @@
 
 /** @brief resets all the registers to their default states
  */
-void LPC845M301_teardown(void)
+void LPC845M301Teardown(void)
 {
     sysconEnableClocks(SYSCON, CLKCTRL0_IOCON, CLKCTRL1_NONE);
     sysconDisableClocks(SYSCON, CLKCTRL0_IOCON, CLKCTRL1_NONE);

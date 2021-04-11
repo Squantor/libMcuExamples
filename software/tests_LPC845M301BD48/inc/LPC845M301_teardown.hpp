@@ -11,7 +11,7 @@
 /** @brief resets all the registers to their default states
  * 
  */
-void LPC845M301_teardown(void);
+void LPC845M301Teardown(void);
 
 
 /** @brief checks if all registers are in their default states

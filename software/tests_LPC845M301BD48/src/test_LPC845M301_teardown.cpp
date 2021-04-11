@@ -13,6 +13,6 @@
 
 MINUNIT_ADD(LPC845M301teardown, NULL, NULL)
 {
-    LPC845M301_teardown();
+    LPC845M301Teardown();
     minUnitCheck(LPC845M301TeardownCorrect() == true);
 }

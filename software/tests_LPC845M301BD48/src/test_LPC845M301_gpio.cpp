@@ -10,15 +10,15 @@
 
 #define BITPOS(value) (1 << value)
 
-void LPC845M301_setup_gpio()
+void LPC845M301SetupGpio()
 {
     sysconEnableClocks(SYSCON, CLKCTRL0_GPIO0 | CLKCTRL0_GPIO1, CLKCTRL1_NONE);
     sysconEnableResets(SYSCON, RESETCTRL0_GPIO0, 0x00);
 }
 
-MINUNIT_ADD(LPC845M301GpioPin, LPC845M301_setup_gpio, LPC845M301_teardown)
+MINUNIT_ADD(LPC845M301GpioPin, LPC845M301SetupGpio, LPC845M301Teardown)
 {
-    LPC845M301_setup_gpio();
+    LPC845M301SetupGpio();
     gpioSetPinDIRInput(GPIO, PORT_TESTPIN_0_1, PIN_TESTPIN_0_1);
     gpioSetPinDIROutput(GPIO, PORT_TESTPIN_0_0, PIN_TESTPIN_0_0);
     gpioPinWrite(GPIO, PORT_TESTPIN_0_0, PIN_TESTPIN_0_0, 0);
@@ -35,7 +35,7 @@ MINUNIT_ADD(LPC845M301GpioPin, LPC845M301_setup_gpio, LPC845M301_teardown)
 }
 
 // same tests as pins but checking a whole port
-MINUNIT_ADD(LPC845M301GpioPort, LPC845M301_setup_gpio, LPC845M301_teardown)
+MINUNIT_ADD(LPC845M301GpioPort, LPC845M301SetupGpio, LPC845M301Teardown)
 {
     // check pin position assumptions
     minUnitCheck(PORT_TESTPIN_0_0 == PORT_TESTPIN_1_0);
