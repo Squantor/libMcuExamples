@@ -13,6 +13,6 @@
 
 MINUNIT_ADD(LPC845M301teardown, NULL, NULL)
 {
-    LPC845M301Teardown();
+    LPC845M301Teardown(testResults); // passing test state directly
     minUnitCheck(LPC845M301TeardownCorrect() == true);
 }
