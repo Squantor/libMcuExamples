@@ -10,6 +10,7 @@
 #include <nuclone_LPC845M301BD48_tests.hpp>
 #include <MinUnit.h>
 #include <LPC845M301_teardown.hpp>
+#include <common.hpp>
 
 /**
  * @brief Iocon setup and initialisation
@@ -18,7 +19,7 @@ MINUNIT_SETUP(LPC845M301SetupIocon)
 {
     minUnitCheck(LPC845M301TeardownCorrect() == true); // check if the MCU is in its reset state
     sysconEnableClocks(SYSCON, CLKCTRL0_GPIO0 | CLKCTRL0_GPIO1 | CLKCTRL0_IOCON, CLKCTRL1_NONE);
-    sysconEnableResets(SYSCON, RESETCTRL0_GPIO0, 0x00);
+    sysconEnableResets(SYSCON, RESETCTRL0_GPIO0 | RESETCTRL0_GPIO1 | RESETCTRL0_IOCON, 0x00);
 }
 
 /**
@@ -26,7 +27,8 @@ MINUNIT_SETUP(LPC845M301SetupIocon)
  */
 MINUNIT_ADD(LPC845M301IoconPull, LPC845M301SetupIocon, LPC845M301Teardown)
 {
-    // setup sensing GPIO to inputs
+    // setup sensing GPIO to inputs and disable their pullups
+
     // check if high (Default pullups on LPC)
     // set iocon to pulldowns
     // check if low

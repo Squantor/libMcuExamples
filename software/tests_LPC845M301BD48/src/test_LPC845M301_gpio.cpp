@@ -10,8 +10,7 @@
 #include <nuclone_LPC845M301BD48_tests.hpp>
 #include <MinUnit.h>
 #include <LPC845M301_teardown.hpp>
-
-#define BITPOS(value) (1 << value)
+#include <common.hpp>
 
 MINUNIT_SETUP(LPC845M301SetupGpio)
 {
