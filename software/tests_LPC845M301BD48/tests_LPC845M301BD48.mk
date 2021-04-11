@@ -22,7 +22,8 @@ FILES += $(PROJECT)/src/main.cpp \
 $(PROJECT)/src/$(BOARD).cpp \
 $(PROJECT)/src/LPC845M301_teardown.cpp \
 $(PROJECT)/src/test_LPC845M301_teardown.cpp \
-$(PROJECT)/src/test_LPC845M301_gpio.cpp
+$(PROJECT)/src/test_LPC845M301_gpio.cpp \
+$(PROJECT)/src/test_LPC845M301_iocon.cpp \
 
 INCLUDES += -I$(PROJECT)/inc -Icommon/inc
 
