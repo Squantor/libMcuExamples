@@ -21,6 +21,7 @@
  */
 void LPC845M301_teardown(void)
 {
+    sysconEnableResets(SYSCON, CLKCTRL0_GPIO0 | CLKCTRL0_GPIO1, CLKCTRL1_NONE);
     GPIO->DIR[0] = 0x00000000;
     GPIO->DIR[1] = 0x00000000;
     GPIO->MASK[0] = 0x00000000;
@@ -31,6 +32,7 @@ void LPC845M301_teardown(void)
     GPIO->SET[1] = 0x00000000;
     GPIO->DIRSET[0] = 0x00000000;
     GPIO->DIRSET[1] = 0x00000000;
+    sysconDisableResets(SYSCON, CLKCTRL0_GPIO0 | CLKCTRL0_GPIO1, CLKCTRL1_NONE);
     // keep syscon as last
     SYSCON->SYSAHBCLKCTRL0 = 0x17;
     SYSCON->SYSAHBCLKCTRL1 = 0x0;
