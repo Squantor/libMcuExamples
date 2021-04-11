@@ -36,10 +36,10 @@
 #define PORT_TESTPIN_0_1    (GPIO_PORT1)
 #define PIN_TESTPIN_0_1     (4u)
 // test pin pair 1, connected to eachother via 1KOhm resistor
-#define IOCON_TESTPIN_1_0   IOCON_PIN0_15
+#define IOCON_TESTPIN_1_0   (IOCON_PIO0_15)
 #define PORT_TESTPIN_1_0    (GPIO_PORT0)
 #define PIN_TESTPIN_1_0     (15u)
-#define IOCON_TESTPIN_1_1   IOCON_PIN1_3
+#define IOCON_TESTPIN_1_1   (IOCON_PIO1_3)
 #define PORT_TESTPIN_1_1    (GPIO_PORT1)
 #define PIN_TESTPIN_1_1     (3u)
 
