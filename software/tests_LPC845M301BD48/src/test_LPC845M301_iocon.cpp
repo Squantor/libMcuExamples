@@ -17,7 +17,7 @@
  */
 MINUNIT_SETUP(LPC845M301SetupIocon)
 {
-    minUnitCheck(LPC845M301TeardownCorrect() == true); // check if the MCU is in its reset state
+    minUnitCheck(LPC845M301TeardownCorrect() == true);
     sysconEnableClocks(SYSCON, CLKCTRL0_GPIO0 | CLKCTRL0_GPIO1 | CLKCTRL0_IOCON, CLKCTRL1_NONE);
     sysconEnableResets(SYSCON, RESETCTRL0_GPIO0 | RESETCTRL0_GPIO1 | RESETCTRL0_IOCON, 0x00);
 }
@@ -47,11 +47,38 @@ MINUNIT_ADD(LPC845M301IoconPull, LPC845M301SetupIocon, LPC845M301Teardown)
  */
 MINUNIT_ADD(LPC845M301IoconRepeater, LPC845M301SetupIocon, LPC845M301Teardown)
 {
-    minUnitPass();
+    gpioSetPortDir(GPIO, PORT_TESTPIN_0_0, 0);
+    gpioSetPortDir(GPIO, PORT_TESTPIN_0_1, 0);
+    // check pulled up buskeeper
+    ioconSetupPin(IOCON, IOCON_TESTPIN_0_0, IOCON_MODE_INACTIVE);
+    ioconSetupPin(IOCON, IOCON_TESTPIN_1_0, IOCON_MODE_INACTIVE);
+    ioconSetupPin(IOCON, IOCON_TESTPIN_0_1, IOCON_MODE_INACTIVE);
+    ioconSetupPin(IOCON, IOCON_TESTPIN_1_1, IOCON_MODE_INACTIVE);
+    ioconSetupPin(IOCON, IOCON_TESTPIN_0_1, IOCON_MODE_PULLUP);
+    ioconSetupPin(IOCON, IOCON_TESTPIN_1_1, IOCON_MODE_PULLUP);
+    ioconSetupPin(IOCON, IOCON_TESTPIN_0_0, IOCON_MODE_REPEATER);
+    ioconSetupPin(IOCON, IOCON_TESTPIN_1_0, IOCON_MODE_REPEATER);
+    ioconSetupPin(IOCON, IOCON_TESTPIN_0_1, IOCON_MODE_INACTIVE);
+    ioconSetupPin(IOCON, IOCON_TESTPIN_1_1, IOCON_MODE_INACTIVE);
+    minUnitCheck(gpioPinRead(GPIO, PORT_TESTPIN_0_1, PIN_TESTPIN_0_1) == true);
+    minUnitCheck(gpioPinRead(GPIO, PORT_TESTPIN_1_1, PIN_TESTPIN_1_1) == true);
+    // check pulled down buskeeper and also flipping the pins
+    ioconSetupPin(IOCON, IOCON_TESTPIN_0_0, IOCON_MODE_INACTIVE);
+    ioconSetupPin(IOCON, IOCON_TESTPIN_1_0, IOCON_MODE_INACTIVE);
+    ioconSetupPin(IOCON, IOCON_TESTPIN_0_1, IOCON_MODE_INACTIVE);
+    ioconSetupPin(IOCON, IOCON_TESTPIN_1_1, IOCON_MODE_INACTIVE);
+    ioconSetupPin(IOCON, IOCON_TESTPIN_0_0, IOCON_MODE_PULLDOWN);
+    ioconSetupPin(IOCON, IOCON_TESTPIN_1_0, IOCON_MODE_PULLDOWN);
+    ioconSetupPin(IOCON, IOCON_TESTPIN_0_1, IOCON_MODE_REPEATER);
+    ioconSetupPin(IOCON, IOCON_TESTPIN_1_1, IOCON_MODE_REPEATER);
+    ioconSetupPin(IOCON, IOCON_TESTPIN_0_0, IOCON_MODE_INACTIVE);
+    ioconSetupPin(IOCON, IOCON_TESTPIN_1_0, IOCON_MODE_INACTIVE);
+    minUnitCheck(gpioPinRead(GPIO, PORT_TESTPIN_0_1, PIN_TESTPIN_0_0) == false);
+    minUnitCheck(gpioPinRead(GPIO, PORT_TESTPIN_1_1, PIN_TESTPIN_1_0) == false);
 }
 
 /**
- * @brief tests for the IOCON repeater function
+ * @brief tests for the IOCON open drain function
  */
 MINUNIT_ADD(LPC845M301IoconOpenDrain, LPC845M301SetupIocon, LPC845M301Teardown)
 {
