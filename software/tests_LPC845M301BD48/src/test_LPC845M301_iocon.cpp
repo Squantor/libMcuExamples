@@ -73,8 +73,8 @@ MINUNIT_ADD(LPC845M301IoconRepeater, LPC845M301SetupIocon, LPC845M301Teardown)
     ioconSetupPin(IOCON, IOCON_TESTPIN_1_1, IOCON_MODE_REPEATER);
     ioconSetupPin(IOCON, IOCON_TESTPIN_0_0, IOCON_MODE_INACTIVE);
     ioconSetupPin(IOCON, IOCON_TESTPIN_1_0, IOCON_MODE_INACTIVE);
-    minUnitCheck(gpioPinRead(GPIO, PORT_TESTPIN_0_1, PIN_TESTPIN_0_0) == false);
-    minUnitCheck(gpioPinRead(GPIO, PORT_TESTPIN_1_1, PIN_TESTPIN_1_0) == false);
+    minUnitCheck(gpioPinRead(GPIO, PORT_TESTPIN_0_0, PIN_TESTPIN_0_0) == false);
+    minUnitCheck(gpioPinRead(GPIO, PORT_TESTPIN_1_0, PIN_TESTPIN_1_0) == false);
 }
 
 /**
