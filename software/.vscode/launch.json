@@ -5,6 +5,18 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "cwd": "${workspaceRoot}",
+            "executable": "${workspaceFolder}/bin/tests_LPC845M301BD48/debug/tests_LPC845M301BD48.elf",
+            "name": "debug LPC845M301BD48 tests",
+            "request": "launch",
+            "type": "cortex-debug",
+            "servertype": "bmp",
+            "BMPGDBSerialPort": "/dev/ttyACM0",
+            "debuggerArgs": ["--command=./gdb_scripts/tests_LPC845M301BD48_debug.txt"],
+            "preLaunchTask": "build LPC845M301BD48 tests",
+            "armToolchainPath": "/home/abilos/programs/gcc-arm-none-eabi-10-2020-q4-major/bin",
+        },
+        {
             "name": "debug LPC845M301BD48 tests",
             "type": "cppdbg",
             "request": "launch",
@@ -64,7 +76,7 @@
                 },
             ],
             "preLaunchTask": "build LPC845M301BD48 tests",
-            "miDebuggerPath": "/home/abilos/programs/gcc-arm-none-eabi-10-2020-q4-major/bin//arm-none-eabi-gdb",
+            "miDebuggerPath": "/home/abilos/programs/gcc-arm-none-eabi-10-2020-q4-major/bin/arm-none-eabi-gdb",
         },
 
     ]
