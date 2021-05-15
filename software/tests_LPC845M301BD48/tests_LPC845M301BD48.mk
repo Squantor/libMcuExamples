@@ -24,6 +24,7 @@ $(PROJECT)/src/LPC845M301_teardown.cpp \
 $(PROJECT)/src/test_LPC845M301_teardown.cpp \
 $(PROJECT)/src/test_LPC845M301_gpio.cpp \
 $(PROJECT)/src/test_LPC845M301_iocon.cpp \
+$(PROJECT)/src/test_LPC845M301_usart_polled.cpp \
 
 INCLUDES += -I$(PROJECT)/inc -Icommon/inc
 
