@@ -27,7 +27,8 @@ MINUNIT_SETUP(LPC845M301SetupIocon)
  */
 MINUNIT_ADD(LPC845M301IoconPull, LPC845M301SetupIocon, LPC845M301Teardown)
 {
-    gpioSetPortDir(GPIO, PORT_TESTPIN_0_0, 0);
+    gpioSetPortDir(GPIO, GPIO_PORT0, 0);
+    gpioSetPortDir(GPIO, GPIO_PORT1, 0);
     ioconSetupPin(IOCON, IOCON_TESTPIN_0_0, IOCON_MODE_INACTIVE);
     ioconSetupPin(IOCON, IOCON_TESTPIN_1_0, IOCON_MODE_INACTIVE);
     minUnitCheck(gpioPinRead(GPIO, PORT_TESTPIN_0_0, PIN_TESTPIN_0_0) == true);
