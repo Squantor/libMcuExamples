@@ -33,7 +33,7 @@
 #define PORT_TESTPIN_0_0    (GPIO_PORT0)
 #define PIN_TESTPIN_0_0     (1u)
 #define SWM_TESTPINT_0_0    (SWM_PORTPIN_P0_1)
-#define IOCON_TESTPIN_0_1   IOCON_PIO1_4
+#define IOCON_TESTPIN_0_1   (IOCON_PIO1_4)
 #define PORT_TESTPIN_0_1    (GPIO_PORT1)
 #define PIN_TESTPIN_0_1     (4u)
 #define SWM_TESTPINT_0_1    (SWM_PORTPIN_P1_4)
