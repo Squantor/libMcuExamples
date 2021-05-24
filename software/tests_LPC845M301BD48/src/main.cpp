@@ -41,5 +41,5 @@ int main()
         minunitReport("All tests passed\n");
     }
     while (1)
-        __NOP();
+        __BKPT(0xFE);
 }
