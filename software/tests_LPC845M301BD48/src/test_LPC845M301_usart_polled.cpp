@@ -31,7 +31,13 @@ MINUNIT_ADD(LPC845M301UsartTxRx, LPC845M301SetupUsart, LPC845M301Teardown)
     minUnitCheck(usartSetBaud(USART0, CLOCK_MAIN, 9600) == 9615);
     usartSetConfig(USART0, DATALEN_8, PARITY_NONE, STOPLEN_1, 0);
     usartTXEnable(USART0);
-    minUnitCheck(0 == 0);
+    usartSendByte(USART0, 0xA5);
+    // loop until we got something
+    int i = 0;
+    while(i < 100000)
+        
+    minUnitCheck(i < 100000);
+    minUnitCheck(usartReadByte(USART0) == 0xA5);
     usartTXDisable(USART0);
     usartDisable(USART0);
     SwmMovablePinAssign(SWM0, SWM_USART0_TXD, SWM_PORTPIN_Reset);
