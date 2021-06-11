@@ -25,14 +25,26 @@ MINUNIT_ADD(LPC845M301SpiRxTx, LPC845M301SetupSpi, LPC845M301Teardown)
     sysconEnableClocks(SYSCON, CLKCTRL0_SPI0 | CLKCTRL0_SWM | CLKCTRL0_IOCON, CLKCTRL1_NONE);
     sysconEnableResets(SYSCON, RESETCTRL0_SPI0 | RESETCTRL0_SWM | RESETCTRL0_IOCON, RESETCTRL1_NONE);
     sysconPeripheralClockSelect(SYSCON, SPI0CLKSEL, CLKSRC_MAIN);
-    SwmMovablePinAssign(SWM0, SWM_SPI0_MOSI, SWM_TESTPIN_0_0);
-    SwmMovablePinAssign(SWM0, SWM_SPI0_MISO, SWM_TESTPIN_0_1);
-    SwmMovablePinAssign(SWM0, SWM_SPI0_SCK, SWM_TESTPIN_1_0);
+    SwmMovablePinAssign(SWM0, SWM_SPI0_SCK, SWM_TESTPIN_0_0);
+    SwmMovablePinAssign(SWM0, SWM_SPI0_MOSI, SWM_TESTPIN_1_0);
+    SwmMovablePinAssign(SWM0, SWM_SPI0_MISO, SWM_TESTPIN_1_1);
     SwmMovablePinAssign(SWM0, SWM_SPI0_SSEL0, SWM_TESTPIN_2);
-    spiSetConfig(SPI0, SPI_CFG_ENABLE | SPI_CFG_MASTER);
     spiSetDelays(SPI0, SPI_DLY_PRE(1) | SPI_DLY_POST(2) | SPI_DLY_FRAME(3) | SPI_DLY_TRANSFER(4));
     minUnitCheck(SPI0->DLY == 0x00004321);
+    spiSetDivider(SPI0, 2);
+    minUnitCheck(SPI0->DIV == 0x02);
+    spiSetConfig(SPI0, SPI_CFG_ENABLE | SPI_CFG_MASTER);
     minUnitCheck(spiSetGetStatus(SPI0, 0x0) == 0x102);
+    spiSetTxCtrlData(SPI0,  SPI_TXDATCTL_TXDAT(0xA55A) | 
+                            SPI_TXDATCTL_TXSSEL0_N | 
+                            SPI_TXDATCTL_EOF | 
+                            SPI_TXDATCTL_LEN(15) );
+    int i = 0;
+    while(i < 10000 && !(spiSetGetStatus(SPI0, 0x0) & SPI_STAT_RXRDY))
+        i++;
+    uint32_t rxData = spiGetRxData(SPI0);
+    minUnitCheck(SPI_RXDAT_DATA(rxData) == 0xA55A);
+    minUnitCheck((rxData & SPI_RXDAT_RXSSEL0_N) != 0);
     SwmMovablePinAssign(SWM0, SWM_SPI0_SSEL0, SWM_PORTPIN_Reset);
     SwmMovablePinAssign(SWM0, SWM_SPI0_MOSI, SWM_PORTPIN_Reset);
     SwmMovablePinAssign(SWM0, SWM_SPI0_MISO, SWM_PORTPIN_Reset);
