@@ -32,6 +32,7 @@ MINUNIT_ADD(LPC845M301SpiRxTx, LPC845M301SetupSpi, LPC845M301Teardown)
     spiSetConfig(SPI0, SPI_CFG_ENABLE | SPI_CFG_MASTER);
     spiSetDelays(SPI0, SPI_DLY_PRE(1) | SPI_DLY_POST(2) | SPI_DLY_FRAME(3) | SPI_DLY_TRANSFER(4));
     minUnitCheck(SPI0->DLY == 0x00004321);
+    minUnitCheck(spiSetGetStatus(SPI0, 0x0) == 0x102);
     SwmMovablePinAssign(SWM0, SWM_SPI0_SSEL0, SWM_PORTPIN_Reset);
     SwmMovablePinAssign(SWM0, SWM_SPI0_MOSI, SWM_PORTPIN_Reset);
     SwmMovablePinAssign(SWM0, SWM_SPI0_MISO, SWM_PORTPIN_Reset);
