@@ -46,6 +46,13 @@
 #define PORT_TESTPIN_1_1    (GPIO_PORT1)
 #define PIN_TESTPIN_1_1     (3u)
 #define SWM_TESTPIN_1_1     (SWM_PORTPIN_P1_3)
+// loose test pins
+#define IOCON_TESTPIN_2     (IOCON_PIO0_24)
+#define PORT_TESTPIN_2      (GPIO_PORT0)
+#define PIN_TESTPIN_2       (24u)
+#define SWM_TESTPIN_2       (SWM_PORTPIN_P0_24)
+
+
 
 void boardInit(void);
 

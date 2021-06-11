@@ -29,7 +29,11 @@ MINUNIT_ADD(LPC845M301SpiRxTx, LPC845M301SetupSpi, LPC845M301Teardown)
     SwmMovablePinAssign(SWM0, SWM_SPI0_MOSI, SWM_TESTPIN_0_0);
     SwmMovablePinAssign(SWM0, SWM_SPI0_MISO, SWM_TESTPIN_0_1);
     SwmMovablePinAssign(SWM0, SWM_SPI0_SCK, SWM_TESTPIN_1_0);
+    SwmMovablePinAssign(SWM0, SWM_SPI0_SSEL0, SWM_TESTPIN_2);
 
+
+
+    SwmMovablePinAssign(SWM0, SWM_SPI0_SSEL0, SWM_PORTPIN_Reset);
     SwmMovablePinAssign(SWM0, SWM_SPI0_MOSI, SWM_PORTPIN_Reset);
     SwmMovablePinAssign(SWM0, SWM_SPI0_MISO, SWM_PORTPIN_Reset);
     SwmMovablePinAssign(SWM0, SWM_SPI0_SCK, SWM_PORTPIN_Reset);
