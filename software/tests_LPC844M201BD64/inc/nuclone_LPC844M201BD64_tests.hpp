@@ -4,8 +4,8 @@
  * Copyright (c) 2021 Bart Bilos
  * For conditions of distribution and use, see LICENSE file
  */
-#ifndef NUCLONE_LPC845M301BD48_HPP
-#define NUCLONE_LPC845M301BD48_HPP
+#ifndef NUCLONE_LPC844M201BD64_HPP
+#define NUCLONE_LPC844M201BD64_HPP
 
 #define CLOCK_XTAL          (12000000u)
 #define CLOCK_EXT_IN        (0u)

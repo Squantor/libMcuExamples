@@ -20,7 +20,7 @@
 
 /** @brief resets all the registers to their default states
  */
-MINUNIT_TEARDOWN(LPC845M301Teardown)
+MINUNIT_TEARDOWN(LPC844M201Teardown)
 {
     sysconEnableClocks(SYSCON, CLKCTRL0_SPI0, CLKCTRL1_NONE);
     SPI0->CFG = 0x00000000;
@@ -101,13 +101,13 @@ MINUNIT_TEARDOWN(LPC845M301Teardown)
     SYSCON->SYSAHBCLKCTRL1 = 0x0;
     SYSCON->PRESETCTRL0 = 0xFFFFFFFF;
     SYSCON->PRESETCTRL1 = 0x1F;  
-    minUnitCheck(LPC845M301TeardownCorrect() == true);
+    minUnitCheck(LPC844M201TeardownCorrect() == true);
 }
 
 /** @brief checks if all the registers to their default states
  *  @return if all registers are correctly torndown
  */
-bool LPC845M301TeardownCorrect(void)
+bool LPC844M201TeardownCorrect(void)
 {
     // check IOCON reset state
     sysconEnableClocks(SYSCON, CLKCTRL0_IOCON, CLKCTRL1_NONE);

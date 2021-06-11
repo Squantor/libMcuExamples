@@ -5,7 +5,7 @@
  * For conditions of distribution and use, see LICENSE file
  */
 /**
- * @brief tests for the LPC845M301 SPI peripheral polling mode
+ * @brief tests for the LPC844M201 SPI peripheral polling mode
  */
 #include <nuclone_LPC844M201BD64_tests.hpp>
 #include <MinUnit.h>
@@ -15,12 +15,12 @@
 /**
  * @brief Spi setup and initialisation
  */
-MINUNIT_SETUP(LPC845M301SetupSpi)
+MINUNIT_SETUP(LPC844M201SetupSpi)
 {
-    minUnitCheck(LPC845M301TeardownCorrect() == true);
+    minUnitCheck(LPC844M201TeardownCorrect() == true);
 }
 
-MINUNIT_ADD(LPC845M301SpiRxTx, LPC845M301SetupSpi, LPC845M301Teardown)
+MINUNIT_ADD(LPC844M201SpiRxTx, LPC844M201SetupSpi, LPC844M201Teardown)
 {
     sysconEnableClocks(SYSCON, CLKCTRL0_SPI0 | CLKCTRL0_SWM | CLKCTRL0_IOCON, CLKCTRL1_NONE);
     sysconEnableResets(SYSCON, RESETCTRL0_SPI0 | RESETCTRL0_SWM | RESETCTRL0_IOCON, RESETCTRL1_NONE);

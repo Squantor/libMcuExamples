@@ -5,7 +5,7 @@
  * For conditions of distribution and use, see LICENSE file
  */
 /**
- * @brief tests for the LPC845M301 IOCON peripheral
+ * @brief tests for the LPC844M201 IOCON peripheral
  */
 #include <nuclone_LPC844M201BD64_tests.hpp>
 #include <MinUnit.h>
@@ -15,9 +15,9 @@
 /**
  * @brief Iocon setup and initialisation
  */
-MINUNIT_SETUP(LPC845M301SetupIocon)
+MINUNIT_SETUP(LPC844M201SetupIocon)
 {
-    minUnitCheck(LPC845M301TeardownCorrect() == true);
+    minUnitCheck(LPC844M201TeardownCorrect() == true);
     sysconEnableClocks(SYSCON, CLKCTRL0_GPIO0 | CLKCTRL0_GPIO1 | CLKCTRL0_IOCON, CLKCTRL1_NONE);
     sysconEnableResets(SYSCON, RESETCTRL0_GPIO0 | RESETCTRL0_GPIO1 | RESETCTRL0_IOCON, 0x00);
 }
@@ -25,7 +25,7 @@ MINUNIT_SETUP(LPC845M301SetupIocon)
 /**
  * @brief tests for the IOCON pullup and down function
  */
-MINUNIT_ADD(LPC845M301IoconPull, LPC845M301SetupIocon, LPC845M301Teardown)
+MINUNIT_ADD(LPC844M201IoconPull, LPC844M201SetupIocon, LPC844M201Teardown)
 {
     gpioSetPortDir(GPIO, GPIO_PORT0, 0);
     gpioSetPortDir(GPIO, GPIO_PORT1, 0);
@@ -46,7 +46,7 @@ MINUNIT_ADD(LPC845M301IoconPull, LPC845M301SetupIocon, LPC845M301Teardown)
 /**
  * @brief tests for the IOCON repeater function
  */
-MINUNIT_ADD(LPC845M301IoconRepeater, LPC845M301SetupIocon, LPC845M301Teardown)
+MINUNIT_ADD(LPC844M201IoconRepeater, LPC844M201SetupIocon, LPC844M201Teardown)
 {
     gpioSetPortDir(GPIO, PORT_TESTPIN_0_0, 0);
     gpioSetPortDir(GPIO, PORT_TESTPIN_0_1, 0);
@@ -81,7 +81,7 @@ MINUNIT_ADD(LPC845M301IoconRepeater, LPC845M301SetupIocon, LPC845M301Teardown)
 /**
  * @brief tests for the IOCON open drain function
  */
-MINUNIT_ADD(LPC845M301IoconOpenDrain, LPC845M301SetupIocon, LPC845M301Teardown)
+MINUNIT_ADD(LPC844M201IoconOpenDrain, LPC844M201SetupIocon, LPC844M201Teardown)
 {
     ioconSetupPin(IOCON, IOCON_TESTPIN_0_0, IOCON_MODE_INACTIVE | IOCON_OD);
     ioconSetupPin(IOCON, IOCON_TESTPIN_1_0, IOCON_MODE_INACTIVE | IOCON_OD);

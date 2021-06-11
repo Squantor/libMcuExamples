@@ -5,21 +5,21 @@
  * For conditions of distribution and use, see LICENSE file
  */
 /**
- * @brief tests for the LPC845M301 GPIO0/1 peripheral
+ * @brief tests for the LPC844M201 GPIO0/1 peripheral
  */
 #include <nuclone_LPC844M201BD64_tests.hpp>
 #include <MinUnit.h>
 #include <LPC844M201_teardown.hpp>
 #include <common.hpp>
 
-MINUNIT_SETUP(LPC845M301SetupGpio)
+MINUNIT_SETUP(LPC844M201SetupGpio)
 {
-    minUnitCheck(LPC845M301TeardownCorrect() == true); // check if the MCU is in its reset state
+    minUnitCheck(LPC844M201TeardownCorrect() == true); // check if the MCU is in its reset state
     sysconEnableClocks(SYSCON, CLKCTRL0_GPIO0 | CLKCTRL0_GPIO1, CLKCTRL1_NONE);
     sysconEnableResets(SYSCON, RESETCTRL0_GPIO0, 0x00);
 }
 
-MINUNIT_ADD(LPC845M301GpioPin, LPC845M301SetupGpio, LPC845M301Teardown)
+MINUNIT_ADD(LPC844M201GpioPin, LPC844M201SetupGpio, LPC844M201Teardown)
 {
     gpioSetPinDIRInput(GPIO, PORT_TESTPIN_0_1, PIN_TESTPIN_0_1);
     gpioSetPinDIROutput(GPIO, PORT_TESTPIN_0_0, PIN_TESTPIN_0_0);
@@ -37,7 +37,7 @@ MINUNIT_ADD(LPC845M301GpioPin, LPC845M301SetupGpio, LPC845M301Teardown)
 }
 
 // same tests as pins but checking a whole port
-MINUNIT_ADD(LPC845M301GpioPort, LPC845M301SetupGpio, LPC845M301Teardown)
+MINUNIT_ADD(LPC844M201GpioPort, LPC844M201SetupGpio, LPC844M201Teardown)
 {
     // setup port0 as outputs and set it low
     gpioSetPortDir(GPIO, PORT_TESTPIN_0_0, BITPOS(PIN_TESTPIN_0_0) | BITPOS(PIN_TESTPIN_1_0));

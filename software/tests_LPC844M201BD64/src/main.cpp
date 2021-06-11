@@ -5,7 +5,7 @@
  * For conditions of distribution and use, see LICENSE file
  */
 /**
- * @brief main test entry point for LPC845 libMcuLL tests
+ * @brief main test entry point for LPC844 libMcuLL tests
  */
 #include <nuclone_LPC844M201BD64_tests.hpp>
 #include <MinUnit.h>
