@@ -7,9 +7,9 @@
 /**
  * @brief tests for the LPC845M301 SPI peripheral polling mode
  */
-#include <nuclone_LPC845M301BD48_tests.hpp>
+#include <nuclone_LPC844M201BD64_tests.hpp>
 #include <MinUnit.h>
-#include <LPC845M301_teardown.hpp>
+#include <LPC844M201_teardown.hpp>
 #include <common.hpp>
 
 /**
