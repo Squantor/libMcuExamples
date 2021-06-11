@@ -39,9 +39,6 @@ MINUNIT_ADD(LPC845M301GpioPin, LPC845M301SetupGpio, LPC845M301Teardown)
 // same tests as pins but checking a whole port
 MINUNIT_ADD(LPC845M301GpioPort, LPC845M301SetupGpio, LPC845M301Teardown)
 {
-    // check pin position assumptions
-    minUnitCheck(PORT_TESTPIN_0_0 == PORT_TESTPIN_1_0);
-    minUnitCheck(PORT_TESTPIN_0_1 == PORT_TESTPIN_1_1);
     // setup port0 as outputs and set it low
     gpioSetPortDir(GPIO, PORT_TESTPIN_0_0, BITPOS(PIN_TESTPIN_0_0) | BITPOS(PIN_TESTPIN_1_0));
     gpioPortWrite(GPIO, PORT_TESTPIN_0_0, gpioPortRead(GPIO, PORT_TESTPIN_0_0) & ~BITPOS(PIN_TESTPIN_0_0) & ~BITPOS(PIN_TESTPIN_1_0));
