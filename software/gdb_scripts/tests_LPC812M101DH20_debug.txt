@@ -1,7 +1,7 @@
 set print pretty on
 set architecture armv6
 file bin/tests_LPC812M101DH20/debug/tests_LPC812M101DH20.elf
-target extended-remote localhost:2000
+target extended-remote /dev/ttyACM0
 shell sleep 1
 monitor swdp_scan
 attach 1

@@ -17,11 +17,11 @@
             "preLaunchTask": "build LPC845M301BD48 tests",
         },*/
         {
-            "name": "debug LPC844M201BD64 tests",
+            "name": "debug LPC812M101DH20 tests",
             "type": "cppdbg",
             "request": "launch",
             "targetArchitecture": "x86_64",
-            "program": "${workspaceFolder}/bin/tests_LPC844M201BD64/debug/tests_LPC844M201BD64.elf",
+            "program": "${workspaceFolder}/bin/tests_LPC812M101DH20/debug/tests_LPC812M101DH20.elf",
             "args": [],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
@@ -40,7 +40,7 @@
                 },
                 {
                     "description": "Load the file",
-                    "text": "file ${workspaceFolder}/bin/tests_LPC844M201BD64/debug/tests_LPC844M201BD64.elf"
+                    "text": "file ${workspaceFolder}/bin/tests_LPC812M101DH20/debug/tests_LPC812M101DH20.elf"
                 },
                 {
                     "description": "Connect to black magic probe",
@@ -64,7 +64,7 @@
                 },
                 {
                     "description": "program the elf file",
-                    "text": "load ${workspaceFolder}/bin/tests_LPC844M201BD64/debug/tests_LPC844M201BD64.elf"
+                    "text": "load ${workspaceFolder}/bin/tests_LPC812M101DH20/debug/tests_LPC812M101DH20.elf"
                 },
                 {
                     "description": "remap interrupt vectors to flash, again",
