@@ -11,7 +11,7 @@
                 "${workspaceFolder}/common/inc/"
             ],
             "defines": [
-                "MCU_LPC812M101DH20",
+                "MCU_LPC824M201HI33",
                 "DEBUG"
             ],
             "browse": {
