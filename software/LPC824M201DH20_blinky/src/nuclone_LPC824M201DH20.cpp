@@ -15,9 +15,9 @@ void boardInit(void)
     // set up all pin related things
     SwmFixedPinEnable(SWM_FIXED_XTALIN, true);
     SwmFixedPinEnable(SWM_FIXED_XTALOUT, true);
-    IoconPinSetMode(LPC_IOCON, IOCON_XTAL_IN, PIN_MODE_INACTIVE);
-    IoconPinSetMode(LPC_IOCON, IOCON_XTAL_OUT, PIN_MODE_INACTIVE);
-    IoconPinSetMode(LPC_IOCON, IOCON_LED, PIN_MODE_INACTIVE);
+    IoconPinSetMode(IOCON, IOCON_XTAL_IN, PIN_MODE_INACTIVE);
+    IoconPinSetMode(IOCON, IOCON_XTAL_OUT, PIN_MODE_INACTIVE);
+    IoconPinSetMode(IOCON, IOCON_LED, PIN_MODE_INACTIVE);
     GpioSetPinState(LPC_GPIO_PORT, 0, IOCON_LED, false);
     GpioSetPinDIROutput(LPC_GPIO_PORT, 0, PIN_LED);
 

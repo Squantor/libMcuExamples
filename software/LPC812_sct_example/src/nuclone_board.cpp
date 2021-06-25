@@ -31,8 +31,8 @@ void boardInit(void)
     // crystal oscillator pin setup
     SwmFixedPinEnable(SWM_FIXED_XTALIN, true);
     SwmFixedPinEnable(SWM_FIXED_XTALOUT, true);
-    IoconPinSetMode(LPC_IOCON, IOCON_XTAL_IN, PIN_MODE_INACTIVE);
-    IoconPinSetMode(LPC_IOCON, IOCON_XTAL_OUT, PIN_MODE_INACTIVE);
+    IoconPinSetMode(IOCON, IOCON_XTAL_IN, PIN_MODE_INACTIVE);
+    IoconPinSetMode(IOCON, IOCON_XTAL_OUT, PIN_MODE_INACTIVE);
     ClockDisablePeriphClock(SYSCTL_CLOCK_SWM);
 
     // setup system clocks

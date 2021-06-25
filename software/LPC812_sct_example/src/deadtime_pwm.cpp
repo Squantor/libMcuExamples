@@ -59,9 +59,9 @@ void exampleSetup(void)
     // setup SCT out0 to pin 17
     ClockEnablePeriphClock(SYSCTL_CLOCK_SWM);
     ClockEnablePeriphClock(SYSCTL_CLOCK_IOCON);
-    IoconPinSetMode(LPC_IOCON, IOCON_LED_0, PIN_MODE_INACTIVE);
-    IoconPinSetMode(LPC_IOCON, IOCON_LED_1, PIN_MODE_INACTIVE);
-    IoconPinSetMode(LPC_IOCON, IOCON_BUTTON, PIN_MODE_PULLUP);
+    IoconPinSetMode(IOCON, IOCON_LED_0, PIN_MODE_INACTIVE);
+    IoconPinSetMode(IOCON, IOCON_LED_1, PIN_MODE_INACTIVE);
+    IoconPinSetMode(IOCON, IOCON_BUTTON, PIN_MODE_PULLUP);
     SwmMovablePinAssign(SWM_CTOUT_0_O, PIN_LED_0);
     SwmMovablePinAssign(SWM_CTOUT_1_O, PIN_LED_1);
     SwmMovablePinAssign(SWM_CTIN_0_I, PIN_BUTTON);

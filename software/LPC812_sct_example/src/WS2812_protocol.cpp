@@ -50,9 +50,9 @@ void exampleSetup(void)
 {
     ClockEnablePeriphClock(SYSCTL_CLOCK_SWM);
     ClockEnablePeriphClock(SYSCTL_CLOCK_IOCON);
-    IoconPinSetMode(LPC_IOCON, IOCON_SPI_MOSI, PIN_MODE_INACTIVE);
-    IoconPinSetMode(LPC_IOCON, IOCON_SPI_SCK, PIN_MODE_INACTIVE);
-    IoconPinSetMode(LPC_IOCON, IOCON_WS2812_OUT, PIN_MODE_INACTIVE);
+    IoconPinSetMode(IOCON, IOCON_SPI_MOSI, PIN_MODE_INACTIVE);
+    IoconPinSetMode(IOCON, IOCON_SPI_SCK, PIN_MODE_INACTIVE);
+    IoconPinSetMode(IOCON, IOCON_WS2812_OUT, PIN_MODE_INACTIVE);
     SwmMovablePinAssign(SWM_SPI0_MOSI_IO, PIN_SPI_MOSI);
     SwmMovablePinAssign(SWM_SPI1_SCK_IO, PIN_SPI_SCK);
     SwmMovablePinAssign(SWM_CTOUT_0_O, PIN_WS2812_OUT);
