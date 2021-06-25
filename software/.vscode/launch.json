@@ -75,7 +75,7 @@
                     "text": "compare-sections"
                 },
             ],
-            "preLaunchTask": "build LPC844M201BD64 tests",
+            "preLaunchTask": "build LPC824M201HI33 tests",
             "miDebuggerPath": "/home/abilos/programs/gcc-arm-none-eabi-10-2020-q4-major/bin/arm-none-eabi-gdb",
         },
 
