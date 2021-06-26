@@ -1,5 +1,0 @@
-# doxygen settings to override from the default config
-PROJECT_NAME = "LPC812M101JDH20 test master"
-OUTPUT_DIRECTORY = documentation/LPC812M101JDH20_test_master
-INCLUDE_PATH = LPC812M101JDH20_test_master/inc libMcull/inc
-INPUT = LPC812M101JDH20_test_master/src LPC812M101JDH20_test_master/inc
