@@ -13,7 +13,7 @@ include libEmbedded/libEmbedded.mk
 include squantorMinUnit/squantorMinUnit.mk
 
 # project settings
-MCU = CortexM7
+MCU = CortexM0
 TARGET = MCU
 BOARD = board_tests
 
