@@ -43,6 +43,7 @@
 //#define PORT_TESTPIN_2      (GPIO_PORT1)
 //#define PIN_TESTPIN_2       (14u)
 //#define SWM_TESTPIN_2       (SWM_PORTPIN_P1_14)
+// I2C test pins, pulled up by 4.7K resistor
 
 void boardInit(void);
 
