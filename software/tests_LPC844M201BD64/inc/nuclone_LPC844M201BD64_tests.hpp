@@ -52,7 +52,7 @@
 #define PIN_TESTPIN_2       (14u)
 #define SWM_TESTPIN_2       (SWM_PORTPIN_P1_14)
 
-// I2C Clock test pin
+// I2C Clock test pin, pulled up to 2.2K to 3.3V
 #define IOCON_I2C_SCL_OUT   (IOCON_PIO0_10)
 #define PORT_I2C_SCL_OUT    (GPIO_PORT0)
 #define PIN_I2C_SCL_OUT     (10u)
@@ -61,7 +61,7 @@
 #define PORT_I2C_SCL_TEST   (GPIO_PORT1)
 #define PIN_I2C_SCL_TEST    (1u)
 #define SWM_I2C_SCL_TEST    (SWM_PORTPIN_P1_1)
-// I2C Data test pin
+// I2C Data test pin, pulled up to 2.2K to 3.3V
 #define IOCON_I2C_SDA_OUT   (IOCON_PIO0_11)
 #define PORT_I2C_SDA_OUT    (GPIO_PORT0)
 #define PIN_I2C_SDA_OUT     (11u)
