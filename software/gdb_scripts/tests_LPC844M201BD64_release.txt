@@ -1,6 +1,4 @@
-set print pretty on
-set architecture armv6
-file bin/tests_LPC812M101DH20/debug/tests_LPC812M101DH20.elf
+file bin/tests_LPC844M201BD64/release/tests_LPC844M201BD64.elf
 target extended-remote /dev/ttyACM0
 monitor tpwr enable
 shell sleep 1
@@ -8,7 +6,7 @@ monitor swdp_scan
 attach 1
 set mem inaccessible-by-default off
 set {int}0x40048000 = 2
-load bin/tests_LPC812M101DH20/debug/tests_LPC812M101DH20.elf
+load bin/tests_LPC844M201BD64/release/tests_LPC844M201BD64.elf
 set {int}0x40048000 = 2
 compare-sections
 b main

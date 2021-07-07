@@ -1,14 +1,13 @@
 set print pretty on
 set architecture armv6
-file bin/tests_LPC812M101DH20/debug/tests_LPC812M101DH20.elf
+file bin/LPC1114BD48_323_blinky/debug/LPC1114BD48_323_blinky.elf
 target extended-remote /dev/ttyACM0
-monitor tpwr enable
 shell sleep 1
 monitor swdp_scan
 attach 1
 set mem inaccessible-by-default off
 set {int}0x40048000 = 2
-load bin/tests_LPC812M101DH20/debug/tests_LPC812M101DH20.elf
+load bin/LPC1114BD48_323_blinky/debug/LPC1114BD48_323_blinky.elf
 set {int}0x40048000 = 2
 compare-sections
 b main
