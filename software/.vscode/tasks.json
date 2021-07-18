@@ -7,6 +7,13 @@
             "label": "build LPC844M201BD64 tests",
             "type": "shell",
             "command": "make PROJECT=tests_LPC844M201BD64 CONFIG=debug -j20",
+            "group": "build",
+            "problemMatcher": "$gcc"
+        },
+        {
+            "label": "build LPC845M301HI48 blinky",
+            "type": "shell",
+            "command": "make PROJECT=LPC845M301HI48_blinky CONFIG=debug -j20",
             "group": {
                 "kind": "build",
                 "isDefault": true

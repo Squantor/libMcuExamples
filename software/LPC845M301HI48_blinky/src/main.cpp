@@ -27,6 +27,7 @@ int main()
     pinmode = false;
     boardInit();
     while (1) {
-        var ^= 0x55;
+        var = var ^ 0x55;
+        __NOP();
     }
 }
