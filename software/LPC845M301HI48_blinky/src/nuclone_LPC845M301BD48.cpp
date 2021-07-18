@@ -34,6 +34,7 @@ void boardInit(void)
     crudeDelay(6000);
     sysconExternalClockSelect(SYSCON, EXTCLKSEL_SYSOSC);
     sysconSysPllClockSelect(SYSCON, SYSPLLCLKSEL_EXTCLK);
+    FlashControlFlashClocks(FLASHTIM_2_CLOCKS);
     sysconPowerDisable(SYSCON, PDRUNCFG_SYSPLL);
     // setup PLL for 60MHz output
     sysconPllControl(SYSCON, 4, SYSPLLCTRL_POSTDIV_4);
