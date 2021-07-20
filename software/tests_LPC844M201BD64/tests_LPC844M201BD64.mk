@@ -26,7 +26,8 @@ $(PROJECT)/src/test_LPC844M201_gpio.cpp \
 $(PROJECT)/src/test_LPC844M201_iocon.cpp \
 $(PROJECT)/src/test_LPC844M201_usart_polled.cpp \
 $(PROJECT)/src/test_LPC844M201_spi_polled.cpp \
-$(PROJECT)/src/test_LPC844M201_i2c_polled.cpp
+$(PROJECT)/src/test_LPC844M201_i2c_polled.cpp \
+$(PROJECT)/src/test_LPC844M201_sct.cpp
 
 INCLUDES += -I$(PROJECT)/inc -Icommon/inc
 
