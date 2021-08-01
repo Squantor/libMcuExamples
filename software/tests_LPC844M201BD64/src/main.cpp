@@ -11,8 +11,6 @@
 #include <MinUnit.h>
 #include <stream_uart.hpp>
 
-volatile int var;
-
 extern "C" 
 {
     void SysTick_Handler(void)
