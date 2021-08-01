@@ -29,6 +29,7 @@ MINUNIT_ADD(LPC844M201I2CWriteNoAck, LPC844M201SetupI2C, LPC844M201Teardown)
     swmEnableFixedPin(SWM, SWM_EN0_I2C0_SCL, SWM_EN1_NONE);
     swmEnableFixedPin(SWM, SWM_EN0_I2C0_SDA, SWM_EN1_NONE);
     sysconPeripheralClockSelect(SYSCON, I2C0CLKSEL, CLKSRC_MAIN);
+    i2cSetClockDivider(I2C0, CLOCK_AHB / I2C_TEST_FREQ);
     minUnitCheck(1 == 1);
     sysconDisableClocks(SYSCON, CLKCTRL0_I2C0 | CLKCTRL0_SWM | CLKCTRL0_IOCON, CLKCTRL1_NONE);
 }

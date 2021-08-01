@@ -71,6 +71,7 @@
 #define PIN_I2C_SDA_TEST    (0u)
 #define SWM_I2C_SDA_TEST    (SWM_PORTPIN_P1_0)
 
+#define I2C_TEST_FREQ       (100000u)   /*!< I2C frequency for the tests */
 
 void boardInit(void);
 
