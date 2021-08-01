@@ -27,7 +27,7 @@ void boardInit(void)
     // setup crystal oscillator to run core at 12MHz
     ioconSetupPin(IOCON, IOCON_XTAL_IN, IOCON_MODE_INACTIVE);
     ioconSetupPin(IOCON, IOCON_XTAL_OUT, IOCON_MODE_INACTIVE);
-    swmEnableFixedPin(SWM0, SWM_EN0_XTALIN | SWM_EN0_XTALOUT, SWM_EN1_NONE);
+    swmEnableFixedPin(SWM, SWM_EN0_XTALIN | SWM_EN0_XTALOUT, SWM_EN1_NONE);
     sysconSysOscControl(SYSCON, SYSOSCCTRL_FREQ_1_20MHZ);
     sysconPowerEnable(SYSCON, PDRUNCFG_SYSOSC);
     // wait until crystal oscillator stabilizes
