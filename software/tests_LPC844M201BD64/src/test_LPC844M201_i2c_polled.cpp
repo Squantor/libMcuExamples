@@ -77,3 +77,46 @@ MINUNIT_ADD(LPC844M201I2CReadNoAck, LPC844M201SetupI2C, LPC844M201Teardown)
     swmDisableFixedPin(SWM, SWM_EN0_I2C0_SDA, SWM_EN1_NONE);
     sysconDisableClocks(SYSCON, CLKCTRL0_I2C0 | CLKCTRL0_SWM | CLKCTRL0_IOCON, CLKCTRL1_NONE);
 }
+
+MINUNIT_ADD(LPC844M201I2CWriteAck, LPC844M201SetupI2C, LPC844M201Teardown)
+{
+    sysconEnableClocks(SYSCON, CLKCTRL0_I2C0 | CLKCTRL0_I2C1 | CLKCTRL0_SWM | CLKCTRL0_IOCON, CLKCTRL1_NONE);
+    sysconEnableResets(SYSCON, RESETCTRL0_I2C0 | RESETCTRL0_I2C1 | RESETCTRL0_SWM | RESETCTRL0_IOCON, RESETCTRL1_NONE);
+    ioconSetupPin(IOCON, IOCON_I2C_SCL_OUT, IOCON_I2CMODE_STD);
+    ioconSetupPin(IOCON, IOCON_I2C_SDA_OUT, IOCON_I2CMODE_STD);
+    ioconSetupPin(IOCON, IOCON_I2C_SCL_TEST, IOCON_MODE_INACTIVE);
+    ioconSetupPin(IOCON, IOCON_I2C_SDA_TEST, IOCON_MODE_INACTIVE);
+    swmEnableFixedPin(SWM, SWM_EN0_I2C0_SCL, SWM_EN1_NONE);
+    swmEnableFixedPin(SWM, SWM_EN0_I2C0_SDA, SWM_EN1_NONE);
+    SwmMovablePinAssign(SWM, SWM_I2C1_SCL, SWM_I2C_SCL_TEST);
+    SwmMovablePinAssign(SWM, SWM_I2C1_SDA, SWM_I2C_SDA_TEST);
+    sysconPeripheralClockSelect(SYSCON, I2C0CLKSEL, CLKSRC_MAIN);
+    sysconPeripheralClockSelect(SYSCON, I2C1CLKSEL, CLKSRC_MAIN);
+    i2cSetClockDivider(I2C0, 5);
+    i2cSetClockDivider(I2C1, 5);
+    i2cSetConfiguration(I2C0, I2C_CFG_MSTEN);
+    i2cSetConfiguration(I2C1, I2C_CFG_SLVEN);
+    i2cSetSlaveAddress(I2C1, I2C_SLVADR_0, 0x2E);
+    // write to address 0x7 with !W/R bit unset
+    i2cSetMasterData(I2C0, 0x2E);
+    // actual transfer code
+    uint32_t masterStatus, slaveStatus;
+    int i = 0;
+    // Address transfer phase
+    i2cSetMasterControl(I2C0, I2C_MSCTL_MSTSTART);
+    do {
+        masterStatus = i2cGetStatus(I2C0);
+        slaveStatus = i2cGetStatus(I2C1);
+        i++;
+    } while(I2C_STAT_MSTSTATE(masterStatus) != I2C_STAT_MSSTATE_TRANSMIT_READY && i < 1000);
+    // timed out or in a not acknowledged state?
+    minUnitCheck(i < 1000);
+    minUnitCheck(I2C_STAT_MSTSTATE(i2cStatus) == I2C_STAT_MSSTATE_TRANSMIT_READY);
+    // data transfer phase
+
+    swmDisableFixedPin(SWM, SWM_EN0_I2C0_SCL, SWM_EN1_NONE);
+    swmDisableFixedPin(SWM, SWM_EN0_I2C0_SDA, SWM_EN1_NONE);
+    SwmMovablePinAssign(SWM, SWM_I2C1_SCL, SWM_PORTPIN_Reset);
+    SwmMovablePinAssign(SWM, SWM_I2C1_SDA, SWM_PORTPIN_Reset);
+    sysconDisableClocks(SYSCON, CLKCTRL0_I2C0 | CLKCTRL0_I2C1 | CLKCTRL0_SWM | CLKCTRL0_IOCON, CLKCTRL1_NONE);
+}
