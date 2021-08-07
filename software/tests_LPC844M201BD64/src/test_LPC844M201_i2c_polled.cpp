@@ -111,7 +111,8 @@ MINUNIT_ADD(LPC844M201I2CWriteAck, LPC844M201SetupI2C, LPC844M201Teardown)
     } while(I2C_STAT_MSTSTATE(masterStatus) != I2C_STAT_MSSTATE_TRANSMIT_READY && i < 1000);
     // timed out or in a not acknowledged state?
     minUnitCheck(i < 1000);
-    minUnitCheck(I2C_STAT_MSTSTATE(i2cStatus) == I2C_STAT_MSSTATE_TRANSMIT_READY);
+    minUnitCheck(I2C_STAT_MSTSTATE(masterStatus) == I2C_STAT_MSSTATE_TRANSMIT_READY);
+    minUnitCheck(I2C_STAT_SLVSTATE(slaveStatus) == I2C_STAT_SLVSTATE_ADDR);
     // data transfer phase
 
     swmDisableFixedPin(SWM, SWM_EN0_I2C0_SCL, SWM_EN1_NONE);
