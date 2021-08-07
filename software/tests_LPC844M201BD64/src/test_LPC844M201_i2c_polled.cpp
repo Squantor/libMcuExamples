@@ -104,16 +104,55 @@ MINUNIT_ADD(LPC844M201I2CWriteAck, LPC844M201SetupI2C, LPC844M201Teardown)
     int i = 0;
     // Address transfer phase
     i2cSetMasterControl(I2C0, I2C_MSCTL_MSTSTART);
+    // check if slave i2c needs attention and is in the proper state
     do {
-        masterStatus = i2cGetStatus(I2C0);
         slaveStatus = i2cGetStatus(I2C1);
         i++;
-    } while(I2C_STAT_MSTSTATE(masterStatus) != I2C_STAT_MSSTATE_TRANSMIT_READY && i < 1000);
-    // timed out or in a not acknowledged state?
-    minUnitCheck(i < 1000);
-    minUnitCheck(I2C_STAT_MSTSTATE(masterStatus) == I2C_STAT_MSSTATE_TRANSMIT_READY);
+    } while(((slaveStatus & I2C_STAT_SLVPENDING) == 0) && i < 1000);
     minUnitCheck(I2C_STAT_SLVSTATE(slaveStatus) == I2C_STAT_SLVSTATE_ADDR);
-    // data transfer phase
+    minUnitCheck(i < 1000);
+    i = 0;
+    // yes, acknowledge address
+    i2cSetSlaveControl(I2C1, I2C_SLVCTL_SLVCONTINUE);
+    // check if master i2c needs attention and is in the proper state
+    do {
+        masterStatus = i2cGetStatus(I2C0);
+        i++;
+    } while(((masterStatus & I2C_STAT_MSTPENDING) == 0) && i < 1000);
+    minUnitCheck(I2C_STAT_MSTSTATE(masterStatus) == I2C_STAT_MSSTATE_TRANSMIT_READY);
+    minUnitCheck(i < 1000);
+    i = 0;
+    // data transfer phase, setup master to transfer data
+    i2cSetMasterData(I2C0, 0x5A);
+    i2cSetMasterControl(I2C0, I2C_MSCTL_MSTCONTINUE);
+    // check if slave i2c needs attention and is in the proper state
+    do {
+        slaveStatus = i2cGetStatus(I2C1);
+        i++;
+    } while(((slaveStatus & I2C_STAT_SLVPENDING) == 0) && i < 1000);
+    minUnitCheck(I2C_STAT_SLVSTATE(slaveStatus) == I2C_STAT_SLVSTATE_RECEIVE);
+    minUnitCheck(i2cGetSlaveData(I2C1) == 0x5A);
+    minUnitCheck(i < 1000);
+    i = 0;
+    // yes, acknowledge master and continue
+    i2cSetSlaveControl(I2C1, I2C_SLVCTL_SLVCONTINUE);
+    // check if master has gotten acknowledge from slave
+    do {
+        masterStatus = i2cGetStatus(I2C0);
+        i++;
+    } while(((masterStatus & I2C_STAT_MSTPENDING) == 0) && i < 1000);
+    minUnitCheck(I2C_STAT_MSTSTATE(masterStatus) == I2C_STAT_MSSTATE_TRANSMIT_READY);
+    minUnitCheck(i < 1000);
+    i = 0;
+    // data transfer done, stop operation
+    i2cSetMasterControl(I2C0, I2C_MSCTL_MSTSTOP);
+    // check if slave i2c needs attention and is in the proper state
+    do {
+        slaveStatus = i2cGetStatus(I2C1);
+        i++;
+    } while(((slaveStatus & I2C_STAT_SLVPENDING) != 0) && i < 1000);
+    minUnitCheck(i < 1000);
+    i = 0;
 
     swmDisableFixedPin(SWM, SWM_EN0_I2C0_SCL, SWM_EN1_NONE);
     swmDisableFixedPin(SWM, SWM_EN0_I2C0_SDA, SWM_EN1_NONE);
