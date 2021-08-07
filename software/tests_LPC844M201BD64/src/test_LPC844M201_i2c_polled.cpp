@@ -96,7 +96,7 @@ MINUNIT_ADD(LPC844M201I2CWriteAck, LPC844M201SetupI2C, LPC844M201Teardown)
     i2cSetClockDivider(I2C1, 5);
     i2cSetConfiguration(I2C0, I2C_CFG_MSTEN);
     i2cSetConfiguration(I2C1, I2C_CFG_SLVEN);
-    i2cSetSlaveAddress(I2C1, I2C_SLVADR_0, 0x2E);
+    i2cSetSlaveAddress(I2C1, I2C_SLVADR_1, 0x2E);
     // write to address 0x7 with !W/R bit unset
     i2cSetMasterData(I2C0, 0x2E);
     // actual transfer code
@@ -174,7 +174,7 @@ MINUNIT_ADD(LPC844M201I2CReadAck, LPC844M201SetupI2C, LPC844M201Teardown)
     i2cSetClockDivider(I2C1, 5);
     i2cSetConfiguration(I2C0, I2C_CFG_MSTEN);
     i2cSetConfiguration(I2C1, I2C_CFG_SLVEN);
-    i2cSetSlaveAddress(I2C1, I2C_SLVADR_0, 0x2E);
+    i2cSetSlaveAddress(I2C1, I2C_SLVADR_1, 0x2E);
     // write to address 0x7 with !W/R bit set
     i2cSetMasterData(I2C0, 0x2F);
     // actual transfer code
@@ -197,31 +197,14 @@ MINUNIT_ADD(LPC844M201I2CReadAck, LPC844M201SetupI2C, LPC844M201Teardown)
         slaveStatus = i2cGetStatus(I2C1);
         i++;
     } while(((slaveStatus & I2C_STAT_SLVPENDING) == 0) && i < 1000);
-    minUnitCheck(I2C_STAT_SLVSTATE(slaveStatus) == I2C_STAT_SLVSTATE_RECEIVE);
-    minUnitCheck(i < 1000);
-    i = 0;
-    // check if master i2c needs attention and is in the proper state
-    do {
-        masterStatus = i2cGetStatus(I2C0);
-        i++;
-    } while(((masterStatus & I2C_STAT_MSTPENDING) == 0) && i < 1000);
-    minUnitCheck(I2C_STAT_MSTSTATE(masterStatus) == I2C_STAT_MSSTATE_RECEIVE_READY);
-    minUnitCheck(i < 1000);
-    i = 0;
-    // data transfer phase, setup slave to transfer data
-    i2cSetSlaveData(I2C1, 0xA1);
-    i2cSetMasterControl(I2C0, I2C_MSCTL_MSTCONTINUE);
-    // check if slave i2c needs attention and is in the proper state
-    do {
-        slaveStatus = i2cGetStatus(I2C1);
-        i++;
-    } while(((slaveStatus & I2C_STAT_SLVPENDING) == 0) && i < 1000);
     minUnitCheck(I2C_STAT_SLVSTATE(slaveStatus) == I2C_STAT_SLVSTATE_TRANSMIT);
     minUnitCheck(i < 1000);
     i = 0;
-    // yes, acknowledge master and continue
+    // we transferred some data, continue
+    // prepare to transfer data
+    i2cSetSlaveData(I2C1, 0xA1);
     i2cSetSlaveControl(I2C1, I2C_SLVCTL_SLVCONTINUE);
-    // check if master has gotten acknowledge from slave
+    // check if master i2c needs attention and is in the proper state
     do {
         masterStatus = i2cGetStatus(I2C0);
         i++;
@@ -230,19 +213,13 @@ MINUNIT_ADD(LPC844M201I2CReadAck, LPC844M201SetupI2C, LPC844M201Teardown)
     minUnitCheck(i2cGetMasterData(I2C0) == 0xA1);
     minUnitCheck(i < 1000);
     i = 0;
-    // data transfer done, stop operation
+    // done, stop transfer and check status
     i2cSetMasterControl(I2C0, I2C_MSCTL_MSTSTOP);
-    // check if slave i2c needs attention and is in the proper state
+    // check if master i2c needs attention and is in the proper state
     do {
-        slaveStatus = i2cGetStatus(I2C1);
+        masterStatus = i2cGetStatus(I2C0);
         i++;
-    } while(((slaveStatus & I2C_STAT_SLVPENDING) != 0) && i < 1000);
-    minUnitCheck(i < 1000);
-    i = 0;
-
-    swmDisableFixedPin(SWM, SWM_EN0_I2C0_SCL, SWM_EN1_NONE);
-    swmDisableFixedPin(SWM, SWM_EN0_I2C0_SDA, SWM_EN1_NONE);
-    SwmMovablePinAssign(SWM, SWM_I2C1_SCL, SWM_PORTPIN_Reset);
-    SwmMovablePinAssign(SWM, SWM_I2C1_SDA, SWM_PORTPIN_Reset);
+    } while(((masterStatus & I2C_STAT_MSTPENDING) == 0) && i < 1000);
+    minUnitCheck(I2C_STAT_MSTSTATE(masterStatus) == I2C_STAT_MSSTATE_IDLE);
     sysconDisableClocks(SYSCON, CLKCTRL0_I2C0 | CLKCTRL0_I2C1 | CLKCTRL0_SWM | CLKCTRL0_IOCON, CLKCTRL1_NONE);
 }
