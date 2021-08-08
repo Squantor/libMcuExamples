@@ -4,18 +4,24 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "build LPC844M201BD64 tests",
+            "label": "build debug LPC844M201BD64 tests",
             "type": "shell",
             "command": "make PROJECT=tests_LPC844M201BD64 CONFIG=debug -j20",
             "group": {
                 "kind": "build",
                 "isDefault": true
             },
-            //"group": "build",
             "problemMatcher": "$gcc"
         },
         {
-            "label": "build LPC845M301HI48 blinky",
+            "label": "build release LPC844M201BD64 tests",
+            "type": "shell",
+            "command": "make PROJECT=tests_LPC844M201BD64 CONFIG=release -j20",
+            "group": "build",
+            "problemMatcher": "$gcc"
+        },
+        {
+            "label": "build debug LPC845M301HI48 blinky",
             "type": "shell",
             "command": "make PROJECT=LPC845M301HI48_blinky CONFIG=debug -j20",
             "group": "build",
