@@ -30,7 +30,7 @@
             "type": "gdb",
             "request": "attach",
             "name": "Debug debug LPC844M201BD64 tests",
-            "target": "extended-remote /dev/serial/by-id/usb-Black_Sphere_Technologies_Black_Magic_Probe_v1.7.1-162-gbe3bfc4_80B5A7B6-if00",
+            "target": "extended-remote /dev/ttyACM0",
             "executable": "${workspaceFolder}/bin/tests_LPC844M201BD64/debug/tests_LPC844M201BD64.elf",
             "cwd": "${workspaceRoot}",
             "internalConsoleOptions": "openOnFirstSessionStart",
