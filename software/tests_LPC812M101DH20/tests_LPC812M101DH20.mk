@@ -20,7 +20,8 @@ BOARD = nuclone_LPC812M101DH20_tests
 # project sources
 FILES += $(PROJECT)/src/main.cpp \
 $(PROJECT)/src/$(BOARD).cpp \
-$(PROJECT)/src/LPC812M101_teardown.cpp
+$(PROJECT)/src/LPC812M101_teardown.cpp \
+$(PROJECT)/src/test_LPC812M101_gpio.cpp
 
 INCLUDES += -I$(PROJECT)/inc -Icommon/inc
 
