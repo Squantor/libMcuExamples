@@ -15,8 +15,8 @@
 MINUNIT_SETUP(LPC812M101SetupGpio)
 {
     minUnitCheck(LPC812M101TeardownCorrect() == true); // check if the MCU is in its reset state
-    sysconEnableClocks(SYSCON, CLKCTRL0_GPIO0 | CLKCTRL0_GPIO1, CLKCTRL1_NONE);
-    sysconEnableResets(SYSCON, RESETCTRL0_GPIO0, 0x00);
+    sysconEnableClocks(SYSCON, CLKCTRL_GPIO);
+    sysconClearResets(SYSCON, RESETCTRL_GPIO);
 }
 
 MINUNIT_ADD(LPC812M101GpioPin, LPC812M101SetupGpio, LPC812M101Teardown)
@@ -36,30 +36,30 @@ MINUNIT_ADD(LPC812M101GpioPin, LPC812M101SetupGpio, LPC812M101Teardown)
     minUnitCheck(gpioPinRead(GPIO, PORT_TESTPIN_0_0, PIN_TESTPIN_0_0) != 0);
 }
 
-// same tests as pins but checking a whole port
+// same tests as pins but checking a whole port, TODO, this one passes even when everything is disconnected!
 MINUNIT_ADD(LPC812M101GpioPort, LPC812M101SetupGpio, LPC812M101Teardown)
 {
     // setup port0 as outputs and set it low
-    gpioSetPortDir(GPIO, PORT_TESTPIN_0_0, BITPOS(PIN_TESTPIN_0_0) | BITPOS(PIN_TESTPIN_1_0));
-    gpioPortWrite(GPIO, PORT_TESTPIN_0_0, gpioPortRead(GPIO, PORT_TESTPIN_0_0) & ~BITPOS(PIN_TESTPIN_0_0) & ~BITPOS(PIN_TESTPIN_1_0));
+    gpioSetPortDir(GPIO, PORT_TESTPIN_0_0, BITPOS(PIN_TESTPIN_0_0));
+    gpioPortWrite(GPIO, PORT_TESTPIN_0_0, gpioPortRead(GPIO, PORT_TESTPIN_0_0) & ~BITPOS(PIN_TESTPIN_0_0));
     // sense low levels on pits
     minUnitCheck((gpioPortRead(GPIO, 
-        PORT_TESTPIN_0_0) & (BITPOS(PIN_TESTPIN_0_0) | BITPOS(PIN_TESTPIN_1_0))) == 0x00000000);
+        PORT_TESTPIN_0_0) & (BITPOS(PIN_TESTPIN_0_0))) == 0x00000000);
     // set output as high 
-    gpioPortWrite(GPIO, PORT_TESTPIN_0_0, gpioPortRead(GPIO, PORT_TESTPIN_0_0) | BITPOS(PIN_TESTPIN_0_0) | BITPOS(PIN_TESTPIN_1_0));
+    gpioPortWrite(GPIO, PORT_TESTPIN_0_0, gpioPortRead(GPIO, PORT_TESTPIN_0_0) | BITPOS(PIN_TESTPIN_0_0));
     // sense if inputs are high
     minUnitCheck((gpioPortRead(GPIO, 
-        PORT_TESTPIN_0_0) & (BITPOS(PIN_TESTPIN_0_0) | BITPOS(PIN_TESTPIN_1_0))) == (BITPOS(PIN_TESTPIN_0_0) | BITPOS(PIN_TESTPIN_1_0)));
+        PORT_TESTPIN_0_0) & (BITPOS(PIN_TESTPIN_0_0))) == (BITPOS(PIN_TESTPIN_0_0)));
     // switch around pins
     gpioSetPortDir(GPIO, PORT_TESTPIN_0_0, 0x00000000);
-    gpioSetPortDir(GPIO, PORT_TESTPIN_0_1, BITPOS(PIN_TESTPIN_0_1) | BITPOS(PIN_TESTPIN_1_1));
-    gpioPortWrite(GPIO, PORT_TESTPIN_0_1, gpioPortRead(GPIO, PORT_TESTPIN_0_1) & ~BITPOS(PIN_TESTPIN_0_1) & ~BITPOS(PIN_TESTPIN_1_1));
+    gpioSetPortDir(GPIO, PORT_TESTPIN_0_1, BITPOS(PIN_TESTPIN_0_1));
+    gpioPortWrite(GPIO, PORT_TESTPIN_0_1, gpioPortRead(GPIO, PORT_TESTPIN_0_1) & ~BITPOS(PIN_TESTPIN_0_1));
     // sense low levels on pits
     minUnitCheck((gpioPortRead(GPIO, 
-        PORT_TESTPIN_0_1) & (BITPOS(PIN_TESTPIN_0_1) | BITPOS(PIN_TESTPIN_1_1))) == 0x00000000);
+        PORT_TESTPIN_0_1) & (BITPOS(PIN_TESTPIN_0_1))) == 0x00000000);
     // set output as high 
-    gpioPortWrite(GPIO, PORT_TESTPIN_0_1, gpioPortRead(GPIO, PORT_TESTPIN_0_1) | BITPOS(PIN_TESTPIN_0_1) | BITPOS(PIN_TESTPIN_1_1));
+    gpioPortWrite(GPIO, PORT_TESTPIN_0_1, gpioPortRead(GPIO, PORT_TESTPIN_0_1) | BITPOS(PIN_TESTPIN_0_1));
     // sense if inputs are high
     minUnitCheck((gpioPortRead(GPIO, 
-        PORT_TESTPIN_0_1) & (BITPOS(PIN_TESTPIN_0_1) | BITPOS(PIN_TESTPIN_1_1))) == (BITPOS(PIN_TESTPIN_0_1) | BITPOS(PIN_TESTPIN_1_1)));
+        PORT_TESTPIN_0_1) & (BITPOS(PIN_TESTPIN_0_1))) == (BITPOS(PIN_TESTPIN_0_1)));
 }
