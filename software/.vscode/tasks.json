@@ -14,10 +14,7 @@
             "label": "build debug LPC812M101DH20 tests",
             "type": "shell",
             "command": "make PROJECT=tests_LPC812M101DH20 CONFIG=debug -j20",
-            "group": {
-                "kind": "build",
-                "isDefault": true
-            },
+            "group": "build",
             "problemMatcher": "$gcc"
         },
         {
@@ -38,6 +35,7 @@
             "label": "clean",
             "type": "shell",
             "command": "make PROJECT=PC clean",
+            "group": "build",
             "problemMatcher": [
                 "$gcc"
             ]
