@@ -3,10 +3,10 @@
         {
             "name": "Linux",
             "includePath": [
-                "${workspaceFolder}/tests_LPC812M101DH20/inc",
+                "${workspaceFolder}/LPC812M101DH20_blinky/inc",
                 "${workspaceFolder}/libMcuLL/inc/",
                 "${workspaceFolder}/squantorLibC/inc/",
-                "${workspaceFolder}/libEmbedded/inc/",
+                "${workspaceFolder}/squantorLibEmbedded/inc/",
                 "${workspaceFolder}/squantorMinUnit/inc/",
                 "${workspaceFolder}/common/inc/"
             ],
