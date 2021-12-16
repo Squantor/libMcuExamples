@@ -24,8 +24,8 @@ SOFTWARE.
 #ifndef BOARD_HPP
 #define BOARD_HPP
 
-#if defined(LPC812M101JDH20_nuclone)
-    #include <LPC812M101JDH20_nuclone.hpp>
-#endif
+#include <nuclone_LPC812M101DH20.hpp>
+
+#include <mcu_ll.h>
 
 #endif
