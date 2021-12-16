@@ -7,3 +7,6 @@
 [submodule "software/squantorMinUnit"]
 	path = software/squantorMinUnit
 	url = git@github.com:Squantor/squantorMinUnit.git
+[submodule "software/squantorLibEmbedded"]
+	path = software/squantorLibEmbedded
+	url = git@github.com:Squantor/squantorLibEmbedded.git
