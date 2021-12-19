@@ -54,11 +54,12 @@ void boardInit(void) {
   FmcSetFlashAccess(FLASHTIM_30MHZ_CPU);
   //  SysctlPowerDown(SYSCTL_SLPWAKE_SYSPLL_PD);
   sysconPowerDisable(SYSCON, PDRUNCFG_SYSPLL);
-  
-  ClockSetupSystemPLL(4, 1);
-  SysctlPowerUp(SYSCTL_SLPWAKE_SYSPLL_PD);
-  while (!ClockIsSystemPLLLocked())
-    ;
-  ClockSetSysClockDiv(2);
-  ClockSetMainClockSource(SYSCTL_MAINCLKSRC_PLLOUT);
+
+  // ClockSetupSystemPLL(4, 1);
+  //  SysctlPowerUp(SYSCTL_SLPWAKE_SYSPLL_PD);
+  sysconPowerEnable(SYSCON, PDRUNCFG_SYSPLL);
+  // while (!ClockIsSystemPLLLocked())
+  //     ;
+  // ClockSetSysClockDiv(2);
+  //  ClockSetMainClockSource(SYSCTL_MAINCLKSRC_PLLOUT);
 }
