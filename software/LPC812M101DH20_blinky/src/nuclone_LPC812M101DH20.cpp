@@ -45,15 +45,16 @@ void boardInit(void) {
   sysconDisableClocks(SYSCON, SYSCTL_CLOCK_SWM | SYSCTL_CLOCK_IOCON);
 
   // setup system clocks
-  sysconSysOscControl(SYSCON, SYSOSCCTRL_FREQ_1_20MHZ);
+  // ClockSetPLLBypass(false, false);
+  sysconSysOscControl(SYSCON, SYSOSCCTRL_BYPASS(0) | SYSOSCCTRL_FREQ_1_20MHZ);
   sysconPowerEnable(SYSCON, PDRUNCFG_SYSOSC);
   crudeDelay(6000);
-  sysconPowerEnable(SYSCON, PDRUNCFG_SYSPLL);
-  ClockSetPLLBypass(false, false);
-  SysctlPowerUp(SYSCTL_SLPWAKE_SYSOSC_PD);
-  ClockSetSystemPLLSource(SYSCTL_PLLCLKSRC_SYSOSC);
+  // ClockSetSystemPLLSource(SYSCTL_PLLCLKSRC_SYSOSC);
+  sysconSysPllClockSelect(SYSCON, SYSPLLCLKSEL_SYSOSC);
   FmcSetFlashAccess(FLASHTIM_30MHZ_CPU);
-  SysctlPowerDown(SYSCTL_SLPWAKE_SYSPLL_PD);
+  //  SysctlPowerDown(SYSCTL_SLPWAKE_SYSPLL_PD);
+  sysconPowerDisable(SYSCON, PDRUNCFG_SYSPLL);
+  
   ClockSetupSystemPLL(4, 1);
   SysctlPowerUp(SYSCTL_SLPWAKE_SYSPLL_PD);
   while (!ClockIsSystemPLLLocked())
