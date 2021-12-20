@@ -33,3 +33,6 @@ documentation/
 
 #vscode files that are better ignored
 settings.json
+
+#cortex-debug
+.cortex-debug.*
