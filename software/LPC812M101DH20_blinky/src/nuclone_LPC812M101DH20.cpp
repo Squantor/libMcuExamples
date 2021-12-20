@@ -37,12 +37,12 @@ void crudeDelay(uint32_t iterations) {
 }
 
 void boardInit(void) {
-  sysconEnableClocks(SYSCON, SYSCTL_CLOCK_SWM | SYSCTL_CLOCK_IOCON);
+  sysconEnableClocks(SYSCON, CLKCTRL_SWM | CLKCTRL_IOCON);
   // crystal oscillator pin setup
   swmEnableFixedPin(SWM, SWM_EN0_XTALIN | SWM_EN0_XTALOUT);
   IoconPinSetMode(IOCON, IOCON_XTAL_IN, PIN_MODE_INACTIVE);
   IoconPinSetMode(IOCON, IOCON_XTAL_OUT, PIN_MODE_INACTIVE);
-  sysconDisableClocks(SYSCON, SYSCTL_CLOCK_SWM | SYSCTL_CLOCK_IOCON);
+  sysconDisableClocks(SYSCON, CLKCTRL_SWM | CLKCTRL_IOCON);
 
   // setup system clocks
   // ClockSetPLLBypass(false, false);
