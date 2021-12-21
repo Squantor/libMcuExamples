@@ -22,7 +22,7 @@ For conditions of distribution and use, see LICENSE file
 #define PORT_LED GPIO_PORT0
 #define PIN_LED (13u)
 
-#define TICKS_PER_S 10
+#define TICKS_PER_S 2
 
 void boardInit(void);
 
