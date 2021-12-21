@@ -39,6 +39,13 @@
             "problemMatcher": "$gcc"
         },
         {
+            "label": "build debug LPC824M201DH20 blinky",
+            "type": "shell",
+            "command": "make PROJECT=LPC824M201DH20_blinky CONFIG=debug -j20",
+            "group": "build",
+            "problemMatcher": "$gcc"
+        },
+        {
             "label": "clean",
             "type": "shell",
             "command": "make PROJECT=PC clean",
