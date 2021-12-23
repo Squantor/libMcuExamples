@@ -8,4 +8,3 @@ set {int}0x40048000 = 2
 load bin/LPC824M201DH20_blinky/debug/LPC824M201DH20_blinky.elf
 set {int}0x40048000 = 2
 compare-sections
-b main

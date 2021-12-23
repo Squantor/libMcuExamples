@@ -3,7 +3,7 @@
         {
             "name": "Linux",
             "includePath": [
-                "${workspaceFolder}/LPC812M101DH20_blinky/inc",
+                "${workspaceFolder}/LPC824M201DH20_blinky/inc",
                 "${workspaceFolder}/libMcuLL/inc/",
                 "${workspaceFolder}/squantorLibC/inc/",
                 "${workspaceFolder}/squantorLibEmbedded/inc/",
@@ -11,7 +11,7 @@
                 "${workspaceFolder}/common/inc/"
             ],
             "defines": [
-                "MCU_LPC812M101DH20",
+                "MCU_LPC824M201DH20",
                 "DEBUG"
             ],
             "browse": {
