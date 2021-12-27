@@ -22,6 +22,6 @@ void SysTick_Handler(void) {
 int main() {
   boardInit();
   while (1) {
-    var ^= 0x55;
+    var = var ^ 0x55;
   }
 }
