@@ -14,14 +14,12 @@
 volatile int var;
 
 extern "C" {
-void SysTick_Handler(void) {
-  gpioPortToggle(GPIO, PORT_LED, 1 << PIN_LED);
-}
+void SysTick_Handler(void) { gpioPortToggle(GPIO, PORT_LED, 1 << PIN_LED); }
 }
 
 int main() {
   boardInit();
   while (1) {
-    var ^= 0x55;
+    var = var ^ 0x55;
   }
 }

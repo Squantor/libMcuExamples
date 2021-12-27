@@ -15,10 +15,10 @@ For conditions of distribution and use, see LICENSE file
 #define CLOCK_AHB (30000000u)
 #define CLOCK_MAIN (60000000u)
 
-#define IOCON_XTAL_IN IOCON_PIO8
-#define IOCON_XTAL_OUT IOCON_PIO9
+#define IOCON_XTAL_IN IOCON_PIO0_8
+#define IOCON_XTAL_OUT IOCON_PIO0_9
 
-#define IOCON_LED IOCON_PIO23
+#define IOCON_LED IOCON_PIO0_23
 #define PORT_LED GPIO_PORT0
 #define PIN_LED (23u)
 
