@@ -9,7 +9,7 @@
 # project settings
 MCU = STM32F030K6
 TARGET = MCU
-BOARD = dummy_board
+BOARD = nuclone_STM32F030K6
 
 # project sources
 FILES += $(PROJECT)/src/main.cpp \

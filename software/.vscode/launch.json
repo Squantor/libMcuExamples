@@ -154,7 +154,7 @@
             "preLaunchCommands": [],
             "preRestartCommands": [],
             "preLaunchTask": "build debug STM32F030K6 blinky",
-            //"svdFile": "${workspaceFolder}/libMcuLL/svd/nxp/LPC812.svd",
+            "svdFile": "${workspaceFolder}/libMcuLL/svd/st/STM32F030.svd"
             "debuggerArgs": ["--command=./${workspaceFolder}/gdb_scripts/STM32F030K6_blinky_debug.txt"],
             "gdbpath": "/home/abilos/programs/gcc-arm-none-eabi-10-2020-q4-major/bin//arm-none-eabi-gdb"
         },
