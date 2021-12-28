@@ -7,7 +7,7 @@
 # Version: 20200625
 
 # project settings
-MCU = CortexM0
+MCU = STM32F030K6
 TARGET = MCU
 BOARD = dummy_board
 
