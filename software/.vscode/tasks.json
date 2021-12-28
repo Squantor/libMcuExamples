@@ -46,6 +46,13 @@
             "problemMatcher": "$gcc"
         },
         {
+            "label": "build debug STM32F030K6 blinky",
+            "type": "shell",
+            "command": "make PROJECT=STM32F030K6_blinky CONFIG=debug -j20",
+            "group": "build",
+            "problemMatcher": "$gcc"
+        },
+        {
             "label": "build debug LPC824M201HI33 blinky",
             "type": "shell",
             "command": "make PROJECT=LPC824M201HI33_blinky CONFIG=debug -j20",

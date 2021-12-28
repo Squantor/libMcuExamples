@@ -140,5 +140,23 @@
             "debuggerArgs": ["--command=./${workspaceFolder}/gdb_scripts/LPC824M201HI33_blinky_debug.txt"],
             "gdbpath": "/home/abilos/programs/gcc-arm-none-eabi-10-2020-q4-major/bin//arm-none-eabi-gdb"
         },
+        {
+            "name": "debug STM32F030K6 blinky",
+            "cwd": "${workspaceRoot}",
+            "executable": "${workspaceFolder}/bin/STM32F030K6_blinky/debug/STM32F030K6_blinky.elf",
+            "request": "launch",
+            "type": "cortex-debug",
+            "servertype": "bmp",
+            "interface": "swd",
+            "device": "LPC812",
+            "BMPGDBSerialPort": "/dev/ttyACM0",
+            "runToEntryPoint": "main",
+            "preLaunchCommands": [],
+            "preRestartCommands": [],
+            "preLaunchTask": "build debug STM32F030K6 blinky",
+            //"svdFile": "${workspaceFolder}/libMcuLL/svd/nxp/LPC812.svd",
+            "debuggerArgs": ["--command=./${workspaceFolder}/gdb_scripts/STM32F030K6_blinky_debug.txt"],
+            "gdbpath": "/home/abilos/programs/gcc-arm-none-eabi-10-2020-q4-major/bin//arm-none-eabi-gdb"
+        },
     ]
 }
