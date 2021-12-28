@@ -5,67 +5,79 @@ Copyright (c) 2021 Bart Bilos
 For conditions of distribution and use, see LICENSE file
 */
 
-#if defined (__cplusplus)
+#if defined(__cplusplus)
 extern "C" {
 #endif
 
-void SPI0_IRQHandler(void) __attribute__((weak, alias("Dummy_Handler")));
+void WWDG_IRQHandler(void) __attribute__((weak, alias("Dummy_Handler")));
+void PVD_IRQHandler(void) __attribute__((weak, alias("Dummy_Handler")));
+void RTC_IRQHandler(void) __attribute__((weak, alias("Dummy_Handler")));
+void FLASH_IRQHandler(void) __attribute__((weak, alias("Dummy_Handler")));
+void RCC_IRQHandler(void) __attribute__((weak, alias("Dummy_Handler")));
+void EXTI0_1_IRQHandler(void) __attribute__((weak, alias("Dummy_Handler")));
+void EXTI2_3_IRQHandler(void) __attribute__((weak, alias("Dummy_Handler")));
+void EXTI4_15_IRQHandler(void) __attribute__((weak, alias("Dummy_Handler")));
+void DMA1_Channel1_IRQHandler(void)
+    __attribute__((weak, alias("Dummy_Handler")));
+void DMA1_Channel2_3_IRQHandler(void)
+    __attribute__((weak, alias("Dummy_Handler")));
+void DMA1_Channel4_5_IRQHandler(void)
+    __attribute__((weak, alias("Dummy_Handler")));
+void ADC1_IRQHandler(void) __attribute__((weak, alias("Dummy_Handler")));
+void TIM1_BRK_UP_TRG_COM_IRQHandler(void)
+    __attribute__((weak, alias("Dummy_Handler")));
+void TIM1_CC_IRQHandler(void) __attribute__((weak, alias("Dummy_Handler")));
+void TIM2_IRQHandler(void) __attribute__((weak, alias("Dummy_Handler")));
+void TIM3_IRQHandler(void) __attribute__((weak, alias("Dummy_Handler")));
+void TIM14_IRQHandler(void) __attribute__((weak, alias("Dummy_Handler")));
+void TIM15_IRQHandler(void) __attribute__((weak, alias("Dummy_Handler")));
+void TIM16_IRQHandler(void) __attribute__((weak, alias("Dummy_Handler")));
+void TIM17_IRQHandler(void) __attribute__((weak, alias("Dummy_Handler")));
+void I2C1_IRQHandler(void) __attribute__((weak, alias("Dummy_Handler")));
+void I2C2_IRQHandler(void) __attribute__((weak, alias("Dummy_Handler")));
 void SPI1_IRQHandler(void) __attribute__((weak, alias("Dummy_Handler")));
-void UART0_IRQHandler(void) __attribute__((weak, alias("Dummy_Handler")));
-void UART1_IRQHandler(void) __attribute__((weak, alias("Dummy_Handler")));
-void UART2_IRQHandler(void) __attribute__((weak, alias("Dummy_Handler")));
-void I2C0_IRQHandler(void) __attribute__((weak, alias("Dummy_Handler")));
-void SCT_IRQHandler(void) __attribute__((weak, alias("Dummy_Handler")));
-void MRT_IRQHandler(void) __attribute__((weak, alias("Dummy_Handler")));
-void CMP_IRQHandler(void) __attribute__((weak, alias("Dummy_Handler")));
-void WDT_IRQHandler(void) __attribute__((weak, alias("Dummy_Handler")));
-void BOD_IRQHandler(void) __attribute__((weak, alias("Dummy_Handler")));
-void WKT_IRQHandler(void) __attribute__((weak, alias("Dummy_Handler")));
-void PININT0_IRQHandler(void) __attribute__((weak, alias("Dummy_Handler")));
-void PININT1_IRQHandler(void) __attribute__((weak, alias("Dummy_Handler")));
-void PININT2_IRQHandler(void) __attribute__((weak, alias("Dummy_Handler")));
-void PININT3_IRQHandler(void) __attribute__((weak, alias("Dummy_Handler")));
-void PININT4_IRQHandler(void) __attribute__((weak, alias("Dummy_Handler")));
-void PININT5_IRQHandler(void) __attribute__((weak, alias("Dummy_Handler")));
-void PININT6_IRQHandler(void) __attribute__((weak, alias("Dummy_Handler")));
-void PININT7_IRQHandler(void) __attribute__((weak, alias("Dummy_Handler")));
+void SPI2_IRQHandler(void) __attribute__((weak, alias("Dummy_Handler")));
+void USART1_IRQHandler(void) __attribute__((weak, alias("Dummy_Handler")));
+void USART2_IRQHandler(void) __attribute__((weak, alias("Dummy_Handler")));
+s
 
-#if defined (__cplusplus)
-} // extern "C"
+#if defined(__cplusplus)
+}  // extern "C"
 #endif
 
-extern void (* const vendor_vector_table[])(void);
-void (* const vendor_vector_table[])(void) __attribute__ ((used,section(".vendor_vectors"))) = {
-    SPI0_IRQHandler,
-    SPI1_IRQHandler,
-    0,
-    UART0_IRQHandler,
-    UART1_IRQHandler,
-    UART2_IRQHandler,
-    0,
-    0,
-    I2C0_IRQHandler,
-    SCT_IRQHandler,
-    MRT_IRQHandler,
-    CMP_IRQHandler,
-    WDT_IRQHandler,
-    BOD_IRQHandler,
-    0,
-    WKT_IRQHandler,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    0,
-    PININT0_IRQHandler,
-    PININT1_IRQHandler,
-    PININT2_IRQHandler,
-    PININT3_IRQHandler,
-    PININT4_IRQHandler,
-    PININT5_IRQHandler,
-    PININT6_IRQHandler,
-    PININT7_IRQHandler,
+extern void (*const vendor_vector_table[])(void);
+void (*const vendor_vector_table[])(void)
+    __attribute__((used, section(".vendor_vectors"))) = {
+        WWDG_IRQHandler,
+        PVD_IRQHandler,
+        RTC_IRQHandler,
+        FLASH_IRQHandler,
+        RCC_IRQHandler,
+        EXTI0_1_IRQHandler,
+        EXTI2_3_IRQHandler,
+        EXTI4_15_IRQHandler,
+        0,
+        DMA1_Channel1_IRQHandler,
+        DMA1_Channel2_3_IRQHandler,
+        DMA1_Channel4_5_IRQHandler,
+        ADC1_IRQHandler,
+        TIM1_BRK_UP_TRG_COM_IRQHandler,
+        TIM1_CC_IRQHandler,
+        TIM2_IRQHandler,
+        TIM3_IRQHandler,
+        0,
+        0,
+        TIM14_IRQHandler,
+        0,
+        TIM16_IRQHandler,
+        TIM17_IRQHandler,
+        I2C1_IRQHandler,
+        0,
+        SPI1_IRQHandler,
+        0,
+        USART1_IRQHandler,
+        0,
+        0,
+        0,
+        0,
 };
