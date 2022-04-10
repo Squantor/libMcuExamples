@@ -35,9 +35,9 @@ void boardInit(void)
     sysconSysPllClockSelect(SYSCON, SYSPLLCLKSEL_SYSOSC);
     sysconMainClockSelect(SYSCON, MAINCLKSEL_PLL_IN);
     // setup clock output
-    sysconClkoutSource(SYSCON, CLKOUT_SYSOSC);
-    sysconClkoutDivider(SYSCON, 1);
-    SwmMovablePinAssign(SWM, SWM_CLKOUT_O, SWM_PORTPIN_P0_1);
+    //sysconClkoutSource(SYSCON, CLKOUT_SYSOSC);
+    //sysconClkoutDivider(SYSCON, 1);
+    //SwmMovablePinAssign(SWM, SWM_CLKOUT_O, SWM_PORTPIN_P0_1);
     // disable all unneeded clocks
     sysconDisableClocks(SYSCON, CLKCTRL_IOCON | CLKCTRL_SWM);
     // setup systick
