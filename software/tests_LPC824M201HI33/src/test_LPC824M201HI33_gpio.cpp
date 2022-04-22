@@ -5,7 +5,7 @@
  * For conditions of distribution and use, see LICENSE file
  */
 /**
- * @brief tests for the LPC844M201 GPIO0/1 peripheral
+ * @brief tests for the LPC824M201 GPIO peripheral
  */
 #include <nuclone_LPC824M201HI33_tests.hpp>
 #include <MinUnit.h>
