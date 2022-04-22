@@ -21,12 +21,12 @@ MINUNIT_SETUP(LPC824M201HI33SetupUsart) {
 
 MINUNIT_ADD(LPC824M201HI33UsartTxRx, LPC824M201HI33SetupUsart, LPC824M201HI33Teardown) {
   sysconEnableClocks(SYSCON, CLKCTRL_UART0 | CLKCTRL_SWM | CLKCTRL_IOCON);
-  sysconEnableResets(SYSCON, RESETCTRL_UART0 | RESETCTRL_SWM | RESETCTRL_IOCON);
-  sysconPeripheralClockSelect(SYSCON, UART0CLKSEL, CLKSRC_MAIN);
-  SwmMovablePinAssign(SWM, SWM_USART0_TXD, SWM_TESTPIN_0_0);
-  SwmMovablePinAssign(SWM, SWM_USART0_RXD, SWM_TESTPIN_0_1);
+  sysconEnableResets(SYSCON, RESETCTRL_UART0);
+  SwmMovablePinAssign(SWM, SWM_USART0_TXD_O, SWM_TESTPIN_0_0);
+  SwmMovablePinAssign(SWM, SWM_USART0_RXD_I, SWM_TESTPIN_0_1);
+  sysconUartClockDiv(SYSCON, 1);
   // make sure we use a baud rate that is not an exact match
-  minUnitCheck(usartSetBaud(USART0, CLOCK_MAIN, 9600) == 9615);
+  minUnitCheck(usartSetBaud(USART0, 12000000, 9600) == 9615);
   usartSetConfig(USART0, DATALEN_8, PARITY_NONE, STOPLEN_1, 0);
   usartTXEnable(USART0);
   usartSendData(USART0, 0xA5);
@@ -37,7 +37,7 @@ MINUNIT_ADD(LPC824M201HI33UsartTxRx, LPC824M201HI33SetupUsart, LPC824M201HI33Tea
   minUnitCheck(usartReadData(USART0) == 0xA5);
   usartTXDisable(USART0);
   usartDisable(USART0);
-  SwmMovablePinAssign(SWM, SWM_USART0_TXD, SWM_PORTPIN_Reset);
-  SwmMovablePinAssign(SWM, SWM_USART0_RXD, SWM_PORTPIN_Reset);
-  sysconDisableClocks(SYSCON, CLKCTRL0_UART0 | CLKCTRL0_SWM | CLKCTRL0_IOCON, CLKCTRL1_NONE);
+  SwmMovablePinAssign(SWM, SWM_USART0_TXD_O, SWM_PORTPIN_Reset);
+  SwmMovablePinAssign(SWM, SWM_USART0_RXD_I, SWM_PORTPIN_Reset);
+  sysconDisableClocks(SYSCON, CLKCTRL_UART0 | CLKCTRL_SWM | CLKCTRL_IOCON);
 }
