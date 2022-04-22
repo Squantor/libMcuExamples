@@ -37,8 +37,9 @@ MINUNIT_ADD(LPC824M201HI33GpioPin, LPC824M201HI33SetupGpio, LPC824M201HI33Teardo
 // same tests as pins but checking a whole port
 MINUNIT_ADD(LPC824M201HI33GpioPort, LPC824M201HI33SetupGpio, LPC824M201HI33Teardown) {
   // setup port0 as outputs and set it low
+  gpioSetPortDir(GPIO, PORT_TESTPIN_0_0, BITPOS(PIN_TESTPIN_0_0));
   gpioPortWrite(GPIO, PORT_TESTPIN_0_0, gpioPortRead(GPIO, PORT_TESTPIN_0_0) & ~BITPOS(PIN_TESTPIN_0_0));
-  // sense low levels on pits
+  // sense low levels on pins
   minUnitCheck((gpioPortRead(GPIO, PORT_TESTPIN_0_0) & (BITPOS(PIN_TESTPIN_0_0))) == 0x00000000);
   // set output as high
   gpioPortWrite(GPIO, PORT_TESTPIN_0_0, gpioPortRead(GPIO, PORT_TESTPIN_0_0) | BITPOS(PIN_TESTPIN_0_0));
