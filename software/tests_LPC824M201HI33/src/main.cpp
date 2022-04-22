@@ -13,31 +13,23 @@
 
 volatile int var;
 
-extern "C" 
-{
-    void SysTick_Handler(void)
-    {
-
-    }
+extern "C" {
+void SysTick_Handler(void) {}
 }
 
-void minunitReport( const char* string )
-{
+void minunitReport(const char* string) {}
 
+void minunitFailCallback(void) {
+  __BKPT(0x00);
 }
 
-int main()
-{
-    boardInit();
-    minunitRun();
-    if(minunitTestState.failures != 0)
-    {
-        minunitReport("Test failures detected\n");
-    }
-    else
-    {
-        minunitReport("All tests passed\n");
-    }
-    while (1)
-        __BKPT(0xFE);
+int main() {
+  boardInit();
+  minunitRun();
+  if (minunitTestState.failures != 0) {
+    minunitReport("Test failures detected\n");
+  } else {
+    minunitReport("All tests passed\n");
+  }
+  while (1) __BKPT(0xFE);
 }

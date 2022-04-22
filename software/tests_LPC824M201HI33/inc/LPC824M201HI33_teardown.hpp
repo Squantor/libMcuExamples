@@ -10,14 +10,13 @@
 #include <MinUnit.h>
 
 /** @brief resets all the registers to their default states
- * 
+ *
  */
-MINUNIT_TEARDOWN(LPC824M201Teardown);
-
+MINUNIT_TEARDOWN(LPC824M201HI33Teardown);
 
 /** @brief checks if all registers are in their default states
  *  @return false if a register is not properly set
  */
-bool LPC824M201TeardownCorrect(void);
+bool LPC824M201HI33TeardownCorrect(void);
 
 #endif
