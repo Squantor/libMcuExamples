@@ -7,43 +7,46 @@
 #ifndef NUCLONE_LPC824M201HI33_HPP
 #define NUCLONE_LPC824M201HI33_HPP
 
-#define CLOCK_XTAL          (12000000u)
-#define CLOCK_EXT_IN        (0u)
-#define CLOCK_CPU           (12000000u)
-#define CLOCK_AHB           (12000000u)
-#define CLOCK_MAIN          (12000000u)
+#define CLOCK_XTAL (12000000u)
+#define CLOCK_EXT_IN (0u)
+#define CLOCK_CPU (12000000u)
+#define CLOCK_AHB (12000000u)
+#define CLOCK_MAIN (12000000u)
 
 #include <mcu_ll.h>
 
-#define TICKS_PER_S         10
+#define TICKS_PER_S 10
 
-#define IOCON_XTAL_IN       IOCON_PIO0_8
-#define IOCON_XTAL_OUT      IOCON_PIO0_9
+#define IOCON_XTAL_IN IOCON_PIO0_8
+#define IOCON_XTAL_OUT IOCON_PIO0_9
 
 // test pin pair 0, connected to eachother via 1KOhm resistor
-#define IOCON_TESTPIN_0_0   (IOCON_PIO0_12)
-#define PORT_TESTPIN_0_0    (GPIO_PORT0)
-#define PIN_TESTPIN_0_0     (12u)
-#define SWM_TESTPIN_0_0     (SWM_PORTPIN_P0_12)
-#define IOCON_TESTPIN_0_1   (IOCON_PIO0_13)
-#define PORT_TESTPIN_0_1    (GPIO_PORT0)
-#define PIN_TESTPIN_0_1     (13u)
-#define SWM_TESTPIN_0_1     (SWM_PORTPIN_P0_13)
-// test pin pair 1, connected to eachother via 1KOhm resistor
-#define IOCON_TESTPIN_1_0   (IOCON_PIO0_28)
-#define PORT_TESTPIN_1_0    (GPIO_PORT0)
-#define PIN_TESTPIN_1_0     (28u)
-#define SWM_TESTPIN_1_0     (SWM_PORTPIN_P0_28)
-#define IOCON_TESTPIN_1_1   (IOCON_PIO0_16)
-#define PORT_TESTPIN_1_1    (GPIO_PORT0)
-#define PIN_TESTPIN_1_1     (16u)
-#define SWM_TESTPIN_1_1     (SWM_PORTPIN_P0_16)
-// loose test pins
-//#define IOCON_TESTPIN_2     (IOCON_PIO1_14)
-//#define PORT_TESTPIN_2      (GPIO_PORT1)
-//#define PIN_TESTPIN_2       (14u)
-//#define SWM_TESTPIN_2       (SWM_PORTPIN_P1_14)
-// I2C test pins, pulled up by 4.7K resistor
+#define IOCON_TESTPIN_0_0 (IOCON_PIO0_1)
+#define PORT_TESTPIN_0_0 (GPIO_PORT0)
+#define PIN_TESTPIN_0_0 (1u)
+#define SWM_TESTPIN_0_0 (SWM_PORTPIN_P0_1)
+#define IOCON_TESTPIN_0_1 (IOCON_PIO0_15)
+#define PORT_TESTPIN_0_1 (GPIO_PORT0)
+#define PIN_TESTPIN_0_1 (15u)
+#define SWM_TESTPIN_0_1 (SWM_PORTPIN_P0_15)
+// I2C Clock test pin, pulled up to 2.2K to 3.3V
+#define IOCON_I2C_SCL_OUT (IOCON_PIO0_10)
+#define PORT_I2C_SCL_OUT (GPIO_PORT0)
+#define PIN_I2C_SCL_OUT (10u)
+#define SWM_I2C_SCL_OUT (SWM_PORTPIN_P0_10)
+#define IOCON_I2C_SCL_TEST (IOCON_PIO0_27)
+#define PORT_I2C_SCL_TEST (GPIO_PORT0)
+#define PIN_I2C_SCL_TEST (27u)
+#define SWM_I2C_SCL_TEST (SWM_PORTPIN_P0_27)
+// I2C Data test pin, pulled up to 2.2K to 3.3V
+#define IOCON_I2C_SDA_OUT (IOCON_PIO0_11)
+#define PORT_I2C_SDA_OUT (GPIO_PORT0)
+#define PIN_I2C_SDA_OUT (11u)
+#define SWM_I2C_SDA_OUT (SWM_PORTPIN_P0_11)
+#define IOCON_I2C_SDA_TEST (IOCON_PIO0_26)
+#define PORT_I2C_SDA_TEST (GPIO_PORT0)
+#define PIN_I2C_SDA_TEST (26u)
+#define SWM_I2C_SDA_TEST (SWM_PORTPIN_P0_26)
 
 void boardInit(void);
 
