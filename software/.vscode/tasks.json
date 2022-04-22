@@ -18,9 +18,9 @@
         "problemMatcher": "$gcc"
       },
       {
-        "label": "build release LPC824M201HI33 tests",
+        "label": "build debug LPC824M201HI33 tests",
         "type": "shell",
-        "command": "make PROJECT=tests_LPC824M201HI33 CONFIG=release -j20",
+        "command": "make PROJECT=tests_LPC824M201HI33 CONFIG=debug -j20",
         "group": "build",
         "problemMatcher": "$gcc"
       },

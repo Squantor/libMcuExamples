@@ -23,6 +23,24 @@
             "gdbpath": "/home/abilos/programs/gcc-arm-none-eabi-10-2020-q4-major/bin//arm-none-eabi-gdb"
         },
         {
+            "name": "Debug debug LPC824M201HI33 tests",
+            "cwd": "${workspaceRoot}",
+            "executable": "${workspaceFolder}/bin/tests_LPC824M201HI33/debug/tests_LPC824M201HI33.elf",
+            "request": "launch",
+            "type": "cortex-debug",
+            "servertype": "bmp",
+            "interface": "swd",
+            "device": "LPC824",
+            "BMPGDBSerialPort": "/dev/ttyACM0",
+            "runToEntryPoint": "main",
+            "preLaunchCommands": [],
+            "preRestartCommands": [],
+            "preLaunchTask": "build debug LPC824M201HI33 tests",
+            "svdFile": "${workspaceFolder}/libMcuLL/svd/nxp/LPC824.svd",
+            "debuggerArgs": ["--command=./${workspaceFolder}/gdb_scripts/tests_LPC824M201HI33.txt"],
+            "gdbpath": "/home/abilos/programs/gcc-arm-none-eabi-10-2020-q4-major/bin//arm-none-eabi-gdb"
+        },
+        {
             "name": "debug LPC812M101DH20 blinky",
             "cwd": "${workspaceRoot}",
             "executable": "${workspaceFolder}/bin/LPC812M101DH20_blinky/debug/LPC812M101DH20_blinky.elf",
