@@ -15,7 +15,7 @@
 MINUNIT_SETUP(LPC812M101DH20SetupGpio) {
   minUnitCheck(LPC812M101DH20TeardownCorrect() == true);  // check if the MCU is in its reset state
   sysconEnableClocks(SYSCON, CLKCTRL_GPIO);
-  sysconClearResets(SYSCON, RESETCTRL_GPIO);
+  sysconEnableResets(SYSCON, RESETCTRL_GPIO);
 }
 
 MINUNIT_ADD(LPC812M101DH20GpioPin, LPC812M101DH20SetupGpio, LPC812M101DH20Teardown) {

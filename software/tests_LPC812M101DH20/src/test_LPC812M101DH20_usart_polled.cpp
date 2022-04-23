@@ -26,7 +26,7 @@ MINUNIT_ADD(LPC812M101DH20UsartTxRx, LPC812M101DH20SetupUsart, LPC812M101DH20Tea
   SwmMovablePinAssign(SWM, SWM_USART0_RXD_I, SWM_TESTPIN_0_1);
   sysconUartClockDiv(SYSCON, 1);
   // make sure we use a baud rate that is not an exact match
-  minUnitCheck(usartSetBaud(USART0, 12000000, 9600) == 9615);
+  minUnitCheck(usartSetBaud(USART0, CLOCK_MAIN, 9600) == 9615);
   usartSetConfig(USART0, DATALEN_8, PARITY_NONE, STOPLEN_1, 0);
   usartTXEnable(USART0);
   usartSendData(USART0, 0xA5);
@@ -34,7 +34,8 @@ MINUNIT_ADD(LPC812M101DH20UsartTxRx, LPC812M101DH20SetupUsart, LPC812M101DH20Tea
   int i = 0;
   while (i < 100000 && !(usartGetStatus(USART0) & USART_STAT_RXRDY)) i++;
   minUnitCheck(i < 100000);
-  minUnitCheck(usartReadData(USART0) == 0xA5);
+  uint32_t uartData = usartReadData(USART0);
+  minUnitCheck(uartData == 0xA5);
   usartTXDisable(USART0);
   usartDisable(USART0);
   SwmMovablePinAssign(SWM, SWM_USART0_TXD_O, SWM_PORTPIN_Reset);

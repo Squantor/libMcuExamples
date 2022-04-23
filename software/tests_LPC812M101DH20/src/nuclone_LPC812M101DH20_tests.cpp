@@ -6,23 +6,17 @@
  */
 #include <nuclone_LPC812M101DH20_tests.hpp>
 
-void crudeDelay(uint32_t iterations)
-{
-    for(uint32_t i = iterations; i > 0; i--)
-    {
-        __NOP();
-        __NOP();
-        __NOP();
-        __NOP();
-        __NOP();
-        __NOP();
-        __NOP();
-        __NOP();
-    }
+void crudeDelay(uint32_t iterations) {
+  for (uint32_t i = iterations; i > 0; i--) {
+    __NOP();
+    __NOP();
+    __NOP();
+    __NOP();
+    __NOP();
+    __NOP();
+    __NOP();
+    __NOP();
+  }
 }
 
-void boardInit(void)
-{
-    // setup systick
-    SysTick_Config(CLOCK_AHB / TICKS_PER_S);
-}
+void boardInit(void) {}
