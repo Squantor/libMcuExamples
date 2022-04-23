@@ -11,12 +11,6 @@
 #include <MinUnit.h>
 #include <stream_uart.hpp>
 
-volatile int var;
-
-extern "C" {
-void SysTick_Handler(void) {}
-}
-
 void minunitReport(const char* string) {}
 
 void minunitFailCallback(void) {

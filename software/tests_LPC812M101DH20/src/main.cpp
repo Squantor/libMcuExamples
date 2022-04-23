@@ -11,33 +11,19 @@
 #include <MinUnit.h>
 #include <stream_uart.hpp>
 
-volatile int var;
+void minunitReport(const char* string) {}
 
-extern "C" 
-{
-    void SysTick_Handler(void)
-    {
-
-    }
+void minunitFailCallback(void) {
+  __BKPT(0x00);
 }
 
-void minunitReport( const char* string )
-{
-
-}
-
-int main()
-{
-    boardInit();
-    minunitRun();
-    if(minunitTestState.failures != 0)
-    {
-        minunitReport("Test failures detected\n");
-    }
-    else
-    {
-        minunitReport("All tests passed\n");
-    }
-    while (1)
-        __BKPT(0xFE);
+int main() {
+  boardInit();
+  minunitRun();
+  if (minunitTestState.failures != 0) {
+    minunitReport("Test failures detected\n");
+  } else {
+    minunitReport("All tests passed\n");
+  }
+  while (1) __BKPT(0xFE);
 }
