@@ -19,7 +19,7 @@
             "preRestartCommands": [],
             "preLaunchTask": "build debug LPC844M201BD64 tests",
             "svdFile": "${workspaceFolder}/libMcuLL/svd/nxp/LPC844.svd",
-            "debuggerArgs": ["--command=./${workspaceFolder}/gdb_scripts/tests_LPC844M201BD64.txt"],
+            "debuggerArgs": ["--command=${workspaceFolder}/gdb_scripts/tests_LPC844M201BD64_debug.txt"],
             "gdbpath": "/home/abilos/programs/gcc-arm-none-eabi-10-2020-q4-major/bin//arm-none-eabi-gdb"
         },
         {
@@ -37,7 +37,25 @@
             "preRestartCommands": [],
             "preLaunchTask": "build debug LPC824M201HI33 tests",
             "svdFile": "${workspaceFolder}/libMcuLL/svd/nxp/LPC824.svd",
-            "debuggerArgs": ["--command=./${workspaceFolder}/gdb_scripts/tests_LPC824M201HI33.txt"],
+            "debuggerArgs": ["--command=${workspaceFolder}/gdb_scripts/tests_LPC824M201HI33_debug.txt"],
+            "gdbpath": "/home/abilos/programs/gcc-arm-none-eabi-10-2020-q4-major/bin//arm-none-eabi-gdb"
+        },
+        {
+            "name": "Debug debug LPC812M101DH20 tests",
+            "cwd": "${workspaceRoot}",
+            "executable": "${workspaceFolder}/bin/tests_LPC812M101DH20/debug/tests_LPC812M101DH20.elf",
+            "request": "launch",
+            "type": "cortex-debug",
+            "servertype": "bmp",
+            "interface": "swd",
+            "device": "LPC812",
+            "BMPGDBSerialPort": "/dev/ttyACM0",
+            "runToEntryPoint": "main",
+            "preLaunchCommands": [],
+            "preRestartCommands": [],
+            "preLaunchTask": "build debug LPC812M101DH20 tests",
+            "svdFile": "${workspaceFolder}/libMcuLL/svd/nxp/LPC812.svd",
+            "debuggerArgs": ["--command=${workspaceFolder}/gdb_scripts/tests_LPC812M101DH20_debug.txt"],
             "gdbpath": "/home/abilos/programs/gcc-arm-none-eabi-10-2020-q4-major/bin//arm-none-eabi-gdb"
         },
         {
