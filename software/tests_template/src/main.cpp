@@ -11,15 +11,7 @@
 #include <MinUnit.h>
 #include <stream_uart.hpp>
 
-volatile int var;
-
-extern "C" 
-{
-    void SysTick_Handler(void)
-    {
-
-    }
-}
+#pragma GCC diagnostic ignored "-Wunused-parameter"
 
 void minunitReport( const char* string )
 {

@@ -11,6 +11,8 @@
 #include <MinUnit.h>
 #include <stream_uart.hpp>
 
+#pragma GCC diagnostic ignored "-Wunused-parameter"
+
 void minunitReport(const char* string) {}
 
 void minunitFailCallback(void) {

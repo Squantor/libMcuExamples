@@ -25,6 +25,13 @@
         "problemMatcher": "$gcc"
       },
       {
+        "label": "build release LPC824M201HI33 tests",
+        "type": "shell",
+        "command": "make PROJECT=tests_LPC824M201HI33 CONFIG=release -j20",
+        "group": "build",
+        "problemMatcher": "$gcc"
+      },
+      {
         "label": "build debug LPC845M301HI48 blinky",
         "type": "shell",
         "command": "make PROJECT=LPC845M301HI48_blinky CONFIG=debug -j20",

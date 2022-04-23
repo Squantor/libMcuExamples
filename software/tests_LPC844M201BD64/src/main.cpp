@@ -11,9 +11,7 @@
 #include <MinUnit.h>
 #include <stream_uart.hpp>
 
-extern "C" {
-void SysTick_Handler(void) {}
-}
+#pragma GCC diagnostic ignored "-Wunused-parameter"
 
 void minunitReport(const char* string) {}
 
