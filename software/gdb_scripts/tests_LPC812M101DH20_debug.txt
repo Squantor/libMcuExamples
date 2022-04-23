@@ -11,4 +11,3 @@ set {int}0x40048000 = 2
 load bin/tests_LPC812M101DH20/debug/tests_LPC812M101DH20.elf
 set {int}0x40048000 = 2
 compare-sections
-b main

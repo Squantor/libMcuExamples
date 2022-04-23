@@ -1,6 +1,8 @@
-tui enable
+set print pretty on
+set architecture armv6
 file bin/tests_LPC844M201BD64/debug/tests_LPC844M201BD64.elf
 target extended-remote /dev/ttyACM0
+monitor tpwr enable
 shell sleep 1
 monitor swdp_scan
 attach 1
