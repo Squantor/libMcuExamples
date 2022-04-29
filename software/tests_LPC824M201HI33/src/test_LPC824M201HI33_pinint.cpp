@@ -17,7 +17,7 @@
  */
 MINUNIT_SETUP(LPC824M201HI33SetupPinint) {
   minUnitCheck(LPC824M201HI33TeardownCorrect() == true);
-  // sysconEnableClocks(SYSCON, clkctrl);
+  sysconEnableClocks(SYSCON, CLKCTRL_GPIO);  // pinint engine shares clock with GPIO
 }
 
 /**
