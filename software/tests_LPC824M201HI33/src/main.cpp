@@ -7,7 +7,7 @@
 /**
  * @brief main test entry point for LPC824 libMcuLL tests
  */
-#include <nuclone_LPC824M201HI33_tests.hpp>
+#include <board.hpp>
 #include <MinUnit.h>
 #include <stream_uart.hpp>
 

@@ -12,6 +12,7 @@
 #include <LPC824M201HI33_teardown.hpp>
 #include <test_conditions.hpp>
 #include <MinUnit.h>
+#include <LPC82X_interrupts.hpp>
 
 #define IOCON_NORMAL_DEFAULT 0x00000090 /**< Default value for most pins */
 #define IOCON_I2CPIN_MASK (~0x00000400) /**< some I2C pins have no default value, so mask them */
@@ -21,6 +22,36 @@
 /** @brief resets all the registers to their default states
  */
 MINUNIT_TEARDOWN(LPC824M201HI33Teardown) {
+  interrupt_SPI0 = NULL;
+  interrupt_SPI1 = NULL;
+  interrupt_UART0 = NULL;
+  interrupt_UART1 = NULL;
+  interrupt_UART2 = NULL;
+  interrupt_I2C1 = NULL;
+  interrupt_I2C0 = NULL;
+  interrupt_SCT = NULL;
+  interrupt_MRT = NULL;
+  interrupt_CMP = NULL;
+  interrupt_WDT = NULL;
+  interrupt_BOD = NULL;
+  interrupt_FLASH = NULL;
+  interrupt_WKT = NULL;
+  interrupt_ADC_SEQA = NULL;
+  interrupt_ADC_SEQB = NULL;
+  interrupt_ADC_THCMP = NULL;
+  interrupt_ADC_OVR = NULL;
+  interrupt_DMA = NULL;
+  interrupt_I2C2 = NULL;
+  interrupt_I2C3 = NULL;
+  interrupt_PIN_INT0 = NULL;
+  interrupt_PIN_INT1 = NULL;
+  interrupt_PIN_INT2 = NULL;
+  interrupt_PIN_INT3 = NULL;
+  interrupt_PIN_INT4 = NULL;
+  interrupt_PIN_INT5 = NULL;
+  interrupt_PIN_INT6 = NULL;
+  interrupt_PIN_INT7 = NULL;
+
   sysconEnableClocks(SYSCON, CLKCTRL_UART0 | CLKCTRL_I2C0 | CLKCTRL_I2C1);
   sysconDisableResets(SYSCON, RESETCTRL_UART0 | RESETCTRL_I2C0 | RESETCTRL_I2C1);
   sysconEnableResets(SYSCON, RESETCTRL_UART0 | RESETCTRL_I2C0 | RESETCTRL_I2C1);
@@ -100,6 +131,36 @@ MINUNIT_TEARDOWN(LPC824M201HI33Teardown) {
  *  @return if all registers are correctly torndown
  */
 bool LPC824M201HI33TeardownCorrect(void) {
+  TESTANDRETURN(interrupt_SPI0 == NULL);
+  TESTANDRETURN(interrupt_SPI1 == NULL);
+  TESTANDRETURN(interrupt_UART0 == NULL);
+  TESTANDRETURN(interrupt_UART1 == NULL);
+  TESTANDRETURN(interrupt_UART2 == NULL);
+  TESTANDRETURN(interrupt_I2C1 == NULL);
+  TESTANDRETURN(interrupt_I2C0 == NULL);
+  TESTANDRETURN(interrupt_SCT == NULL);
+  TESTANDRETURN(interrupt_MRT == NULL);
+  TESTANDRETURN(interrupt_CMP == NULL);
+  TESTANDRETURN(interrupt_WDT == NULL);
+  TESTANDRETURN(interrupt_BOD == NULL);
+  TESTANDRETURN(interrupt_FLASH == NULL);
+  TESTANDRETURN(interrupt_WKT == NULL);
+  TESTANDRETURN(interrupt_ADC_SEQA == NULL);
+  TESTANDRETURN(interrupt_ADC_SEQB == NULL);
+  TESTANDRETURN(interrupt_ADC_THCMP == NULL);
+  TESTANDRETURN(interrupt_ADC_OVR == NULL);
+  TESTANDRETURN(interrupt_DMA == NULL);
+  TESTANDRETURN(interrupt_I2C2 == NULL);
+  TESTANDRETURN(interrupt_I2C3 == NULL);
+  TESTANDRETURN(interrupt_PIN_INT0 == NULL);
+  TESTANDRETURN(interrupt_PIN_INT1 == NULL);
+  TESTANDRETURN(interrupt_PIN_INT2 == NULL);
+  TESTANDRETURN(interrupt_PIN_INT3 == NULL);
+  TESTANDRETURN(interrupt_PIN_INT4 == NULL);
+  TESTANDRETURN(interrupt_PIN_INT5 == NULL);
+  TESTANDRETURN(interrupt_PIN_INT6 == NULL);
+  TESTANDRETURN(interrupt_PIN_INT7 == NULL);
+
   // check i2c reset states
   sysconEnableClocks(SYSCON, CLKCTRL_I2C0 | CLKCTRL_I2C1);
   TESTANDRETURN(I2C0->CFG == 0x0);

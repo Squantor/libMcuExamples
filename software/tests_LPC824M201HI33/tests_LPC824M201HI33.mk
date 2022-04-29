@@ -20,6 +20,7 @@ BOARD = nuclone_LPC824M201HI33_tests
 # project sources
 FILES += $(PROJECT)/src/main.cpp \
 $(PROJECT)/src/$(BOARD).cpp \
+$(PROJECT)/src/LPC82X_interrupts.cpp \
 $(PROJECT)/src/LPC824M201HI33_teardown.cpp \
 $(PROJECT)/src/test_LPC824M201HI33_gpio.cpp \
 $(PROJECT)/src/test_LPC824M201HI33_iocon.cpp \

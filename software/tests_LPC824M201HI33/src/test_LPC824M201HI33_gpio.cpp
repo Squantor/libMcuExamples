@@ -7,7 +7,7 @@
 /**
  * @brief tests for the LPC824M201 GPIO peripheral
  */
-#include <nuclone_LPC824M201HI33_tests.hpp>
+#include <board.hpp>
 #include <MinUnit.h>
 #include <LPC824M201HI33_teardown.hpp>
 #include <common.hpp>
