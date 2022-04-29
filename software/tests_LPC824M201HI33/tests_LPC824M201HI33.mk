@@ -23,7 +23,8 @@ $(PROJECT)/src/$(BOARD).cpp \
 $(PROJECT)/src/LPC824M201HI33_teardown.cpp \
 $(PROJECT)/src/test_LPC824M201HI33_gpio.cpp \
 $(PROJECT)/src/test_LPC824M201HI33_iocon.cpp \
-$(PROJECT)/src/test_LPC824M201HI33_usart_polled.cpp
+$(PROJECT)/src/test_LPC824M201HI33_usart_polled.cpp \
+$(PROJECT)/src/test_LPC824M201HI33_pinint.cpp
 
 
 INCLUDES += -I$(PROJECT)/inc -Icommon/inc
