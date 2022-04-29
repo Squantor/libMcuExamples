@@ -8,7 +8,7 @@
  * @brief Teardown function that resets the LPC845 to a state
  * that more or less matches reset state
  */
-#include <nuclone_LPC824M201HI33_tests.hpp>
+#include <board.hpp>
 #include <LPC824M201HI33_teardown.hpp>
 #include <test_conditions.hpp>
 #include <MinUnit.h>
@@ -51,6 +51,19 @@ MINUNIT_TEARDOWN(LPC824M201HI33Teardown) {
   interrupt_PIN_INT5 = NULL;
   interrupt_PIN_INT6 = NULL;
   interrupt_PIN_INT7 = NULL;
+
+  NVIC->ISER[0] = 0x00000000;
+  NVIC->ICER[0] = 0xFF7FFFBB;
+  NVIC->ISPR[0] = 0x00000000;
+  NVIC->ICPR[0] = 0xFF7FFFBB;
+  NVIC->IP[0] = 0x00000000;
+  NVIC->IP[1] = 0x00000000;
+  NVIC->IP[2] = 0x00000000;
+  NVIC->IP[3] = 0x00000000;
+  NVIC->IP[4] = 0x00000000;
+  NVIC->IP[5] = 0x00000000;
+  NVIC->IP[6] = 0x00000000;
+  NVIC->IP[7] = 0x00000000;
 
   sysconEnableClocks(SYSCON, CLKCTRL_UART0 | CLKCTRL_I2C0 | CLKCTRL_I2C1);
   sysconDisableResets(SYSCON, RESETCTRL_UART0 | RESETCTRL_I2C0 | RESETCTRL_I2C1);
@@ -160,6 +173,19 @@ bool LPC824M201HI33TeardownCorrect(void) {
   TESTANDRETURN(interrupt_PIN_INT5 == NULL);
   TESTANDRETURN(interrupt_PIN_INT6 == NULL);
   TESTANDRETURN(interrupt_PIN_INT7 == NULL);
+
+  TESTANDRETURN(NVIC->ISER[0] == 0x00000000);
+  TESTANDRETURN(NVIC->ICER[0] == 0x00000000);
+  TESTANDRETURN(NVIC->ISPR[0] == 0x00000000);
+  TESTANDRETURN(NVIC->ICPR[0] == 0x00000000);
+  TESTANDRETURN(NVIC->IP[0] == 0x00000000);
+  TESTANDRETURN(NVIC->IP[1] == 0x00000000);
+  TESTANDRETURN(NVIC->IP[2] == 0x00000000);
+  TESTANDRETURN(NVIC->IP[3] == 0x00000000);
+  TESTANDRETURN(NVIC->IP[4] == 0x00000000);
+  TESTANDRETURN(NVIC->IP[5] == 0x00000000);
+  TESTANDRETURN(NVIC->IP[6] == 0x00000000);
+  TESTANDRETURN(NVIC->IP[7] == 0x00000000);
 
   // check i2c reset states
   sysconEnableClocks(SYSCON, CLKCTRL_I2C0 | CLKCTRL_I2C1);
