@@ -24,12 +24,13 @@ Release/
 *.app
 bin/
 
-#miscellanious generated files
+# miscellanious generated files
 *.log
 disassemblies/
+compile_commands.json
 
 # doxygen output
-documentation/
+doxyOutput/
 
 #vscode files that are better ignored
 settings.json
