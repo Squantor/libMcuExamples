@@ -88,6 +88,13 @@
       "problemMatcher": "$gcc"
     },
     {
+      "label": "build debug template tests",
+      "type": "shell",
+      "command": "bear -- make PROJECT=tests_template CONFIG=debug -j20",
+      "group": "build",
+      "problemMatcher": "$gcc"
+    },
+    {
       "label": "clean",
       "type": "shell",
       "command": "make PROJECT=PC clean",
