@@ -1,86 +1,100 @@
 {
-    // See https://go.microsoft.com/fwlink/?LinkId=733558
-    // for the documentation about the tasks.json format
-    "version": "2.0.0",
-    "tasks": [
-      {
-        "label": "build debug LPC844M201BD64 tests",
-        "type": "shell",
-        "command": "make PROJECT=tests_LPC844M201BD64 CONFIG=debug -j20",
-        "group": "build",
-        "problemMatcher": "$gcc"
-      },
-      {
-        "label": "build debug LPC812M101DH20 tests",
-        "type": "shell",
-        "command": "make PROJECT=tests_LPC812M101DH20 CONFIG=debug -j20",
-        "group": "build",
-        "problemMatcher": "$gcc"
-      },
-      {
-        "label": "build debug LPC824M201HI33 tests",
-        "type": "shell",
-        "command": "make PROJECT=tests_LPC824M201HI33 CONFIG=debug -j20",
-        "group": "build",
-        "problemMatcher": "$gcc"
-      },
-      {
-        "label": "build release LPC824M201HI33 tests",
-        "type": "shell",
-        "command": "make PROJECT=tests_LPC824M201HI33 CONFIG=release -j20",
-        "group": "build",
-        "problemMatcher": "$gcc"
-      },
-      {
-        "label": "build debug LPC845M301HI48 blinky",
-        "type": "shell",
-        "command": "make PROJECT=LPC845M301HI48_blinky CONFIG=debug -j20",
-        "group": "build",
-        "problemMatcher": "$gcc"
-      },
-      {
-        "label": "build debug LPC812M101DH20 blinky",
-        "type": "shell",
-        "command": "make PROJECT=LPC812M101DH20_blinky CONFIG=debug -j20",
-        "group": "build",
-        "problemMatcher": "$gcc"
-      },
-      {
-        "label": "build debug LPC824M201DH20 blinky",
-        "type": "shell",
-        "command": "make PROJECT=LPC824M201DH20_blinky CONFIG=debug -j20",
-        "group": "build",
-        "problemMatcher": "$gcc"
-      },
-      {
-        "label": "build debug LPC824M201HI33 blinky",
-        "type": "shell",
-        "command": "make PROJECT=LPC824M201HI33_blinky CONFIG=debug -j20",
-        "group": "build",
-        "problemMatcher": "$gcc"
-      },
-      {
-        "label": "build debug STM32F030K6 blinky",
-        "type": "shell",
-        "command": "make PROJECT=STM32F030K6_blinky CONFIG=debug -j20",
-        "group": "build",
-        "problemMatcher": "$gcc"
-      },
-      {
-        "label": "build debug STM32F031K6 blinky",
-        "type": "shell",
-        "command": "make PROJECT=STM32F031K6_blinky CONFIG=debug -j20",
-        "group": "build",
-        "problemMatcher": "$gcc"
-      },
-      {
-        "label": "clean",
-        "type": "shell",
-        "command": "make PROJECT=PC clean",
-        "group": "build",
-        "problemMatcher": [
-          "$gcc"
-        ]
-      }
-    ]
+  // See https://go.microsoft.com/fwlink/?LinkId=733558
+  // for the documentation about the tasks.json format
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "build debug LPC844M201BD64 tests",
+      "type": "shell",
+      "command": "bear -- make PROJECT=tests_LPC844M201BD64 CONFIG=debug -j20",
+      "group": "build",
+      "problemMatcher": "$gcc"
+    },
+    {
+      "label": "build debug LPC812M101DH20 tests",
+      "type": "shell",
+      "command": "bear -- make PROJECT=tests_LPC812M101DH20 CONFIG=debug -j20",
+      "group": "build",
+      "problemMatcher": "$gcc"
+    },
+    {
+      "label": "build debug LPC824M201HI33 tests",
+      "type": "shell",
+      "command": "bear -- make PROJECT=tests_LPC824M201HI33 CONFIG=debug -j20",
+      "group": "build",
+      "problemMatcher": "$gcc"
+    },
+    {
+      "label": "build release LPC824M201HI33 tests",
+      "type": "shell",
+      "command": "bear -- make PROJECT=tests_LPC824M201HI33 CONFIG=release -j20",
+      "group": "build",
+      "problemMatcher": "$gcc"
+    },
+    {
+      "label": "build debug LPC845M301HI48 blinky",
+      "type": "shell",
+      "command": "bear -- make PROJECT=LPC845M301HI48_blinky CONFIG=debug -j20",
+      "group": "build",
+      "problemMatcher": "$gcc"
+    },
+    {
+      "label": "build debug LPC812M101DH20 blinky",
+      "type": "shell",
+      "command": "bear -- make PROJECT=LPC812M101DH20_blinky CONFIG=debug -j20",
+      "group": "build",
+      "problemMatcher": "$gcc"
+    },
+    {
+      "label": "build debug LPC824M201DH20 blinky",
+      "type": "shell",
+      "command": "bear -- make PROJECT=LPC824M201DH20_blinky CONFIG=debug -j20",
+      "group": "build",
+      "problemMatcher": "$gcc"
+    },
+    {
+      "label": "build debug LPC824M201HI33 blinky",
+      "type": "shell",
+      "command": "bear -- make PROJECT=LPC824M201HI33_blinky CONFIG=debug -j20",
+      "group": "build",
+      "problemMatcher": "$gcc"
+    },
+    {
+      "label": "build debug STM32F030K6 blinky",
+      "type": "shell",
+      "command": "bear -- make PROJECT=STM32F030K6_blinky CONFIG=debug -j20",
+      "group": "build",
+      "problemMatcher": "$gcc"
+    },
+    {
+      "label": "build debug STM32F031K6 blinky",
+      "type": "shell",
+      "command": "bear -- make PROJECT=STM32F031K6_blinky CONFIG=debug -j20",
+      "group": "build",
+      "problemMatcher": "$gcc"
+    },
+    {
+      "label": "build debug RP2040 blinky project",
+      "type": "shell",
+      "command": "bear -- make PROJECT=RP2040_blinky CONFIG=debug -j20",
+      "group": "build",
+      "problemMatcher": "$gcc"
+    },
+    {
+      "label": "build release size RP2040 blinky project",
+      "type": "shell",
+      "command": "bear -- make PROJECT=RP2040_blinky CONFIG=release_size -j20",
+      "group": "build",
+      "problemMatcher": "$gcc"
+    },
+    {
+      "label": "clean",
+      "type": "shell",
+      "command": "make PROJECT=PC clean",
+      "group": "build",
+      "problemMatcher": [
+        "$gcc"
+      ]
+    }
+  ]
 }

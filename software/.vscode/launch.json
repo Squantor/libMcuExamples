@@ -148,5 +148,28 @@
             "debuggerArgs": ["--command=./${workspaceFolder}/gdb_scripts/STM32F031K6_blinky_debug.txt"],
             "gdbpath": "/home/abilos/programs/gcc-arm-none-eabi-10-2020-q4-major/bin//arm-none-eabi-gdb"
         },
-    ]
+    {
+      "name": "debug debug RP2040 blinky",
+      "cwd": "${workspaceRoot}",
+      "executable": "${workspaceFolder}/bin/RP2040_blinky/debug/RP2040_blinky.elf",
+      "request": "launch",
+      "type": "cortex-debug",
+      "servertype": "bmp",
+      "interface": "swd",
+      "device": "RP2040",
+      "BMPGDBSerialPort": "/dev/ttyACM0",
+      "runToEntryPoint": "main",
+      "overrideLaunchCommands": [],
+      "preLaunchCommands": [
+        "load bin/RP2040_blinky/debug/RP2040_blinky.elf",
+        "compare-sections",
+      ],
+      "preRestartCommands": [
+        "load bin/RP2040_blinky/debug/RP2040_blinky.elf",
+      ],
+      "preLaunchTask": "build debug RP2040 blinky project",
+      "svdFile": "${workspaceFolder}/libraries/libMcuLL/svd/raspberrypi/rp2040.svd",
+      "debuggerArgs": [],
+    },
+  ]
 }
