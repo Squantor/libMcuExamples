@@ -1,12 +1,12 @@
 [submodule "software/libMcuLL"]
 	path = software/libraries/libMcuLL
-	url = git@github.com:Squantor/libMcuLL.git
+	url = https://github.com/Squantor/libMcuLL.git
 [submodule "software/squantorLibC"]
 	path = software/libraries/squantorLibC
-	url = git@github.com:Squantor/squantorLibC.git
+	url = https://github.com/Squantor/squantorLibC.git
 [submodule "software/squantorMinUnit"]
 	path = software/libraries/squantorMinUnit
-	url = git@github.com:Squantor/squantorMinUnit.git
+	url = https://github.com/Squantor/squantorMinUnit.git
 [submodule "software/squantorLibEmbedded"]
 	path = software/libraries/squantorLibEmbedded
-	url = git@github.com:Squantor/squantorLibEmbedded.git
+	url = https://github.com/Squantor/squantorLibEmbedded.git
