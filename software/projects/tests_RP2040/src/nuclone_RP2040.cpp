@@ -4,7 +4,7 @@
  * Copyright (c) 2021 Bart Bilos
  * For conditions of distribution and use, see LICENSE file
  */
-#include <generic_board.hpp>
+#include <nuclone_RP2040.hpp>
 
 void boardInit(void) {
   // reset all setup peripherals

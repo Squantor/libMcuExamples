@@ -4,6 +4,15 @@
   "version": "2.0.0",
   "tasks": [
     {
+      "label": "clean",
+      "type": "shell",
+      "command": "make PROJECT=PC clean",
+      "group": "build",
+      "problemMatcher": [
+        "$gcc"
+      ]
+    },
+    {
       "label": "build debug LPC844M201BD64 tests",
       "type": "shell",
       "command": "bear -- make PROJECT=tests_LPC844M201BD64 CONFIG=debug -j20",
@@ -95,13 +104,11 @@
       "problemMatcher": "$gcc"
     },
     {
-      "label": "clean",
+      "label": "build debug RP2040 tests",
       "type": "shell",
-      "command": "make PROJECT=PC clean",
+      "command": "bear -- make PROJECT=tests_RP2040 CONFIG=debug -j20",
       "group": "build",
-      "problemMatcher": [
-        "$gcc"
-      ]
-    }
+      "problemMatcher": "$gcc"
+    },
   ]
 }
