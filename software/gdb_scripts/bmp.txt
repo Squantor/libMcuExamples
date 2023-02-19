@@ -1,11 +1,6 @@
-file bin/debug/LPC812_example.elf
-target extended-remote /dev/ttyBmpGdb0
+set print pretty on
+set architecture armv6
+target extended-remote /dev/ttyACM0
+monitor tpwr enable
 shell sleep 1
 monitor swdp_scan
-attach 1
-set mem inaccessible-by-default off
-set {int}0x40048000 = 2
-load bin/debug/bin/debug/LPC812_example.elf
-set {int}0x40048000 = 2
-compare-sections
-b main

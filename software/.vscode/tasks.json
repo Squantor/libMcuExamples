@@ -15,28 +15,28 @@
     {
       "label": "build debug LPC844M201BD64 tests",
       "type": "shell",
-      "command": "bear -- make PROJECT=tests_LPC844M201BD64 CONFIG=debug -j20",
+      "command": "bear -- make PROJECT=LPC844M201BD64_tests CONFIG=debug -j20",
       "group": "build",
       "problemMatcher": "$gcc"
     },
     {
       "label": "build debug LPC812M101DH20 tests",
       "type": "shell",
-      "command": "bear -- make PROJECT=tests_LPC812M101DH20 CONFIG=debug -j20",
+      "command": "bear -- make PROJECT=LPC812M101DH20_tests CONFIG=debug -j20",
       "group": "build",
       "problemMatcher": "$gcc"
     },
     {
       "label": "build debug LPC824M201HI33 tests",
       "type": "shell",
-      "command": "bear -- make PROJECT=tests_LPC824M201HI33 CONFIG=debug -j20",
+      "command": "bear -- make PROJECT=LPC824M201HI33_tests CONFIG=debug -j20",
       "group": "build",
       "problemMatcher": "$gcc"
     },
     {
       "label": "build release LPC824M201HI33 tests",
       "type": "shell",
-      "command": "bear -- make PROJECT=tests_LPC824M201HI33 CONFIG=release -j20",
+      "command": "bear -- make PROJECT=LPC824M201HI33_tests CONFIG=release -j20",
       "group": "build",
       "problemMatcher": "$gcc"
     },
@@ -106,7 +106,7 @@
     {
       "label": "build debug RP2040 tests",
       "type": "shell",
-      "command": "bear -- make PROJECT=tests_RP2040 CONFIG=debug -j20",
+      "command": "bear -- make PROJECT=RP2040_tests CONFIG=debug -j20",
       "group": "build",
       "problemMatcher": "$gcc"
     },
