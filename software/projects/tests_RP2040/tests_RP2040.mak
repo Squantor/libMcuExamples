@@ -8,7 +8,7 @@
 PROJ_DIR := $(patsubst %/,%,$(dir $(lastword $(MAKEFILE_LIST))))
 
 # project settings
-NAME := tests_RP2040
+NAME := RP2040_tests
 BOARD := nuclone_RP2040
 $(NAME)_TARGET := MCU
 $(NAME)_MCU := RP2040
