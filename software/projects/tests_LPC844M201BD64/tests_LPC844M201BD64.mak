@@ -23,7 +23,8 @@ $(PROJ_DIR)/src/test_LPC844M201_iocon.cpp \
 $(PROJ_DIR)/src/test_LPC844M201_usart_polled.cpp \
 $(PROJ_DIR)/src/test_LPC844M201_spi_polled.cpp \
 $(PROJ_DIR)/src/test_LPC844M201_i2c_polled.cpp \
-$(PROJ_DIR)/src/test_LPC844M201_sct.cpp
+$(PROJ_DIR)/src/test_LPC844M201_sct.cpp \
+$(PROJ_DIR)/src/test_LPC844M201_cpp_spi.cpp
 $(NAME)_INCLUDES := -I$(PROJ_DIR)/inc -Icommon/inc
 
 # --- nothing user definable below ---
