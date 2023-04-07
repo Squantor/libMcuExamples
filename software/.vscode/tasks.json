@@ -20,6 +20,20 @@
       "problemMatcher": "$gcc"
     },
     {
+      "label": "build debug C LPC844M201BD64 tests",
+      "type": "shell",
+      "command": "bear -- make PROJECT=LPC844M201BD64_C_tests CONFIG=debug -j20",
+      "group": "build",
+      "problemMatcher": "$gcc"
+    },
+    {
+      "label": "build debug C++ LPC844M201BD64 tests",
+      "type": "shell",
+      "command": "bear -- make PROJECT=LPC844M201BD64_CPP_tests CONFIG=debug -j20",
+      "group": "build",
+      "problemMatcher": "$gcc"
+    },
+    {
       "label": "build debug LPC812M101DH20 tests",
       "type": "shell",
       "command": "bear -- make PROJECT=LPC812M101DH20_tests CONFIG=debug -j20",

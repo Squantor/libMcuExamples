@@ -5,9 +5,9 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Debug debug LPC844M201BD64 tests",
+            "name": "Debug debug C LPC844M201BD64 tests",
             "cwd": "${workspaceRoot}",
-            "executable": "${workspaceFolder}/bin/LPC844M201BD64_tests/debug/LPC844M201BD64_tests.elf",
+            "executable": "${workspaceFolder}/bin/LPC844M201BD64_C_tests/debug/LPC844M201BD64_C_tests.elf",
             "request": "launch",
             "type": "cortex-debug",
             "servertype": "bmp",
@@ -17,10 +17,29 @@
             "runToEntryPoint": "main",
             "preLaunchCommands": [],
             "preRestartCommands": [],
-            "preLaunchTask": "build debug LPC844M201BD64 tests",
+            "preLaunchTask": "build debug C LPC844M201BD64 tests",
             "svdFile": "${workspaceFolder}/libMcuLL/svd/nxp/LPC844.svd",
             "debuggerArgs": [
-                "--command=${workspaceFolder}/gdb_scripts/LPC844M201BD64_tests.txt"
+                "--command=${workspaceFolder}/gdb_scripts/LPC844M201BD64_C_tests.txt"
+            ],
+        },
+        {
+            "name": "Debug debug C++ LPC844M201BD64 tests",
+            "cwd": "${workspaceRoot}",
+            "executable": "${workspaceFolder}/bin/LPC844M201BD64_CPP_tests/debug/LPC844M201BD64_CPP_tests.elf",
+            "request": "launch",
+            "type": "cortex-debug",
+            "servertype": "bmp",
+            "interface": "swd",
+            "device": "LPC844",
+            "BMPGDBSerialPort": "/dev/ttyACM0",
+            "runToEntryPoint": "main",
+            "preLaunchCommands": [],
+            "preRestartCommands": [],
+            "preLaunchTask": "build debug C++ LPC844M201BD64 tests",
+            "svdFile": "${workspaceFolder}/libMcuLL/svd/nxp/LPC844.svd",
+            "debuggerArgs": [
+                "--command=${workspaceFolder}/gdb_scripts/LPC844M201BD64_CPP_tests.txt"
             ],
         },
         {

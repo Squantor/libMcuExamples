@@ -8,7 +8,7 @@
 PROJ_DIR := $(patsubst %/,%,$(dir $(lastword $(MAKEFILE_LIST))))
 
 # project settings
-NAME := LPC844M201BD64_tests
+NAME := LPC844M201BD64_C_tests
 BOARD := nuclone_LPC844M201BD64_tests
 $(NAME)_TARGET := MCU
 $(NAME)_MCU := LPC844M201BD64
@@ -23,8 +23,7 @@ $(PROJ_DIR)/src/test_LPC844M201_iocon.cpp \
 $(PROJ_DIR)/src/test_LPC844M201_usart_polled.cpp \
 $(PROJ_DIR)/src/test_LPC844M201_spi_polled.cpp \
 $(PROJ_DIR)/src/test_LPC844M201_i2c_polled.cpp \
-$(PROJ_DIR)/src/test_LPC844M201_sct.cpp \
-$(PROJ_DIR)/src/test_LPC844M201_cpp_spi.cpp
+$(PROJ_DIR)/src/test_LPC844M201_sct.cpp
 $(NAME)_INCLUDES := -I$(PROJ_DIR)/inc -Icommon/inc
 
 # --- nothing user definable below ---
