@@ -12,6 +12,8 @@
 #include <LPC844M201_teardown.hpp>
 #include <common.hpp>
 
+LPC844M201BD64::instances::spi<LPC844M201BD64::peripherals::SPI0_cpp, LPC844M201BD64::spiChipEnables> testSpiPeripheral;
+
 /**
  * @brief Spi setup and initialisation
  */
@@ -27,17 +29,16 @@ MINUNIT_ADD(LPC844M201CppSpiRxTx, LPC844M201CppSetupSpi, LPC844M201Teardown) {
   SwmMovablePinAssign(SWM, SWM_SPI0_MOSI, SWM_TESTPIN_1_0);
   SwmMovablePinAssign(SWM, SWM_SPI0_MISO, SWM_TESTPIN_1_1);
   SwmMovablePinAssign(SWM, SWM_SPI0_SSEL0, SWM_TESTPIN_2);
-  spiSetDelays(SPI0, SPI_DLY_PRE(1) | SPI_DLY_POST(2) | SPI_DLY_FRAME(3) | SPI_DLY_TRANSFER(4));
-  minUnitCheck(SPI0->DLY == 0x00004321);
-  spiSetDivider(SPI0, 2);
-  minUnitCheck(SPI0->DIV == 0x02);
-  spiSetConfig(SPI0, SPI_CFG_ENABLE | SPI_CFG_MASTER);
-  // masking off some bits that are a pain to get rid off
-  minUnitCheck((spiSetGetStatus(SPI0, 0x0) & 0x10F) == 0x102);
+  __NOP();
+  uint32_t actualDivider = testSpiPeripheral.init(999999);
+  minUnitCheck(actualDivider == 1000000);
+  minUnitCheck(SPI0->DIV == 11);
+  minUnitCheck((spiSetGetStatus(SPI0, 0x0) & 0x10F) == 0x102);  // masking off relevant bits
   // test 16 bit transfer with receive
   spiSetTxCtrlData(SPI0, SPI_TXDATCTL_TXDAT(0xA55A) | SPI_TXDATCTL_TXSSEL0 | SPI_TXDATCTL_EOF | SPI_TXDATCTL_LEN(16));
   int i = 0;
   while (i < 10000 && !(spiSetGetStatus(SPI0, 0x0) & SPI_STAT_RXRDY)) i++;
+  minUnitCheck(i != 10000);
   uint32_t rxData = spiGetRxData(SPI0);
   minUnitCheck(SPI_RXDAT_DATA(rxData) == 0xA55A);
   minUnitCheck((rxData & 0xF0000) == SPI_TXDATCTL_TXSSEL0);

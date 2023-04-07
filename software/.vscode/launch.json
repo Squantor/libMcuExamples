@@ -14,11 +14,10 @@
             "interface": "swd",
             "device": "LPC844",
             "BMPGDBSerialPort": "/dev/ttyACM0",
-            "runToEntryPoint": "main",
             "preLaunchCommands": [],
             "preRestartCommands": [],
             "preLaunchTask": "build debug C LPC844M201BD64 tests",
-            "svdFile": "${workspaceFolder}/libMcuLL/svd/nxp/LPC844.svd",
+            "svdFile": "${workspaceFolder}/libraries/libMcuLL/svd/nxp/LPC844.svd",
             "debuggerArgs": [
                 "--command=${workspaceFolder}/gdb_scripts/LPC844M201BD64_C_tests.txt"
             ],
@@ -33,11 +32,10 @@
             "interface": "swd",
             "device": "LPC844",
             "BMPGDBSerialPort": "/dev/ttyACM0",
-            "runToEntryPoint": "main",
             "preLaunchCommands": [],
             "preRestartCommands": [],
             "preLaunchTask": "build debug C++ LPC844M201BD64 tests",
-            "svdFile": "${workspaceFolder}/libMcuLL/svd/nxp/LPC844.svd",
+            "svdFile": "${workspaceFolder}/libraries/libMcuLL/svd/nxp/LPC844.svd",
             "debuggerArgs": [
                 "--command=${workspaceFolder}/gdb_scripts/LPC844M201BD64_CPP_tests.txt"
             ],
@@ -56,11 +54,10 @@
             "preLaunchCommands": [],
             "preRestartCommands": [],
             "preLaunchTask": "build debug LPC824M201HI33 tests",
-            "svdFile": "${workspaceFolder}/libMcuLL/svd/nxp/LPC824.svd",
+            "svdFile": "${workspaceFolder}/libraries/libMcuLL/svd/nxp/LPC824.svd",
             "debuggerArgs": [
                 "--command=${workspaceFolder}/gdb_scripts/tests_LPC824M201HI33_debug.txt"
             ],
-            "gdbpath": "/home/abilos/programs/gcc-arm-none-eabi-10-2020-q4-major/bin//arm-none-eabi-gdb"
         },
         {
             "name": "Debug debug LPC812M101DH20 tests",
@@ -76,11 +73,10 @@
             "preLaunchCommands": [],
             "preRestartCommands": [],
             "preLaunchTask": "build debug LPC812M101DH20 tests",
-            "svdFile": "${workspaceFolder}/libMcuLL/svd/nxp/LPC812.svd",
+            "svdFile": "${workspaceFolder}/libraries/libMcuLL/svd/nxp/LPC812.svd",
             "debuggerArgs": [
                 "--command=${workspaceFolder}/gdb_scripts/tests_LPC812M101DH20_debug.txt"
             ],
-            "gdbpath": "/home/abilos/programs/gcc-arm-none-eabi-10-2020-q4-major/bin//arm-none-eabi-gdb"
         },
         {
             "name": "debug LPC812M101DH20 blinky",
@@ -96,11 +92,10 @@
             "preLaunchCommands": [],
             "preRestartCommands": [],
             "preLaunchTask": "build debug LPC812M101DH20 blinky",
-            "svdFile": "${workspaceFolder}/libMcuLL/svd/nxp/LPC812.svd",
+            "svdFile": "${workspaceFolder}/libraries/libMcuLL/svd/nxp/LPC812.svd",
             "debuggerArgs": [
                 "--command=./${workspaceFolder}/gdb_scripts/LPC812M101DH20_blinky_debug.txt"
             ],
-            "gdbpath": "/home/abilos/programs/gcc-arm-none-eabi-10-2020-q4-major/bin//arm-none-eabi-gdb"
         },
         {
             "name": "debug LPC824M201DH20 blinky",
@@ -116,11 +111,10 @@
             "preLaunchCommands": [],
             "preRestartCommands": [],
             "preLaunchTask": "build debug LPC824M201DH20 blinky",
-            "svdFile": "${workspaceFolder}/libMcuLL/svd/nxp/LPC812.svd",
+            "svdFile": "${workspaceFolder}/libraries/libMcuLL/svd/nxp/LPC812.svd",
             "debuggerArgs": [
                 "--command=./${workspaceFolder}/gdb_scripts/LPC824M201DH20_blinky_debug.txt"
             ],
-            "gdbpath": "/home/abilos/programs/gcc-arm-none-eabi-10-2020-q4-major/bin//arm-none-eabi-gdb"
         },
         {
             "name": "debug LPC824M201HI33 blinky",
@@ -136,11 +130,10 @@
             "preLaunchCommands": [],
             "preRestartCommands": [],
             "preLaunchTask": "build debug LPC824M201HI33 blinky",
-            "svdFile": "${workspaceFolder}/libMcuLL/svd/nxp/LPC812.svd",
+            "svdFile": "${workspaceFolder}/libraries/libMcuLL/svd/nxp/LPC812.svd",
             "debuggerArgs": [
                 "--command=./${workspaceFolder}/gdb_scripts/LPC824M201HI33_blinky_debug.txt"
             ],
-            "gdbpath": "/home/abilos/programs/gcc-arm-none-eabi-10-2020-q4-major/bin//arm-none-eabi-gdb"
         },
         {
             "name": "debug STM32F030K6 blinky",
@@ -156,11 +149,10 @@
             "preLaunchCommands": [],
             "preRestartCommands": [],
             "preLaunchTask": "build debug STM32F030K6 blinky",
-            "svdFile": "${workspaceFolder}/libMcuLL/svd/st/STM32F030.svd",
+            "svdFile": "${workspaceFolder}/libraries/libMcuLL/svd/st/STM32F030.svd",
             "debuggerArgs": [
                 "--command=./${workspaceFolder}/gdb_scripts/STM32F030K6_blinky_debug.txt"
             ],
-            "gdbpath": "/home/abilos/programs/gcc-arm-none-eabi-10-2020-q4-major/bin//arm-none-eabi-gdb"
         },
         {
             "name": "debug STM32F031K6 blinky",
@@ -176,11 +168,10 @@
             "preLaunchCommands": [],
             "preRestartCommands": [],
             "preLaunchTask": "build debug STM32F031K6 blinky",
-            "svdFile": "${workspaceFolder}/libMcuLL/svd/st/STM32F031x.svd",
+            "svdFile": "${workspaceFolder}/libraries/libMcuLL/svd/st/STM32F031x.svd",
             "debuggerArgs": [
                 "--command=./${workspaceFolder}/gdb_scripts/STM32F031K6_blinky_debug.txt"
             ],
-            "gdbpath": "/home/abilos/programs/gcc-arm-none-eabi-10-2020-q4-major/bin//arm-none-eabi-gdb"
         },
         {
             "name": "debug debug RP2040 blinky",

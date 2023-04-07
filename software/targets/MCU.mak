@@ -18,11 +18,11 @@ CONFIGS = debug release_size release_speed
 
 # configuration specific flags
 CFLAGS += -std=gnu11 -Wall -Wextra -Wno-main -fno-common -c -ffunction-sections -fdata-sections
-CFLAGS_debug += -Og -g3
+CFLAGS_debug += -O0 -g3
 CFLAGS_release_size += -Os -g -flto
 CFLAGS_release_speed += -O2 -g -flto
 CXXFLAGS += -std=gnu++20 -Wall -Wextra -Wno-main -fno-common -c -ffunction-sections -fdata-sections -fno-rtti -fno-exceptions
-CXXFLAGS_debug += -Og -g3
+CXXFLAGS_debug += -O0 -g3
 CXXFLAGS_release_size += -Os -g
 CXXFLAGS_release_speed += -O2 -g
 ASMFLAGS += -c -x assembler-with-cpp
