@@ -12,7 +12,7 @@
 #include <LPC844M201_teardown.hpp>
 #include <common.hpp>
 
-LPC844M201BD64::instances::spi<LPC844M201BD64::peripherals::SPI0_cpp, LPC844M201BD64::spiChipEnables> testSpiPeripheral;
+instances::spi::spi<peripherals::SPI0_cpp, instances::spi::spiChipEnables> testSpiPeripheral;
 
 /**
  * @brief Spi setup and initialisation
