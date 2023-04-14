@@ -2,6 +2,9 @@ set print pretty on
 set architecture armv6
 file bin/STM32F030K6_blinky/debug/STM32F030K6_blinky.elf
 target extended-remote /dev/ttyACM0
+# target extended-remote localhost:2000
+# disabled for now due to udev bug
+# target extended-remote /dev/serial/by-id/usb-Black_Sphere_Technologies_Black_Magic_Probe_v1.7.1-162-gbe3bfc4_80B5A7B6-if00
 shell sleep 1
 monitor swdp_scan
 attach 1
