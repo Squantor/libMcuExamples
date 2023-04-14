@@ -1,14 +1,15 @@
 {
-  "configurations": [
-    {
-      "name": "Linux",
-      "includePath": [],
-      "defines": [],
-      "browse": {},
-      "cStandard": "gnu17",
-      "cppStandard": "gnu++20",
-      "compileCommands": "${workspaceFolder}/compile_commands.json"
-    }
-  ],
-  "version": 4
+    "configurations": [
+        {
+            "name": "Linux",
+            "includePath": [],
+            "defines": [],
+            "browse": {},
+            "cStandard": "gnu17",
+            "cppStandard": "gnu++20",
+            "compileCommands": "${workspaceFolder}/compile_commands.json",
+            "configurationProvider": "ms-vscode.makefile-tools"
+        }
+    ],
+    "version": 4
 }
