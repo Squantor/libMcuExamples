@@ -15,6 +15,7 @@
             "interface": "swd",
             "device": "LPC812",
             "BMPGDBSerialPort": "/dev/ttyACM0",
+            "powerOverBMP": "enable",
             "preLaunchCommands": [],
             "postLaunchCommands": [
                 "set {int}0x40048000 = 2",
