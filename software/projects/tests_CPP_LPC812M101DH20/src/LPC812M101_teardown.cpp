@@ -14,7 +14,7 @@
 #include <MinUnit.h>
 
 // peripheral register sets
-registers::syscon::registers *sysconRegisters{reinterpret_cast<registers::syscon::registers *>(peripherals::SYSCON_cpp)};
+registers::syscon::registers *const sysconRegisters{reinterpret_cast<registers::syscon::registers *>(peripherals::SYSCON_cpp)};
 
 /** @brief resets all the registers to their default states
  *

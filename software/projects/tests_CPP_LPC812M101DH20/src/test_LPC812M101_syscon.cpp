@@ -13,7 +13,7 @@
 #include <common.hpp>
 
 // peripheral register sets
-registers::syscon::registers *dutRegisters{reinterpret_cast<registers::syscon::registers *>(peripherals::SYSCON_cpp)};
+registers::syscon::registers *const dutRegisters{reinterpret_cast<registers::syscon::registers *>(peripherals::SYSCON_cpp)};
 
 /**
  * @brief Spi setup and initialisation
