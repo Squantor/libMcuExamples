@@ -20,5 +20,5 @@ MINUNIT_SETUP(LPC812M101CppSetupSyscon) {
 }
 
 MINUNIT_ADD(LPC812M101CppSysconChipID, LPC812M101CppSetupSyscon, LPC812M101Teardown) {
-  minUnitPass();
+  minUnitCheck(sysconPeripheral.getChipId() == 0x00008122);
 }

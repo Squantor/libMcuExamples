@@ -73,6 +73,7 @@ extern instances::iocon::iocon<peripherals::IOCON_cpp> ioconPeripheral;
 extern instances::swm::swm<peripherals::SWM_cpp> swmPeriperhal;
 extern instances::gpio::gpio<peripherals::GPIO_cpp> gpioPeripheral;
 extern instances::spi::spi<peripherals::SPI0_cpp, instances::spi::chipEnables> spiPeripheral;
+extern instances::syscon::syscon<peripherals::SYSCON_cpp> sysconPeripheral;
 
 void boardInit(void);
 
