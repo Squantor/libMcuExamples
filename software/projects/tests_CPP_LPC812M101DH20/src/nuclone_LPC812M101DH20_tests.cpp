@@ -10,6 +10,7 @@ instances::iocon::iocon<peripherals::IOCON_cpp> ioconPeripheral;
 instances::swm::swm<peripherals::SWM_cpp> swmPeriperhal;
 instances::gpio::gpio<peripherals::GPIO_cpp> gpioPeripheral;
 instances::spi::spi<peripherals::SPI0_cpp, instances::spi::chipEnables> spiPeripheral;
+instances::syscon::syscon<peripherals::SYSCON_cpp> sysconPeripheral;
 
 void crudeDelay(uint32_t iterations) {
   for (uint32_t i = iterations; i > 0; i--) {
