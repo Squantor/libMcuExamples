@@ -35,4 +35,5 @@ MINUNIT_ADD(LPC812M101CppSpiRxTx, LPC812M101CppSetupSpi, LPC812M101Teardown) {
   swmPeriperhal.clear(test1Pin, spiMainMosiFunction);
   swmPeriperhal.clear(test0Pin, spiMainMisoFunction);
   sysconDisableClocks(SYSCON, CLKCTRL_SPI0 | CLKCTRL_SWM | CLKCTRL_IOCON);
+  minUnitPass();
 }
