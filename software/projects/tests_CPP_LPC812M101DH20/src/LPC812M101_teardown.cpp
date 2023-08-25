@@ -13,11 +13,14 @@
 #include <test_conditions.hpp>
 #include <MinUnit.h>
 
+// peripheral register sets
+registers::syscon::registers *sysconRegisters{reinterpret_cast<registers::syscon::registers *>(peripherals::SYSCON_cpp)};
+
 /** @brief resets all the registers to their default states
  *
- * TODO: syscon needs to be C++ified
  */
 MINUNIT_TEARDOWN(LPC812M101Teardown) {
+  sysconRegisters->PRESETCTRL = 0x00001FFF;
   minUnitCheck(LPC812M101TeardownCorrect() == true);
 }
 
@@ -25,7 +28,6 @@ MINUNIT_TEARDOWN(LPC812M101Teardown) {
  *  @return if all registers are correctly reset
  */
 bool LPC812M101TeardownCorrect(void) {
-  // use the TESTANDRETURN macro
-  // TESTANDRETURN(IOCON->PIO[IOCON_PIO0_17] == IOCON_NORMAL_DEFAULT);
+  TESTANDRETURN(sysconRegisters->PRESETCTRL == 0x00001FFF);
   return true;
 }
