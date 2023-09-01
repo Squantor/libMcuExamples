@@ -41,7 +41,12 @@ MINUNIT_ADD(LPC812M101CppSysconResets, LPC812M101CppSetupSyscon, LPC812M101Teard
   minUnitCheck(dutRegisters->PRESETCTRL == 0x00001FFF);
 }
 
+// We only test analog comparator as this is the most convienient peripheral to test
 MINUNIT_ADD(LPC812M101CppSysconPowering, LPC812M101CppSetupSyscon, LPC812M101Teardown) {
+  minUnitCheck(dutRegisters->PDRUNCFG == 0x0000ED50);
+  sysconPeripheral.powerPeripherals(instances::syscon::POWER_ACMP_PD);
+  minUnitCheck(dutRegisters->PDRUNCFG == 0x00006D50);
+  sysconPeripheral.depowerPeripherals(instances::syscon::POWER_ACMP_PD);
   minUnitCheck(dutRegisters->PDRUNCFG == 0x0000ED50);
 }
 
