@@ -44,12 +44,20 @@ MINUNIT_ADD(LPC812M101CppSysconResets, LPC812M101CppSetupSyscon, LPC812M101Teard
 // We only test analog comparator as this is the most convienient peripheral to test
 MINUNIT_ADD(LPC812M101CppSysconPowering, LPC812M101CppSetupSyscon, LPC812M101Teardown) {
   minUnitCheck(dutRegisters->PDRUNCFG == 0x0000ED50);
-  sysconPeripheral.powerPeripherals(instances::syscon::POWER_ACMP_PD);
+  sysconPeripheral.powerPeripherals(instances::syscon::POWER_ACMP);
   minUnitCheck(dutRegisters->PDRUNCFG == 0x00006D50);
-  sysconPeripheral.depowerPeripherals(instances::syscon::POWER_ACMP_PD);
+  sysconPeripheral.depowerPeripherals(instances::syscon::POWER_ACMP);
   minUnitCheck(dutRegisters->PDRUNCFG == 0x0000ED50);
 }
 
 MINUNIT_ADD(LPC812M101CppSysconClocking, LPC812M101CppSetupSyscon, LPC812M101Teardown) {
+  minUnitCheck(dutRegisters->SYSAHBCLKCTRL == 0x000000DF);
+  sysconPeripheral.enablePeripheralClocks(instances::syscon::CLOCK_ACMP);
+  minUnitCheck(dutRegisters->SYSAHBCLKCTRL == 0x000800DF);
+  sysconPeripheral.enablePeripheralClocks(instances::syscon::CLOCK_IOCON);
+  minUnitCheck(dutRegisters->SYSAHBCLKCTRL == 0x000C00DF);
+  sysconPeripheral.disablePeripheralClocks(instances::syscon::CLOCK_ACMP);
+  minUnitCheck(dutRegisters->SYSAHBCLKCTRL == 0x000400DF);
+  sysconPeripheral.disablePeripheralClocks(instances::syscon::CLOCK_IOCON);
   minUnitCheck(dutRegisters->SYSAHBCLKCTRL == 0x000000DF);
 }

@@ -27,7 +27,8 @@ void crudeDelay(uint32_t iterations) {
 
 void boardInit(void) {
   // clock enables and resets
-  sysconEnableClocks(SYSCON, CLKCTRL_SWM | CLKCTRL_IOCON | CLKCTRL_GPIO);
+  sysconPeripheral.enablePeripheralClocks(instances::syscon::CLOCK_SWM | instances::syscon::CLOCK_IOCON |
+                                          instances::syscon::CLOCK_GPIO);
   // setup IOCON pins
   ioconPeripheral.setup(xtalInPin, registers::iocon::pullModes::INACTIVE);
   ioconPeripheral.setup(xtalOutPin, registers::iocon::pullModes::INACTIVE);
@@ -35,17 +36,17 @@ void boardInit(void) {
   swmPeriperhal.setup(xtalOut, xtalOut);
   // setup system clocks
   sysconSysOscControl(SYSCON, SYSOSCCTRL_BYPASS(0) | SYSOSCCTRL_FREQ_1_20MHZ);
-  sysconPowerEnable(SYSCON, PDRUNCFG_SYSOSC);
+  sysconPeripheral.powerPeripherals(instances::syscon::POWER_SYSOSC);
   crudeDelay(6000);
   sysconSysPllClockSelect(SYSCON, SYSPLLCLKSEL_SYSOSC);
   FmcSetFlashAccess(FLASHTIM_30MHZ_CPU);
-  sysconPowerDisable(SYSCON, PDRUNCFG_SYSPLL);
+  sysconPeripheral.depowerPeripherals(instances::syscon::POWER_SYSPLL);
   sysconPllControl(SYSCON, 4, SYSPLLCTRL_POSTDIV_4);
-  sysconPowerEnable(SYSCON, PDRUNCFG_SYSPLL);
+  sysconPeripheral.powerPeripherals(instances::syscon::POWER_SYSPLL);
   while (!sysconPllStatus(SYSCON))
     ;
   sysconMainClockDivider(SYSCON, 2);
   sysconMainClockSelect(SYSCON, MAINCLKSEL_PLL_OUT);
   // disable all unneeded clocks
-  sysconDisableClocks(SYSCON, CLKCTRL_IOCON);
+  sysconPeripheral.disablePeripheralClocks(instances::syscon::CLOCK_IOCON);
 }
