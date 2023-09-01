@@ -21,6 +21,8 @@ registers::syscon::registers *const sysconRegisters{reinterpret_cast<registers::
  */
 MINUNIT_TEARDOWN(LPC812M101Teardown) {
   sysconRegisters->PRESETCTRL = 0x00001FFF;
+  sysconRegisters->PDRUNCFG = 0x0000ED50;  // we deviate here from the datasheet as we use the PLL and crystal oscillator
+  sysconRegisters->SYSAHBCLKCTRL = 0x000000DF;
   minUnitCheck(LPC812M101TeardownCorrect() == true);
 }
 
@@ -29,5 +31,7 @@ MINUNIT_TEARDOWN(LPC812M101Teardown) {
  */
 bool LPC812M101TeardownCorrect(void) {
   TESTANDRETURN(sysconRegisters->PRESETCTRL == 0x00001FFF);
+  TESTANDRETURN(sysconRegisters->PDRUNCFG == 0x0000ED50);
+  TESTANDRETURN(sysconRegisters->SYSAHBCLKCTRL == 0x000000DF);
   return true;
 }

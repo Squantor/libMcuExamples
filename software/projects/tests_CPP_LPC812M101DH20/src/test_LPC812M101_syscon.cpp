@@ -40,3 +40,11 @@ MINUNIT_ADD(LPC812M101CppSysconResets, LPC812M101CppSetupSyscon, LPC812M101Teard
   sysconPeripheral.resetPeripherals(instances::syscon::RESET_I2C | instances::syscon::RESET_ACMP);
   minUnitCheck(dutRegisters->PRESETCTRL == 0x00001FFF);
 }
+
+MINUNIT_ADD(LPC812M101CppSysconPowering, LPC812M101CppSetupSyscon, LPC812M101Teardown) {
+  minUnitCheck(dutRegisters->PDRUNCFG == 0x0000ED50);
+}
+
+MINUNIT_ADD(LPC812M101CppSysconClocking, LPC812M101CppSetupSyscon, LPC812M101Teardown) {
+  minUnitCheck(dutRegisters->SYSAHBCLKCTRL == 0x000000DF);
+}
