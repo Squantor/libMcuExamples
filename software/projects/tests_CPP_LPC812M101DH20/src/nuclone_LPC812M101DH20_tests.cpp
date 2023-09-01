@@ -35,18 +35,18 @@ void boardInit(void) {
   swmPeriperhal.setup(xtalInPin, xtalIn);
   swmPeriperhal.setup(xtalOut, xtalOut);
   // setup system clocks
-  sysconSysOscControl(SYSCON, SYSOSCCTRL_BYPASS(0) | SYSOSCCTRL_FREQ_1_20MHZ);
+  sysconPeripheral.setSysOscControl(registers::syscon::SYSOSCCTRL::NO_BYPASS | registers::syscon::SYSOSCCTRL::FREQ_1_20MHz);
   sysconPeripheral.powerPeripherals(instances::syscon::POWER_SYSOSC);
   crudeDelay(6000);
-  sysconSysPllClockSelect(SYSCON, SYSPLLCLKSEL_SYSOSC);
+  sysconPeripheral.selectPllClock(instances::syscon::PLLCLK_SYSOSC);
   FmcSetFlashAccess(FLASHTIM_30MHZ_CPU);
   sysconPeripheral.depowerPeripherals(instances::syscon::POWER_SYSPLL);
-  sysconPllControl(SYSCON, 4, SYSPLLCTRL_POSTDIV_4);
+  sysconPeripheral.setSystemPllControl(4, instances::syscon::PLLPOSTDIV_4);
   sysconPeripheral.powerPeripherals(instances::syscon::POWER_SYSPLL);
-  while (!sysconPllStatus(SYSCON))
+  while (!sysconPeripheral.getSystemPllStatus())
     ;
-  sysconMainClockDivider(SYSCON, 2);
-  sysconMainClockSelect(SYSCON, MAINCLKSEL_PLL_OUT);
+  sysconPeripheral.setSystemClockDivider(2);
+  sysconPeripheral.selectMainClock(instances::syscon::MAINCLK_PLL_OUT);
   // disable all unneeded clocks
   sysconPeripheral.disablePeripheralClocks(instances::syscon::CLOCK_IOCON);
 }
