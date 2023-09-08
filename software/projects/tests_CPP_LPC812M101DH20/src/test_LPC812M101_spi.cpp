@@ -19,13 +19,12 @@ instances::spi::spi<peripherals::SPI0_cpp, instances::spi::chipEnables> testSpiP
  */
 MINUNIT_SETUP(LPC812M101CppSetupSpi) {
   minUnitCheck(LPC812M101TeardownCorrect() == true);
-}
-
-MINUNIT_ADD(LPC812M101CppSpiRxTx, LPC812M101CppSetupSpi, LPC812M101Teardown) {
   sysconPeripheral.enablePeripheralClocks(instances::syscon::CLOCK_SPI0 | instances::syscon::CLOCK_SWM |
                                           instances::syscon::CLOCK_IOCON);
   sysconPeripheral.resetPeripherals(instances::syscon::RESET_SPI0);
-  sysconEnableResets(SYSCON, RESETCTRL_SPI0);
+}
+
+MINUNIT_ADD(LPC812M101CppSpiRxTx, LPC812M101CppSetupSpi, LPC812M101Teardown) {
   // use C++ variants
   swmPeriperhal.setup(test2Pin, spiMainSckFunction);
   swmPeriperhal.setup(test3Pin, spiMainSselFunction);
@@ -36,6 +35,7 @@ MINUNIT_ADD(LPC812M101CppSpiRxTx, LPC812M101CppSetupSpi, LPC812M101Teardown) {
   swmPeriperhal.clear(test3Pin, spiMainSselFunction);
   swmPeriperhal.clear(test1Pin, spiMainMosiFunction);
   swmPeriperhal.clear(test0Pin, spiMainMisoFunction);
+  // TODO, move this to teardown
   sysconPeripheral.disablePeripheralClocks(instances::syscon::CLOCK_SPI0 | instances::syscon::CLOCK_SWM |
                                            instances::syscon::CLOCK_IOCON);
   minUnitPass();
