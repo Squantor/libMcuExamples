@@ -47,6 +47,8 @@ using mainSpiSckFunctionType = instances::swm::pinFunction<instances::swm::pinFu
 using mainSpiSselFunctionType = instances::swm::pinFunction<instances::swm::pinFunctions::SPI0_SSEL_IO>;
 using mainSpiMosiFunctionType = instances::swm::pinFunction<instances::swm::pinFunctions::SPI0_MOSI_IO>;
 using mainSpiMisoFunctionType = instances::swm::pinFunction<instances::swm::pinFunctions::SPI0_MISO_IO>;
+using mainUartTxFunctionType = instances::swm::pinFunction<instances::swm::pinFunctions::U0_TXD_O>;
+using mainUartRxFunctionType = instances::swm::pinFunction<instances::swm::pinFunctions::U0_RXD_I>;
 
 constexpr xtalInPinType xtalInPin;
 constexpr xtalOutPinType xtalOutPin;
@@ -60,20 +62,23 @@ constexpr i2cSclSensePinType i2cSclSensePin;
 constexpr i2cSdaSensePinType i2cSdaSensePin;
 constexpr gpioPort mainPort;
 
+constexpr xtalInFunctionType xtalIn;
+constexpr xtalOutFunctionType xtalOut;
 constexpr mainI2cSclFunctionType i2cMainSclFunction;
 constexpr mainI2cSdaFunctionType i2cMainSdaFunction;
 constexpr mainSpiSckFunctionType spiMainSckFunction;
 constexpr mainSpiSselFunctionType spiMainSselFunction;
 constexpr mainSpiMosiFunctionType spiMainMosiFunction;
 constexpr mainSpiMisoFunctionType spiMainMisoFunction;
-constexpr xtalInFunctionType xtalIn;
-constexpr xtalOutFunctionType xtalOut;
+constexpr mainUartTxFunctionType uartMainTxFunction;
+constexpr mainUartRxFunctionType uartMainRxFunction;
 
 extern instances::iocon::iocon<peripherals::IOCON_cpp> ioconPeripheral;
 extern instances::swm::swm<peripherals::SWM_cpp> swmPeriperhal;
 extern instances::gpio::gpio<peripherals::GPIO_cpp> gpioPeripheral;
 extern instances::spi::spi<peripherals::SPI0_cpp, instances::spi::chipEnables> spiPeripheral;
 extern instances::syscon::syscon<peripherals::SYSCON_cpp> sysconPeripheral;
+extern instances::usart::usart<peripherals::USART0_cpp> uartPeripheral;
 
 void boardInit(void);
 
