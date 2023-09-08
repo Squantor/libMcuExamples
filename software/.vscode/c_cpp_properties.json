@@ -7,8 +7,7 @@
             "browse": {},
             "cStandard": "gnu17",
             "cppStandard": "gnu++20",
-            "compileCommands": "${workspaceFolder}/compile_commands.json",
-            "configurationProvider": "ms-vscode.makefile-tools"
+            "compileCommands": "${workspaceFolder}/compile_commands.json"
         }
     ],
     "version": 4
