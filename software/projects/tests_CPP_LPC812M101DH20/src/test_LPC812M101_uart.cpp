@@ -30,7 +30,12 @@ MINUNIT_SETUP(LPC812M101CppSetupUsart) {
 }
 
 MINUNIT_ADD(LPC812M101CppUsartInit, LPC812M101CppSetupUsart, LPC812M101Teardown) {
-  uint32_t realBaudRate = usartPeripheral.init(115200);
+  uint32_t realBaudRate;
+  realBaudRate = usartPeripheral.init(115200);
   minUnitCheck(realBaudRate == 117187);
-  minUnitCheck((dutRegisters->CFG & CFG::MASK) == (CFG::ENABLE | length::SIZE_8 | parity::NONE | stop::STOP_1));
+  minUnitCheck((dutRegisters->CFG & CFG::MASK) == (CFG::ENABLE | uartLength::SIZE_8 | uartParity::NONE | uartStop::STOP_1));
+  dutRegisters->CFG = 0x00000000;
+  realBaudRate = usartPeripheral.init(9600, uartLength::SIZE_7, uartParity::EVEN, uartStop::STOP_2);
+  minUnitCheck(realBaudRate == 9615);
+  minUnitCheck((dutRegisters->CFG & CFG::MASK) == (CFG::ENABLE | uartLength::SIZE_7 | uartParity::EVEN | uartStop::STOP_2));
 }
