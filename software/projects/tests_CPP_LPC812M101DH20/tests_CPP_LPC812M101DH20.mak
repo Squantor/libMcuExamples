@@ -20,7 +20,9 @@ $(PROJ_DIR)/src/LPC812M101_teardown.cpp \
 $(PROJ_DIR)/src/test_LPC812M101_spi.cpp \
 $(PROJ_DIR)/src/test_LPC812M101_syscon.cpp \
 $(PROJ_DIR)/src/test_LPC812M101_gpio.cpp \
-$(PROJ_DIR)/src/test_LPC812M101_uart.cpp 
+$(PROJ_DIR)/src/test_LPC812M101_uart.cpp \
+$(PROJ_DIR)/src/test_LPC812M101_iocon.cpp
+
 $(NAME)_INCLUDES := -I$(PROJ_DIR)/inc -Icommon/inc
 
 # --- nothing user definable below ---

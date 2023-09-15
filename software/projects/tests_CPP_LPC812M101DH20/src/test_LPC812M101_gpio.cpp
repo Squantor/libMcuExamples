@@ -16,17 +16,13 @@
 registers::gpio::registers *const dutRegisters{reinterpret_cast<registers::gpio::registers *>(peripherals::GPIO_cpp)};
 
 /**
- * @brief Spi setup and initialisation
+ * @brief Gpio setup and initialisation
  */
 MINUNIT_SETUP(LPC812M101CppSetupGpio) {
   minUnitCheck(LPC812M101TeardownCorrect() == true);
   sysconPeripheral.enablePeripheralClocks(instances::syscon::CLOCK_GPIO);
   sysconEnableResets(SYSCON, RESETCTRL_GPIO);
   sysconPeripheral.resetPeripherals(instances::syscon::RESET_GPIO);
-}
-
-MINUNIT_ADD(LPC812M101CppSysconChipID, LPC812M101CppSetupGpio, LPC812M101Teardown) {
-  minUnitPass();
 }
 
 // testing all single pin methods
