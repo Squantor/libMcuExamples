@@ -22,20 +22,15 @@ registers::usart::registers *const dutRegisters{reinterpret_cast<registers::usar
  */
 MINUNIT_SETUP(LPC812M101CppSetupUsart) {
   minUnitCheck(LPC812M101TeardownCorrect() == true);
+  swmPeriperhal.setup(test0Pin, uartMainRxFunction);
+  swmPeriperhal.setup(test1Pin, uartMainTxFunction);
   sysconPeripheral.enablePeripheralClocks(instances::syscon::CLOCK_UART0 | instances::syscon::CLOCK_SWM |
                                           instances::syscon::CLOCK_IOCON);
   sysconPeripheral.resetPeripherals(instances::syscon::RESET_UART0);
 }
 
 MINUNIT_ADD(LPC812M101CppUsartInit, LPC812M101CppSetupUsart, LPC812M101Teardown) {
-  swmPeriperhal.setup(test0Pin, uartMainRxFunction);
-  swmPeriperhal.setup(test1Pin, uartMainTxFunction);
-
   uint32_t realBaudRate = usartPeripheral.init(115200);
   minUnitCheck(realBaudRate == 117187);
   minUnitCheck((dutRegisters->CFG & CFG::MASK) == (CFG::ENABLE | length::SIZE_8 | parity::NONE | stop::STOP_1));
-
-  swmPeriperhal.clear(test0Pin, uartMainRxFunction);
-  swmPeriperhal.clear(test1Pin, uartMainTxFunction);
-  minUnitPass();
 }
