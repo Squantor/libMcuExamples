@@ -39,3 +39,33 @@ MINUNIT_ADD(LPC812M101CppUsartInit, LPC812M101CppSetupUsart, LPC812M101Teardown)
   minUnitCheck(realBaudRate == 9615);
   minUnitCheck((dutRegisters->CFG & CFG::MASK) == (CFG::ENABLE | uartLength::SIZE_7 | uartParity::EVEN | uartStop::STOP_2));
 }
+
+MINUNIT_ADD(LPC812M101CppUsartComms, LPC812M101CppSetupUsart, LPC812M101Teardown) {
+  uint32_t data, status;
+  int timeout;
+  usartPeripheral.init(115200);
+  sysconPeripheral.setUsartClockDivider(1);
+  minUnitCheck((dutRegisters->STAT & STAT::MASK) == 0x0000000E);
+  minUnitCheck(usartPeripheral.status() & uartStatus::TXRDY);
+  usartPeripheral.write(0xA5);
+  timeout = 0xFFFF;
+  while (timeout > 0 && !(usartPeripheral.status() & uartStatus::RXRDY)) {
+    timeout--;
+  }
+  minUnitCheck(timeout > 0);
+  minUnitCheck(usartPeripheral.status() & uartStatus::RXRDY);
+  usartPeripheral.read(data);
+  minUnitCheck(data == 0xA5);
+  for (uint32_t i = 0; i < 256; i++) {
+    usartPeripheral.write(i);
+    timeout = 0xFFFF;
+    while (timeout > 0 && !(usartPeripheral.status() & uartStatus::RXRDY)) {
+      timeout--;
+    }
+    minUnitCheck(timeout > 0);
+    minUnitCheck(usartPeripheral.status() & uartStatus::RXRDY);
+    usartPeripheral.read(data, status);
+    minUnitCheck(data == i);
+    minUnitCheck(status == 0x00000000);
+  }
+}
