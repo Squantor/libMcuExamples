@@ -12,7 +12,7 @@
 #include <LPC812M101_teardown.hpp>
 #include <common.hpp>
 
-instances::spi::spi<peripherals::SPI0_cpp, instances::spi::chipEnables> testSpiPeripheral;
+registers::spi::registers *const dutRegisters{reinterpret_cast<registers::spi::registers *>(peripherals::SPI0_cpp)};
 
 /**
  * @brief Spi setup and initialisation
@@ -24,19 +24,23 @@ MINUNIT_SETUP(LPC812M101CppSetupSpi) {
   sysconPeripheral.resetPeripherals(instances::syscon::RESET_SPI0);
 }
 
+MINUNIT_ADD(LPC812M101CppSpiInits, LPC812M101CppSetupSpi, LPC812M101Teardown) {
+  uint32_t actualClock;
+  actualClock = spiPeripheral.initMaster(100000);
+  minUnitCheck(actualClock == 100000);
+  minUnitCheck((dutRegisters->CFG & instances::spi::CFG::MASK) == 0x00000005);
+  minUnitCheck((dutRegisters->DIV == 299));
+  dutRegisters->CFG = 0x00000000;
+  actualClock = spiPeripheral.initMaster(65399, instances::spi::CPHA1_CPOL1_LSB, instances::spi::SPOL_HIGH);
+  minUnitCheck(actualClock == 65502);
+  minUnitCheck((dutRegisters->CFG & instances::spi::CFG::MASK) == 0x0000013D);
+  minUnitCheck((dutRegisters->DIV == 457));
+}
+
 MINUNIT_ADD(LPC812M101CppSpiRxTx, LPC812M101CppSetupSpi, LPC812M101Teardown) {
-  // use C++ variants
   swmPeriperhal.setup(test2Pin, spiMainSckFunction);
   swmPeriperhal.setup(test3Pin, spiMainSselFunction);
   swmPeriperhal.setup(test1Pin, spiMainMosiFunction);
   swmPeriperhal.setup(test0Pin, spiMainMisoFunction);
-  // undo setup
-  swmPeriperhal.clear(test2Pin, spiMainSckFunction);
-  swmPeriperhal.clear(test3Pin, spiMainSselFunction);
-  swmPeriperhal.clear(test1Pin, spiMainMosiFunction);
-  swmPeriperhal.clear(test0Pin, spiMainMisoFunction);
-  // TODO, move this to teardown
-  sysconPeripheral.disablePeripheralClocks(instances::syscon::CLOCK_SPI0 | instances::syscon::CLOCK_SWM |
-                                           instances::syscon::CLOCK_IOCON);
   minUnitPass();
 }
