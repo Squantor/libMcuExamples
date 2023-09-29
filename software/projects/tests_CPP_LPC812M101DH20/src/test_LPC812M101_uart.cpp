@@ -5,7 +5,7 @@
  * For conditions of distribution and use, see LICENSE file
  */
 /**
- * @brief tests for the LPC812M101 UART peripheral polling mode
+ * @file tests for the LPC812M101 UART peripheral polling mode
  */
 #include <nuclone_LPC812M101DH20_tests.hpp>
 #include <MinUnit.h>
