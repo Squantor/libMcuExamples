@@ -22,11 +22,12 @@ registers::i2c::registers *const dutRegisters{reinterpret_cast<registers::i2c::r
 MINUNIT_SETUP(LPC812M101CppSetupI2c) {
   minUnitCheck(LPC812M101TeardownCorrect() == true);
   sysconPeripheral.enablePeripheralClocks(instances::syscon::CLOCK_I2C);
-  sysconEnableResets(SYSCON, RESETCTRL_I2C0);
   sysconPeripheral.resetPeripherals(instances::syscon::RESET_I2C);
 }
 
 // testing inits
 MINUNIT_ADD(LPC812M101DH20I2cInits, LPC812M101CppSetupI2c, LPC812M101Teardown) {
-  minUnitPass();
+  uint32_t actualRate = i2cPeripheral.initMaster(133630);
+  minUnitCheck(actualRate == 133928);
+  minUnitCheck((dutRegisters->CFG & registers::i2c::CFG::MASK) == registers::i2c::CFG::MSTEN);
 }

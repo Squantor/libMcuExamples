@@ -60,12 +60,13 @@ MINUNIT_ADD(LPC812M101CppSpiRxTx, LPC812M101CppSetupSpi, LPC812M101Teardown) {
   // test receive
   // disable MOSI
   swmPeriperhal.clear(test1Pin, spiMainMosiFunction);
+  gpioPeripheral.output(test1Pin);
+  gpioPeripheral.high(test1Pin);
   // enable pullup, read all ones
-  ioconPeripheral.setup(test1Pin, registers::iocon::pullModes::PULLUP);
   spiPeripheral.read(instances::spi::chipEnables::SSEL_NONE, testDataReceive, 12, true);
   minUnitCheck(0xFFFu == testDataReceive[0]);
   // enable pulldown, read all zeroes
-  ioconPeripheral.setup(test1Pin, registers::iocon::pullModes::PULLDOWN);
+  gpioPeripheral.low(test1Pin);
   testDataReceive[0] = 0xFFFF;
   spiPeripheral.read(instances::spi::chipEnables::SSEL_NONE, testDataReceive, 12, true);
   minUnitCheck(0x0u == testDataReceive[0]);
