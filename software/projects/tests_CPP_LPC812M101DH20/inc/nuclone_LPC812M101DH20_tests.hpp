@@ -79,6 +79,7 @@ extern instances::gpio::gpio<peripherals::GPIO_cpp> gpioPeripheral;
 extern instances::spi::spi<peripherals::SPI0_cpp, instances::spi::chipEnables> spiPeripheral;
 extern instances::syscon::syscon<peripherals::SYSCON_cpp> sysconPeripheral;
 extern instances::usart::usart<peripherals::USART0_cpp> usartPeripheral;
+extern instances::i2c::i2c<peripherals::I2C0_cpp> i2cPeripheral;
 
 void boardInit(void);
 
