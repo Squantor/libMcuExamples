@@ -9,7 +9,7 @@
 instances::iocon::iocon<peripherals::IOCON_cpp> ioconPeripheral;
 instances::swm::swm<peripherals::SWM_cpp> swmPeriperhal;
 instances::gpio::gpio<peripherals::GPIO_cpp> gpioPeripheral;
-instances::spi::spi<peripherals::SPI0_cpp, instances::spi::chipEnables> spiPeripheral;
+instances::spi::spiSync<peripherals::SPI0_cpp, instances::spi::chipEnables> spiPeripheral;
 instances::syscon::syscon<peripherals::SYSCON_cpp> sysconPeripheral;
 instances::usart::usart<peripherals::USART0_cpp> usartPeripheral;
 instances::i2c::i2c<peripherals::I2C0_cpp> i2cPeripheral;
