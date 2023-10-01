@@ -14,21 +14,21 @@
 #include <common.hpp>
 
 // peripheral register sets
-static constexpr libMcuLL::hwAddressType i2cAddress = peripherals::I2C0_cpp;
-registers::i2c::registers *const dutRegisters{reinterpret_cast<registers::i2c::registers *>(i2cAddress)};
+static constexpr libMcuLL::hwAddressType i2cAddress = libMcuLL::hw::I2C0_cpp;
+libMcuLL::hw::i2c::peripheral *const dutRegisters{reinterpret_cast<libMcuLL::hw::i2c::peripheral *>(i2cAddress)};
 
 /**
  * @brief Gpio setup and initialisation
  */
 MINUNIT_SETUP(LPC812M101CppSetupI2c) {
   minUnitCheck(LPC812M101TeardownCorrect() == true);
-  sysconPeripheral.enablePeripheralClocks(instances::syscon::CLOCK_I2C);
-  sysconPeripheral.resetPeripherals(instances::syscon::RESET_I2C);
+  sysconPeripheral.enablePeripheralClocks(libMcuLL::sw::syscon::CLOCK_I2C);
+  sysconPeripheral.resetPeripherals(libMcuLL::sw::syscon::RESET_I2C);
 }
 
 // testing inits
 MINUNIT_ADD(LPC812M101DH20I2cInits, LPC812M101CppSetupI2c, LPC812M101Teardown) {
   uint32_t actualRate = i2cPeripheral.initMaster(133630);
   minUnitCheck(actualRate == 133928);
-  minUnitCheck((dutRegisters->CFG & registers::i2c::CFG::MASK) == registers::i2c::CFG::MSTEN);
+  minUnitCheck((dutRegisters->CFG & libMcuLL::hw::i2c::CFG::MASK) == libMcuLL::hw::i2c::CFG::MSTEN);
 }

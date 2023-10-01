@@ -20,35 +20,35 @@ For conditions of distribution and use, see LICENSE file
 #define TICKS_PER_S 10
 
 // main gpio port
-using gpioPort = instances::port<instances::IOports::PORT0>;
+using gpioPort = libMcuLL::hw::port<libMcuLL::hw::IOports::PORT0>;
 
 // Crystal osillator pins
-using xtalInPinType = instances::pin<instances::IOports::PORT0, instances::IOpins::PIN08>;
-using xtalOutPinType = instances::pin<instances::IOports::PORT0, instances::IOpins::PIN09>;
+using xtalInPinType = libMcuLL::hw::pin<libMcuLL::hw::IOports::PORT0, libMcuLL::hw::IOpins::PIN08>;
+using xtalOutPinType = libMcuLL::hw::pin<libMcuLL::hw::IOports::PORT0, libMcuLL::hw::IOpins::PIN09>;
 // test pin pair 0, connected to eachother via 1KOhm resistor
-using test0PinType = instances::pin<instances::IOports::PORT0, instances::IOpins::PIN01>;
-using test1PinType = instances::pin<instances::IOports::PORT0, instances::IOpins::PIN15>;
+using test0PinType = libMcuLL::hw::pin<libMcuLL::hw::IOports::PORT0, libMcuLL::hw::IOpins::PIN01>;
+using test1PinType = libMcuLL::hw::pin<libMcuLL::hw::IOports::PORT0, libMcuLL::hw::IOpins::PIN15>;
 // auxillary test pin, connected to nothing
-using test2PinType = instances::pin<instances::IOports::PORT0, instances::IOpins::PIN07>;
-using test3PinType = instances::pin<instances::IOports::PORT0, instances::IOpins::PIN14>;
+using test2PinType = libMcuLL::hw::pin<libMcuLL::hw::IOports::PORT0, libMcuLL::hw::IOpins::PIN07>;
+using test3PinType = libMcuLL::hw::pin<libMcuLL::hw::IOports::PORT0, libMcuLL::hw::IOpins::PIN14>;
 // I2C Clock pin pair, pulled up to 2.2K to 3.3V
-using i2cSclOutPinType = instances::pin<instances::IOports::PORT0, instances::IOpins::PIN10>;
-using i2cSclSensePinType = instances::pin<instances::IOports::PORT0, instances::IOpins::PIN16>;
+using i2cSclOutPinType = libMcuLL::hw::pin<libMcuLL::hw::IOports::PORT0, libMcuLL::hw::IOpins::PIN10>;
+using i2cSclSensePinType = libMcuLL::hw::pin<libMcuLL::hw::IOports::PORT0, libMcuLL::hw::IOpins::PIN16>;
 // I2C Data pin pair, pulled up to 2.2K to 3.3V
-using i2cSdaOutPinType = instances::pin<instances::IOports::PORT0, instances::IOpins::PIN11>;
-using i2cSdaSensePinType = instances::pin<instances::IOports::PORT0, instances::IOpins::PIN04>;
+using i2cSdaOutPinType = libMcuLL::hw::pin<libMcuLL::hw::IOports::PORT0, libMcuLL::hw::IOpins::PIN11>;
+using i2cSdaSensePinType = libMcuLL::hw::pin<libMcuLL::hw::IOports::PORT0, libMcuLL::hw::IOpins::PIN04>;
 
 // Peripheral functions
-using mainI2cSdaFunctionType = instances::swm::pinFunction<instances::swm::pinFunctions::I2C_SDA_IO>;
-using mainI2cSclFunctionType = instances::swm::pinFunction<instances::swm::pinFunctions::I2C_SCL_IO>;
-using xtalInFunctionType = instances::swm::pinFunction<instances::swm::pinFunctions::XTALIN>;
-using xtalOutFunctionType = instances::swm::pinFunction<instances::swm::pinFunctions::XTALOUT>;
-using mainSpiSckFunctionType = instances::swm::pinFunction<instances::swm::pinFunctions::SPI0_SCK_IO>;
-using mainSpiSselFunctionType = instances::swm::pinFunction<instances::swm::pinFunctions::SPI0_SSEL_IO>;
-using mainSpiMosiFunctionType = instances::swm::pinFunction<instances::swm::pinFunctions::SPI0_MOSI_IO>;
-using mainSpiMisoFunctionType = instances::swm::pinFunction<instances::swm::pinFunctions::SPI0_MISO_IO>;
-using mainUartTxFunctionType = instances::swm::pinFunction<instances::swm::pinFunctions::U0_TXD_O>;
-using mainUartRxFunctionType = instances::swm::pinFunction<instances::swm::pinFunctions::U0_RXD_I>;
+using mainI2cSdaFunctionType = libMcuLL::hw::swm::pinFunction<libMcuLL::hw::swm::pinFunctions::I2C_SDA_IO>;
+using mainI2cSclFunctionType = libMcuLL::hw::swm::pinFunction<libMcuLL::hw::swm::pinFunctions::I2C_SCL_IO>;
+using xtalInFunctionType = libMcuLL::hw::swm::pinFunction<libMcuLL::hw::swm::pinFunctions::XTALIN>;
+using xtalOutFunctionType = libMcuLL::hw::swm::pinFunction<libMcuLL::hw::swm::pinFunctions::XTALOUT>;
+using mainSpiSckFunctionType = libMcuLL::hw::swm::pinFunction<libMcuLL::hw::swm::pinFunctions::SPI0_SCK_IO>;
+using mainSpiSselFunctionType = libMcuLL::hw::swm::pinFunction<libMcuLL::hw::swm::pinFunctions::SPI0_SSEL_IO>;
+using mainSpiMosiFunctionType = libMcuLL::hw::swm::pinFunction<libMcuLL::hw::swm::pinFunctions::SPI0_MOSI_IO>;
+using mainSpiMisoFunctionType = libMcuLL::hw::swm::pinFunction<libMcuLL::hw::swm::pinFunctions::SPI0_MISO_IO>;
+using mainUartTxFunctionType = libMcuLL::hw::swm::pinFunction<libMcuLL::hw::swm::pinFunctions::U0_TXD_O>;
+using mainUartRxFunctionType = libMcuLL::hw::swm::pinFunction<libMcuLL::hw::swm::pinFunctions::U0_RXD_I>;
 
 constexpr xtalInPinType xtalInPin;
 constexpr xtalOutPinType xtalOutPin;
@@ -73,13 +73,13 @@ constexpr mainSpiMisoFunctionType spiMainMisoFunction;
 constexpr mainUartTxFunctionType uartMainTxFunction;
 constexpr mainUartRxFunctionType uartMainRxFunction;
 
-extern instances::iocon::iocon<peripherals::IOCON_cpp> ioconPeripheral;
-extern instances::swm::swm<peripherals::SWM_cpp> swmPeriperhal;
-extern instances::gpio::gpio<peripherals::GPIO_cpp> gpioPeripheral;
-extern instances::spi::spiSync<peripherals::SPI0_cpp, instances::spi::chipEnables> spiPeripheral;
-extern instances::syscon::syscon<peripherals::SYSCON_cpp> sysconPeripheral;
-extern instances::usart::usart<peripherals::USART0_cpp> usartPeripheral;
-extern instances::i2c::i2c<peripherals::I2C0_cpp> i2cPeripheral;
+extern libMcuLL::sw::iocon::iocon<libMcuLL::hw::IOCON_cpp> ioconPeripheral;
+extern libMcuLL::sw::swm::swm<libMcuLL::hw::SWM_cpp> swmPeriperhal;
+extern libMcuLL::sw::gpio::gpio<libMcuLL::hw::GPIO_cpp> gpioPeripheral;
+extern libMcuLL::sw::spi::spiSync<libMcuLL::hw::SPI0_cpp, libMcuLL::sw::spi::chipEnables> spiPeripheral;
+extern libMcuLL::sw::syscon::syscon<libMcuLL::hw::SYSCON_cpp> sysconPeripheral;
+extern libMcuLL::sw::usart::usart<libMcuLL::hw::USART0_cpp> usartPeripheral;
+extern libMcuLL::sw::i2c::i2c<libMcuLL::hw::I2C0_cpp> i2cPeripheral;
 
 void boardInit(void);
 

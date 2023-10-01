@@ -14,10 +14,10 @@
 #include <MinUnit.h>
 
 // peripheral register sets
-static constexpr libMcuLL::hwAddressType sysconAddress = peripherals::SYSCON_cpp;
-static constexpr libMcuLL::hwAddressType swmAddress = peripherals::SWM_cpp;
-registers::syscon::registers *const sysconRegisters{reinterpret_cast<registers::syscon::registers *>(sysconAddress)};
-registers::swm::registers *const swmRegisters{reinterpret_cast<registers::swm::registers *>(swmAddress)};
+static constexpr libMcuLL::hwAddressType sysconAddress = libMcuLL::hw::SYSCON_cpp;
+static constexpr libMcuLL::hwAddressType swmAddress = libMcuLL::hw::SWM_cpp;
+libMcuLL::hw::syscon::peripheral *const sysconRegisters{reinterpret_cast<libMcuLL::hw::syscon::peripheral *>(sysconAddress)};
+libMcuLL::hw::swm::peripheral *const swmRegisters{reinterpret_cast<libMcuLL::hw::swm::peripheral *>(swmAddress)};
 
 /** @brief resets all the registers to their default states
  *

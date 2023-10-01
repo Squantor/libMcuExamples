@@ -13,8 +13,8 @@
 #include <common.hpp>
 
 // peripheral register sets
-static constexpr libMcuLL::hwAddressType sysconAddress = peripherals::SYSCON_cpp;
-registers::syscon::registers *const dutRegisters{reinterpret_cast<registers::syscon::registers *>(sysconAddress)};
+static constexpr libMcuLL::hwAddressType sysconAddress = libMcuLL::hw::SYSCON_cpp;
+libMcuLL::hw::syscon::peripheral *const dutRegisters{reinterpret_cast<libMcuLL::hw::syscon::peripheral *>(sysconAddress)};
 
 /**
  * @brief Spi setup and initialisation
@@ -30,35 +30,36 @@ MINUNIT_ADD(LPC812M101CppSysconChipID, LPC812M101CppSetupSyscon, LPC812M101Teard
 MINUNIT_ADD(LPC812M101CppSysconResets, LPC812M101CppSetupSyscon, LPC812M101Teardown) {
   minUnitCheck(dutRegisters->PRESETCTRL == 0x00001FFF);
   // preset the reset register to a value that will be rest by the test
-  uint32_t resetRegister = dutRegisters->PRESETCTRL & registers::syscon::PRESETCTRL::MASK;
-  resetRegister = resetRegister & ~(instances::syscon::RESET_SPI0 | instances::syscon::RESET_I2C | instances::syscon::RESET_ACMP);
+  uint32_t resetRegister = dutRegisters->PRESETCTRL & libMcuLL::hw::syscon::PRESETCTRL::MASK;
+  resetRegister =
+    resetRegister & ~(libMcuLL::sw::syscon::RESET_SPI0 | libMcuLL::sw::syscon::RESET_I2C | libMcuLL::sw::syscon::RESET_ACMP);
   minUnitCheck(resetRegister == 0x00000FBE);
   dutRegisters->PRESETCTRL =
-    (dutRegisters->PRESETCTRL & ~registers::syscon::PRESETCTRL::MASK) | (registers::syscon::PRESETCTRL::MASK & resetRegister);
-  sysconPeripheral.resetPeripherals(instances::syscon::RESET_SPI0);
+    (dutRegisters->PRESETCTRL & ~libMcuLL::hw::syscon::PRESETCTRL::MASK) | (libMcuLL::hw::syscon::PRESETCTRL::MASK & resetRegister);
+  sysconPeripheral.resetPeripherals(libMcuLL::sw::syscon::RESET_SPI0);
   // the reset function will restore all bits to operational
   minUnitCheck(dutRegisters->PRESETCTRL == 0x00000FBF);
-  sysconPeripheral.resetPeripherals(instances::syscon::RESET_I2C | instances::syscon::RESET_ACMP);
+  sysconPeripheral.resetPeripherals(libMcuLL::sw::syscon::RESET_I2C | libMcuLL::sw::syscon::RESET_ACMP);
   minUnitCheck(dutRegisters->PRESETCTRL == 0x00001FFF);
 }
 
 // We only test analog comparator as this is the most convienient peripheral to test
 MINUNIT_ADD(LPC812M101CppSysconPowering, LPC812M101CppSetupSyscon, LPC812M101Teardown) {
   minUnitCheck(dutRegisters->PDRUNCFG == 0x0000ED50);
-  sysconPeripheral.powerPeripherals(instances::syscon::POWER_ACMP);
+  sysconPeripheral.powerPeripherals(libMcuLL::sw::syscon::POWER_ACMP);
   minUnitCheck(dutRegisters->PDRUNCFG == 0x00006D50);
-  sysconPeripheral.depowerPeripherals(instances::syscon::POWER_ACMP);
+  sysconPeripheral.depowerPeripherals(libMcuLL::sw::syscon::POWER_ACMP);
   minUnitCheck(dutRegisters->PDRUNCFG == 0x0000ED50);
 }
 
 MINUNIT_ADD(LPC812M101CppSysconClocking, LPC812M101CppSetupSyscon, LPC812M101Teardown) {
   minUnitCheck(dutRegisters->SYSAHBCLKCTRL == 0x000000DF);
-  sysconPeripheral.enablePeripheralClocks(instances::syscon::CLOCK_ACMP);
+  sysconPeripheral.enablePeripheralClocks(libMcuLL::sw::syscon::CLOCK_ACMP);
   minUnitCheck(dutRegisters->SYSAHBCLKCTRL == 0x000800DF);
-  sysconPeripheral.enablePeripheralClocks(instances::syscon::CLOCK_IOCON);
+  sysconPeripheral.enablePeripheralClocks(libMcuLL::sw::syscon::CLOCK_IOCON);
   minUnitCheck(dutRegisters->SYSAHBCLKCTRL == 0x000C00DF);
-  sysconPeripheral.disablePeripheralClocks(instances::syscon::CLOCK_ACMP);
+  sysconPeripheral.disablePeripheralClocks(libMcuLL::sw::syscon::CLOCK_ACMP);
   minUnitCheck(dutRegisters->SYSAHBCLKCTRL == 0x000400DF);
-  sysconPeripheral.disablePeripheralClocks(instances::syscon::CLOCK_IOCON);
+  sysconPeripheral.disablePeripheralClocks(libMcuLL::sw::syscon::CLOCK_IOCON);
   minUnitCheck(dutRegisters->SYSAHBCLKCTRL == 0x000000DF);
 }

@@ -13,17 +13,17 @@
 #include <common.hpp>
 
 // peripheral register sets
-static constexpr libMcuLL::hwAddressType gpioAddress = peripherals::GPIO_cpp;
-registers::gpio::registers *const dutRegisters{reinterpret_cast<registers::gpio::registers *>(gpioAddress)};
+static constexpr libMcuLL::hwAddressType gpioAddress = libMcuLL::hw::GPIO_cpp;
+libMcuLL::hw::gpio::peripheral *const dutRegisters{reinterpret_cast<libMcuLL::hw::gpio::peripheral *>(gpioAddress)};
 
 /**
  * @brief Gpio setup and initialisation
  */
 MINUNIT_SETUP(LPC812M101CppSetupGpio) {
   minUnitCheck(LPC812M101TeardownCorrect() == true);
-  sysconPeripheral.enablePeripheralClocks(instances::syscon::CLOCK_GPIO);
+  sysconPeripheral.enablePeripheralClocks(libMcuLL::sw::syscon::CLOCK_GPIO);
   sysconEnableResets(SYSCON, RESETCTRL_GPIO);
-  sysconPeripheral.resetPeripherals(instances::syscon::RESET_GPIO);
+  sysconPeripheral.resetPeripherals(libMcuLL::sw::syscon::RESET_GPIO);
 }
 
 // testing all single pin methods
