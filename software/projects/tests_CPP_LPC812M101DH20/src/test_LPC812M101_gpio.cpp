@@ -12,6 +12,9 @@
 #include <LPC812M101_teardown.hpp>
 #include <common.hpp>
 
+using namespace libMcuLL::hw::gpio;
+using namespace libMcuLL::sw::gpio;
+
 // peripheral register sets
 static constexpr libMcuLL::hwAddressType gpioAddress = libMcuLL::hw::GPIO_cpp;
 libMcuLL::hw::gpio::peripheral *const dutRegisters{reinterpret_cast<libMcuLL::hw::gpio::peripheral *>(gpioAddress)};

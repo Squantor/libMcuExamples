@@ -13,6 +13,9 @@
 #include <common.hpp>
 #include <array>
 
+using namespace libMcuLL::sw::spi;
+using namespace libMcuLL::hw::spi;
+
 static constexpr libMcuLL::hwAddressType spi0Address = libMcuLL::hw::SPI0_cpp;
 libMcuLL::hw::spi::peripheral *const dutRegisters{reinterpret_cast<libMcuLL::hw::spi::peripheral *>(spi0Address)};
 
@@ -30,12 +33,12 @@ MINUNIT_ADD(LPC812M101CppSpiInits, LPC812M101CppSetupSpi, LPC812M101Teardown) {
   uint32_t actualClock;
   actualClock = spiPeripheral.initMaster(100000);
   minUnitCheck(actualClock == 100000);
-  minUnitCheck((dutRegisters->CFG & libMcuLL::sw::spi::CFG::MASK) == 0x00000005);
+  minUnitCheck((dutRegisters->CFG & CFG::MASK) == 0x00000005);
   minUnitCheck(dutRegisters->DIV == 299);
   dutRegisters->CFG = 0x00000000;
-  actualClock = spiPeripheral.initMaster(65399, libMcuLL::sw::spi::CPHA1_CPOL1_LSB, libMcuLL::sw::spi::SPOL_HIGH);
+  actualClock = spiPeripheral.initMaster(65399, CPHA1_CPOL1_LSB, SPOL_HIGH);
   minUnitCheck(actualClock == 65502);
-  minUnitCheck((dutRegisters->CFG & libMcuLL::sw::spi::CFG::MASK) == 0x0000013D);
+  minUnitCheck((dutRegisters->CFG & CFG::MASK) == 0x0000013D);
   minUnitCheck(dutRegisters->DIV == 457);
 }
 
@@ -44,18 +47,18 @@ MINUNIT_ADD(LPC812M101CppSpiRxTx, LPC812M101CppSetupSpi, LPC812M101Teardown) {
   swmPeriperhal.setup(test1Pin, spiMainMosiFunction);
   swmPeriperhal.setup(test0Pin, spiMainMisoFunction);
   spiPeripheral.initMaster(1000000);
-  minUnitCheck((dutRegisters->STAT & libMcuLL::sw::spi::STAT::MASK) == 0x00000102);
+  minUnitCheck((dutRegisters->STAT & STAT::MASK) == 0x00000102);
   minUnitCheck(dutRegisters->DIV == 29);
 
   std::array<uint16_t, 5> testDataSend{0x1234, 0x4567, 0x89AB, 0xCDEF, 0x5A5A};
   std::array<uint16_t, 5> testDataReceive;
   testDataReceive.fill(0x0000u);
   // test "simple"(below 17 bits) transaction
-  spiPeripheral.readWrite(libMcuLL::sw::spi::chipEnables::SSEL_NONE, testDataSend, testDataReceive, 8, true);
+  spiPeripheral.readWrite(chipEnables::SSEL_NONE, testDataSend, testDataReceive, 8, true);
   minUnitCheck((testDataSend[0] & 0xFF) == testDataReceive[0]);
   // test "multi"(above 17 bits) transaction to test multi transfers
   testDataReceive.fill(0x0000u);
-  spiPeripheral.readWrite(libMcuLL::sw::spi::chipEnables::SSEL_NONE, testDataSend, testDataReceive, 24, true);
+  spiPeripheral.readWrite(chipEnables::SSEL_NONE, testDataSend, testDataReceive, 24, true);
   minUnitCheck(testDataSend[0] == testDataReceive[0]);
   minUnitCheck((testDataSend[1] & 0xFF) == testDataReceive[1]);
   // test receive
@@ -64,11 +67,11 @@ MINUNIT_ADD(LPC812M101CppSpiRxTx, LPC812M101CppSetupSpi, LPC812M101Teardown) {
   gpioPeripheral.output(test1Pin);
   gpioPeripheral.high(test1Pin);
   // enable pullup, read all ones
-  spiPeripheral.read(libMcuLL::sw::spi::chipEnables::SSEL_NONE, testDataReceive, 12, true);
+  spiPeripheral.read(chipEnables::SSEL_NONE, testDataReceive, 12, true);
   minUnitCheck(0xFFFu == testDataReceive[0]);
   // enable pulldown, read all zeroes
   gpioPeripheral.low(test1Pin);
   testDataReceive[0] = 0xFFFF;
-  spiPeripheral.read(libMcuLL::sw::spi::chipEnables::SSEL_NONE, testDataReceive, 12, true);
+  spiPeripheral.read(chipEnables::SSEL_NONE, testDataReceive, 12, true);
   minUnitCheck(0x0u == testDataReceive[0]);
 }

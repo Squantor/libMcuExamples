@@ -13,6 +13,9 @@
 #include <LPC812M101_teardown.hpp>
 #include <common.hpp>
 
+using namespace libMcuLL::hw::i2c;
+using namespace libMcuLL::sw::i2c;
+
 // peripheral register sets
 static constexpr libMcuLL::hwAddressType i2cAddress = libMcuLL::hw::I2C0_cpp;
 libMcuLL::hw::i2c::peripheral *const dutRegisters{reinterpret_cast<libMcuLL::hw::i2c::peripheral *>(i2cAddress)};
@@ -30,5 +33,5 @@ MINUNIT_SETUP(LPC812M101CppSetupI2c) {
 MINUNIT_ADD(LPC812M101DH20I2cInits, LPC812M101CppSetupI2c, LPC812M101Teardown) {
   uint32_t actualRate = i2cPeripheral.initMaster(133630);
   minUnitCheck(actualRate == 133928);
-  minUnitCheck((dutRegisters->CFG & libMcuLL::hw::i2c::CFG::MASK) == libMcuLL::hw::i2c::CFG::MSTEN);
+  minUnitCheck((dutRegisters->CFG & CFG::MASK) == CFG::MSTEN);
 }
