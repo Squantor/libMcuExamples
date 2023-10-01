@@ -13,7 +13,8 @@
 #include <common.hpp>
 
 // peripheral register sets
-registers::syscon::registers *const dutRegisters{reinterpret_cast<registers::syscon::registers *>(peripherals::SYSCON_cpp)};
+static constexpr libMcuLL::hwAddressType sysconAddress = peripherals::SYSCON_cpp;
+registers::syscon::registers *const dutRegisters{reinterpret_cast<registers::syscon::registers *>(sysconAddress)};
 
 /**
  * @brief Spi setup and initialisation

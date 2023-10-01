@@ -14,7 +14,8 @@
 #include <common.hpp>
 
 // peripheral register sets
-registers::i2c::registers *const dutRegisters{reinterpret_cast<registers::i2c::registers *>(peripherals::I2C0_cpp)};
+static constexpr libMcuLL::hwAddressType i2cAddress = peripherals::I2C0_cpp;
+registers::i2c::registers *const dutRegisters{reinterpret_cast<registers::i2c::registers *>(i2cAddress)};
 
 /**
  * @brief Gpio setup and initialisation

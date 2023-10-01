@@ -13,7 +13,8 @@
 #include <common.hpp>
 #include <array>
 
-registers::spi::registers *const dutRegisters{reinterpret_cast<registers::spi::registers *>(peripherals::SPI0_cpp)};
+static constexpr libMcuLL::hwAddressType spi0Address = peripherals::SPI0_cpp;
+registers::spi::registers *const dutRegisters{reinterpret_cast<registers::spi::registers *>(spi0Address)};
 
 /**
  * @brief Spi setup and initialisation

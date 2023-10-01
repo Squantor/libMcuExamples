@@ -13,7 +13,8 @@
 #include <common.hpp>
 
 // peripheral register sets
-registers::iocon::registers *const dutRegisters{reinterpret_cast<registers::iocon::registers *>(peripherals::IOCON_cpp)};
+static constexpr libMcuLL::hwAddressType ioconAddress = peripherals::IOCON_cpp; /**< peripheral address */
+registers::iocon::registers *const dutRegisters{reinterpret_cast<registers::iocon::registers *>(ioconAddress)};
 
 /**
  * @brief Spi setup and initialisation

@@ -15,7 +15,8 @@
 using namespace registers::usart;
 using namespace instances::usart;
 
-registers::usart::registers *const dutRegisters{reinterpret_cast<registers::usart::registers *>(peripherals::USART0_cpp)};
+static constexpr libMcuLL::hwAddressType usart0Address = peripherals::USART0_cpp;
+registers::usart::registers *const dutRegisters{reinterpret_cast<registers::usart::registers *>(usart0Address)};
 
 /**
  * @brief USART setup and initialisation

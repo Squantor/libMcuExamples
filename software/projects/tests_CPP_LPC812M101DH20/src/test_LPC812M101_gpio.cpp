@@ -13,7 +13,8 @@
 #include <common.hpp>
 
 // peripheral register sets
-registers::gpio::registers *const dutRegisters{reinterpret_cast<registers::gpio::registers *>(peripherals::GPIO_cpp)};
+static constexpr libMcuLL::hwAddressType gpioAddress = peripherals::GPIO_cpp;
+registers::gpio::registers *const dutRegisters{reinterpret_cast<registers::gpio::registers *>(gpioAddress)};
 
 /**
  * @brief Gpio setup and initialisation
