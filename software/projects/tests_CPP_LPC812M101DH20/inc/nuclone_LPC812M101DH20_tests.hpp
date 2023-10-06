@@ -25,18 +25,19 @@ using gpioPort = libMcuLL::hw::port<libMcuLL::hw::IOports::PORT0>;
 // Crystal osillator pins
 using xtalInPinType = libMcuLL::hw::pin<libMcuLL::hw::IOports::PORT0, libMcuLL::hw::IOpins::PIN08>;
 using xtalOutPinType = libMcuLL::hw::pin<libMcuLL::hw::IOports::PORT0, libMcuLL::hw::IOpins::PIN09>;
-// test pin pair 0, connected to eachother via 1KOhm resistor
-using test0PinType = libMcuLL::hw::pin<libMcuLL::hw::IOports::PORT0, libMcuLL::hw::IOpins::PIN01>;
-using test1PinType = libMcuLL::hw::pin<libMcuLL::hw::IOports::PORT0, libMcuLL::hw::IOpins::PIN15>;
+// test pin pair 0, connected to eachother via 3.3KOhm resistor
+using test0PinType = libMcuLL::hw::pin<libMcuLL::hw::IOports::PORT0, libMcuLL::hw::IOpins::PIN00>;
+using test1PinType = libMcuLL::hw::pin<libMcuLL::hw::IOports::PORT0, libMcuLL::hw::IOpins::PIN14>;
 // auxillary test pin, connected to nothing
 using test2PinType = libMcuLL::hw::pin<libMcuLL::hw::IOports::PORT0, libMcuLL::hw::IOpins::PIN07>;
-using test3PinType = libMcuLL::hw::pin<libMcuLL::hw::IOports::PORT0, libMcuLL::hw::IOpins::PIN14>;
+using test3PinType = libMcuLL::hw::pin<libMcuLL::hw::IOports::PORT0, libMcuLL::hw::IOpins::PIN06>;
+// PWM test pin pair, connected to 1K 10uF RC
+using testPwmInType = libMcuLL::hw::pin<libMcuLL::hw::IOports::PORT0, libMcuLL::hw::IOpins::PIN01>;
+using testPwmOutType = libMcuLL::hw::pin<libMcuLL::hw::IOports::PORT0, libMcuLL::hw::IOpins::PIN15>;
 // I2C Clock pin pair, pulled up to 2.2K to 3.3V
 using i2cSclOutPinType = libMcuLL::hw::pin<libMcuLL::hw::IOports::PORT0, libMcuLL::hw::IOpins::PIN10>;
-using i2cSclSensePinType = libMcuLL::hw::pin<libMcuLL::hw::IOports::PORT0, libMcuLL::hw::IOpins::PIN16>;
 // I2C Data pin pair, pulled up to 2.2K to 3.3V
 using i2cSdaOutPinType = libMcuLL::hw::pin<libMcuLL::hw::IOports::PORT0, libMcuLL::hw::IOpins::PIN11>;
-using i2cSdaSensePinType = libMcuLL::hw::pin<libMcuLL::hw::IOports::PORT0, libMcuLL::hw::IOpins::PIN04>;
 
 // Peripheral functions
 using mainI2cSdaFunctionType = libMcuLL::hw::swm::pinFunction<libMcuLL::hw::swm::pinFunctions::I2C_SDA_IO>;
@@ -58,8 +59,8 @@ constexpr test2PinType test2Pin;
 constexpr test3PinType test3Pin;
 constexpr i2cSclOutPinType i2cSclOutPin;
 constexpr i2cSdaOutPinType i2cSdaOutPin;
-constexpr i2cSclSensePinType i2cSclSensePin;
-constexpr i2cSdaSensePinType i2cSdaSensePin;
+constexpr testPwmInType pwmInPin;
+constexpr testPwmOutType pwmOutPin;
 constexpr gpioPort mainPort;
 
 constexpr xtalInFunctionType xtalIn;
