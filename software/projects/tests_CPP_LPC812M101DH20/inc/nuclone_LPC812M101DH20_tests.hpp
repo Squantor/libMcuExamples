@@ -63,8 +63,8 @@ constexpr testPwmInType pwmInPin;
 constexpr testPwmOutType pwmOutPin;
 constexpr gpioPort mainPort;
 
-constexpr xtalInFunctionType xtalIn;
-constexpr xtalOutFunctionType xtalOut;
+constexpr xtalInFunctionType xtalInFunction;
+constexpr xtalOutFunctionType xtalOutFunction;
 constexpr mainI2cSclFunctionType i2cMainSclFunction;
 constexpr mainI2cSdaFunctionType i2cMainSdaFunction;
 constexpr mainSpiSckFunctionType spiMainSckFunction;

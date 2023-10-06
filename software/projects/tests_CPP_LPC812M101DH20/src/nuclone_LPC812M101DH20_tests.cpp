@@ -34,8 +34,8 @@ void boardInit(void) {
   // setup IOCON pins
   ioconPeripheral.setup(xtalInPin, libMcuLL::hw::iocon::pullModes::INACTIVE);
   ioconPeripheral.setup(xtalOutPin, libMcuLL::hw::iocon::pullModes::INACTIVE);
-  swmPeriperhal.setup(xtalInPin, xtalIn);
-  swmPeriperhal.setup(xtalOut, xtalOut);
+  swmPeriperhal.setup(xtalInPin, xtalInFunction);
+  swmPeriperhal.setup(xtalOutPin, xtalOutFunction);
   // setup system clocks
   sysconPeripheral.setSysOscControl(libMcuLL::hw::syscon::SYSOSCCTRL::NO_BYPASS | libMcuLL::hw::syscon::SYSOSCCTRL::FREQ_1_20MHz);
   sysconPeripheral.powerPeripherals(libMcuLL::sw::syscon::POWER_SYSOSC);
