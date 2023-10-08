@@ -32,8 +32,8 @@ void boardInit(void) {
   sysconPeripheral.enablePeripheralClocks(libMcuLL::sw::syscon::CLOCK_SWM | libMcuLL::sw::syscon::CLOCK_IOCON |
                                           libMcuLL::sw::syscon::CLOCK_GPIO);
   // setup IOCON pins
-  ioconPeripheral.setup(xtalInPin, libMcuLL::hw::iocon::pullModes::INACTIVE);
-  ioconPeripheral.setup(xtalOutPin, libMcuLL::hw::iocon::pullModes::INACTIVE);
+  ioconPeripheral.setup(xtalInPin, libMcuLL::sw::iocon::pullModes::INACTIVE);
+  ioconPeripheral.setup(xtalOutPin, libMcuLL::sw::iocon::pullModes::INACTIVE);
   swmPeriperhal.setup(xtalInPin, xtalInFunction);
   swmPeriperhal.setup(xtalOutPin, xtalOutFunction);
   // setup system clocks
