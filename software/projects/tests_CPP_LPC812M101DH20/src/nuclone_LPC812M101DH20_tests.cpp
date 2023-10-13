@@ -9,7 +9,7 @@
 libMcuLL::sw::iocon::iocon<libMcuLL::hw::IOCON_cpp> ioconPeripheral;
 libMcuLL::sw::swm::swm<libMcuLL::hw::SWM_cpp> swmPeriperhal;
 libMcuLL::sw::gpio::gpio<libMcuLL::hw::GPIO_cpp> gpioPeripheral;
-libMcuLL::sw::spi::spiSync<libMcuLL::hw::SPI0_cpp, libMcuLL::sw::spi::chipEnables> spiPeripheral;
+libMcuLL::sw::spi::spiSync<libMcuLL::hw::SPI0_cpp, libMcuLL::sw::spi::chipEnables> spiSyncPeripheral;
 libMcuLL::sw::syscon::syscon<libMcuLL::hw::SYSCON_cpp> sysconPeripheral;
 libMcuLL::sw::usart::usart<libMcuLL::hw::USART0_cpp> usartPeripheral;
 libMcuLL::sw::i2c::i2c<libMcuLL::hw::I2C0_cpp> i2cPeripheral;
