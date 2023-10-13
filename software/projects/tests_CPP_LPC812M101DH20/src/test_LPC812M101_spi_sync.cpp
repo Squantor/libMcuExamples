@@ -22,14 +22,14 @@ libMcuLL::hw::spi::peripheral *const dutRegisters{reinterpret_cast<libMcuLL::hw:
 /**
  * @brief Spi setup and initialisation
  */
-MINUNIT_SETUP(LPC812M101CppSetupSpi) {
+MINUNIT_SETUP(LPC812M101CppSetupSpiSync) {
   minUnitCheck(LPC812M101TeardownCorrect() == true);
   sysconPeripheral.enablePeripheralClocks(libMcuLL::sw::syscon::CLOCK_SPI0 | libMcuLL::sw::syscon::CLOCK_SWM |
                                           libMcuLL::sw::syscon::CLOCK_IOCON);
   sysconPeripheral.resetPeripherals(libMcuLL::sw::syscon::RESET_SPI0);
 }
 
-MINUNIT_ADD(LPC812M101CppSpiInits, LPC812M101CppSetupSpi, LPC812M101Teardown) {
+MINUNIT_ADD(LPC812M101CppSpiSyncInits, LPC812M101CppSetupSpiSync, LPC812M101Teardown) {
   uint32_t actualClock;
   actualClock = spiPeripheral.initMaster(100000);
   minUnitCheck(actualClock == 100000);
@@ -42,7 +42,7 @@ MINUNIT_ADD(LPC812M101CppSpiInits, LPC812M101CppSetupSpi, LPC812M101Teardown) {
   minUnitCheck(dutRegisters->DIV == 457);
 }
 
-MINUNIT_ADD(LPC812M101CppSpiRxTx, LPC812M101CppSetupSpi, LPC812M101Teardown) {
+MINUNIT_ADD(LPC812M101CppSpiSyncRxTx, LPC812M101CppSetupSpiSync, LPC812M101Teardown) {
   swmPeriperhal.setup(test2Pin, spiMainSckFunction);
   swmPeriperhal.setup(test1Pin, spiMainMosiFunction);
   swmPeriperhal.setup(test0Pin, spiMainMisoFunction);
