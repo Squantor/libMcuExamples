@@ -17,7 +17,7 @@ $(NAME)_LIBS := libMcuLL squantorLibC squantorLibEmbedded squantorMinUnit
 $(NAME)_FILES := $(PROJ_DIR)/src/main.cpp \
 $(PROJ_DIR)/src/$(BOARD).cpp \
 $(PROJ_DIR)/src/LPC812M101_teardown.cpp \
-$(PROJ_DIR)/src/test_LPC812M101_spi.cpp \
+$(PROJ_DIR)/src/test_LPC812M101_spi_sync.cpp \
 $(PROJ_DIR)/src/test_LPC812M101_syscon.cpp \
 $(PROJ_DIR)/src/test_LPC812M101_gpio.cpp \
 $(PROJ_DIR)/src/test_LPC812M101_uart.cpp \
