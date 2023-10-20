@@ -8,7 +8,7 @@
 PROJ_DIR := $(patsubst %/,%,$(dir $(lastword $(MAKEFILE_LIST))))
 
 # project settings
-NAME := LPC812M101DH20_CPP_tests
+NAME := LPC812M101DH20_CPP_tests_first
 BOARD := nuclone_LPC812M101DH20_tests
 $(NAME)_TARGET := MCU
 $(NAME)_MCU := LPC812M101DH20
@@ -24,9 +24,6 @@ $(PROJ_DIR)/src/test_LPC812M101_gpio.cpp \
 $(PROJ_DIR)/src/test_LPC812M101_uart.cpp \
 $(PROJ_DIR)/src/test_LPC812M101_iocon.cpp \
 $(PROJ_DIR)/src/test_LPC812M101_i2c.cpp
-
-
-
 
 $(NAME)_INCLUDES := -I$(PROJ_DIR)/inc -Icommon/inc
 
