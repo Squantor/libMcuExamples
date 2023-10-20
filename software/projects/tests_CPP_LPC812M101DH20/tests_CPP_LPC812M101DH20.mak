@@ -25,8 +25,6 @@ $(PROJ_DIR)/src/test_LPC812M101_uart.cpp \
 $(PROJ_DIR)/src/test_LPC812M101_iocon.cpp \
 $(PROJ_DIR)/src/test_LPC812M101_i2c.cpp
 
-
-
 $(NAME)_INCLUDES := -I$(PROJ_DIR)/inc -Icommon/inc
 
 # --- nothing user definable below ---
