@@ -28,4 +28,5 @@ include $(BASE_DIR)/projects/tests_CPP_LPC844M201BD64/tests_CPP_LPC844M201BD64.m
 include $(BASE_DIR)/projects/tests_RP2040/tests_RP2040.mak
 include $(BASE_DIR)/projects/tests_template/tests_template.mak
 include $(BASE_DIR)/projects/tests_CPP_LPC812M101DH20_first/tests_CPP_LPC812M101DH20_first.mak
+include $(BASE_DIR)/projects/tests_CPP_LPC812M101DH20_second/tests_CPP_LPC812M101DH20_second.mak
 
