@@ -27,6 +27,28 @@
             "debuggerArgs": [],
         },
         {
+            "name": "Debug release C++ LPC812M101DH20 tests",
+            "cwd": "${workspaceRoot}",
+            "gdbPath": "/usr/bin/gdb-multiarch",
+            "executable": "${workspaceFolder}/bin/LPC812M101DH20_CPP_tests/release_size/LPC812M101DH20_CPP_tests.elf",
+            "request": "launch",
+            "type": "cortex-debug",
+            "servertype": "bmp",
+            "interface": "swd",
+            "device": "LPC812",
+            "BMPGDBSerialPort": "/dev/ttyACM0",
+            "powerOverBMP": "enable",
+            "preLaunchCommands": [],
+            "postLaunchCommands": [
+                "set {int}0x40048000 = 2",
+                "compare-sections"
+            ],
+            "preRestartCommands": [],
+            "preLaunchTask": "build release C++ LPC812M101DH20 tests",
+            "svdFile": "${workspaceFolder}/libraries/libMcuLL/svd/nxp/LPC812.svd",
+            "debuggerArgs": [],
+        },
+        {
             "name": "Debug debug C LPC844M201BD64 tests",
             "cwd": "${workspaceRoot}",
             "executable": "${workspaceFolder}/bin/LPC844M201BD64_C_tests/debug/LPC844M201BD64_C_tests.elf",

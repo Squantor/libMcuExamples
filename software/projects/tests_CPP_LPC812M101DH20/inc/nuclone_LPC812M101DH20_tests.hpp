@@ -25,14 +25,16 @@ using gpioPort = libMcuLL::hw::port<libMcuLL::hw::IOports::PORT0>;
 // Crystal osillator pins
 using xtalInPinType = libMcuLL::hw::pin<libMcuLL::hw::IOports::PORT0, libMcuLL::hw::IOpins::PIN08>;
 using xtalOutPinType = libMcuLL::hw::pin<libMcuLL::hw::IOports::PORT0, libMcuLL::hw::IOpins::PIN09>;
-// test pin pair 0, connected to eachother via 3.3KOhm resistor
+// test pin pair 0, connected to eachother via 3.3KOhm resistor, testboard PIN1
 using test0PinType = libMcuLL::hw::pin<libMcuLL::hw::IOports::PORT0, libMcuLL::hw::IOpins::PIN00>;
 using test1PinType = libMcuLL::hw::pin<libMcuLL::hw::IOports::PORT0, libMcuLL::hw::IOpins::PIN14>;
-// auxillary test pin, connected to nothing
+// auxillary test pin, connected to nothing, testboard PIN2
 using test2PinType = libMcuLL::hw::pin<libMcuLL::hw::IOports::PORT0, libMcuLL::hw::IOpins::PIN07>;
+// auxillary test pin, connected to nothing, testboard PIN3
 using test3PinType = libMcuLL::hw::pin<libMcuLL::hw::IOports::PORT0, libMcuLL::hw::IOpins::PIN06>;
-// PWM test pin pair, connected to 1K 10uF RC
+// PWM test pin pair, connected to 1K 10uF RC, testboard RC_out1
 using testPwmInType = libMcuLL::hw::pin<libMcuLL::hw::IOports::PORT0, libMcuLL::hw::IOpins::PIN01>;
+// PWM test pin pair, connected to 1K 10uF RC, testboard RC_in1
 using testPwmOutType = libMcuLL::hw::pin<libMcuLL::hw::IOports::PORT0, libMcuLL::hw::IOpins::PIN15>;
 // I2C Clock pin pair, pulled up to 2.2K to 3.3V
 using i2cSclOutPinType = libMcuLL::hw::pin<libMcuLL::hw::IOports::PORT0, libMcuLL::hw::IOpins::PIN10>;
