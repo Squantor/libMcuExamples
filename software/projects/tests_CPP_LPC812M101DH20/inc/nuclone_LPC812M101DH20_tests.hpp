@@ -86,5 +86,6 @@ extern libMcuLL::sw::usart::usart<libMcuLL::hw::USART0_cpp> usartPeripheral;
 extern libMcuLL::sw::i2c::i2c<libMcuLL::hw::I2C0_cpp> i2cPeripheral;
 
 void boardInit(void);
+void crudeDelay(uint32_t iterations);
 
 #endif
