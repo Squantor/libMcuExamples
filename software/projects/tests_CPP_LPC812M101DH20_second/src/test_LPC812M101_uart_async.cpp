@@ -21,7 +21,7 @@ libMcuLL::hw::usart::peripheral *const dutRegisters{reinterpret_cast<libMcuLL::h
 /**
  * @brief USART setup and initialisation
  */
-MINUNIT_SETUP(LPC812M101CppSetupUsartSync) {
+MINUNIT_SETUP(LPC812M101CppSetupUsartAsync) {
   minUnitCheck(LPC812M101TeardownCorrect() == true);
   swmPeriperhal.setup(test0Pin, uartMainRxFunction);
   swmPeriperhal.setup(test1Pin, uartMainTxFunction);
@@ -30,25 +30,43 @@ MINUNIT_SETUP(LPC812M101CppSetupUsartSync) {
   sysconPeripheral.resetPeripherals(libMcuLL::sw::syscon::RESET_UART0);
 }
 
-MINUNIT_ADD(LPC812M101CppUsartSyncInit, LPC812M101CppSetupUsartSync, LPC812M101Teardown) {
+MINUNIT_ADD(LPC812M101CppUsartAsyncInit, LPC812M101CppSetupUsartAsync, LPC812M101Teardown) {
   uint32_t realBaudRate;
-  realBaudRate = usartAsyncPeripheral.init(115200);
+  realBaudRate = usartSyncPeripheral.init(115200);
   minUnitCheck(realBaudRate == 117187);
   minUnitCheck((dutRegisters->CFG & CFG::MASK) == (CFG::ENABLE | uartLength::SIZE_8 | uartParity::NONE | uartStop::STOP_1));
   dutRegisters->CFG = 0x00000000;
-  realBaudRate = usartAsyncPeripheral.init(9600, uartLength::SIZE_7, uartParity::EVEN, uartStop::STOP_2);
+  realBaudRate = usartSyncPeripheral.init(9600, uartLength::SIZE_7, uartParity::EVEN, uartStop::STOP_2);
   minUnitCheck(realBaudRate == 9615);
   minUnitCheck((dutRegisters->CFG & CFG::MASK) == (CFG::ENABLE | uartLength::SIZE_7 | uartParity::EVEN | uartStop::STOP_2));
 }
 
-MINUNIT_ADD(LPC812M101CppUsartSyncClaiming, LPC812M101CppSetupUsartSync, LPC812M101Teardown) {
-  usartAsyncPeripheral.init(115200);
-  minUnitCheck(usartAsyncPeripheral.claim() == libMcuLL::results::CLAIMED);
-  minUnitCheck(usartAsyncPeripheral.claim() == libMcuLL::results::IN_USE);
-  minUnitCheck(usartAsyncPeripheral.unclaim() == libMcuLL::results::UNCLAIMED);
-  minUnitCheck(usartAsyncPeripheral.unclaim() == libMcuLL::results::ERROR);
-}
-
-MINUNIT_ADD(LPC812M101CppUsartSyncComms, LPC812M101CppSetupUsartSync, LPC812M101Teardown) {
-  minUnitPass();
+MINUNIT_ADD(LPC812M101CppUsartAsyncComms, LPC812M101CppSetupUsartAsync, LPC812M101Teardown) {
+  uint32_t data, status;
+  int timeout;
+  usartSyncPeripheral.init(115200);
+  sysconPeripheral.setUsartClockDivider(1);
+  minUnitCheck((dutRegisters->STAT & STAT::MASK) == 0x0000000E);
+  minUnitCheck(usartSyncPeripheral.status() & uartStatus::TXRDY);
+  usartSyncPeripheral.write(0xA5);
+  timeout = 0xFFFF;
+  while (timeout > 0 && !(usartSyncPeripheral.status() & uartStatus::RXRDY)) {
+    timeout--;
+  }
+  minUnitCheck(timeout > 0);
+  minUnitCheck(usartSyncPeripheral.status() & uartStatus::RXRDY);
+  usartSyncPeripheral.read(data);
+  minUnitCheck(data == 0xA5);
+  for (uint32_t i = 0; i < 256; i++) {
+    usartSyncPeripheral.write(i);
+    timeout = 0xFFFF;
+    while (timeout > 0 && !(usartSyncPeripheral.status() & uartStatus::RXRDY)) {
+      timeout--;
+    }
+    minUnitCheck(timeout > 0);
+    minUnitCheck(usartSyncPeripheral.status() & uartStatus::RXRDY);
+    usartSyncPeripheral.read(data, status);
+    minUnitCheck(data == i);
+    minUnitCheck(status == 0x00000000);
+  }
 }

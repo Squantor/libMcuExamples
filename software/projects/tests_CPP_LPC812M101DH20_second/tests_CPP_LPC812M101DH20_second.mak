@@ -20,6 +20,7 @@ $(PROJ_DIR)/src/LPC812M101_teardown.cpp \
 $(PROJ_DIR)/src/test_LPC812M101_spi_async.cpp \
 $(PROJ_DIR)/src/test_LPC812M101_spi_sync.cpp \
 $(PROJ_DIR)/src/test_LPC812M101_uart_sync.cpp \
+$(PROJ_DIR)/src/test_LPC812M101_uart_async.cpp \
 $(PROJ_DIR)/src/test_LPC812M101_i2c_sync.cpp
 
 $(NAME)_INCLUDES := -I$(PROJ_DIR)/inc -Icommon/inc

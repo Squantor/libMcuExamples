@@ -82,7 +82,8 @@ extern libMcuLL::sw::gpio::gpio<libMcuLL::hw::GPIO_cpp> gpioPeripheral;
 extern libMcuLL::sw::spi::spiSync<libMcuLL::hw::SPI0_cpp, libMcuLL::sw::spi::chipEnables> spiSyncPeripheral;
 extern libMcuLL::sw::spi::spiAsync<libMcuLL::hw::SPI0_cpp, libMcuLL::sw::spi::chipEnables> spiAsyncPeripheral;
 extern libMcuLL::sw::syscon::syscon<libMcuLL::hw::SYSCON_cpp> sysconPeripheral;
-extern libMcuLL::sw::usart::usart<libMcuLL::hw::USART0_cpp> usartPeripheral;
+extern libMcuLL::sw::usart::usartSync<libMcuLL::hw::USART0_cpp> usartSyncPeripheral;
+extern libMcuLL::sw::usart::usartAsync<libMcuLL::hw::USART0_cpp> usartAsyncPeripheral;
 extern libMcuLL::sw::i2c::i2c<libMcuLL::hw::I2C0_cpp> i2cPeripheral;
 
 void boardInit(void);
