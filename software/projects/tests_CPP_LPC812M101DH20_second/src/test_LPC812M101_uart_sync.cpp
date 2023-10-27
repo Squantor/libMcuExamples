@@ -50,5 +50,17 @@ MINUNIT_ADD(LPC812M101CppUsartSyncClaiming, LPC812M101CppSetupUsartSync, LPC812M
 }
 
 MINUNIT_ADD(LPC812M101CppUsartSyncComms, LPC812M101CppSetupUsartSync, LPC812M101Teardown) {
-  minUnitPass();
+  std::array<uint16_t, 5> testDataSend{0x1234, 0x4567, 0x89AB, 0xCDEF, 0x5A5A};
+  std::array<uint16_t, 5> testDataReceive;
+  testDataReceive.fill(0x0000u);
+  swmPeriperhal.setup(test1Pin, uartMainRxFunction);
+  swmPeriperhal.setup(test0Pin, uartMainTxFunction);
+  usartAsyncPeripheral.init(115200);
+  minUnitCheck(usartAsyncPeripheral.claim() == libMcuLL::results::CLAIMED);
+  minUnitCheck(usartAsyncPeripheral.startRead(testDataReceive) == libMcuLL::results::STARTED);
+  minUnitCheck(usartAsyncPeripheral.startRead(testDataReceive) == libMcuLL::results::ERROR);
+  minUnitCheck(usartAsyncPeripheral.startWrite(testDataSend) == libMcuLL::results::STARTED);
+  minUnitCheck(usartAsyncPeripheral.startWrite(testDataSend) == libMcuLL::results::ERROR);
+
+  minUnitCheck(usartAsyncPeripheral.unclaim() == libMcuLL::results::UNCLAIMED);
 }
