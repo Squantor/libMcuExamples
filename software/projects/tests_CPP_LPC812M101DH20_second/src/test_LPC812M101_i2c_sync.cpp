@@ -24,7 +24,7 @@ libMcuLL::hw::i2c::peripheral *const dutRegisters{reinterpret_cast<libMcuLL::hw:
 /**
  * @brief Gpio setup and initialisation
  */
-MINUNIT_SETUP(LPC812M101CppSetupI2c) {
+MINUNIT_SETUP(LPC812M101CppSetupI2cSync) {
   minUnitCheck(LPC812M101TeardownCorrect() == true);
   sysconPeripheral.enablePeripheralClocks(libMcuLL::sw::syscon::CLOCK_I2C | libMcuLL::sw::syscon::CLOCK_SWM);
   sysconPeripheral.resetPeripherals(libMcuLL::sw::syscon::RESET_I2C);
@@ -33,7 +33,7 @@ MINUNIT_SETUP(LPC812M101CppSetupI2c) {
 }
 
 // testing inits
-MINUNIT_ADD(LPC812M101DH20I2cInits, LPC812M101CppSetupI2c, LPC812M101Teardown) {
+MINUNIT_ADD(LPC812M101DH20I2cSyncInits, LPC812M101CppSetupI2cSync, LPC812M101Teardown) {
   uint32_t actualRate = i2cPeripheral.initMaster(133630, 100);
   minUnitCheck(actualRate == 136363);
   minUnitCheck((dutRegisters->CFG & CFG::MASK) == CFG::MSTEN);
@@ -41,7 +41,7 @@ MINUNIT_ADD(LPC812M101DH20I2cInits, LPC812M101CppSetupI2c, LPC812M101Teardown) {
 }
 
 // testing write and read
-MINUNIT_ADD(LPC812M101DH20I2cWriteRead, LPC812M101CppSetupI2c, LPC812M101Teardown) {
+MINUNIT_ADD(LPC812M101DH20I2cSyncWriteRead, LPC812M101CppSetupI2cSync, LPC812M101Teardown) {
   std::array<std::uint8_t, 5> testWriteData{0x88, 0x11, 0xAA, 0x55, 0xC5};
   std::array<std::uint8_t, 3> testReadData{};
   std::array<std::uint8_t, 1> testI2cExpanderOutput{0x30};

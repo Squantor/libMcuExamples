@@ -21,7 +21,7 @@ libMcuLL::hw::usart::peripheral *const dutRegisters{reinterpret_cast<libMcuLL::h
 /**
  * @brief USART setup and initialisation
  */
-MINUNIT_SETUP(LPC812M101CppSetupUsart) {
+MINUNIT_SETUP(LPC812M101CppSetupUsartSync) {
   minUnitCheck(LPC812M101TeardownCorrect() == true);
   swmPeriperhal.setup(test0Pin, uartMainRxFunction);
   swmPeriperhal.setup(test1Pin, uartMainTxFunction);
@@ -30,7 +30,7 @@ MINUNIT_SETUP(LPC812M101CppSetupUsart) {
   sysconPeripheral.resetPeripherals(libMcuLL::sw::syscon::RESET_UART0);
 }
 
-MINUNIT_ADD(LPC812M101CppUsartInit, LPC812M101CppSetupUsart, LPC812M101Teardown) {
+MINUNIT_ADD(LPC812M101CppUsartSyncInit, LPC812M101CppSetupUsartSync, LPC812M101Teardown) {
   uint32_t realBaudRate;
   realBaudRate = usartPeripheral.init(115200);
   minUnitCheck(realBaudRate == 117187);
@@ -41,7 +41,7 @@ MINUNIT_ADD(LPC812M101CppUsartInit, LPC812M101CppSetupUsart, LPC812M101Teardown)
   minUnitCheck((dutRegisters->CFG & CFG::MASK) == (CFG::ENABLE | uartLength::SIZE_7 | uartParity::EVEN | uartStop::STOP_2));
 }
 
-MINUNIT_ADD(LPC812M101CppUsartComms, LPC812M101CppSetupUsart, LPC812M101Teardown) {
+MINUNIT_ADD(LPC812M101CppUsartSyncComms, LPC812M101CppSetupUsartSync, LPC812M101Teardown) {
   uint32_t data, status;
   int timeout;
   usartPeripheral.init(115200);
