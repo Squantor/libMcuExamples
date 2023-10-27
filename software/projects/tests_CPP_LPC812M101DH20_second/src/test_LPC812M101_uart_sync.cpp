@@ -55,12 +55,30 @@ MINUNIT_ADD(LPC812M101CppUsartSyncComms, LPC812M101CppSetupUsartSync, LPC812M101
   testDataReceive.fill(0x0000u);
   swmPeriperhal.setup(test1Pin, uartMainRxFunction);
   swmPeriperhal.setup(test0Pin, uartMainTxFunction);
+  sysconPeripheral.setUsartClockDivider(1);
   usartAsyncPeripheral.init(115200);
   minUnitCheck(usartAsyncPeripheral.claim() == libMcuLL::results::CLAIMED);
   minUnitCheck(usartAsyncPeripheral.startRead(testDataReceive) == libMcuLL::results::STARTED);
   minUnitCheck(usartAsyncPeripheral.startRead(testDataReceive) == libMcuLL::results::ERROR);
   minUnitCheck(usartAsyncPeripheral.startWrite(testDataSend) == libMcuLL::results::STARTED);
   minUnitCheck(usartAsyncPeripheral.startWrite(testDataSend) == libMcuLL::results::ERROR);
-
+  libMcuLL::results readResult = libMcuLL::results::BUSY;
+  libMcuLL::results writeResult = libMcuLL::results::BUSY;
+  int timeout = 0;
+  do {
+    if (readResult == libMcuLL::results::BUSY)
+      readResult = usartAsyncPeripheral.progressRead();
+    if (writeResult == libMcuLL::results::BUSY)
+      writeResult = usartAsyncPeripheral.progressWrite();
+    timeout++;
+  } while (timeout < 100000 && (writeResult == libMcuLL::results::BUSY || readResult == libMcuLL::results::BUSY));
+  minUnitCheck(timeout < 100000);
+  minUnitCheck(writeResult == libMcuLL::results::DONE);
+  minUnitCheck(readResult == libMcuLL::results::DONE);
+  minUnitCheck(testDataReceive[0] == 0x34);
+  minUnitCheck(testDataReceive[1] == 0x67);
+  minUnitCheck(testDataReceive[2] == 0xAB);
+  minUnitCheck(testDataReceive[3] == 0xEF);
+  minUnitCheck(testDataReceive[4] == 0x5A);
   minUnitCheck(usartAsyncPeripheral.unclaim() == libMcuLL::results::UNCLAIMED);
 }
