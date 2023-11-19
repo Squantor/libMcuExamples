@@ -15,10 +15,10 @@ $(NAME)_MCU := LPC812M101DH20
 $(NAME)_DEFINES += -DMINUNIT_MAX_TESTS=100 -DMINUNIT_REPORT_DISABLE # saves load of flash space
 $(NAME)_LIBS := libMcuLL squantorLibC squantorLibEmbedded squantorMinUnit
 $(NAME)_FILES := $(PROJ_DIR)/src/main.cpp \
-$(PROJ_DIR)/src/$(BOARD).cpp \
+common/src/$(BOARD).cpp \
 $(PROJ_DIR)/src/LPC812M101_teardown.cpp \
 $(PROJ_DIR)/src/test_LPC812M101_spi_async.cpp \
-$(PROJ_DIR)/src/test_LPC812M101_uart_async.cpp \
+$(PROJ_DIR)/src/test_LPC812M101_uart_async.cpp
 
 $(NAME)_INCLUDES := -I$(PROJ_DIR)/inc -Icommon/inc
 
