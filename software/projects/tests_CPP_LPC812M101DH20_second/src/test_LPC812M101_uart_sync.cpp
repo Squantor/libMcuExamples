@@ -50,8 +50,8 @@ MINUNIT_ADD(LPC812M101CppUsartSyncClaiming, LPC812M101CppSetupUsartSync, LPC812M
 }
 
 MINUNIT_ADD(LPC812M101CppUsartSyncComms, LPC812M101CppSetupUsartSync, LPC812M101Teardown) {
-  std::array<uint16_t, 5> testDataSend{0x1234, 0x4567, 0x89AB, 0xCDEF, 0x5A5A};
-  std::array<uint16_t, 5> testDataReceive;
+  std::array<std::uint8_t, 5> testDataSend{0x12, 0xFE, 0x34, 0xDC, 0x5A};
+  std::array<std::uint8_t, 5> testDataReceive;
   testDataReceive.fill(0x0000u);
   swmPeriperhal.setup(test1Pin, uartMainRxFunction);
   swmPeriperhal.setup(test0Pin, uartMainTxFunction);
@@ -75,10 +75,10 @@ MINUNIT_ADD(LPC812M101CppUsartSyncComms, LPC812M101CppSetupUsartSync, LPC812M101
   minUnitCheck(timeout < 100000);
   minUnitCheck(writeResult == libMcuLL::results::DONE);
   minUnitCheck(readResult == libMcuLL::results::DONE);
-  minUnitCheck(testDataReceive[0] == 0x34);
-  minUnitCheck(testDataReceive[1] == 0x67);
-  minUnitCheck(testDataReceive[2] == 0xAB);
-  minUnitCheck(testDataReceive[3] == 0xEF);
+  minUnitCheck(testDataReceive[0] == 0x12);
+  minUnitCheck(testDataReceive[1] == 0xFE);
+  minUnitCheck(testDataReceive[2] == 0x34);
+  minUnitCheck(testDataReceive[3] == 0xDC);
   minUnitCheck(testDataReceive[4] == 0x5A);
   minUnitCheck(usartAsyncPeripheral.unclaim() == libMcuLL::results::UNCLAIMED);
 }

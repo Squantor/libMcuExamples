@@ -12,8 +12,8 @@ libMcuLL::sw::gpio::gpio<libMcuLL::hw::GPIO_cpp> gpioPeripheral;
 libMcuLL::sw::spi::spiSync<libMcuLL::hw::SPI0_cpp, libMcuLL::sw::spi::chipEnables> spiSyncPeripheral;
 libMcuLL::sw::spi::spiAsync<libMcuLL::hw::SPI0_cpp, libMcuLL::sw::spi::chipEnables> spiAsyncPeripheral;
 libMcuLL::sw::syscon::syscon<libMcuLL::hw::SYSCON_cpp> sysconPeripheral;
-libMcuLL::sw::usart::usartSync<libMcuLL::hw::USART0_cpp> usartSyncPeripheral;
-libMcuLL::sw::usart::usartAsync<libMcuLL::hw::USART0_cpp> usartAsyncPeripheral;
+libMcuLL::sw::usart::usartSync<libMcuLL::hw::USART0_cpp, std::uint8_t> usartSyncPeripheral;
+libMcuLL::sw::usart::usartAsync<libMcuLL::hw::USART0_cpp, std::uint8_t> usartAsyncPeripheral;
 libMcuLL::sw::i2c::i2c<libMcuLL::hw::I2C0_cpp> i2cPeripheral;
 
 void crudeDelay(uint32_t iterations) {

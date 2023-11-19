@@ -31,7 +31,7 @@ MINUNIT_SETUP(LPC812M101CppSetupUsartAsync) {
 }
 
 MINUNIT_ADD(LPC812M101CppUsartAsyncInit, LPC812M101CppSetupUsartAsync, LPC812M101Teardown) {
-  uint32_t realBaudRate;
+  std::uint32_t realBaudRate;
   realBaudRate = usartSyncPeripheral.init(115200);
   minUnitCheck(realBaudRate == 117187);
   minUnitCheck((dutRegisters->CFG & CFG::MASK) == (CFG::ENABLE | uartLength::SIZE_8 | uartParity::NONE | uartStop::STOP_1));
@@ -42,7 +42,8 @@ MINUNIT_ADD(LPC812M101CppUsartAsyncInit, LPC812M101CppSetupUsartAsync, LPC812M10
 }
 
 MINUNIT_ADD(LPC812M101CppUsartAsyncComms, LPC812M101CppSetupUsartAsync, LPC812M101Teardown) {
-  uint32_t data, status;
+  std::uint32_t status;
+  std::uint8_t data;
   int timeout;
   usartSyncPeripheral.init(115200);
   sysconPeripheral.setUsartClockDivider(1);
@@ -57,7 +58,7 @@ MINUNIT_ADD(LPC812M101CppUsartAsyncComms, LPC812M101CppSetupUsartAsync, LPC812M1
   minUnitCheck(usartSyncPeripheral.status() & uartStatus::RXRDY);
   usartSyncPeripheral.read(data);
   minUnitCheck(data == 0xA5);
-  for (uint32_t i = 0; i < 256; i++) {
+  for (std::uint32_t i = 0; i < 256; i++) {
     usartSyncPeripheral.write(i);
     timeout = 0xFFFF;
     while (timeout > 0 && !(usartSyncPeripheral.status() & uartStatus::RXRDY)) {
