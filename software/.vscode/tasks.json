@@ -13,6 +13,13 @@
       ]
     },
     {
+      "label": "build libMcuLL LPC812M101DH20 third tests, debug mode",
+      "type": "shell",
+      "command": "bear -- make PROJECT=LPC812M101DH20_CPP_tests_third CONFIG=debug -j20",
+      "group": "build",
+      "problemMatcher": "$gcc"
+    },
+    {
       "label": "build libMcuLL LPC812M101DH20 second tests, debug mode",
       "type": "shell",
       "command": "bear -- make PROJECT=LPC812M101DH20_CPP_tests_second CONFIG=debug -j20",
