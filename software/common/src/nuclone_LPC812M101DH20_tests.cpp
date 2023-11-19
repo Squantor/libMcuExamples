@@ -9,8 +9,9 @@
 libMcuLL::sw::iocon::iocon<libMcuLL::hw::IOCON_cpp> ioconPeripheral;
 libMcuLL::sw::swm::swm<libMcuLL::hw::SWM_cpp> swmPeriperhal;
 libMcuLL::sw::gpio::gpio<libMcuLL::hw::GPIO_cpp> gpioPeripheral;
-libMcuLL::sw::spi::spiSync<libMcuLL::hw::SPI0_cpp, libMcuLL::sw::spi::chipEnables> spiSyncPeripheral;
-libMcuLL::sw::spi::spiAsync<libMcuLL::hw::SPI0_cpp, libMcuLL::sw::spi::chipEnables> spiAsyncPeripheral;
+libMcuLL::sw::spi::spiSync<libMcuLL::hw::SPI0_cpp, libMcuLL::sw::spi::chipEnables, std::uint16_t> spiSyncPeripheral;
+libMcuLL::sw::spi::spiAsync<libMcuLL::hw::SPI0_cpp, libMcuLL::sw::spi::chipEnables, std::uint16_t> spiAsyncPeripheral16;
+libMcuLL::sw::spi::spiAsync<libMcuLL::hw::SPI0_cpp, libMcuLL::sw::spi::chipEnables, std::uint8_t> spiAsyncPeripheral8;
 libMcuLL::sw::syscon::syscon<libMcuLL::hw::SYSCON_cpp> sysconPeripheral;
 libMcuLL::sw::usart::usartSync<libMcuLL::hw::USART0_cpp, std::uint8_t> usartSyncPeripheral;
 libMcuLL::sw::usart::usartAsync<libMcuLL::hw::USART0_cpp, std::uint8_t> usartAsyncPeripheral;
