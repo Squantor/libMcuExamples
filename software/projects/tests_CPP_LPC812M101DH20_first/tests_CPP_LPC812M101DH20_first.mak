@@ -19,7 +19,8 @@ common/src/$(BOARD).cpp \
 $(PROJ_DIR)/src/LPC812M101_teardown.cpp \
 $(PROJ_DIR)/src/test_LPC812M101_syscon.cpp \
 $(PROJ_DIR)/src/test_LPC812M101_gpio.cpp \
-$(PROJ_DIR)/src/test_LPC812M101_iocon.cpp
+$(PROJ_DIR)/src/test_LPC812M101_iocon.cpp \
+$(PROJ_DIR)/src/test_LPC812M101_sct.cpp
 
 $(NAME)_INCLUDES := -I$(PROJ_DIR)/inc -Icommon/inc
 
