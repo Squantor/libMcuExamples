@@ -24,8 +24,15 @@ libMcuLL::hw::sct::peripheral *const dutRegisters{reinterpret_cast<libMcuLL::hw:
  */
 MINUNIT_SETUP(LPC812M101CppSetupSct) {
   minUnitCheck(LPC812M101TeardownCorrect() == true);
+  sysconPeripheral.enablePeripheralClocks(libMcuLL::sw::syscon::CLOCK_SCT);
+  sysconPeripheral.resetPeripherals(libMcuLL::sw::syscon::RESET_SCT);
 }
 
 MINUNIT_ADD(LPC812M101CppSctInit, LPC812M101CppSetupSct, LPC812M101Teardown) {
-  minUnitPass();
+  sctPeripheral.init(0x4, BIDIRECTIONAL);
+  minUnitCheck(dutRegisters->CONFIG == 0x00020001);
+  minUnitCheck(dutRegisters->CTRL == 0x00040094);
+  sctPeripheral.init(0x3, 0x5, BIDIRECTIONAL, UP);
+  minUnitCheck(dutRegisters->CONFIG == 0x00060000);
+  minUnitCheck(dutRegisters->CTRL == 0x00A40074);
 }
