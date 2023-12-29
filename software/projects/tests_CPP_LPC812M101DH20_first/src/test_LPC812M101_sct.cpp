@@ -15,6 +15,10 @@
 using namespace libMcuLL::hw::sct;
 using namespace libMcuLL::sw::sct;
 
+// peripheral register sets
+static constexpr libMcuLL::hwAddressType sctAddress = libMcuLL::hw::SCT0_cpp;
+libMcuLL::hw::sct::peripheral *const dutRegisters{reinterpret_cast<libMcuLL::hw::sct::peripheral *>(sctAddress)};
+
 /**
  * @brief Spi setup and initialisation
  */
