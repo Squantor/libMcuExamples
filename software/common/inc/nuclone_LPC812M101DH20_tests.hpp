@@ -52,6 +52,9 @@ using mainSpiMosiFunctionType = libMcuLL::hw::swm::pinFunction<libMcuLL::hw::swm
 using mainSpiMisoFunctionType = libMcuLL::hw::swm::pinFunction<libMcuLL::hw::swm::pinFunctions::SPI0_MISO_IO>;
 using mainUartTxFunctionType = libMcuLL::hw::swm::pinFunction<libMcuLL::hw::swm::pinFunctions::U0_TXD_O>;
 using mainUartRxFunctionType = libMcuLL::hw::swm::pinFunction<libMcuLL::hw::swm::pinFunctions::U0_RXD_I>;
+using sctOutput0FunctionType = libMcuLL::hw::swm::pinFunction<libMcuLL::hw::swm::pinFunctions::CTOUT_0_O>;
+using sctOutput1FunctionType = libMcuLL::hw::swm::pinFunction<libMcuLL::hw::swm::pinFunctions::CTOUT_1_O>;
+using sctOutput2FunctionType = libMcuLL::hw::swm::pinFunction<libMcuLL::hw::swm::pinFunctions::CTOUT_2_O>;
 
 constexpr xtalInPinType xtalInPin;
 constexpr xtalOutPinType xtalOutPin;
@@ -75,6 +78,9 @@ constexpr mainSpiMosiFunctionType spiMainMosiFunction;
 constexpr mainSpiMisoFunctionType spiMainMisoFunction;
 constexpr mainUartTxFunctionType uartMainTxFunction;
 constexpr mainUartRxFunctionType uartMainRxFunction;
+constexpr sctOutput0FunctionType sctOutput0Function;
+constexpr sctOutput1FunctionType sctOutput1Function;
+constexpr sctOutput2FunctionType sctOutput2Function;
 
 extern libMcuLL::sw::iocon::iocon<libMcuLL::hw::IOCON_cpp> ioconPeripheral;
 extern libMcuLL::sw::swm::swm<libMcuLL::hw::SWM_cpp> swmPeriperhal;
