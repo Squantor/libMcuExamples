@@ -24,11 +24,15 @@ libMcuLL::hw::sct::peripheral *const dutRegisters{reinterpret_cast<libMcuLL::hw:
  */
 MINUNIT_SETUP(LPC812M101CppSetupSct) {
   minUnitCheck(LPC812M101TeardownCorrect() == true);
-  sysconPeripheral.enablePeripheralClocks(libMcuLL::sw::syscon::CLOCK_SCT | libMcuLL::sw::syscon::CLOCK_IOCON);
-  sysconPeripheral.resetPeripherals(libMcuLL::sw::syscon::RESET_SCT);
+  sysconPeripheral.enablePeripheralClocks(libMcuLL::sw::syscon::CLOCK_SCT | libMcuLL::sw::syscon::CLOCK_IOCON |
+                                          libMcuLL::sw::syscon::CLOCK_GPIO | libMcuLL::sw::syscon::CLOCK_SWM);
+  sysconPeripheral.resetPeripherals(libMcuLL::sw::syscon::RESET_SCT | libMcuLL::sw::syscon::RESET_GPIO);
   swmPeriperhal.setup(pwmOutPin, sctOutput0Function);
-  swmPeriperhal.setup(test2Pin, sctOutput1Function);
+  swmPeriperhal.setup(test0Pin, sctInput0Function);
   ioconPeripheral.setup(pwmInPin, libMcuLL::sw::iocon::INACTIVE);
+  gpioPeripheral.low(test1Pin);
+  gpioPeripheral.output(test1Pin);
+  // BaBi: When using Test0pin as output it does not work, no idea why!
 }
 
 MINUNIT_ADD(LPC812M101CppSctInit, LPC812M101CppSetupSct, LPC812M101Teardown) {
@@ -41,7 +45,7 @@ MINUNIT_ADD(LPC812M101CppSctRunning, LPC812M101CppSetupSct, LPC812M101Teardown) 
   sctPeripheral.init(0x4u, BIDIRECTIONAL);
   minUnitCheck(dutRegisters->CONFIG == 0x00020001u);
   minUnitCheck(dutRegisters->CTRL == 0x00040094u);
-  sctPeripheral.setupMatch(MATCH_0, 30000u);
+  sctPeripheral.setMatch(MATCH_0, 30000u);
   minUnitCheck(dutRegisters->MATCH[0].U == 30000u);
   minUnitCheck(dutRegisters->MATCHREL[0].U == 30000u);
   sctPeripheral.start();
@@ -55,7 +59,7 @@ MINUNIT_ADD(LPC812M101CppSctRunning, LPC812M101CppSetupSct, LPC812M101Teardown) 
 
 MINUNIT_ADD(LPC812M101CppSctSetupPwm, LPC812M101CppSetupSct, LPC812M101Teardown) {
   sctPeripheral.init(0x0, BIDIRECTIONAL);
-  sctPeripheral.setupMatch(MATCH_0, 1000u);
+  sctPeripheral.setMatch(MATCH_0, 1000u);
   sctPeripheral.setupPwm(MATCH_1, 500, EVENT_0, OUTPUT_1, false);
   minUnitCheck(dutRegisters->MATCH[1].U == 500u);
   minUnitCheck(dutRegisters->MATCHREL[1].U == 500u);
@@ -75,5 +79,26 @@ MINUNIT_ADD(LPC812M101CppSctSetupPwm, LPC812M101CppSetupSct, LPC812M101Teardown)
   }
   minUnitCheck(edgeCount == 500);
   minUnitCheck(timeout != 0);
+  sctPeripheral.halt();
+}
+
+MINUNIT_ADD(LPC812M101CppSctSetupCapture, LPC812M101CppSetupSct, LPC812M101Teardown) {
+  sctPeripheral.init(0x0, BIDIRECTIONAL);
+  dutRegisters->CONFIG = dutRegisters->CONFIG | CONFIG::INSYNC(0xF);
+  sctPeripheral.setMatch(MATCH_0, 3000000u);
+  sctPeripheral.setupCapture(CAPTURE_1, EVENT_0, INPUT_0, CAPTURE_RISE);
+  sctPeripheral.start();
+  minUnitCheck(dutRegisters->CAP[1].U == 0u);
+  gpioPeripheral.low(test1Pin);
+  gpioPeripheral.high(test1Pin);
+  // check if we got event in SCT event flag register
+  minUnitCheck(dutRegisters->EVFLAG == 0x01u);
+  dutRegisters->EVFLAG = 0x01u;
+  std::uint32_t firstCapture = sctPeripheral.getCapture(CAPTURE_1);
+  minUnitCheck(firstCapture != 0u);
+  gpioPeripheral.low(test1Pin);
+  gpioPeripheral.high(test1Pin);
+  std::uint32_t secondCapture = sctPeripheral.getCapture(CAPTURE_1);
+  minUnitCheck(firstCapture != secondCapture);
   sctPeripheral.halt();
 }
