@@ -86,11 +86,11 @@ constexpr mainUartRxFunctionType uartMainRxFunction;
 constexpr sctOutput0FunctionType sctOutput0Function;
 constexpr sctOutput1FunctionType sctOutput1Function;
 constexpr sctOutput2FunctionType sctOutput2Function;
-constexpr sctOutput3FunctionType sctOutput2Function;
-constexpr sctInput0FunctionType sctInput0FunctionType;
-constexpr sctInput1FunctionType sctInput1FunctionType;
-constexpr sctInput2FunctionType sctInput2FunctionType;
-constexpr sctInput3FunctionType sctInput3FunctionType;
+constexpr sctOutput3FunctionType sctOutput3Function;
+constexpr sctInput0FunctionType sctInput0Function;
+constexpr sctInput1FunctionType sctInput1Function;
+constexpr sctInput2FunctionType sctInput2Function;
+constexpr sctInput3FunctionType sctInput3Function;
 
 extern libMcuLL::sw::iocon::iocon<libMcuLL::hw::IOCON_cpp> ioconPeripheral;
 extern libMcuLL::sw::swm::swm<libMcuLL::hw::SWM_cpp> swmPeriperhal;
