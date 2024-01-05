@@ -25,7 +25,6 @@ libMcuLL::hw::gpio::peripheral *const dutRegisters{reinterpret_cast<libMcuLL::hw
 MINUNIT_SETUP(LPC812M101CppSetupGpio) {
   minUnitCheck(LPC812M101TeardownCorrect() == true);
   sysconPeripheral.enablePeripheralClocks(libMcuLL::sw::syscon::CLOCK_GPIO);
-  sysconEnableResets(SYSCON, RESETCTRL_GPIO);
   sysconPeripheral.resetPeripherals(libMcuLL::sw::syscon::RESET_GPIO);
 }
 
@@ -34,25 +33,25 @@ MINUNIT_ADD(LPC812M101DH20GpioPin, LPC812M101CppSetupGpio, LPC812M101Teardown) {
   gpioPeripheral.input(test1Pin);
   gpioPeripheral.output(test0Pin);
   gpioPeripheral.high(test0Pin);
-  minUnitCheck(gpioPeripheral.get(test1Pin) != 0);
+  minUnitCheck(gpioPeripheral.get(test1Pin) != 0u);
   gpioPeripheral.low(test0Pin);
-  minUnitCheck(gpioPeripheral.get(test1Pin) == 0);
+  minUnitCheck(gpioPeripheral.get(test1Pin) == 0u);
   // switch around pins
   gpioPeripheral.input(test0Pin);
   gpioPeripheral.output(test1Pin);
   gpioPeripheral.high(test1Pin);
-  minUnitCheck(gpioPeripheral.get(test0Pin) != 0);
+  minUnitCheck(gpioPeripheral.get(test0Pin) != 0u);
   gpioPeripheral.low(test1Pin);
-  minUnitCheck(gpioPeripheral.get(test0Pin) == 0);
+  minUnitCheck(gpioPeripheral.get(test0Pin) == 0u);
   // testing the remainder methods
   gpioPeripheral.toggle(test1Pin);
-  minUnitCheck(gpioPeripheral.get(test0Pin) != 0);
+  minUnitCheck(gpioPeripheral.get(test0Pin) != 0u);
   gpioPeripheral.toggle(test1Pin);
-  minUnitCheck(gpioPeripheral.get(test0Pin) == 0);
+  minUnitCheck(gpioPeripheral.get(test0Pin) == 0u);
   gpioPeripheral.set(test1Pin, 1);
-  minUnitCheck(gpioPeripheral.get(test0Pin) != 0);
+  minUnitCheck(gpioPeripheral.get(test0Pin) != 0u);
   gpioPeripheral.set(test1Pin, 0);
-  minUnitCheck(gpioPeripheral.get(test0Pin) == 0);
+  minUnitCheck(gpioPeripheral.get(test0Pin) == 0u);
 }
 
 // testing all port functions
