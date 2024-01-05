@@ -33,9 +33,9 @@ using test2PinType = libMcuLL::hw::pin<libMcuLL::hw::IOports::PORT0, libMcuLL::h
 // auxillary test pin, connected to nothing, testboard PIN3
 using test3PinType = libMcuLL::hw::pin<libMcuLL::hw::IOports::PORT0, libMcuLL::hw::IOpins::PIN06>;
 // PWM test pin pair, connected to 1K 10uF RC, testboard RC_out1
-using testPwmInType = libMcuLL::hw::pin<libMcuLL::hw::IOports::PORT0, libMcuLL::hw::IOpins::PIN01>;
+using testPwmInPinType = libMcuLL::hw::pin<libMcuLL::hw::IOports::PORT0, libMcuLL::hw::IOpins::PIN01>;
 // PWM test pin pair, connected to 1K 10uF RC, testboard RC_in1
-using testPwmOutType = libMcuLL::hw::pin<libMcuLL::hw::IOports::PORT0, libMcuLL::hw::IOpins::PIN15>;
+using testPwmOutPinType = libMcuLL::hw::pin<libMcuLL::hw::IOports::PORT0, libMcuLL::hw::IOpins::PIN15>;
 // I2C Clock pin pair, pulled up to 2.2K to 3.3V
 using i2cSclOutPinType = libMcuLL::hw::pin<libMcuLL::hw::IOports::PORT0, libMcuLL::hw::IOpins::PIN10>;
 // I2C Data pin pair, pulled up to 2.2K to 3.3V
@@ -55,6 +55,11 @@ using mainUartRxFunctionType = libMcuLL::hw::swm::pinFunction<libMcuLL::hw::swm:
 using sctOutput0FunctionType = libMcuLL::hw::swm::pinFunction<libMcuLL::hw::swm::pinFunctions::CTOUT_0_O>;
 using sctOutput1FunctionType = libMcuLL::hw::swm::pinFunction<libMcuLL::hw::swm::pinFunctions::CTOUT_1_O>;
 using sctOutput2FunctionType = libMcuLL::hw::swm::pinFunction<libMcuLL::hw::swm::pinFunctions::CTOUT_2_O>;
+using sctOutput3FunctionType = libMcuLL::hw::swm::pinFunction<libMcuLL::hw::swm::pinFunctions::CTOUT_3_O>;
+using sctInput0FunctionType = libMcuLL::hw::swm::pinFunction<libMcuLL::hw::swm::pinFunctions::CTIN_0_I>;
+using sctInput1FunctionType = libMcuLL::hw::swm::pinFunction<libMcuLL::hw::swm::pinFunctions::CTIN_1_I>;
+using sctInput2FunctionType = libMcuLL::hw::swm::pinFunction<libMcuLL::hw::swm::pinFunctions::CTIN_2_I>;
+using sctInput3FunctionType = libMcuLL::hw::swm::pinFunction<libMcuLL::hw::swm::pinFunctions::CTIN_3_I>;
 
 constexpr xtalInPinType xtalInPin;
 constexpr xtalOutPinType xtalOutPin;
@@ -64,8 +69,8 @@ constexpr test2PinType test2Pin;
 constexpr test3PinType test3Pin;
 constexpr i2cSclOutPinType i2cSclOutPin;
 constexpr i2cSdaOutPinType i2cSdaOutPin;
-constexpr testPwmInType pwmInPin;
-constexpr testPwmOutType pwmOutPin;
+constexpr testPwmInPinType pwmInPin;
+constexpr testPwmOutPinType pwmOutPin;
 constexpr gpioPort mainPort;
 
 constexpr xtalInFunctionType xtalInFunction;
@@ -81,6 +86,11 @@ constexpr mainUartRxFunctionType uartMainRxFunction;
 constexpr sctOutput0FunctionType sctOutput0Function;
 constexpr sctOutput1FunctionType sctOutput1Function;
 constexpr sctOutput2FunctionType sctOutput2Function;
+constexpr sctOutput3FunctionType sctOutput2Function;
+constexpr sctInput0FunctionType sctInput0FunctionType;
+constexpr sctInput1FunctionType sctInput1FunctionType;
+constexpr sctInput2FunctionType sctInput2FunctionType;
+constexpr sctInput3FunctionType sctInput3FunctionType;
 
 extern libMcuLL::sw::iocon::iocon<libMcuLL::hw::IOCON_cpp> ioconPeripheral;
 extern libMcuLL::sw::swm::swm<libMcuLL::hw::SWM_cpp> swmPeriperhal;
