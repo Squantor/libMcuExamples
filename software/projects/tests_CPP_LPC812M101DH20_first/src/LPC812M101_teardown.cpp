@@ -31,6 +31,7 @@ MINUNIT_TEARDOWN(LPC812M101Teardown) {
   }
   minUnitCheck(LPC812M101TeardownCorrect() == true);
   sysconRegisters->SYSAHBCLKCTRL = 0x000000DF;  // disable all peripherals we dont need
+  // TODO, reset all peripherals, so we do not need to do it during all the setups
 }
 
 /**

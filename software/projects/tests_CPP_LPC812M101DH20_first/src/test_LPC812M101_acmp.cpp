@@ -46,3 +46,6 @@ MINUNIT_SETUP(LPC812M101CppSetupacmp) {
 MINUNIT_ADD(LPC812M101CppAcmpInit, LPC812M101CppSetupacmp, LPC812M101Teardown) {
   minUnitPass();
 }
+
+// test ladder functionality
+// test internal reference functionality

@@ -46,7 +46,7 @@ void boardInit(void) {
   sysconPeripheral.powerPeripherals(libMcuLL::sw::syscon::POWER_SYSOSC);
   crudeDelay(6000);
   sysconPeripheral.selectPllClock(libMcuLL::sw::syscon::PLLCLK_SYSOSC);
-  FmcSetFlashAccess(FLASHTIM_30MHZ_CPU);
+  FmcSetFlashAccess(FLASHTIM_30MHZ_CPU);  // TODO replace
   sysconPeripheral.depowerPeripherals(libMcuLL::sw::syscon::POWER_SYSPLL);
   sysconPeripheral.setSystemPllControl(4, libMcuLL::sw::syscon::PLLPOSTDIV_4);
   sysconPeripheral.powerPeripherals(libMcuLL::sw::syscon::POWER_SYSPLL);
