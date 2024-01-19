@@ -44,8 +44,15 @@ MINUNIT_SETUP(LPC812M101CppSetupacmp) {
 }
 
 MINUNIT_ADD(LPC812M101CppAcmpInit, LPC812M101CppSetupacmp, LPC812M101Teardown) {
-  minUnitPass();
+  acmpPeripheral.init(inputPositiveSettings::IN2, inputNegativeSettings::REF, edgeDetectSettings::BOTH,
+                      outputControlSettings::SYNCED, hysteresisSettings::HYS_20MV);
+  minUnitCheck((dutRegisters->CTRL & CTRL::MASK) == 0x06203250);
+  minUnitCheck((dutRegisters->LAD & LAD::MASK) == 0x00000000);
+  acmpPeripheral.init(inputPositiveSettings::REF, inputNegativeSettings::IN2, edgeDetectSettings::FALLING,
+                      outputControlSettings::DIRECT, hysteresisSettings::HYS_10MV, ladderReferenceSetting::VDD);
+  minUnitCheck((dutRegisters->CTRL & CTRL::MASK) == 0x04001600);
+  minUnitCheck((dutRegisters->LAD & LAD::MASK) == 0x00000001);
 }
 
-// test ladder functionality
 // test internal reference functionality
+// test ladder functionality

@@ -103,6 +103,7 @@ extern libMcuLL::sw::usart::usartSync<libMcuLL::hw::USART0_cpp, std::uint8_t> us
 extern libMcuLL::sw::usart::usartAsync<libMcuLL::hw::USART0_cpp, std::uint8_t> usartAsyncPeripheral;
 extern libMcuLL::sw::i2c::i2c<libMcuLL::hw::I2C0_cpp> i2cPeripheral;
 extern libMcuLL::sw::sct::sct<libMcuLL::hw::SCT0_cpp> sctPeripheral;
+extern libMcuLL::sw::acmp::acmp<libMcuLL::hw::ACMP_cpp> acmpPeripheral;
 
 void boardInit(void);
 void crudeDelay(uint32_t iterations);
