@@ -17,6 +17,7 @@ libMcuLL::sw::usart::usartSync<libMcuLL::hw::USART0_cpp, std::uint8_t> usartSync
 libMcuLL::sw::usart::usartAsync<libMcuLL::hw::USART0_cpp, std::uint8_t> usartAsyncPeripheral;
 libMcuLL::sw::i2c::i2c<libMcuLL::hw::I2C0_cpp> i2cPeripheral;
 libMcuLL::sw::sct::sct<libMcuLL::hw::SCT0_cpp> sctPeripheral;
+libMcuLL::sw::acmp::acmp<libMcuLL::hw::ACMP_cpp> acmpPeripheral;
 
 void crudeDelay(uint32_t iterations) {
   for (uint32_t i = iterations; i > 0; i--) {
