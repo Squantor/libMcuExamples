@@ -33,10 +33,10 @@ MINUNIT_ADD(LPC812M101CppSysconChipID, LPC812M101CppSetupSyscon, LPC812M101Teard
 MINUNIT_ADD(LPC812M101CppSysconResets, LPC812M101CppSetupSyscon, LPC812M101Teardown) {
   minUnitCheck(dutRegisters->PRESETCTRL == 0x00001FFF);
   // preset the reset register to a value that will be rest by the test
-  uint32_t resetRegister = dutRegisters->PRESETCTRL & libMcuLL::hw::syscon::PRESETCTRL::MASK;
+  uint32_t resetRegister = dutRegisters->PRESETCTRL & libMcuLL::hw::syscon::PRESETCTRL::RESERVED_MASK;
   resetRegister = resetRegister & ~(RESET_SPI0 | RESET_I2C | RESET_ACMP);
   minUnitCheck(resetRegister == 0x00000FBE);
-  dutRegisters->PRESETCTRL = (dutRegisters->PRESETCTRL & ~PRESETCTRL::MASK) | (PRESETCTRL::MASK & resetRegister);
+  dutRegisters->PRESETCTRL = (dutRegisters->PRESETCTRL & ~PRESETCTRL::RESERVED_MASK) | (PRESETCTRL::RESERVED_MASK & resetRegister);
   sysconPeripheral.resetPeripherals(RESET_SPI0);
   // the reset function will restore all bits to operational
   minUnitCheck(dutRegisters->PRESETCTRL == 0x00000FBF);
