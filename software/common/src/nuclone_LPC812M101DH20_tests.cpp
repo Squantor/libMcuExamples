@@ -22,14 +22,15 @@ libMcuLL::sw::fmc::fmc<libMcuLL::hw::fmcAddress> fcmPeripheral;
 
 void crudeDelay(uint32_t iterations) {
   for (uint32_t i = iterations; i > 0; i--) {
-    __NOP();
-    __NOP();
-    __NOP();
-    __NOP();
-    __NOP();
-    __NOP();
-    __NOP();
-    __NOP();
+    libMcuLL::sw::nop();
+    libMcuLL::sw::nop();
+    libMcuLL::sw::nop();
+    libMcuLL::sw::nop();
+    libMcuLL::sw::nop();
+    libMcuLL::sw::nop();
+    libMcuLL::sw::nop();
+    libMcuLL::sw::nop();
+    libMcuLL::sw::nop();
   }
 }
 
