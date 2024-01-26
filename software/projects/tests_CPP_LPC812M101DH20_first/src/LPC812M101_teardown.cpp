@@ -16,8 +16,10 @@
 // peripheral register sets
 static constexpr libMcuLL::hwAddressType sysconAddress = libMcuLL::hw::SYSCON_cpp;
 static constexpr libMcuLL::hwAddressType swmAddress = libMcuLL::hw::SWM_cpp;
+static constexpr libMcuLL::hwAddressType fmcAddress = libMcuLL::hw::FMC_cpp;
 libMcuLL::hw::syscon::peripheral *const sysconRegisters{reinterpret_cast<libMcuLL::hw::syscon::peripheral *>(sysconAddress)};
 libMcuLL::hw::swm::peripheral *const swmRegisters{reinterpret_cast<libMcuLL::hw::swm::peripheral *>(swmAddress)};
+libMcuLL::hw::fmc::peripheral *const fmcRegisters{reinterpret_cast<libMcuLL::hw::fmc::peripheral *>(fmcAddress)};
 
 /** @brief resets all the registers to their default states
  *
@@ -42,6 +44,7 @@ MINUNIT_TEARDOWN(LPC812M101Teardown) {
  *
  */
 bool LPC812M101TeardownCorrect(void) {
+  TESTANDRETURN((fmcRegisters->FLASHCFG & libMcuLL::hw::fmc::FLASHCFG::RESERVED_MASK) == 0x00000001);
   TESTANDRETURN(sysconRegisters->PRESETCTRL == 0x00001FFF);
   TESTANDRETURN(sysconRegisters->PDRUNCFG == 0x0000ED50);
   // TESTANDRETURN(sysconRegisters->SYSAHBCLKCTRL == 0x000000DF); // we skip this test as we need to check all peripherals

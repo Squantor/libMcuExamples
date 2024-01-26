@@ -18,6 +18,7 @@ libMcuLL::sw::usart::usartAsync<libMcuLL::hw::USART0_cpp, std::uint8_t> usartAsy
 libMcuLL::sw::i2c::i2c<libMcuLL::hw::I2C0_cpp> i2cPeripheral;
 libMcuLL::sw::sct::sct<libMcuLL::hw::SCT0_cpp> sctPeripheral;
 libMcuLL::sw::acmp::acmp<libMcuLL::hw::ACMP_cpp> acmpPeripheral;
+libMcuLL::sw::fmc::fmc<libMcuLL::hw::FMC_cpp> fcmPeripheral;
 
 void crudeDelay(uint32_t iterations) {
   for (uint32_t i = iterations; i > 0; i--) {
@@ -46,7 +47,7 @@ void boardInit(void) {
   sysconPeripheral.powerPeripherals(libMcuLL::sw::syscon::POWER_SYSOSC);
   crudeDelay(6000);
   sysconPeripheral.selectPllClock(libMcuLL::sw::syscon::PLLCLK_SYSOSC);
-  FmcSetFlashAccess(FLASHTIM_30MHZ_CPU);  // TODO replace
+  fcmPeripheral.setFlashWaitState(libMcuLL::sw::fmc::waitstates::WAIT_2_CLOCK);
   sysconPeripheral.depowerPeripherals(libMcuLL::sw::syscon::POWER_SYSPLL);
   sysconPeripheral.setSystemPllControl(4, libMcuLL::sw::syscon::PLLPOSTDIV_4);
   sysconPeripheral.powerPeripherals(libMcuLL::sw::syscon::POWER_SYSPLL);
