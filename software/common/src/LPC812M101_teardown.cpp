@@ -25,15 +25,14 @@ libMcuLL::hw::fmc::peripheral *const fmcRegisters{reinterpret_cast<libMcuLL::hw:
  *
  */
 MINUNIT_TEARDOWN(LPC812M101Teardown) {
-  sysconRegisters->SYSAHBCLKCTRL = 0x000FFFFF;
-  sysconRegisters->PRESETCTRL = 0x00001FFF;
-  sysconRegisters->PDRUNCFG = 0x0000ED50;  // we deviate here from the datasheet as we use the PLL and crystal oscillator
+  sysconRegisters->SYSAHBCLKCTRL = 0x000FFFFF;  // enable all peripherals
+  sysconRegisters->PRESETCTRL = 0x00001FFF;     // reset all peripherals we want to reset
+  sysconRegisters->PDRUNCFG = 0x0000ED50;       // we deviate here from the datasheet as we use the PLL and crystal oscillator
   for (int i = 0; i < 9; i++) {
-    swmRegisters->PINASSIGN[i] = 0xFFFFFFFF;
+    swmRegisters->PINASSIGN[i] = 0xFFFFFFFF;  // clear all pin assignments
   }
   minUnitCheck(LPC812M101TeardownCorrect() == true);
   sysconRegisters->SYSAHBCLKCTRL = 0x000000DF;  // disable all peripherals we dont need
-  // TODO, reset all peripherals, so we do not need to do it during all the setups
 }
 
 /**
@@ -47,7 +46,6 @@ bool LPC812M101TeardownCorrect(void) {
   TESTANDRETURN((fmcRegisters->FLASHCFG & libMcuLL::hw::fmc::FLASHCFG::RESERVED_MASK) == 0x00000001);
   TESTANDRETURN(sysconRegisters->PRESETCTRL == 0x00001FFF);
   TESTANDRETURN(sysconRegisters->PDRUNCFG == 0x0000ED50);
-  // TESTANDRETURN(sysconRegisters->SYSAHBCLKCTRL == 0x000000DF); // we skip this test as we need to check all peripherals
   for (int i = 0; i < 9; i++) {
     TESTANDRETURN(swmRegisters->PINASSIGN[i] == 0xFFFFFFFF);
   }
