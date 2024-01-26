@@ -8,7 +8,7 @@
 
 libMcuLL::sw::iocon::iocon<libMcuLL::hw::ioconAddress> ioconPeripheral;
 libMcuLL::sw::swm::swm<libMcuLL::hw::swmAddress> swmPeriperhal;
-libMcuLL::sw::gpio::gpio<libMcuLL::hw::GPIO_cpp> gpioPeripheral;
+libMcuLL::sw::gpio::gpio<libMcuLL::hw::gpioAddress> gpioPeripheral;
 libMcuLL::sw::spi::spiSync<libMcuLL::hw::spi0Address, libMcuLL::sw::spi::chipEnables, std::uint16_t> spiSyncPeripheral;
 libMcuLL::sw::spi::spiAsync<libMcuLL::hw::spi0Address, libMcuLL::sw::spi::chipEnables, std::uint16_t> spiAsyncPeripheral16;
 libMcuLL::sw::spi::spiAsync<libMcuLL::hw::spi0Address, libMcuLL::sw::spi::chipEnables, std::uint8_t> spiAsyncPeripheral8;
@@ -16,7 +16,7 @@ libMcuLL::sw::syscon::syscon<libMcuLL::hw::sysconAddress> sysconPeripheral;
 libMcuLL::sw::usart::usartSync<libMcuLL::hw::usart0Address, std::uint8_t> usartSyncPeripheral;
 libMcuLL::sw::usart::usartAsync<libMcuLL::hw::usart0Address, std::uint8_t> usartAsyncPeripheral;
 libMcuLL::sw::i2c::i2c<libMcuLL::hw::i2c0Address> i2cPeripheral;
-libMcuLL::sw::sct::sct<libMcuLL::hw::SCT0_cpp> sctPeripheral;
+libMcuLL::sw::sct::sct<libMcuLL::hw::sctAddress> sctPeripheral;
 libMcuLL::sw::acmp::acmp<libMcuLL::hw::acmpAddress> acmpPeripheral;
 libMcuLL::sw::fmc::fmc<libMcuLL::hw::fmcAddress> fcmPeripheral;
 
