@@ -18,7 +18,7 @@ using namespace libMcuLL::sw::i2c;
 
 constexpr inline libMcuLL::i2cDeviceAddress testExpander{0x21};
 // peripheral register sets
-static constexpr libMcuLL::hwAddressType i2cAddress = libMcuLL::hw::I2C0_cpp;
+static constexpr libMcuLL::hwAddressType i2cAddress = libMcuLL::hw::i2c0Address;
 libMcuLL::hw::i2c::peripheral *const dutRegisters{reinterpret_cast<libMcuLL::hw::i2c::peripheral *>(i2cAddress)};
 
 /**
@@ -36,7 +36,7 @@ MINUNIT_SETUP(LPC812M101CppSetupI2cSync) {
 MINUNIT_ADD(LPC812M101DH20I2cSyncInits, LPC812M101CppSetupI2cSync, LPC812M101Teardown) {
   uint32_t actualRate = i2cPeripheral.initMaster(133630, 100);
   minUnitCheck(actualRate == 136363);
-  minUnitCheck((dutRegisters->CFG & CFG::MASK) == CFG::MSTEN);
+  minUnitCheck((dutRegisters->CFG & CFG::RESERVED_MASK) == CFG::MSTEN);
   minUnitCheck((dutRegisters->TIMEOUT == 1615));
 }
 

@@ -15,7 +15,7 @@
 using namespace libMcuLL::sw::usart;
 using namespace libMcuLL::hw::usart;
 
-static constexpr libMcuLL::hwAddressType usart0Address = libMcuLL::hw::USART0_cpp;
+static constexpr libMcuLL::hwAddressType usart0Address = libMcuLL::hw::usart0Address;
 libMcuLL::hw::usart::peripheral *const dutRegisters{reinterpret_cast<libMcuLL::hw::usart::peripheral *>(usart0Address)};
 
 /**
@@ -34,11 +34,13 @@ MINUNIT_ADD(LPC812M101CppUsartAsyncInit, LPC812M101CppSetupUsartAsync, LPC812M10
   std::uint32_t realBaudRate;
   realBaudRate = usartSyncPeripheral.init(115200);
   minUnitCheck(realBaudRate == 117187);
-  minUnitCheck((dutRegisters->CFG & CFG::MASK) == (CFG::ENABLE | uartLength::SIZE_8 | uartParity::NONE | uartStop::STOP_1));
+  minUnitCheck((dutRegisters->CFG & CFG::RESERVED_MASK) ==
+               (CFG::ENABLE | uartLength::SIZE_8 | uartParity::NONE | uartStop::STOP_1));
   dutRegisters->CFG = 0x00000000;
   realBaudRate = usartSyncPeripheral.init(9600, uartLength::SIZE_7, uartParity::EVEN, uartStop::STOP_2);
   minUnitCheck(realBaudRate == 9615);
-  minUnitCheck((dutRegisters->CFG & CFG::MASK) == (CFG::ENABLE | uartLength::SIZE_7 | uartParity::EVEN | uartStop::STOP_2));
+  minUnitCheck((dutRegisters->CFG & CFG::RESERVED_MASK) ==
+               (CFG::ENABLE | uartLength::SIZE_7 | uartParity::EVEN | uartStop::STOP_2));
 }
 
 MINUNIT_ADD(LPC812M101CppUsartAsyncComms, LPC812M101CppSetupUsartAsync, LPC812M101Teardown) {
@@ -47,7 +49,7 @@ MINUNIT_ADD(LPC812M101CppUsartAsyncComms, LPC812M101CppSetupUsartAsync, LPC812M1
   int timeout;
   usartSyncPeripheral.init(115200);
   sysconPeripheral.setUsartClockDivider(1);
-  minUnitCheck((dutRegisters->STAT & STAT::MASK) == 0x0000000E);
+  minUnitCheck((dutRegisters->STAT & STAT::RESERVED_MASK) == 0x0000000E);
   minUnitCheck(usartSyncPeripheral.status() & uartStatus::TXRDY);
   usartSyncPeripheral.write(0xA5);
   timeout = 0xFFFF;

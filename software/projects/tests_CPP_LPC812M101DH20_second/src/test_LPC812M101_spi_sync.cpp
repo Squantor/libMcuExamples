@@ -16,7 +16,7 @@
 using namespace libMcuLL::sw::spi;
 using namespace libMcuLL::hw::spi;
 
-static constexpr libMcuLL::hwAddressType spi0Address = libMcuLL::hw::SPI0_cpp;
+static constexpr libMcuLL::hwAddressType spi0Address = libMcuLL::hw::spi0Address;
 libMcuLL::hw::spi::peripheral *const dutRegisters{reinterpret_cast<libMcuLL::hw::spi::peripheral *>(spi0Address)};
 
 /**
@@ -33,12 +33,12 @@ MINUNIT_ADD(LPC812M101CppSpiSyncInits, LPC812M101CppSetupSpiSync, LPC812M101Tear
   uint32_t actualClock;
   actualClock = spiSyncPeripheral.initMaster(100000);
   minUnitCheck(actualClock == 100000);
-  minUnitCheck((dutRegisters->CFG & CFG::MASK) == 0x00000005);
+  minUnitCheck((dutRegisters->CFG & CFG::RESERVED_MASK) == 0x00000005);
   minUnitCheck(dutRegisters->DIV == 299);
   dutRegisters->CFG = 0x00000000;
   actualClock = spiSyncPeripheral.initMaster(65399, CPHA1_CPOL1_LSB, SPOL_HIGH);
   minUnitCheck(actualClock == 65502);
-  minUnitCheck((dutRegisters->CFG & CFG::MASK) == 0x0000013D);
+  minUnitCheck((dutRegisters->CFG & CFG::RESERVED_MASK) == 0x0000013D);
   minUnitCheck(dutRegisters->DIV == 457);
 }
 
@@ -47,7 +47,7 @@ MINUNIT_ADD(LPC812M101CppSpiSyncRxTx, LPC812M101CppSetupSpiSync, LPC812M101Teard
   swmPeriperhal.setup(test1Pin, spiMainMosiFunction);
   swmPeriperhal.setup(test0Pin, spiMainMisoFunction);
   spiSyncPeripheral.initMaster(1000000);
-  minUnitCheck((dutRegisters->STAT & STAT::MASK) == 0x00000102);
+  minUnitCheck((dutRegisters->STAT & STAT::RESERVED_MASK) == 0x00000102);
   minUnitCheck(dutRegisters->DIV == 29);
 
   std::array<uint16_t, 5> testDataSend{0x1234, 0x4567, 0x89AB, 0xCDEF, 0x5A5A};
