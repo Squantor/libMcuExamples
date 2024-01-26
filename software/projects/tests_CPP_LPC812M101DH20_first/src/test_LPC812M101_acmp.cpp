@@ -31,8 +31,6 @@ MINUNIT_SETUP(LPC812M101CppSetupacmp) {
   sysconPeripheral.enablePeripheralClocks(libMcuLL::sw::syscon::CLOCK_SCT | libMcuLL::sw::syscon::CLOCK_IOCON |
                                           libMcuLL::sw::syscon::CLOCK_GPIO | libMcuLL::sw::syscon::CLOCK_SWM |
                                           libMcuLL::sw::syscon::CLOCK_ACMP);
-  sysconPeripheral.resetPeripherals(libMcuLL::sw::syscon::RESET_SCT | libMcuLL::sw::syscon::RESET_GPIO |
-                                    libMcuLL::sw::syscon::RESET_ACMP);
   // switch matrix
   swmPeriperhal.setup(pwmOutPin, sctOutput0Function);
   swmPeriperhal.enableFixedPins(libMcuLL::sw::swm::ACMP_I2);  // enable fixed function on PIO0_1

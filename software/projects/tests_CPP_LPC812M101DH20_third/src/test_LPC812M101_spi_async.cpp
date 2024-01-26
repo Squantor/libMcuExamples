@@ -27,7 +27,6 @@ MINUNIT_SETUP(LPC812M101CppSetupSpiAsync) {
   minUnitCheck(LPC812M101TeardownCorrect() == true);
   sysconPeripheral.enablePeripheralClocks(libMcuLL::sw::syscon::CLOCK_SPI0 | libMcuLL::sw::syscon::CLOCK_SWM |
                                           libMcuLL::sw::syscon::CLOCK_IOCON);
-  sysconPeripheral.resetPeripherals(libMcuLL::sw::syscon::RESET_SPI0);
   swmPeriperhal.setup(test3Pin, spiMainSselFunction);
   swmPeriperhal.setup(test2Pin, spiMainSckFunction);
   swmPeriperhal.setup(test1Pin, spiMainMosiFunction);

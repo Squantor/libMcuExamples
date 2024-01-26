@@ -26,7 +26,6 @@ MINUNIT_SETUP(LPC812M101CppSetupSct) {
   minUnitCheck(LPC812M101TeardownCorrect() == true);
   sysconPeripheral.enablePeripheralClocks(libMcuLL::sw::syscon::CLOCK_SCT | libMcuLL::sw::syscon::CLOCK_IOCON |
                                           libMcuLL::sw::syscon::CLOCK_GPIO | libMcuLL::sw::syscon::CLOCK_SWM);
-  sysconPeripheral.resetPeripherals(libMcuLL::sw::syscon::RESET_SCT | libMcuLL::sw::syscon::RESET_GPIO);
   swmPeriperhal.setup(pwmOutPin, sctOutput0Function);
   swmPeriperhal.setup(test0Pin, sctInput0Function);
   ioconPeripheral.setup(pwmInPin, libMcuLL::sw::iocon::INACTIVE);

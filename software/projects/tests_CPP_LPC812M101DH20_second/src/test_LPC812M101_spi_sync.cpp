@@ -26,7 +26,6 @@ MINUNIT_SETUP(LPC812M101CppSetupSpiSync) {
   minUnitCheck(LPC812M101TeardownCorrect() == true);
   sysconPeripheral.enablePeripheralClocks(libMcuLL::sw::syscon::CLOCK_SPI0 | libMcuLL::sw::syscon::CLOCK_SWM |
                                           libMcuLL::sw::syscon::CLOCK_IOCON);
-  sysconPeripheral.resetPeripherals(libMcuLL::sw::syscon::RESET_SPI0);
 }
 
 MINUNIT_ADD(LPC812M101CppSpiSyncInits, LPC812M101CppSetupSpiSync, LPC812M101Teardown) {

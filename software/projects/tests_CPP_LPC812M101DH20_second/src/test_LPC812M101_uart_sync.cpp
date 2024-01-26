@@ -27,7 +27,6 @@ MINUNIT_SETUP(LPC812M101CppSetupUsartSync) {
   swmPeriperhal.setup(test1Pin, uartMainTxFunction);
   sysconPeripheral.enablePeripheralClocks(libMcuLL::sw::syscon::CLOCK_UART0 | libMcuLL::sw::syscon::CLOCK_SWM |
                                           libMcuLL::sw::syscon::CLOCK_IOCON);
-  sysconPeripheral.resetPeripherals(libMcuLL::sw::syscon::RESET_UART0);
 }
 
 MINUNIT_ADD(LPC812M101CppUsartSyncInit, LPC812M101CppSetupUsartSync, LPC812M101Teardown) {
