@@ -16,7 +16,8 @@ $(NAME)_DEFINES += -DMINUNIT_MAX_TESTS=50 -DMINUNIT_REPORT_DISABLE
 $(NAME)_LIBS := libMcuLL squantorLibC squantorLibEmbedded squantorMinUnit
 $(NAME)_FILES := $(PROJ_DIR)/src/main.cpp \
 common/src/$(BOARD).cpp \
-common/src/CortexM0plus_teardown.cpp
+common/src/CortexM0plus_teardown.cpp \
+$(PROJ_DIR)/src/test_CortexM0plus_systick.cpp
 
 $(NAME)_INCLUDES := -I$(PROJ_DIR)/inc -Icommon/inc
 
