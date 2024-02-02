@@ -14,12 +14,19 @@
 #include <MinUnit.h>
 
 // peripheral register sets
+static constexpr libMcuLL::hwAddressType systickAddress = libMcuLL::hw::systickAddress;
+libMcuLL::hw::systick::peripheral *const systickRegisters{reinterpret_cast<libMcuLL::hw::systick::peripheral *>(systickAddress)};
 
 MINUNIT_TEARDOWN(CortexM0plusTeardown) {
+  systickRegisters->CSR = 0;
+  systickRegisters->RVR = 0;
+  systickRegisters->CVR = 0;
   minUnitPass();
 }
 
 bool CortexM0plusTeardownCorrect(void) {
-  TESTANDRETURN(0 == 0);
+  TESTANDRETURN(systickRegisters->CSR == 0);
+  TESTANDRETURN(systickRegisters->RVR == 0);
+  TESTANDRETURN(systickRegisters->CVR == 0);
   return true;
 }
