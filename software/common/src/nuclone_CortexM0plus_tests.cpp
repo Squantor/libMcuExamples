@@ -6,6 +6,8 @@
  */
 #include <nuclone_CortexM0plus_tests.hpp>
 
+libMcuLL::sw::systick::systick<libMcuLL::hw::systickAddress> systickPeripheral;
+
 void crudeDelay(uint32_t iterations) {
   for (uint32_t i = iterations; i > 0; i--) {
     libMcuLL::sw::nop();

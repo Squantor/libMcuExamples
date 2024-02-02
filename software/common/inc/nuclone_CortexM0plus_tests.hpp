@@ -12,7 +12,7 @@ For conditions of distribution and use, see LICENSE file
 
 #include <mcu_ll.hpp>
 
-#define TICKS_PER_S 10
+extern libMcuLL::sw::systick::systick<libMcuLL::hw::systickAddress> systickPeripheral;
 
 void boardInit(void);
 void crudeDelay(uint32_t iterations);
