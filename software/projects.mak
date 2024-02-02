@@ -30,4 +30,5 @@ include $(BASE_DIR)/projects/tests_template/tests_template.mak
 include $(BASE_DIR)/projects/tests_CPP_LPC812M101DH20_first/tests_CPP_LPC812M101DH20_first.mak
 include $(BASE_DIR)/projects/tests_CPP_LPC812M101DH20_second/tests_CPP_LPC812M101DH20_second.mak
 include $(BASE_DIR)/projects/tests_CPP_LPC812M101DH20_third/tests_CPP_LPC812M101DH20_third.mak
+include ${BASE_DIR}/projects/tests_CPP_CortexM0plus/tests_CPP_CortexM0plus.mak
 
