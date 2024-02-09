@@ -26,6 +26,15 @@ MINUNIT_SETUP(CortexM0plusSetupNvic) {
   minUnitCheck(CortexM0plusTeardownCorrect() == true);
 }
 
-MINUNIT_ADD(CortexM0plusNvicInit, CortexM0plusSetupNvic, CortexM0plusTeardown) {
-  minUnitPass();
+MINUNIT_ADD(CortexM0plusNvicSetClear, CortexM0plusSetupNvic, CortexM0plusTeardown) {
+  nvicPeripheral.enable(libMcuLL::hw::interrupts::dummy0);
+  minUnitCheck(dutRegisters->ICER[0] == 0x1);
+  nvicPeripheral.enable(libMcuLL::hw::interrupts::dummy12);
+  minUnitCheck(dutRegisters->ICER[0] == 0x1001);
+  nvicPeripheral.disable(libMcuLL::hw::interrupts::dummy0);
+  minUnitCheck(dutRegisters->ICER[0] == 0x1000);
+  nvicPeripheral.disable(libMcuLL::hw::interrupts::dummy12);
+  minUnitCheck(dutRegisters->ICER[0] == 0x0);
 }
+
+MINUNIT_ADD(CortexM0plusNvicPending, CortexM0plusSetupNvic, CortexM0plusTeardown) {}
