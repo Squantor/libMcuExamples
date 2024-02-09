@@ -37,4 +37,41 @@ MINUNIT_ADD(CortexM0plusNvicSetClear, CortexM0plusSetupNvic, CortexM0plusTeardow
   minUnitCheck(dutRegisters->ICER[0] == 0x0);
 }
 
-MINUNIT_ADD(CortexM0plusNvicPending, CortexM0plusSetupNvic, CortexM0plusTeardown) {}
+MINUNIT_ADD(CortexM0plusNvicPending, CortexM0plusSetupNvic, CortexM0plusTeardown) {
+  minUnitCheck(nvicPeripheral.getPending(libMcuLL::hw::interrupts::dummy0) == false);
+  nvicPeripheral.setPending(libMcuLL::hw::interrupts::dummy0);
+  minUnitCheck(nvicPeripheral.getPending(libMcuLL::hw::interrupts::dummy0) == true);
+  minUnitCheck(nvicPeripheral.getPending(libMcuLL::hw::interrupts::dummy12) == false);
+  minUnitCheck(dutRegisters->ICPR[0] == 0x00000001UL);
+  nvicPeripheral.setPending(libMcuLL::hw::interrupts::dummy12);
+  minUnitCheck(nvicPeripheral.getPending(libMcuLL::hw::interrupts::dummy0) == true);
+  minUnitCheck(nvicPeripheral.getPending(libMcuLL::hw::interrupts::dummy12) == true);
+  minUnitCheck(dutRegisters->ICPR[0] == 0x00001001UL);
+  nvicPeripheral.clearPending(libMcuLL::hw::interrupts::dummy12);
+  minUnitCheck(nvicPeripheral.getPending(libMcuLL::hw::interrupts::dummy0) == true);
+  minUnitCheck(nvicPeripheral.getPending(libMcuLL::hw::interrupts::dummy12) == false);
+  minUnitCheck(dutRegisters->ICPR[0] == 0x00000001UL);
+  nvicPeripheral.clearPending(libMcuLL::hw::interrupts::dummy0);
+  minUnitCheck(nvicPeripheral.getPending(libMcuLL::hw::interrupts::dummy0) == false);
+  minUnitCheck(nvicPeripheral.getPending(libMcuLL::hw::interrupts::dummy12) == false);
+  minUnitCheck(dutRegisters->ICPR[0] == 0x00000000UL);
+}
+
+MINUNIT_ADD(CortexM0plusNvicPriority, CortexM0plusSetupNvic, CortexM0plusTeardown) {
+  minUnitCheck(dutRegisters->IP[0] == 0x00000000);
+  nvicPeripheral.setPriority(libMcuLL::hw::interrupts::dummy0, 2);
+  minUnitCheck(dutRegisters->IP[0] == 0x00000080);
+  nvicPeripheral.setPriority(libMcuLL::hw::interrupts::dummy1, 3);
+
+  minUnitCheck(dutRegisters->IP[0] == 0x0000C080);
+  nvicPeripheral.setPriority(libMcuLL::hw::interrupts::dummy0, 0);
+  minUnitCheck(dutRegisters->IP[0] == 0x0000C000);
+  nvicPeripheral.setPriority(libMcuLL::hw::interrupts::dummy12, 1);
+  minUnitCheck(dutRegisters->IP[3] == 0x00000040);
+  nvicPeripheral.setPriority(libMcuLL::hw::interrupts::dummy12, 0);
+  minUnitCheck(dutRegisters->IP[3] == 0x00000000);
+  nvicPeripheral.setPriority(libMcuLL::hw::interrupts::dummy1, 0);
+  for (int i = 0; i < 8; ++i) {
+    minUnitCheck(dutRegisters->IP[i] == 0x00000000);
+  }
+}
