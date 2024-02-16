@@ -15,14 +15,25 @@
 using namespace libMcuLL::hw::systick;
 using namespace libMcuLL::sw::systick;
 
+auto systickIsrLambda = []() { systickIsrCount = systickIsrCount + 1; };
+
 // peripheral register sets
 static constexpr libMcuLL::hwAddressType systickAddress = libMcuLL::hw::systickAddress;
 libMcuLL::hw::systick::peripheral *const systickDutRegisters{reinterpret_cast<libMcuLL::hw::systick::peripheral *>(systickAddress)};
+
+volatile std::uint32_t systickIsrCount;
+
+extern "C" {
+void SysTick_Handler(void) {
+  systickPeripheral.isr();
+}
+}
 
 /**
  * @brief systick setup and initialisation
  */
 MINUNIT_SETUP(CortexM0plusSetupSystick) {
+  systickIsrCount = 0;
   minUnitCheck(CortexM0plusTeardownCorrect() == true);
 }
 
@@ -49,5 +60,11 @@ MINUNIT_ADD(CortexM0plusSystickStart, CortexM0plusSetupSystick, CortexM0plusTear
   minUnitCheck(systickPeripheral.getZeroPass() == 0);
   crudeDelay(0xFFF);
   minUnitCheck(systickPeripheral.getZeroPass() != 0);
-  minUnitPass();
+  systickPeripheral.stop();
+  systickPeripheral.setReload(0xFFF);
+  systickPeripheral.start(systickIsrLambda);
+  crudeDelay(0xFFF);
+  systickPeripheral.stop();
+  minUnitCheck(systickIsrCount != 0);
+  // interrupt based tests
 }
