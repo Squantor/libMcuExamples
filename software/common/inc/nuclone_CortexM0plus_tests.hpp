@@ -13,7 +13,7 @@ For conditions of distribution and use, see LICENSE file
 #include <mcu_ll.hpp>
 
 extern libMcuLL::sw::systick::systick<libMcuLL::hw::systickAddress> systickPeripheral;
-extern libMcuLL::sw::nvic::nvic<libMcuLL::hw::nvicAddress> nvicPeripheral;
+extern libMcuLL::sw::nvic::nvic<libMcuLL::hw::nvicAddress, libMcuLL::hw::scbAddress> nvicPeripheral;
 
 void boardInit(void);
 void crudeDelay(uint32_t iterations);

@@ -7,7 +7,7 @@
 #include <nuclone_CortexM0plus_tests.hpp>
 
 libMcuLL::sw::systick::systick<libMcuLL::hw::systickAddress> systickPeripheral;
-libMcuLL::sw::nvic::nvic<libMcuLL::hw::nvicAddress> nvicPeripheral;
+libMcuLL::sw::nvic::nvic<libMcuLL::hw::nvicAddress, libMcuLL::hw::scbAddress> nvicPeripheral;
 
 void crudeDelay(uint32_t iterations) {
   for (uint32_t i = iterations; i > 0; i--) {
@@ -27,6 +27,6 @@ void boardInit(void) {
   systickPeripheral.peripheral()->CSR = 0UL;
   systickPeripheral.peripheral()->RVR = 0UL;
   systickPeripheral.peripheral()->CVR = 0UL;
-  nvicPeripheral.peripheral()->ICER[0] = 0xFFFFFFFFUL;
-  nvicPeripheral.peripheral()->ICPR[0] = 0xFFFFFFFFUL;
+  nvicPeripheral.nvicPeripheral()->ICER[0] = 0xFFFFFFFFUL;
+  nvicPeripheral.nvicPeripheral()->ICPR[0] = 0xFFFFFFFFUL;
 }
