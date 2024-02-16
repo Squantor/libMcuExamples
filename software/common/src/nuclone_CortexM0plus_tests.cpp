@@ -25,9 +25,9 @@ void crudeDelay(uint32_t iterations) {
 }
 
 void boardInit(void) {
-  systickPeripheral.peripheral()->CSR = 0UL;
-  systickPeripheral.peripheral()->RVR = 0UL;
-  systickPeripheral.peripheral()->CVR = 0UL;
+  systickPeripheral.nvicPeripheral()->CSR = 0UL;
+  systickPeripheral.nvicPeripheral()->RVR = 0UL;
+  systickPeripheral.nvicPeripheral()->CVR = 0UL;
   nvicPeripheral.nvicPeripheral()->ICER[0] = 0xFFFFFFFFUL;
   nvicPeripheral.nvicPeripheral()->ICPR[0] = 0xFFFFFFFFUL;
 }

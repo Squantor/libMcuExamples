@@ -61,10 +61,10 @@ MINUNIT_ADD(CortexM0plusSystickStart, CortexM0plusSetupSystick, CortexM0plusTear
   crudeDelay(0xFFF);
   minUnitCheck(systickPeripheral.getZeroPass() != 0);
   systickPeripheral.stop();
+  // interrupt based tests
   systickPeripheral.setReload(0xFFF);
   systickPeripheral.start(systickIsrLambda);
   crudeDelay(0xFFF);
   systickPeripheral.stop();
   minUnitCheck(systickIsrCount != 0);
-  // interrupt based tests
 }
