@@ -8,6 +8,7 @@
 
 libMcuLL::sw::systick::systick<libMcuLL::hw::systickAddress> systickPeripheral;
 libMcuLL::sw::nvic::nvic<libMcuLL::hw::nvicAddress, libMcuLL::hw::scbAddress> nvicPeripheral;
+libMcuLL::sw::scb::scb<libMcuLL::hw::scbAddress> scbPeripheral;
 
 void crudeDelay(uint32_t iterations) {
   for (uint32_t i = iterations; i > 0; i--) {

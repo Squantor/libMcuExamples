@@ -17,7 +17,7 @@ using namespace libMcuLL::sw::systick;
 
 // peripheral register sets
 static constexpr libMcuLL::hwAddressType systickAddress = libMcuLL::hw::systickAddress;
-libMcuLL::hw::systick::peripheral *const nvicDutRegisters{reinterpret_cast<libMcuLL::hw::systick::peripheral *>(systickAddress)};
+libMcuLL::hw::systick::peripheral *const systickDutRegisters{reinterpret_cast<libMcuLL::hw::systick::peripheral *>(systickAddress)};
 
 /**
  * @brief systick setup and initialisation
@@ -28,9 +28,9 @@ MINUNIT_SETUP(CortexM0plusSetupSystick) {
 
 MINUNIT_ADD(CortexM0plusSystickInit, CortexM0plusSetupSystick, CortexM0plusTeardown) {
   systickPeripheral.init(0x123456);
-  minUnitCheck(nvicDutRegisters->RVR == 0x123456);
+  minUnitCheck(systickDutRegisters->RVR == 0x123456);
   systickPeripheral.setReload(0x654321);
-  minUnitCheck(nvicDutRegisters->RVR == 0x654321);
+  minUnitCheck(systickDutRegisters->RVR == 0x654321);
 }
 
 MINUNIT_ADD(CortexM0plusSystickStart, CortexM0plusSetupSystick, CortexM0plusTeardown) {
