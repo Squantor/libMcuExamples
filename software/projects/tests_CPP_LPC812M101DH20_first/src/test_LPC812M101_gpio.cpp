@@ -24,7 +24,7 @@ libMcuLL::hw::gpio::peripheral *const dutRegisters{reinterpret_cast<libMcuLL::hw
  */
 MINUNIT_SETUP(LPC812M101CppSetupGpio) {
   minUnitCheck(LPC812M101TeardownCorrect() == true);
-  sysconPeripheral.enablePeripheralClocks(libMcuLL::sw::syscon::CLOCK_GPIO);
+  sysconPeripheral.enablePeripheralClocks(libMcuLL::sw::syscon::peripheralClocks::GPIO);
 }
 
 // testing all single pin methods

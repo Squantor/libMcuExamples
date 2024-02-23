@@ -36,8 +36,9 @@ void crudeDelay(uint32_t iterations) {
 
 void boardInit(void) {
   // clock enables and resets
-  sysconPeripheral.enablePeripheralClocks(libMcuLL::sw::syscon::CLOCK_SWM | libMcuLL::sw::syscon::CLOCK_IOCON |
-                                          libMcuLL::sw::syscon::CLOCK_GPIO);
+  sysconPeripheral.enablePeripheralClocks(libMcuLL::sw::syscon::peripheralClocks::SWM |
+                                          libMcuLL::sw::syscon::peripheralClocks::IOCON |
+                                          libMcuLL::sw::syscon::peripheralClocks::GPIO);
   // setup IOCON pins
   ioconPeripheral.setup(xtalInPin, libMcuLL::sw::iocon::pullModes::INACTIVE);
   ioconPeripheral.setup(xtalOutPin, libMcuLL::sw::iocon::pullModes::INACTIVE);
@@ -45,17 +46,17 @@ void boardInit(void) {
   swmPeriperhal.setup(xtalOutPin, xtalOutFunction);
   // setup system clocks
   sysconPeripheral.setSysOscControl(libMcuLL::hw::syscon::SYSOSCCTRL::NO_BYPASS | libMcuLL::hw::syscon::SYSOSCCTRL::FREQ_1_20MHz);
-  sysconPeripheral.powerPeripherals(libMcuLL::sw::syscon::POWER_SYSOSC);
+  sysconPeripheral.powerPeripherals(libMcuLL::sw::syscon::peripheralPowers::SYSOSC);
   crudeDelay(6000);
-  sysconPeripheral.selectPllClock(libMcuLL::sw::syscon::PLLCLK_SYSOSC);
+  sysconPeripheral.selectPllClock(libMcuLL::sw::syscon::pllClockSources::SYSOSC);
   fcmPeripheral.setFlashWaitState(libMcuLL::sw::fmc::waitstates::WAIT_2_CLOCK);
-  sysconPeripheral.depowerPeripherals(libMcuLL::sw::syscon::POWER_SYSPLL);
-  sysconPeripheral.setSystemPllControl(4, libMcuLL::sw::syscon::PLLPOSTDIV_4);
-  sysconPeripheral.powerPeripherals(libMcuLL::sw::syscon::POWER_SYSPLL);
+  sysconPeripheral.depowerPeripherals(libMcuLL::sw::syscon::peripheralPowers::SYSPLL);
+  sysconPeripheral.setSystemPllControl(4, libMcuLL::sw::syscon::pllPostDivider::DIV_4);
+  sysconPeripheral.powerPeripherals(libMcuLL::sw::syscon::peripheralPowers::SYSPLL);
   while (!sysconPeripheral.getSystemPllStatus())
     ;
   sysconPeripheral.setSystemClockDivider(2);
-  sysconPeripheral.selectMainClock(libMcuLL::sw::syscon::MAINCLK_PLL_OUT);
+  sysconPeripheral.selectMainClock(libMcuLL::sw::syscon::mainClockSources::PLL_OUT);
   // disable all unneeded clocks
-  sysconPeripheral.disablePeripheralClocks(libMcuLL::sw::syscon::CLOCK_IOCON);
+  sysconPeripheral.disablePeripheralClocks(libMcuLL::sw::syscon::peripheralClocks::IOCON);
 }

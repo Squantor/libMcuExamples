@@ -32,35 +32,35 @@ MINUNIT_ADD(LPC812M101CppSysconChipID, LPC812M101CppSetupSyscon, LPC812M101Teard
 
 MINUNIT_ADD(LPC812M101CppSysconResets, LPC812M101CppSetupSyscon, LPC812M101Teardown) {
   minUnitCheck(dutRegisters->PRESETCTRL == 0x00001FFF);
-  // preset the reset register to a value that will be rest by the test
+  // preset the reset register to a value that will be reset by the test
   uint32_t resetRegister = dutRegisters->PRESETCTRL & libMcuLL::hw::syscon::PRESETCTRL::RESERVED_MASK;
-  resetRegister = resetRegister & ~(RESET_SPI0 | RESET_I2C | RESET_ACMP);
+  resetRegister = resetRegister & ~(PRESETCTRL::SPI0_RST_N | PRESETCTRL::I2C_RST_N | PRESETCTRL::ACMP_RST_N);
   minUnitCheck(resetRegister == 0x00000FBE);
   dutRegisters->PRESETCTRL = (dutRegisters->PRESETCTRL & ~PRESETCTRL::RESERVED_MASK) | (PRESETCTRL::RESERVED_MASK & resetRegister);
-  sysconPeripheral.resetPeripherals(RESET_SPI0);
+  sysconPeripheral.resetPeripherals(peripheralResets::SPI0);
   // the reset function will restore all bits to operational
   minUnitCheck(dutRegisters->PRESETCTRL == 0x00000FBF);
-  sysconPeripheral.resetPeripherals(RESET_I2C | RESET_ACMP);
+  sysconPeripheral.resetPeripherals(peripheralResets::I2C | peripheralResets::ACMP);
   minUnitCheck(dutRegisters->PRESETCTRL == 0x00001FFF);
 }
 
-// We only test analog comparator as this is the most convienient peripheral to test
+// We only test analog comparator for now
 MINUNIT_ADD(LPC812M101CppSysconPowering, LPC812M101CppSetupSyscon, LPC812M101Teardown) {
   minUnitCheck(dutRegisters->PDRUNCFG == 0x0000ED50);
-  sysconPeripheral.powerPeripherals(POWER_ACMP);
+  sysconPeripheral.powerPeripherals(peripheralPowers::ACMP);
   minUnitCheck(dutRegisters->PDRUNCFG == 0x00006D50);
-  sysconPeripheral.depowerPeripherals(POWER_ACMP);
+  sysconPeripheral.depowerPeripherals(peripheralPowers::ACMP);
   minUnitCheck(dutRegisters->PDRUNCFG == 0x0000ED50);
 }
 
 MINUNIT_ADD(LPC812M101CppSysconClocking, LPC812M101CppSetupSyscon, LPC812M101Teardown) {
   minUnitCheck(dutRegisters->SYSAHBCLKCTRL == 0x000000DF);
-  sysconPeripheral.enablePeripheralClocks(CLOCK_ACMP);
+  sysconPeripheral.enablePeripheralClocks(peripheralClocks::ACMP);
   minUnitCheck(dutRegisters->SYSAHBCLKCTRL == 0x000800DF);
-  sysconPeripheral.enablePeripheralClocks(CLOCK_IOCON);
+  sysconPeripheral.enablePeripheralClocks(peripheralClocks::IOCON);
   minUnitCheck(dutRegisters->SYSAHBCLKCTRL == 0x000C00DF);
-  sysconPeripheral.disablePeripheralClocks(CLOCK_ACMP);
+  sysconPeripheral.disablePeripheralClocks(peripheralClocks::ACMP);
   minUnitCheck(dutRegisters->SYSAHBCLKCTRL == 0x000400DF);
-  sysconPeripheral.disablePeripheralClocks(CLOCK_IOCON);
+  sysconPeripheral.disablePeripheralClocks(peripheralClocks::IOCON);
   minUnitCheck(dutRegisters->SYSAHBCLKCTRL == 0x000000DF);
 }

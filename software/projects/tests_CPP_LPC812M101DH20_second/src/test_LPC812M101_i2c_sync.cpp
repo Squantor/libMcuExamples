@@ -26,7 +26,8 @@ libMcuLL::hw::i2c::peripheral *const dutRegisters{reinterpret_cast<libMcuLL::hw:
  */
 MINUNIT_SETUP(LPC812M101CppSetupI2cSync) {
   minUnitCheck(LPC812M101TeardownCorrect() == true);
-  sysconPeripheral.enablePeripheralClocks(libMcuLL::sw::syscon::CLOCK_I2C | libMcuLL::sw::syscon::CLOCK_SWM);
+  sysconPeripheral.enablePeripheralClocks(libMcuLL::sw::syscon::peripheralClocks::I2C |
+                                          libMcuLL::sw::syscon::peripheralClocks::SWM);
   swmPeriperhal.setup(i2cSclOutPin, i2cMainSclFunction);
   swmPeriperhal.setup(i2cSdaOutPin, i2cMainSdaFunction);
 }

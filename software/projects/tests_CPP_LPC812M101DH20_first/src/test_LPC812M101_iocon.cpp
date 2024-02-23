@@ -24,7 +24,7 @@ libMcuLL::hw::iocon::peripheral *const dutRegisters{reinterpret_cast<libMcuLL::h
  */
 MINUNIT_SETUP(LPC812M101CppSetupIocon) {
   minUnitCheck(LPC812M101TeardownCorrect() == true);
-  sysconPeripheral.enablePeripheralClocks(libMcuLL::sw::syscon::CLOCK_IOCON);
+  sysconPeripheral.enablePeripheralClocks(libMcuLL::sw::syscon::peripheralClocks::IOCON);
 }
 
 /**

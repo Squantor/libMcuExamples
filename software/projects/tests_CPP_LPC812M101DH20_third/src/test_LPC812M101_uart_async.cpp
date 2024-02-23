@@ -25,8 +25,9 @@ MINUNIT_SETUP(LPC812M101CppSetupUsartAsync) {
   minUnitCheck(LPC812M101TeardownCorrect() == true);
   swmPeriperhal.setup(test0Pin, uartMainRxFunction);
   swmPeriperhal.setup(test1Pin, uartMainTxFunction);
-  sysconPeripheral.enablePeripheralClocks(libMcuLL::sw::syscon::CLOCK_UART0 | libMcuLL::sw::syscon::CLOCK_SWM |
-                                          libMcuLL::sw::syscon::CLOCK_IOCON);
+  sysconPeripheral.enablePeripheralClocks(libMcuLL::sw::syscon::peripheralClocks::UART0 |
+                                          libMcuLL::sw::syscon::peripheralClocks::SWM |
+                                          libMcuLL::sw::syscon::peripheralClocks::IOCON);
 }
 
 MINUNIT_ADD(LPC812M101CppUsartAsyncInit, LPC812M101CppSetupUsartAsync, LPC812M101Teardown) {

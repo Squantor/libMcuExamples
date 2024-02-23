@@ -27,10 +27,11 @@ libMcuLL::hw::acmp::peripheral *const dutRegisters{reinterpret_cast<libMcuLL::hw
  */
 MINUNIT_SETUP(LPC812M101CppSetupacmp) {
   minUnitCheck(LPC812M101TeardownCorrect() == true);
-  sysconPeripheral.powerPeripherals(libMcuLL::sw::syscon::POWER_ACMP);
-  sysconPeripheral.enablePeripheralClocks(libMcuLL::sw::syscon::CLOCK_SCT | libMcuLL::sw::syscon::CLOCK_IOCON |
-                                          libMcuLL::sw::syscon::CLOCK_GPIO | libMcuLL::sw::syscon::CLOCK_SWM |
-                                          libMcuLL::sw::syscon::CLOCK_ACMP);
+  sysconPeripheral.powerPeripherals(libMcuLL::sw::syscon::peripheralPowers::ACMP);
+  sysconPeripheral.enablePeripheralClocks(
+    libMcuLL::sw::syscon::peripheralClocks::SCT | libMcuLL::sw::syscon::peripheralClocks::IOCON |
+    libMcuLL::sw::syscon::peripheralClocks::GPIO | libMcuLL::sw::syscon::peripheralClocks::SWM |
+    libMcuLL::sw::syscon::peripheralClocks::ACMP);
   // switch matrix
   swmPeriperhal.setup(pwmOutPin, sctOutput0Function);
   swmPeriperhal.enableFixedPins(libMcuLL::sw::swm::ACMP_I2);  // enable fixed function on PIO0_1

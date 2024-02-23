@@ -24,8 +24,9 @@ libMcuLL::hw::sct::peripheral *const dutRegisters{reinterpret_cast<libMcuLL::hw:
  */
 MINUNIT_SETUP(LPC812M101CppSetupSct) {
   minUnitCheck(LPC812M101TeardownCorrect() == true);
-  sysconPeripheral.enablePeripheralClocks(libMcuLL::sw::syscon::CLOCK_SCT | libMcuLL::sw::syscon::CLOCK_IOCON |
-                                          libMcuLL::sw::syscon::CLOCK_GPIO | libMcuLL::sw::syscon::CLOCK_SWM);
+  sysconPeripheral.enablePeripheralClocks(
+    libMcuLL::sw::syscon::peripheralClocks::SCT | libMcuLL::sw::syscon::peripheralClocks::IOCON |
+    libMcuLL::sw::syscon::peripheralClocks::GPIO | libMcuLL::sw::syscon::peripheralClocks::SWM);
   swmPeriperhal.setup(pwmOutPin, sctOutput0Function);
   swmPeriperhal.setup(test0Pin, sctInput0Function);
   ioconPeripheral.setup(pwmInPin, libMcuLL::sw::iocon::pullModes::INACTIVE);

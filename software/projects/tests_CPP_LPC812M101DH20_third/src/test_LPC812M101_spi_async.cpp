@@ -25,8 +25,9 @@ libMcuLL::hw::spi::peripheral *const dutRegisters{reinterpret_cast<libMcuLL::hw:
  */
 MINUNIT_SETUP(LPC812M101CppSetupSpiAsync) {
   minUnitCheck(LPC812M101TeardownCorrect() == true);
-  sysconPeripheral.enablePeripheralClocks(libMcuLL::sw::syscon::CLOCK_SPI0 | libMcuLL::sw::syscon::CLOCK_SWM |
-                                          libMcuLL::sw::syscon::CLOCK_IOCON);
+  sysconPeripheral.enablePeripheralClocks(libMcuLL::sw::syscon::peripheralClocks::SPI0 |
+                                          libMcuLL::sw::syscon::peripheralClocks::SWM |
+                                          libMcuLL::sw::syscon::peripheralClocks::IOCON);
   swmPeriperhal.setup(test3Pin, spiMainSselFunction);
   swmPeriperhal.setup(test2Pin, spiMainSckFunction);
   swmPeriperhal.setup(test1Pin, spiMainMosiFunction);
@@ -40,7 +41,7 @@ MINUNIT_ADD(LPC812M101CppSpiAsyncInits, LPC812M101CppSetupSpiAsync, LPC812M101Te
   minUnitCheck((dutRegisters->CFG & CFG::RESERVED_MASK) == 0x00000005);
   minUnitCheck(dutRegisters->DIV == 299);
   dutRegisters->CFG = 0x00000000;
-  actualClock = spiAsyncPeripheral16.initMaster(65399, CPHA1_CPOL1_LSB, SPOL_HIGH);
+  actualClock = spiAsyncPeripheral16.initMaster(65399, waveforms::CPHA1_CPOL1_LSB, slavePolaritySelects::SPOL_HIGH);
   minUnitCheck(actualClock == 65502);
   minUnitCheck((dutRegisters->CFG & CFG::RESERVED_MASK) == 0x0000013D);
   minUnitCheck(dutRegisters->DIV == 457);
