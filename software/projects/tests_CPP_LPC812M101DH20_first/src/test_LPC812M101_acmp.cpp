@@ -34,13 +34,14 @@ MINUNIT_SETUP(LPC812M101CppSetupacmp) {
   // switch matrix
   swmPeriperhal.setup(pwmOutPin, sctOutput0Function);
   swmPeriperhal.enableFixedPins(libMcuLL::sw::swm::ACMP_I2);  // enable fixed function on PIO0_1
-  ioconPeripheral.setup(pwmInPin, libMcuLL::sw::iocon::INACTIVE);
+  ioconPeripheral.setup(pwmInPin, libMcuLL::sw::iocon::pullModes::INACTIVE);
   gpioPeripheral.low(test1Pin);
   gpioPeripheral.output(test1Pin);
   // sct configuration
-  sctPeripheral.init(0x0, libMcuLL::sw::sct::BIDIRECTIONAL);
-  sctPeripheral.setMatch(libMcuLL::sw::sct::MATCH_0, maxPwm);
-  sctPeripheral.setupPwm(libMcuLL::sw::sct::MATCH_1, 1, libMcuLL::sw::sct::EVENT_0, libMcuLL::sw::sct::OUTPUT_0, true);
+  sctPeripheral.init(0x0, libMcuLL::sw::sct::countingMode::BIDIRECTIONAL);
+  sctPeripheral.setMatch(libMcuLL::sw::sct::matchNumber::MATCH_0, maxPwm);
+  sctPeripheral.setupPwm(libMcuLL::sw::sct::matchNumber::MATCH_1, 1, libMcuLL::sw::sct::eventNumber::EVENT_0,
+                         libMcuLL::sw::sct::outputNumber::OUTPUT_0, true);
   sctPeripheral.start();
 }
 
@@ -66,14 +67,14 @@ MINUNIT_ADD(LPC812M101CppAcmpRef, LPC812M101CppSetupacmp, LPC812M101Teardown) {
   minUnitCheck(acmpPeripheral.comparatorOutput() != 0);
   minUnitCheck(acmpPeripheral.edgeOutput() == 0);
   // set pwm higher then internal reference voltage (903mv at 25C)
-  sctPeripheral.setReload(libMcuLL::sw::sct::MATCH_1, maxPwm / 2);
+  sctPeripheral.setReload(libMcuLL::sw::sct::matchNumber::MATCH_1, maxPwm / 2);
   crudeDelay(settlingDelay);
   minUnitCheck(acmpPeripheral.comparatorOutput() == 0);
   minUnitCheck(acmpPeripheral.edgeOutput() != 0);
   // use the PWM to do a succesive approximation of the reference voltage
   std::uint32_t currentPwm = maxPwm - 1;
   std::uint32_t currentHalfPwm = maxPwm / 2;
-  sctPeripheral.setReload(libMcuLL::sw::sct::MATCH_1, currentPwm);
+  sctPeripheral.setReload(libMcuLL::sw::sct::matchNumber::MATCH_1, currentPwm);
   while (currentHalfPwm != 0) {
     crudeDelay(settlingDelay);
     if (acmpPeripheral.comparatorOutput() == 0) {
@@ -81,7 +82,7 @@ MINUNIT_ADD(LPC812M101CppAcmpRef, LPC812M101CppSetupacmp, LPC812M101Teardown) {
     } else {
       currentPwm = currentPwm + currentHalfPwm;
     }
-    sctPeripheral.setReload(libMcuLL::sw::sct::MATCH_1, currentPwm);
+    sctPeripheral.setReload(libMcuLL::sw::sct::matchNumber::MATCH_1, currentPwm);
     currentHalfPwm = currentHalfPwm / 2;
   }
   // reference voltage should be in the range of (855mV and 945mV) according to datasheet with margins
