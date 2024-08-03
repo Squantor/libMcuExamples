@@ -2,7 +2,7 @@
 # Copyright (c) 2021 Bart Bilos
 # For conditions of distribution and use, see LICENSE file
 
-# Version: 20230101
+# Version: 20240223
 
 # current makefile base dir relative to Makefile
 PROJ_DIR := $(patsubst %/,%,$(dir $(lastword $(MAKEFILE_LIST))))
@@ -22,4 +22,4 @@ $(NAME)_POSTBUILD_SCRIPT := $(PROJ_DIR)/postbuild.sh
 # --- nothing user definable below ---
 PROJECTS += $(NAME)
 $(NAME)_PROJECT_ROOT := $(PROJ_DIR)
-$(NAME)_DEFINES += -D$(BOARD)
+$(NAME)_DEFINES +=
