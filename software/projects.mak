@@ -21,14 +21,3 @@ include $(BASE_DIR)/projects/PC/PC.mak
 include $(BASE_DIR)/projects/RP2040_blinky/RP2040_blinky.mak
 include $(BASE_DIR)/projects/STM32F030K6_blinky/STM32F030K6_blinky.mak
 include $(BASE_DIR)/projects/STM32F031K6_blinky/STM32F031K6_blinky.mak
-include $(BASE_DIR)/projects/tests_LPC812M101DH20/tests_LPC812M101DH20.mak
-include $(BASE_DIR)/projects/tests_LPC824M201HI33/tests_LPC824M201HI33.mak
-include $(BASE_DIR)/projects/tests_C_LPC844M201BD64/tests_C_LPC844M201BD64.mak
-include $(BASE_DIR)/projects/tests_CPP_LPC844M201BD64/tests_CPP_LPC844M201BD64.mak
-include $(BASE_DIR)/projects/tests_RP2040/tests_RP2040.mak
-include $(BASE_DIR)/projects/tests_template/tests_template.mak
-include $(BASE_DIR)/projects/tests_CPP_LPC812M101DH20_first/tests_CPP_LPC812M101DH20_first.mak
-include $(BASE_DIR)/projects/tests_CPP_LPC812M101DH20_second/tests_CPP_LPC812M101DH20_second.mak
-include $(BASE_DIR)/projects/tests_CPP_LPC812M101DH20_third/tests_CPP_LPC812M101DH20_third.mak
-include ${BASE_DIR}/projects/tests_CPP_CortexM0plus/tests_CPP_CortexM0plus.mak
-
