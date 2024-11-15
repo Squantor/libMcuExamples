@@ -15,6 +15,7 @@ include $(BASE_DIR)/projects/LPC812_uart_example/LPC812_uart_example.mak
 include $(BASE_DIR)/projects/LPC824M201DH20_blinky/LPC824M201DH20_blinky.mak
 include $(BASE_DIR)/projects/LPC824M201HI33_blinky/LPC824M201HI33_blinky.mak
 include $(BASE_DIR)/projects/LPC845M301HI48_blinky/LPC845M301HI48_blinky.mak
+include $(BASE_DIR)/projects/nuclone_LPC845QFP48_small_blinky/nuclone_LPC845QFP48_small_blinky.mak
 include $(BASE_DIR)/projects/LPC1114BD48_323_blinky/LPC1114BD48_323_blinky.mak
 include $(BASE_DIR)/projects/LPC1125JBD48_303_blinky/LPC1125JBD48_303_blinky.mak
 include $(BASE_DIR)/projects/PC/PC.mak

@@ -13,90 +13,6 @@
       ]
     },
     {
-      "label": "build libMcuLL CortexM0plus tests, debug mode",
-      "type": "shell",
-      "command": "compiledb make PROJECT=CortexM0plus_tests CONFIG=debug -j28",
-      "group": "build",
-      "problemMatcher": "$gcc"
-    },
-    {
-      "label": "build libMcuLL LPC812M101DH20 third tests, debug mode",
-      "type": "shell",
-      "command": "compiledb make PROJECT=LPC812M101DH20_CPP_tests_third CONFIG=debug -j20",
-      "group": "build",
-      "problemMatcher": "$gcc"
-    },
-    {
-      "label": "build libMcuLL LPC812M101DH20 second tests, debug mode",
-      "type": "shell",
-      "command": "compiledb make PROJECT=LPC812M101DH20_CPP_tests_second CONFIG=debug -j20",
-      "group": "build",
-      "problemMatcher": "$gcc"
-    },
-    {
-      "label": "build libMcuLL LPC812M101DH20 second tests, release mode",
-      "type": "shell",
-      "command": "compiledb make PROJECT=LPC812M101DH20_CPP_tests_second CONFIG=release_size -j20",
-      "group": "build",
-      "problemMatcher": "$gcc"
-    },
-    {
-      "label": "build libMcuLL LPC812M101DH20 first tests, debug mode",
-      "type": "shell",
-      "command": "compiledb make PROJECT=LPC812M101DH20_CPP_tests_first CONFIG=debug -j20",
-      "group": "build",
-      "problemMatcher": "$gcc"
-    },
-    {
-      "label": "build libMcuLL LPC812M101DH20 first tests, release mode",
-      "type": "shell",
-      "command": "compiledb make PROJECT=LPC812M101DH20_CPP_tests_first CONFIG=release_size -j20",
-      "group": "build",
-      "problemMatcher": "$gcc"
-    },
-    {
-      "label": "build debug LPC844M201BD64 tests",
-      "type": "shell",
-      "command": "compiledb make PROJECT=LPC844M201BD64_tests CONFIG=debug -j20",
-      "group": "build",
-      "problemMatcher": "$gcc"
-    },
-    {
-      "label": "build debug C LPC844M201BD64 tests",
-      "type": "shell",
-      "command": "compiledb make PROJECT=LPC844M201BD64_C_tests CONFIG=debug -j20",
-      "group": "build",
-      "problemMatcher": "$gcc"
-    },
-    {
-      "label": "build debug C++ LPC844M201BD64 tests",
-      "type": "shell",
-      "command": "compiledb make PROJECT=LPC844M201BD64_CPP_tests CONFIG=debug -j20",
-      "group": "build",
-      "problemMatcher": "$gcc"
-    },
-    {
-      "label": "build debug LPC812M101DH20 tests",
-      "type": "shell",
-      "command": "compiledb make PROJECT=LPC812M101DH20_tests CONFIG=debug -j20",
-      "group": "build",
-      "problemMatcher": "$gcc"
-    },
-    {
-      "label": "build debug LPC824M201HI33 tests",
-      "type": "shell",
-      "command": "compiledb make PROJECT=LPC824M201HI33_tests CONFIG=debug -j20",
-      "group": "build",
-      "problemMatcher": "$gcc"
-    },
-    {
-      "label": "build release LPC824M201HI33 tests",
-      "type": "shell",
-      "command": "compiledb make PROJECT=LPC824M201HI33_tests CONFIG=release -j20",
-      "group": "build",
-      "problemMatcher": "$gcc"
-    },
-    {
       "label": "build debug LPC845M301HI48 blinky",
       "type": "shell",
       "command": "compiledb make PROJECT=LPC845M301HI48_blinky CONFIG=debug -j20",
@@ -146,23 +62,9 @@
       "problemMatcher": "$gcc"
     },
     {
-      "label": "build release size RP2040 blinky project",
+      "label": "build LPC845 small nuclone blinky project",
       "type": "shell",
-      "command": "compiledb make PROJECT=RP2040_blinky CONFIG=release_size -j20",
-      "group": "build",
-      "problemMatcher": "$gcc"
-    },
-    {
-      "label": "build debug template tests",
-      "type": "shell",
-      "command": "compiledb make PROJECT=tests_template CONFIG=debug -j20",
-      "group": "build",
-      "problemMatcher": "$gcc"
-    },
-    {
-      "label": "build debug RP2040 tests",
-      "type": "shell",
-      "command": "compiledb make PROJECT=RP2040_tests CONFIG=debug -j20",
+      "command": "compiledb make PROJECT=nuclone_LPC845QFP48_small_blinky CONFIG=debug -j24",
       "group": "build",
       "problemMatcher": "$gcc"
     },
