@@ -1,6 +1,6 @@
 [submodule "software/libMcuLL"]
 	path = firmware/libraries/libMcu
-	url = git@github.com:Squantor/libMcuLL.git
+	url = git@github.com:Squantor/libMcu.git
 [submodule "software/squantorLibC"]
 	path = firmware/libraries/squantorLibC
 	url = git@github.com:Squantor/squantorLibC.git
