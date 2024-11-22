@@ -20,7 +20,7 @@ squLib::commandInterpreter<commandHandlers, commandValues, commandConsole> comma
 squLib::commandlineSimple<80, commandConsole, commandInterpreter> commandline;
 
 void application::init() {
-  commandConsole.print("DIY soldering station POC temperature sensing\n");
+  commandConsole.print("LPC845 small nuclone test program\n");
 }
 void application::progress() {
   static std::uint32_t currentTicks = ticks;
@@ -36,21 +36,7 @@ void application::progress() {
   }
   // state handling
   switch (state) {
-    case applicationState::usbPowered:
-      if (isMainsPresent())
-        state = applicationState::ready;
-      break;
-    case applicationState::ready:
-      if (!isMainsPresent())
-        setUsbPoweredState();
-      break;
-    case applicationState::operating:
-      if (!isMainsPresent())
-        setUsbPoweredState();
-      break;
-    case applicationState::error:
-      if (!isMainsPresent())
-        setUsbPoweredState();
+    case applicationState::idle:
       break;
 
     default:
@@ -59,8 +45,4 @@ void application::progress() {
   }
 }
 
-void application::setUsbPoweredState() {
-  setSafeUsbPowered();
-  state = applicationState::usbPowered;
-}
 }  // namespace application

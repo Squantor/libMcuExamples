@@ -16,20 +16,8 @@ namespace application {
 squLib::results stat(std::span<const char> commandLine) {
   (void)commandLine;
   switch (controller.getState()) {
-    case applicationState::usbPowered:
-      commandConsole.print("Powered only by USB\n");
-      break;
-
-    case applicationState::ready:
-      commandConsole.print("System fully operational\n");
-      break;
-
-    case applicationState::operating:
-      commandConsole.print("Power stage is operating\n");
-      break;
-
-    case applicationState::error:
-      commandConsole.print("We are in an error state\n");
+    case applicationState::idle:
+      commandConsole.print("Application is idle\n");
       break;
 
     default:

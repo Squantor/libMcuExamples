@@ -19,15 +19,12 @@
 namespace application {
 
 enum class applicationState : std::uint8_t {
-  usbPowered, /*!< USB powered only */
-  ready,      /*!< fully powered and ready */
-  operating,  /*!< an iron is heating */
-  error       /*!< error state */
+  idle, /*!< idle state */
 };
 
 class application {
  public:
-  application() : state{applicationState::usbPowered} {}
+  application() : state{applicationState::idle} {}
   void init();
   void progress();
   applicationState getState() {
