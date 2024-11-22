@@ -5,63 +5,6 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "debug LPC812M101DH20 blinky",
-      "cwd": "${workspaceRoot}",
-      "executable": "${workspaceFolder}/bin/LPC812M101DH20_blinky/debug/LPC812M101DH20_blinky.elf",
-      "request": "launch",
-      "type": "cortex-debug",
-      "servertype": "bmp",
-      "interface": "swd",
-      "device": "LPC812",
-      "BMPGDBSerialPort": "/dev/ttyACM0",
-      "runToEntryPoint": "main",
-      "preLaunchCommands": [],
-      "preRestartCommands": [],
-      "preLaunchTask": "build debug LPC812M101DH20 blinky",
-      "svdFile": "${workspaceFolder}/libraries/libMcu/svd/nxp/LPC812.svd",
-      "debuggerArgs": [
-        "--command=./${workspaceFolder}/gdb_scripts/LPC812M101DH20_blinky_debug.txt"
-      ],
-    },
-    {
-      "name": "debug LPC824M201DH20 blinky",
-      "cwd": "${workspaceRoot}",
-      "executable": "${workspaceFolder}/bin/LPC824M201DH20_blinky/debug/LPC824M201DH20_blinky.elf",
-      "request": "launch",
-      "type": "cortex-debug",
-      "servertype": "bmp",
-      "interface": "swd",
-      "device": "LPC812",
-      "BMPGDBSerialPort": "/dev/ttyACM0",
-      "runToEntryPoint": "main",
-      "preLaunchCommands": [],
-      "preRestartCommands": [],
-      "preLaunchTask": "build debug LPC824M201DH20 blinky",
-      "svdFile": "${workspaceFolder}/libraries/libMcu/svd/nxp/LPC812.svd",
-      "debuggerArgs": [
-        "--command=./${workspaceFolder}/gdb_scripts/LPC824M201DH20_blinky_debug.txt"
-      ],
-    },
-    {
-      "name": "debug LPC824M201HI33 blinky",
-      "cwd": "${workspaceRoot}",
-      "executable": "${workspaceFolder}/bin/LPC824M201HI33_blinky/debug/LPC824M201HI33_blinky.elf",
-      "request": "launch",
-      "type": "cortex-debug",
-      "servertype": "bmp",
-      "interface": "swd",
-      "device": "LPC812",
-      "BMPGDBSerialPort": "/dev/ttyACM0",
-      "runToEntryPoint": "main",
-      "preLaunchCommands": [],
-      "preRestartCommands": [],
-      "preLaunchTask": "build debug LPC824M201HI33 blinky",
-      "svdFile": "${workspaceFolder}/libraries/libMcu/svd/nxp/LPC812.svd",
-      "debuggerArgs": [
-        "--command=./${workspaceFolder}/gdb_scripts/LPC824M201HI33_blinky_debug.txt"
-      ],
-    },
-    {
       "name": "debug STM32F030K6 blinky",
       "cwd": "${workspaceRoot}",
       "executable": "${workspaceFolder}/bin/STM32F030K6_blinky/debug/STM32F030K6_blinky.elf",
@@ -69,7 +12,7 @@
       "type": "cortex-debug",
       "servertype": "bmp",
       "interface": "swd",
-      "device": "LPC812",
+      "device": "STM32F030",
       "BMPGDBSerialPort": "/dev/ttyACM0",
       "runToEntryPoint": "main",
       "preLaunchCommands": [],
@@ -83,20 +26,19 @@
     {
       "name": "debug STM32F031K6 blinky",
       "cwd": "${workspaceRoot}",
+      "gdbPath": "/usr/bin/gdb-multiarch",
       "executable": "${workspaceFolder}/bin/STM32F031K6_blinky/debug/STM32F031K6_blinky.elf",
       "request": "launch",
       "type": "cortex-debug",
       "servertype": "bmp",
       "interface": "swd",
-      "device": "LPC812",
+      "device": "STM32F031",
       "BMPGDBSerialPort": "/dev/ttyACM0",
       "runToEntryPoint": "main",
-      "preLaunchCommands": [],
-      "preRestartCommands": [],
       "preLaunchTask": "build debug STM32F031K6 blinky",
       "svdFile": "${workspaceFolder}/libraries/libMcu/svd/st/STM32F031x.svd",
       "debuggerArgs": [
-        "--command=./${workspaceFolder}/gdb_scripts/STM32F031K6_blinky_debug.txt"
+        //"--command=./${workspaceFolder}/gdb_scripts/STM32F031K6_blinky_debug.txt"
       ],
     },
     {
@@ -133,7 +75,6 @@
       "interface": "swd",
       "device": "LPC845",
       "BMPGDBSerialPort": "/dev/ttyACM0",
-      "powerOverBMP": "enable",
       "preLaunchCommands": [],
       "postLaunchCommands": [
         "set {int}0x40048000 = 2",

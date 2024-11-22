@@ -13,34 +13,6 @@
       ]
     },
     {
-      "label": "build debug LPC845M301HI48 blinky",
-      "type": "shell",
-      "command": "compiledb make PROJECT=LPC845M301HI48_blinky CONFIG=debug -j20",
-      "group": "build",
-      "problemMatcher": "$gcc"
-    },
-    {
-      "label": "build debug LPC812M101DH20 blinky",
-      "type": "shell",
-      "command": "compiledb make PROJECT=LPC812M101DH20_blinky CONFIG=debug -j20",
-      "group": "build",
-      "problemMatcher": "$gcc"
-    },
-    {
-      "label": "build debug LPC824M201DH20 blinky",
-      "type": "shell",
-      "command": "compiledb make PROJECT=LPC824M201DH20_blinky CONFIG=debug -j20",
-      "group": "build",
-      "problemMatcher": "$gcc"
-    },
-    {
-      "label": "build debug LPC824M201HI33 blinky",
-      "type": "shell",
-      "command": "compiledb make PROJECT=LPC824M201HI33_blinky CONFIG=debug -j20",
-      "group": "build",
-      "problemMatcher": "$gcc"
-    },
-    {
       "label": "build debug STM32F030K6 blinky",
       "type": "shell",
       "command": "compiledb make PROJECT=STM32F030K6_blinky CONFIG=debug -j20",
