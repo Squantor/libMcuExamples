@@ -49,7 +49,6 @@ extern libMcuLL::gpio::gpio<libMcuHw::gpioAddress> gpioPeripheral;
 extern libMcuLL::syscon::syscon<libMcuHw::sysconAddress> sysconPeripheral;
 extern libMcuLL::systick::systick<libMcuHw::systickAddress> systickPeripheral;
 extern libMcuHal::usart::uartSync<libMcuHw::usart0Address, libMcuHw::nvicAddress, char, 128> usartPeripheral;
-extern libMcuLL::adc::adc<libMcuHw::adc0Address> adcPeripheral;
 constexpr inline libMcuHw::clock::mcuClockConfig<libMcuHw::clock::clockInputSources::XTAL, 12'000'000u, 30'000'000u>
   nucloneClockConfig;
 constexpr inline libMcuHw::clock::periClockConfig<nucloneClockConfig, libMcuHw::clock::periSelect::UART0,
