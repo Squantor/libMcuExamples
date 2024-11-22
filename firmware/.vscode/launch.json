@@ -85,5 +85,26 @@
       "svdFile": "${workspaceFolder}/libraries/libMcu/svd/nxp/LPC845.svd",
       "debuggerArgs": [],
     },
+    {
+      "name": "debug LPC845 small nuclone template project",
+      "cwd": "${workspaceRoot}",
+      "gdbPath": "/usr/bin/gdb-multiarch",
+      "executable": "${workspaceFolder}/bin/nuclone_LPC845QFP48_small_template/debug/nuclone_LPC845QFP48_small_template.elf",
+      "request": "launch",
+      "type": "cortex-debug",
+      "servertype": "bmp",
+      "interface": "swd",
+      "device": "LPC845",
+      "BMPGDBSerialPort": "/dev/ttyACM0",
+      "preLaunchCommands": [],
+      "postLaunchCommands": [
+        "set {int}0x40048000 = 2",
+        "compare-sections"
+      ],
+      "preRestartCommands": [],
+      "preLaunchTask": "build LPC845 small nuclone template project",
+      "svdFile": "${workspaceFolder}/libraries/libMcu/svd/nxp/LPC845.svd",
+      "debuggerArgs": [],
+    },
   ]
 }
