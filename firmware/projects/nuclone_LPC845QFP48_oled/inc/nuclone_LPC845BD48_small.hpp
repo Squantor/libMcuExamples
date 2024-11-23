@@ -12,10 +12,10 @@
 
 #include <nxp/libmcu_LPC845M301BD48_hal.hpp>
 // #include <SSD1306_direct.hpp>
-#include <graphicalconsole.hpp>
-#include <font_8x8.h>
-#include "SSD1306_i2c.hpp"
-#include "SSD1306_conf_gen_128x32.hpp"
+// #include <graphicalconsole.hpp>
+#include <fonts/font_8x8.hpp>
+#include <drivers/SSD1306_i2c.hpp>
+#include <drivers/SSD1306/SSD1306_conf_gen_128x32.hpp>
 
 #define TICKS_PER_S 100
 
@@ -74,24 +74,5 @@ constexpr inline libMcuHw::clock::periClockConfig<nucloneClockConfig, libMcuHw::
 extern volatile std::uint32_t ticks;  // amount of ticks passed sinds startup
 
 void boardInit(void);
-/**
- * @brief checks if mains power is present
- * @return true mains power present
- * @return false mains power not present
- */
-bool isMainsPresent(void);
-
-/**
- * @brief Set the iron pin multiplexers
- * @param mux1 mux value, see HSI for what pins these are
- * @param mux2 mux value, see HSI for what pins these are
- */
-void setMultiplexers(std::uint32_t mux1, std::uint32_t mux2);
-
-/**
- * @brief Setup hardware to be safe when USB powered
- * This entails setting muxes to 0, power stage to 0 and resetting power control states
- */
-void setSafeUsbPowered(void);
 
 #endif

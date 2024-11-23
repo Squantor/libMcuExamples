@@ -16,7 +16,7 @@ libMcuLL::syscon::syscon<libMcuHw::sysconAddress> sysconPeripheral;
 libMcuLL::systick::systick<libMcuHw::systickAddress> systickPeripheral;
 libMcuLL::nvic::nvic<libMcuHw::nvicAddress, libMcuHw::scbAddress> nvicPeripheral;
 libMcuHal::usart::uartSync<libMcuHw::usart0Address, libMcuHw::nvicAddress, char, 128> usartPeripheral;
-libMcuLL::i2c::i2c<libMcuHw::i2c0Address> i2cPeripheral;
+libMcuHal::i2c::i2cSyncPol<libMcuHw::i2c0Address, 128> i2cPeripheral;
 libMcuDriver::SSD1306::generic128x32 testDisplay;
 constexpr inline libMcu::i2cDeviceAddress SSD1306_I2C_ADDRESS{0x3C};
 libMcuDriver::SSD1306::SSD1306<i2cPeripheral, SSD1306_I2C_ADDRESS, testDisplay> SSD1306;
@@ -70,7 +70,10 @@ void boardInit(void) {
   nvicPeripheral.enable(libMcuHw::interrupts::uart0);
   // setup I2C
   sysconPeripheral.peripheralClockSource(libMcuLL::syscon::clockSourceSelects::I2C0, libMcuLL::syscon::clockSources::MAIN);
-  i2cPeripheral.initMaster<i2c0ClockConfig>(100000, 100);
+  // i2cPeripheral.initMaster<i2c0ClockConfig>(100000, 100);
+  i2cPeripheral.init<i2c0ClockConfig>(400000, 100);
   // setup SSD1306 display
   SSD1306.init();
+  auto bitmap = mono8x8Row.ascii2Font('A');
+  SSD1306.sendData(bitmap);
 }
