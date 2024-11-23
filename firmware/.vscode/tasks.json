@@ -41,9 +41,9 @@
       "problemMatcher": "$gcc"
     },
     {
-      "label": "build LPC845 small nuclone template project",
+      "label": "build LPC845 small nuclone oled project",
       "type": "shell",
-      "command": "compiledb make PROJECT=nuclone_LPC845QFP48_small_template CONFIG=debug -j24",
+      "command": "compiledb make PROJECT=nuclone_LPC845QFP48_small_oled CONFIG=debug -j24",
       "group": "build",
       "problemMatcher": "$gcc"
     },
