@@ -13,7 +13,7 @@
 #include <nxp/libmcu_LPC845M301BD48_hal.hpp>
 // #include <SSD1306_direct.hpp>
 // #include <graphicalconsole.hpp>
-#include <fonts/font_8x8.hpp>
+#include <fonts/font_8x8_rowflip.hpp>
 #include <drivers/SSD1306_i2c.hpp>
 #include <drivers/SSD1306/SSD1306_conf_gen_128x32.hpp>
 
@@ -55,6 +55,8 @@ constexpr functionUartDebugRxType uartDebugRxFunction;
 constexpr functionI2cSclType i2cSclFunction;
 constexpr functionI2cSdaType i2cSdaFunction;
 
+constexpr inline libMcu::i2cDeviceAddress SSD1306_I2C_ADDRESS{0x3C};
+
 // peripheral externs
 extern libMcuLL::iocon::iocon<libMcuHw::ioconAddress> ioconPeripheral;
 extern libMcuLL::swm::swm<libMcuHw::swmAddress> swmPeriperhal;
@@ -62,6 +64,10 @@ extern libMcuLL::gpio::gpio<libMcuHw::gpioAddress> gpioPeripheral;
 extern libMcuLL::syscon::syscon<libMcuHw::sysconAddress> sysconPeripheral;
 extern libMcuLL::systick::systick<libMcuHw::systickAddress> systickPeripheral;
 extern libMcuHal::usart::uartSync<libMcuHw::usart0Address, libMcuHw::nvicAddress, char, 128> usartPeripheral;
+extern libMcuHal::i2c::i2cSyncPol<libMcuHw::i2c0Address, 128> i2cPeripheral;
+extern libMcuDriver::SSD1306::generic128x32 testDisplay;
+extern libMcuDriver::SSD1306::SSD1306<i2cPeripheral, SSD1306_I2C_ADDRESS, testDisplay> SSD1306;
+
 constexpr inline libMcuHw::clock::mcuClockConfig<libMcuHw::clock::clockInputSources::XTAL, 12'000'000u, 30'000'000u>
   nucloneClockConfig;
 constexpr inline libMcuHw::clock::periClockConfig<nucloneClockConfig, libMcuHw::clock::periSelect::UART0,

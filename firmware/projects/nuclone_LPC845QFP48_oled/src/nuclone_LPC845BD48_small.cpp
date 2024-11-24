@@ -18,7 +18,6 @@ libMcuLL::nvic::nvic<libMcuHw::nvicAddress, libMcuHw::scbAddress> nvicPeripheral
 libMcuHal::usart::uartSync<libMcuHw::usart0Address, libMcuHw::nvicAddress, char, 128> usartPeripheral;
 libMcuHal::i2c::i2cSyncPol<libMcuHw::i2c0Address, 128> i2cPeripheral;
 libMcuDriver::SSD1306::generic128x32 testDisplay;
-constexpr inline libMcu::i2cDeviceAddress SSD1306_I2C_ADDRESS{0x3C};
 libMcuDriver::SSD1306::SSD1306<i2cPeripheral, SSD1306_I2C_ADDRESS, testDisplay> SSD1306;
 
 volatile std::uint32_t ticks;
@@ -74,6 +73,7 @@ void boardInit(void) {
   i2cPeripheral.init<i2c0ClockConfig>(400000, 100);
   // setup SSD1306 display
   SSD1306.init();
-  auto bitmap = mono8x8Row.ascii2Font('A');
+  std::span<const std::uint8_t> bitmap = sqEmbedded::fonts::mono8x8RowFlip.fontBitmap.subspan(520, 64);
   SSD1306.sendData(bitmap);
+  SSD1306.setAddress(0, 0);
 }

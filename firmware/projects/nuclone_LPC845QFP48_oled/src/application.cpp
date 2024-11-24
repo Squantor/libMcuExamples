@@ -24,8 +24,11 @@ void application::init() {
 }
 void application::progress() {
   static std::uint32_t currentTicks = ticks;
-  if (currentTicks + 100 < ticks) {
+  static bool displayState = false;
+  if (currentTicks + 200 < ticks) {
     // Print("test:\t", currentTicks, "\t", print::Hex{currentTicks}, "\n");
+    SSD1306.invertDisplay(displayState);
+    displayState = !displayState;
     currentTicks = ticks;
   }
   // echo characters
