@@ -75,5 +75,8 @@ void boardInit(void) {
   SSD1306.init();
   std::span<const std::uint8_t> bitmap = sqEmbedded::fonts::mono8x8RowFlip.fontBitmap.subspan(520, 64);
   SSD1306.sendData(bitmap);
-  SSD1306.setAddress(0, 0);
+  SSD1306.setPageAddress(3, 6);
+  SSD1306.setColumnAddress(16, 63);
+  bitmap = sqEmbedded::fonts::mono8x8RowFlip.fontBitmap.subspan(128, 192);
+  SSD1306.sendData(bitmap);
 }

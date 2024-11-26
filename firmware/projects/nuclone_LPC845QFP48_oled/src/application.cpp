@@ -23,14 +23,21 @@ void application::init() {
   commandConsole.print("LPC845 small nuclone test program\n");
 }
 void application::progress() {
-  static std::uint32_t currentTicks = ticks;
-  static bool displayState = false;
-  if (currentTicks + 200 < ticks) {
-    // Print("test:\t", currentTicks, "\t", print::Hex{currentTicks}, "\n");
-    SSD1306.invertDisplay(displayState);
-    displayState = !displayState;
-    currentTicks = ticks;
+  static std::uint32_t currentTicksSeconds = ticks;
+  static std::uint32_t currentTicksTens = ticks;
+  static std::uint32_t seconds = 0;
+  static std::uint32_t tens = 0;
+  if (currentTicksSeconds + 200 < ticks) {
+    SSD1306.invertDisplay(seconds % 2 == 0);
+    seconds++;
+    currentTicksSeconds = ticks;
   }
+  if (currentTicksTens + 20 < ticks) {
+    SSD1306.setDisplayStartLine(tens % 64);
+    tens++;
+    currentTicksTens = ticks;
+  }
+
   // echo characters
   if (usartPeripheral.receiveDataAvailable() > 0) {
     static std::array<char, 1> data;
