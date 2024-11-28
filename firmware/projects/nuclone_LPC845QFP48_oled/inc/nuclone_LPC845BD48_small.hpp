@@ -16,6 +16,7 @@
 #include <fonts/font_8x8_rowflip.hpp>
 #include <drivers/SSD1306_i2c.hpp>
 #include <drivers/SSD1306/SSD1306_conf_gen_128x32.hpp>
+#include <display_dir_SSD1306.hpp>
 
 #define TICKS_PER_S 100
 

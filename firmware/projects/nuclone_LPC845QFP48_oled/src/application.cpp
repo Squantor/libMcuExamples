@@ -33,7 +33,7 @@ void application::progress() {
     currentTicksSeconds = ticks;
   }
   if (currentTicksTens + 20 < ticks) {
-    SSD1306.setDisplayStartLine(tens % 64);
+    // SSD1306.setDisplayStartLine(tens % 64);
     tens++;
     currentTicksTens = ticks;
   }

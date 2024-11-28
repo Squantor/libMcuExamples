@@ -19,6 +19,7 @@ libMcuHal::usart::uartSync<libMcuHw::usart0Address, libMcuHw::nvicAddress, char,
 libMcuHal::i2c::i2cSyncPol<libMcuHw::i2c0Address, 128> i2cPeripheral;
 libMcuDriver::SSD1306::generic128x32 testDisplay;
 libMcuDriver::SSD1306::SSD1306<i2cPeripheral, SSD1306_I2C_ADDRESS, testDisplay> SSD1306;
+libMcuMiddleware::display::displayDirSSD1306<testDisplay, SSD1306> display;
 
 volatile std::uint32_t ticks;
 
@@ -73,10 +74,7 @@ void boardInit(void) {
   i2cPeripheral.init<i2c0ClockConfig>(400000, 100);
   // setup SSD1306 display
   SSD1306.init();
-  std::span<const std::uint8_t> bitmap = sqEmbedded::fonts::mono8x8RowFlip.fontBitmap.subspan(520, 64);
-  SSD1306.sendData(bitmap);
-  SSD1306.setPageAddress(3, 6);
-  SSD1306.setColumnAddress(16, 63);
-  bitmap = sqEmbedded::fonts::mono8x8RowFlip.fontBitmap.subspan(128, 192);
-  SSD1306.sendData(bitmap);
+  display.fill(0x55);
+  std::span<const std::uint8_t> bitmap = sqEmbedded::fonts::mono8x8RowFlip.fontBitmap.subspan(264, 32);
+  display.writeBlock(16, 8, 32, 16, bitmap);
 }
