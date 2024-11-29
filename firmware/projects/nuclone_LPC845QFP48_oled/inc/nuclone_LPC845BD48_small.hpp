@@ -13,7 +13,7 @@
 #include <nxp/libmcu_LPC845M301BD48_hal.hpp>
 // #include <SSD1306_direct.hpp>
 #include <mid/display/graphics_terminal.hpp>
-#include <fonts/font_8x8_rowflip.hpp>
+#include <fonts/font_6x8_rowflip.hpp>
 #include <drivers/SSD1306_i2c.hpp>
 #include <drivers/SSD1306/SSD1306_conf_gen_128x32.hpp>
 #include <mid/display/display_dir_SSD1306.hpp>
@@ -69,7 +69,8 @@ extern libMcuHal::i2c::i2cSyncPol<libMcuHw::i2c0Address, 128> i2cPeripheral;
 extern libMcuDriver::SSD1306::generic128x32 testDisplay;
 extern libMcuDriver::SSD1306::SSD1306<i2cPeripheral, SSD1306_I2C_ADDRESS, testDisplay> SSD1306;
 extern libMcuMid::display::displayDirSSD1306<testDisplay, SSD1306> display;
-extern libMcuMid::display::graphicsTerminal<display, sqEmbedded::fonts::mono8x8RowFlip> displayTerminal;
+extern sqEmbedded::fonts::mono6x8RowFlip font;
+extern libMcuMid::display::graphicsTerminal<display, font> displayTerminal;
 
 constexpr inline libMcuHw::clock::mcuClockConfig<libMcuHw::clock::clockInputSources::XTAL, 12'000'000u, 30'000'000u>
   nucloneClockConfig;
