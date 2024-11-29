@@ -15,6 +15,7 @@
 namespace application {
 
 squLib::console<usartPeripheral> commandConsole;
+squLib::console<displayTerminal> graphicalConsole;
 squLib::commandValueStack<8, commandConsole> commandValues;
 squLib::commandInterpreter<commandHandlers, commandValues, commandConsole> commandInterpreter;
 squLib::commandlineSimple<80, commandConsole, commandInterpreter> commandline;
@@ -27,14 +28,20 @@ void application::progress() {
   static std::uint32_t currentTicksTens = ticks;
   static std::uint32_t seconds = 0;
   static std::uint32_t tens = 0;
+  static std::uint32_t bright = 0;
   if (currentTicksSeconds + 200 < ticks) {
-    SSD1306.invertDisplay(seconds % 2 == 0);
+    display.invert(seconds % 2 == 0);
+    graphicalConsole.print("seconds: ", seconds, "\n");
     seconds++;
     currentTicksSeconds = ticks;
   }
   if (currentTicksTens + 20 < ticks) {
-    // SSD1306.setDisplayStartLine(tens % 64);
+    // display.scroll(tens % 64);
+    // display.brightness(bright);
     tens++;
+    bright++;
+    if (bright > 100)
+      bright = 0;
     currentTicksTens = ticks;
   }
 
