@@ -17,6 +17,8 @@ libMcuLL::systick::systick<libMcuHw::systickAddress> systickPeripheral;
 libMcuLL::nvic::nvic<libMcuHw::nvicAddress, libMcuHw::scbAddress> nvicPeripheral;
 libMcuHal::usart::uartSync<libMcuHw::usart0Address, libMcuHw::nvicAddress, char, 128> usartPeripheral;
 libMcuHal::spi::spiSyncPol<libMcuHw::spi0Address> spiPeripheral;
+libMcuDrv::memlcd::memlcd<libMcuDrv::memlcd::LS013B4DN04, libMcuHal::spi::spiSlaveSelects::Select0, spiPeripheral> memlcdDriver;
+libMcuMid::display::displayMemlcd<libMcuDrv::memlcd::LS013B4DN04, memlcdDriver> display;
 
 volatile std::uint32_t ticks;
 
@@ -79,11 +81,12 @@ void boardInit(void) {
   // setup spi
   sysconPeripheral.peripheralClockSource(libMcuLL::syscon::clockSourceSelects::SPI0, libMcuLL::syscon::clockSources::MAIN);
   spiPeripheral.init<spi0ClockConfig>(1000000, static_cast<std::uint32_t>(libMcuHal::spi::spiSlaveSelects::Select0), 3, 3);
-  std::array<std::uint16_t, 8> data;
-  data.fill(0);
-  data[0] = 0x0801;
-  for (std::size_t i = 1; i < data.size() - 1; i++) {
-    data[i] = i;
+
+  display.init();
+  for (std::uint32_t x = 0; x < libMcuDrv::memlcd::LS013B4DN04::maxX; x++) {
+    for (std::uint32_t y = 0; y < libMcuDrv::memlcd::LS013B4DN04::maxX; y++) {
+      display.setPixel(x, y, (x * x + y * y) & 32);
+    }
   }
-  spiPeripheral.write<decltype(data)::value_type>(data, 16u, libMcuHal::spi::spiSlaveSelects::Select0, true, true);
+  display.update();
 }

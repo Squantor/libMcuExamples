@@ -7,7 +7,6 @@
 /**
  * @brief main application entry point
  */
-
 #include <application.hpp>
 #include <cmdline_simple.hpp>
 #include <console.hpp>
@@ -28,6 +27,8 @@ void application::progress() {
 
   if (currentTicksSeconds + 100 < ticks) {
     gpioPeripheral.toggle(dispEinPin);
+    display.fill(seconds);
+    display.update();
     seconds++;
     currentTicksSeconds = ticks;
   }

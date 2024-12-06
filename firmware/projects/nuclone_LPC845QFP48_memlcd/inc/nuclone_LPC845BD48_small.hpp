@@ -11,12 +11,10 @@
 #define POC_TEMP_SENSE_NUCLONE_HPP
 
 #include <nxp/libmcu_LPC845M301BD48_hal.hpp>
-// #include <SSD1306_direct.hpp>
 #include <mid/display/graphics_terminal.hpp>
 #include <fonts/font_6x8_rowflip.hpp>
-#include <drivers/SSD1306_i2c.hpp>
-#include <drivers/SSD1306/SSD1306_conf_gen_128x32.hpp>
-#include <mid/display/display_dir_SSD1306.hpp>
+#include <drivers/memlcd.hpp>
+#include <mid/display/memlcd.hpp>
 
 #define TICKS_PER_S 100
 
@@ -73,6 +71,10 @@ extern libMcuLL::gpio::gpio<libMcuHw::gpioAddress> gpioPeripheral;
 extern libMcuLL::syscon::syscon<libMcuHw::sysconAddress> sysconPeripheral;
 extern libMcuLL::systick::systick<libMcuHw::systickAddress> systickPeripheral;
 extern libMcuHal::usart::uartSync<libMcuHw::usart0Address, libMcuHw::nvicAddress, char, 128> usartPeripheral;
+extern libMcuHal::spi::spiSyncPol<libMcuHw::spi0Address> spiPeripheral;
+extern libMcuDrv::memlcd::memlcd<libMcuDrv::memlcd::LS013B4DN04, libMcuHal::spi::spiSlaveSelects::Select0, spiPeripheral>
+  memlcdDriver;
+extern libMcuMid::display::displayMemlcd<libMcuDrv::memlcd::LS013B4DN04, memlcdDriver> display;
 
 constexpr inline libMcuHw::clock::mcuClockConfig<libMcuHw::clock::clockInputSources::XTAL, 12'000'000u, 30'000'000u>
   nucloneClockConfig;
