@@ -16,12 +16,7 @@ libMcuLL::syscon::syscon<libMcuHw::sysconAddress> sysconPeripheral;
 libMcuLL::systick::systick<libMcuHw::systickAddress> systickPeripheral;
 libMcuLL::nvic::nvic<libMcuHw::nvicAddress, libMcuHw::scbAddress> nvicPeripheral;
 libMcuHal::usart::uartSync<libMcuHw::usart0Address, libMcuHw::nvicAddress, char, 128> usartPeripheral;
-libMcuHal::i2c::i2cSyncPol<libMcuHw::i2c0Address, 128> i2cPeripheral;
-libMcuDriver::SSD1306::generic128x32 testDisplay;
-libMcuDriver::SSD1306::SSD1306<i2cPeripheral, SSD1306_I2C_ADDRESS, testDisplay> SSD1306;
-libMcuMid::display::displayDirSSD1306<testDisplay, SSD1306> display;
-sqEmbedded::fonts::mono6x8RowFlip font;
-libMcuMid::display::graphicsTerminal<display, font> displayTerminal;
+libMcuHal::spi::spiSyncPol<libMcuHw::spi0Address> spiPeripheral;
 
 volatile std::uint32_t ticks;
 
@@ -46,7 +41,7 @@ void boardInit(void) {
   sysconPeripheral.enablePeripheralClocks(libMcuLL::syscon::peripheralClocks0::SWM | libMcuLL::syscon::peripheralClocks0::IOCON |
                                             libMcuLL::syscon::peripheralClocks0::GPIO0 |
                                             libMcuLL::syscon::peripheralClocks0::GPIO1 |
-                                            libMcuLL::syscon::peripheralClocks0::UART0 | libMcuLL::syscon::peripheralClocks0::I2C0,
+                                            libMcuLL::syscon::peripheralClocks0::UART0 | libMcuLL::syscon::peripheralClocks0::SPI0,
                                           0);
   // setup pins
   ioconPeripheral.setup(xtalInPin, libMcuLL::iocon::pullModes::INACTIVE);
@@ -54,12 +49,23 @@ void boardInit(void) {
   ioconPeripheral.setup(bootloadPin, libMcuLL::iocon::pullModes::PULLUP);
   ioconPeripheral.setup(debugUartRxPin, libMcuLL::iocon::pullModes::PULLUP);
   ioconPeripheral.setup(debugUartTxPin, libMcuLL::iocon::pullModes::INACTIVE);
+  ioconPeripheral.setup(dispSpiSckPin, libMcuLL::iocon::pullModes::INACTIVE);
+  ioconPeripheral.setup(dispSpiMosiPin, libMcuLL::iocon::pullModes::INACTIVE);
+  ioconPeripheral.setup(dispSpiCsPin, libMcuLL::iocon::pullModes::INACTIVE);
+  gpioPeripheral.high(dispEmdPin);
+  gpioPeripheral.output(dispEmdPin);
+  gpioPeripheral.high(dispDonPin);
+  gpioPeripheral.output(dispDonPin);
+  gpioPeripheral.high(dispEinPin);
+  gpioPeripheral.output(dispEinPin);
+
   swmPeriperhal.setup(xtalInPin, xtalInFunction);
   swmPeriperhal.setup(xtalOutPin, xtalOutFunction);
   swmPeriperhal.setup(debugUartRxPin, uartDebugRxFunction);
   swmPeriperhal.setup(debugUartTxPin, uartDebugTxFunction);
-  swmPeriperhal.setup(i2cSclPin, i2cSclFunction);
-  swmPeriperhal.setup(i2cSdaPin, i2cSdaFunction);
+  swmPeriperhal.setup(dispSpiCsPin, spiCsFunction);
+  swmPeriperhal.setup(dispSpiSckPin, spiSckFunction);
+  swmPeriperhal.setup(dispSpiMosiPin, spiMosiFunction);
   // setup crystal oscillator
   // libMcuHw::clock::configureClocks<sysconPeripheral, diySolderClockConfig>();
   sysconPeripheral.configureMcuClocks<nucloneClockConfig>();
@@ -70,11 +76,14 @@ void boardInit(void) {
   sysconPeripheral.peripheralClockSource(libMcuLL::syscon::clockSourceSelects::UART0, libMcuLL::syscon::clockSources::MAIN);
   usartPeripheral.init<uart0ClockConfig>(115200);
   nvicPeripheral.enable(libMcuHw::interrupts::uart0);
-  // setup I2C
-  sysconPeripheral.peripheralClockSource(libMcuLL::syscon::clockSourceSelects::I2C0, libMcuLL::syscon::clockSources::MAIN);
-  // i2cPeripheral.initMaster<i2c0ClockConfig>(100000, 100);
-  i2cPeripheral.init<i2c0ClockConfig>(400000, 100);
-  // setup SSD1306 display
-  SSD1306.init();
-  display.fill(0x00);
+  // setup spi
+  sysconPeripheral.peripheralClockSource(libMcuLL::syscon::clockSourceSelects::SPI0, libMcuLL::syscon::clockSources::MAIN);
+  spiPeripheral.init<spi0ClockConfig>(1000000, static_cast<std::uint32_t>(libMcuHal::spi::spiSlaveSelects::Select0), 3, 3);
+  std::array<std::uint16_t, 8> data;
+  data.fill(0);
+  data[0] = 0x0801;
+  for (std::size_t i = 1; i < data.size() - 1; i++) {
+    data[i] = i;
+  }
+  spiPeripheral.write<decltype(data)::value_type>(data, 16u, libMcuHal::spi::spiSlaveSelects::Select0, true, true);
 }

@@ -86,10 +86,10 @@
       "debuggerArgs": [],
     },
     {
-      "name": "debug LPC845 small nuclone oled project",
+      "name": "debug LPC845 small nuclone memory LCD project",
       "cwd": "${workspaceRoot}",
       "gdbPath": "/usr/bin/gdb-multiarch",
-      "executable": "${workspaceFolder}/bin/nuclone_LPC845QFP48_small_oled/debug/nuclone_LPC845QFP48_small_oled.elf",
+      "executable": "${workspaceFolder}/bin/nuclone_LPC845QFP48_small_memlcd/debug/nuclone_LPC845QFP48_small_memlcd.elf",
       "request": "launch",
       "type": "cortex-debug",
       "servertype": "bmp",
@@ -102,7 +102,7 @@
         "compare-sections"
       ],
       "preRestartCommands": [],
-      "preLaunchTask": "build LPC845 small nuclone oled project",
+      "preLaunchTask": "build LPC845 small nuclone memory LCD project",
       "svdFile": "${workspaceFolder}/libraries/libMcu/svd/nxp/LPC845.svd",
       "debuggerArgs": [],
     },
