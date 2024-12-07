@@ -24,13 +24,20 @@ void application::init() {
 void application::progress() {
   static std::uint32_t currentTicksSeconds = ticks;
   static std::uint32_t seconds = 0;
+  static std::uint32_t currentTicksFaster = ticks;
+  static std::uint32_t faster = 0;
 
   if (currentTicksSeconds + 100 < ticks) {
-    gpioPeripheral.toggle(dispEinPin);
-    display.fill(seconds);
-    display.update();
+    memlcdDriver.toggleVcom();
     seconds++;
     currentTicksSeconds = ticks;
+  }
+
+  if (currentTicksFaster + 30 < ticks) {
+    display.fill(faster);
+    display.update();
+    faster++;
+    currentTicksFaster = ticks;
   }
 
   // echo characters

@@ -54,12 +54,16 @@ void boardInit(void) {
   ioconPeripheral.setup(dispSpiSckPin, libMcuLL::iocon::pullModes::INACTIVE);
   ioconPeripheral.setup(dispSpiMosiPin, libMcuLL::iocon::pullModes::INACTIVE);
   ioconPeripheral.setup(dispSpiCsPin, libMcuLL::iocon::pullModes::INACTIVE);
-  gpioPeripheral.high(dispEmdPin);
-  gpioPeripheral.output(dispEmdPin);
-  gpioPeripheral.high(dispDonPin);
-  gpioPeripheral.output(dispDonPin);
-  gpioPeripheral.high(dispEinPin);
-  gpioPeripheral.output(dispEinPin);
+  ioconPeripheral.setup(dispEmdPin, libMcuLL::iocon::pullModes::INACTIVE);
+  ioconPeripheral.setup(dispDonPin, libMcuLL::iocon::pullModes::INACTIVE);
+  ioconPeripheral.setup(dispEinPin, libMcuLL::iocon::pullModes::INACTIVE);
+  // serial based com pulsing
+  // gpioPeripheral.high(dispEmdPin);
+  // gpioPeripheral.output(dispEmdPin);
+  // gpioPeripheral.high(dispDonPin);
+  // gpioPeripheral.output(dispDonPin);
+  // gpioPeripheral.high(dispEinPin);
+  // gpioPeripheral.output(dispEinPin);
 
   swmPeriperhal.setup(xtalInPin, xtalInFunction);
   swmPeriperhal.setup(xtalOutPin, xtalOutFunction);
