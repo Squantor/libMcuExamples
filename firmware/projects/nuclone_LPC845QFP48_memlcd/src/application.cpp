@@ -28,13 +28,17 @@ void application::progress() {
   static std::uint32_t faster = 0;
 
   if (currentTicksSeconds + 100 < ticks) {
-    memlcdDriver.toggleVcom();
+    memlcdDriver.sendVcom();
     seconds++;
     currentTicksSeconds = ticks;
   }
 
-  if (currentTicksFaster + 30 < ticks) {
-    display.fill(faster);
+  if (currentTicksFaster + 50 < ticks) {
+    for (std::uint32_t x = 0; x < libMcuDrv::memlcd::LS013B4DN04::maxX; x++) {
+      for (std::uint32_t y = 0; y < libMcuDrv::memlcd::LS013B4DN04::maxX; y++) {
+        display.setPixel(x, y, (x * x + y * y + faster) & 64);
+      }
+    }
     display.update();
     faster++;
     currentTicksFaster = ticks;

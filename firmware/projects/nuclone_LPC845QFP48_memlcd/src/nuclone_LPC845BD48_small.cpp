@@ -58,8 +58,8 @@ void boardInit(void) {
   ioconPeripheral.setup(dispDonPin, libMcuLL::iocon::pullModes::INACTIVE);
   ioconPeripheral.setup(dispEinPin, libMcuLL::iocon::pullModes::INACTIVE);
   // serial based com pulsing
-  // gpioPeripheral.high(dispEmdPin);
-  // gpioPeripheral.output(dispEmdPin);
+  gpioPeripheral.low(dispEmdPin);
+  gpioPeripheral.output(dispEmdPin);
   // gpioPeripheral.high(dispDonPin);
   // gpioPeripheral.output(dispDonPin);
   // gpioPeripheral.high(dispEinPin);
@@ -84,13 +84,7 @@ void boardInit(void) {
   nvicPeripheral.enable(libMcuHw::interrupts::uart0);
   // setup spi
   sysconPeripheral.peripheralClockSource(libMcuLL::syscon::clockSourceSelects::SPI0, libMcuLL::syscon::clockSources::MAIN);
-  spiPeripheral.init<spi0ClockConfig>(1000000, static_cast<std::uint32_t>(libMcuHal::spi::spiSlaveSelects::Select0), 3, 3);
-
+  spiPeripheral.init<spi0ClockConfig>(1000000, static_cast<std::uint32_t>(libMcuHal::spi::spiSlaveSelects::Select0), 4, 4);
   display.init();
-  for (std::uint32_t x = 0; x < libMcuDrv::memlcd::LS013B4DN04::maxX; x++) {
-    for (std::uint32_t y = 0; y < libMcuDrv::memlcd::LS013B4DN04::maxX; y++) {
-      display.setPixel(x, y, (x * x + y * y) & 32);
-    }
-  }
   display.update();
 }
