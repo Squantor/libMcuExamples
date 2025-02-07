@@ -47,5 +47,12 @@
       "group": "build",
       "problemMatcher": "$gcc"
     },
+    {
+      "label": "build LPC845 small nuclone SCT WS2812 project",
+      "type": "shell",
+      "command": "compiledb make PROJECT=nuclone_LPC845QFP48_sct_ws2812 CONFIG=debug -j24",
+      "group": "build",
+      "problemMatcher": "$gcc"
+    },
   ]
 }
