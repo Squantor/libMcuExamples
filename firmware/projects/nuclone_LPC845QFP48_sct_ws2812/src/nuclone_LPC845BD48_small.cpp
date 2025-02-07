@@ -17,6 +17,7 @@ libMcuLL::systick::systick<libMcuHw::systickAddress> systickPeripheral;
 libMcuLL::nvic::nvic<libMcuHw::nvicAddress, libMcuHw::scbAddress> nvicPeripheral;
 libMcuHal::usart::uartSync<libMcuHw::usart0Address, libMcuHw::nvicAddress, char, 128> usartPeripheral;
 libMcuHal::spi::spiSyncPol<libMcuHw::spi0Address> spiPeripheral;
+libMcuLL::sct::sct<libMcuHw::sct0Address> sctPeripheral;
 
 volatile std::uint32_t ticks;
 
@@ -41,7 +42,8 @@ void boardInit(void) {
   sysconPeripheral.enablePeripheralClocks(libMcuLL::syscon::peripheralClocks0::SWM | libMcuLL::syscon::peripheralClocks0::IOCON |
                                             libMcuLL::syscon::peripheralClocks0::GPIO0 |
                                             libMcuLL::syscon::peripheralClocks0::GPIO1 |
-                                            libMcuLL::syscon::peripheralClocks0::UART0 | libMcuLL::syscon::peripheralClocks0::SPI0,
+                                            libMcuLL::syscon::peripheralClocks0::UART0 | libMcuLL::syscon::peripheralClocks0::SPI0 |
+                                            libMcuLL::syscon::peripheralClocks0::SCT,
                                           0);
   // setup pins
   ioconPeripheral.setup(xtalInPin, libMcuLL::iocon::pullModes::INACTIVE);
@@ -70,4 +72,9 @@ void boardInit(void) {
   // setup spi
   sysconPeripheral.peripheralClockSource(libMcuLL::syscon::clockSourceSelects::SPI0, libMcuLL::syscon::clockSources::MAIN);
   spiPeripheral.init<spi0ClockConfig>(800000, static_cast<std::uint32_t>(libMcuHal::spi::spiSlaveSelects::Select0), 4, 4);
+  // setup sct
+  sysconPeripheral.setupSctClock(libMcuLL::syscon::sctClockSources::MAIN, 1);
+  sctPeripheral.init(libMcuLL::sct::counterMode::UNIFIED);
+  sctPeripheral.setupMatch(libMcuLL::sct::matcher::MATCH0, 1000000);
+  sctPeripheral.start();
 }
