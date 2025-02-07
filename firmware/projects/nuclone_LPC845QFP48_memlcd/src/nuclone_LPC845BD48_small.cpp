@@ -51,8 +51,8 @@ void boardInit(void) {
   ioconPeripheral.setup(bootloadPin, libMcuLL::iocon::pullModes::PULLUP);
   ioconPeripheral.setup(debugUartRxPin, libMcuLL::iocon::pullModes::PULLUP);
   ioconPeripheral.setup(debugUartTxPin, libMcuLL::iocon::pullModes::INACTIVE);
-  ioconPeripheral.setup(dispSpiSckPin, libMcuLL::iocon::pullModes::INACTIVE);
-  ioconPeripheral.setup(dispSpiMosiPin, libMcuLL::iocon::pullModes::INACTIVE);
+  ioconPeripheral.setup(ws2812SpiSckPin, libMcuLL::iocon::pullModes::INACTIVE);
+  ioconPeripheral.setup(ws2812SpiMosiPin, libMcuLL::iocon::pullModes::INACTIVE);
   ioconPeripheral.setup(dispSpiCsPin, libMcuLL::iocon::pullModes::INACTIVE);
   ioconPeripheral.setup(dispEmdPin, libMcuLL::iocon::pullModes::INACTIVE);
   ioconPeripheral.setup(dispDonPin, libMcuLL::iocon::pullModes::INACTIVE);
@@ -70,8 +70,8 @@ void boardInit(void) {
   swmPeriperhal.setup(debugUartRxPin, uartDebugRxFunction);
   swmPeriperhal.setup(debugUartTxPin, uartDebugTxFunction);
   swmPeriperhal.setup(dispSpiCsPin, spiCsFunction);
-  swmPeriperhal.setup(dispSpiSckPin, spiSckFunction);
-  swmPeriperhal.setup(dispSpiMosiPin, spiMosiFunction);
+  swmPeriperhal.setup(ws2812SpiSckPin, spiSckFunction);
+  swmPeriperhal.setup(ws2812SpiMosiPin, spiMosiFunction);
   // setup crystal oscillator
   // libMcuHw::clock::configureClocks<sysconPeripheral, diySolderClockConfig>();
   sysconPeripheral.configureMcuClocks<nucloneClockConfig>();
