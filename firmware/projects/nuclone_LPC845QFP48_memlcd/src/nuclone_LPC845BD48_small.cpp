@@ -9,15 +9,15 @@
  */
 #include <nuclone_LPC845BD48_small.hpp>
 
-libMcuLL::iocon::iocon<libMcuHw::ioconAddress> ioconPeripheral;
-libMcuLL::swm::swm<libMcuHw::swmAddress> swmPeriperhal;
-libMcuLL::gpio::gpio<libMcuHw::gpioAddress> gpioPeripheral;
-libMcuLL::syscon::syscon<libMcuHw::sysconAddress> sysconPeripheral;
-libMcuLL::systick::systick<libMcuHw::systickAddress> systickPeripheral;
-libMcuLL::nvic::nvic<libMcuHw::nvicAddress, libMcuHw::scbAddress> nvicPeripheral;
-libMcuHal::usart::uartSync<libMcuHw::usart0Address, libMcuHw::nvicAddress, char, 128> usartPeripheral;
-libMcuHal::spi::spiSyncPol<libMcuHw::spi0Address> spiPeripheral;
-libMcuDrv::memlcd::memlcd<libMcuDrv::memlcd::LS013B4DN04, libMcuHal::spi::spiSlaveSelects::Select0, spiPeripheral> memlcdDriver;
+libmcull::iocon::Iocon<libmcuhw::ioconAddress> ioconPeripheral;
+libmcull::swm::Swm<libmcuhw::swmAddress> swmPeriperhal;
+libmcull::gpio::gpio<libmcuhw::gpioAddress> gpioPeripheral;
+libmcull::syscon::Syscon<libmcuhw::sysconAddress> sysconPeripheral;
+libmcull::systick::systick<libmcuhw::systickAddress> systickPeripheral;
+libmcull::nvic::nvic<libmcuhw::nvicAddress, libmcuhw::scbAddress> nvicPeripheral;
+libmcuhal::usart::SyncUart<libmcuhw::usart0Address, libmcuhw::nvicAddress, char, 128> usartPeripheral;
+libmcuhal::spi::SpiSyncPol<libmcuhw::spi0Address> spiPeripheral;
+libMcuDrv::memlcd::memlcd<libMcuDrv::memlcd::LS013B4DN04, libmcuhal::spi::spiSlaveSelects::Select0, spiPeripheral> memlcdDriver;
 libMcuMid::display::displayMemlcd<libMcuDrv::memlcd::LS013B4DN04, memlcdDriver> display;
 
 volatile std::uint32_t ticks;
@@ -39,24 +39,24 @@ auto systickIsrLambda = []() {
 void boardInit(void) {
   ticks = 0;
   // clock, power and reset enables/clears
-  sysconPeripheral.powerPeripherals(libMcuLL::syscon::powerOptions::SYSOSC);
-  sysconPeripheral.enablePeripheralClocks(libMcuLL::syscon::peripheralClocks0::SWM | libMcuLL::syscon::peripheralClocks0::IOCON |
-                                            libMcuLL::syscon::peripheralClocks0::GPIO0 |
-                                            libMcuLL::syscon::peripheralClocks0::GPIO1 |
-                                            libMcuLL::syscon::peripheralClocks0::UART0 | libMcuLL::syscon::peripheralClocks0::SPI0,
+  sysconPeripheral.powerPeripherals(libmcull::syscon::powerOptions::SYSOSC);
+  sysconPeripheral.enablePeripheralClocks(libmcull::syscon::peripheralClocks0::SWM | libmcull::syscon::peripheralClocks0::IOCON |
+                                            libmcull::syscon::peripheralClocks0::GPIO0 |
+                                            libmcull::syscon::peripheralClocks0::GPIO1 |
+                                            libmcull::syscon::peripheralClocks0::UART0 | libmcull::syscon::peripheralClocks0::SPI0,
                                           0);
   // setup pins
-  ioconPeripheral.setup(xtalInPin, libMcuLL::iocon::pullModes::INACTIVE);
-  ioconPeripheral.setup(xtalOutPin, libMcuLL::iocon::pullModes::INACTIVE);
-  ioconPeripheral.setup(bootloadPin, libMcuLL::iocon::pullModes::PULLUP);
-  ioconPeripheral.setup(debugUartRxPin, libMcuLL::iocon::pullModes::PULLUP);
-  ioconPeripheral.setup(debugUartTxPin, libMcuLL::iocon::pullModes::INACTIVE);
-  ioconPeripheral.setup(ws2812SpiSckPin, libMcuLL::iocon::pullModes::INACTIVE);
-  ioconPeripheral.setup(ws2812SpiMosiPin, libMcuLL::iocon::pullModes::INACTIVE);
-  ioconPeripheral.setup(dispSpiCsPin, libMcuLL::iocon::pullModes::INACTIVE);
-  ioconPeripheral.setup(dispEmdPin, libMcuLL::iocon::pullModes::INACTIVE);
-  ioconPeripheral.setup(dispDonPin, libMcuLL::iocon::pullModes::INACTIVE);
-  ioconPeripheral.setup(dispEinPin, libMcuLL::iocon::pullModes::INACTIVE);
+  ioconPeripheral.setup(xtalInPin, libmcull::iocon::pullModes::INACTIVE);
+  ioconPeripheral.setup(xtalOutPin, libmcull::iocon::pullModes::INACTIVE);
+  ioconPeripheral.setup(bootloadPin, libmcull::iocon::pullModes::PULLUP);
+  ioconPeripheral.setup(debugUartRxPin, libmcull::iocon::pullModes::PULLUP);
+  ioconPeripheral.setup(debugUartTxPin, libmcull::iocon::pullModes::INACTIVE);
+  ioconPeripheral.setup(ws2812SpiSckPin, libmcull::iocon::pullModes::INACTIVE);
+  ioconPeripheral.setup(ws2812SpiMosiPin, libmcull::iocon::pullModes::INACTIVE);
+  ioconPeripheral.setup(dispSpiCsPin, libmcull::iocon::pullModes::INACTIVE);
+  ioconPeripheral.setup(dispEmdPin, libmcull::iocon::pullModes::INACTIVE);
+  ioconPeripheral.setup(dispDonPin, libmcull::iocon::pullModes::INACTIVE);
+  ioconPeripheral.setup(dispEinPin, libmcull::iocon::pullModes::INACTIVE);
   // serial based com pulsing
   gpioPeripheral.low(dispEmdPin);
   gpioPeripheral.output(dispEmdPin);
@@ -73,18 +73,18 @@ void boardInit(void) {
   swmPeriperhal.setup(ws2812SpiSckPin, spiSckFunction);
   swmPeriperhal.setup(ws2812SpiMosiPin, spiMosiFunction);
   // setup crystal oscillator
-  // libMcuHw::clock::configureClocks<sysconPeripheral, diySolderClockConfig>();
+  // libmcuhw::clock::configureClocks<sysconPeripheral, diySolderClockConfig>();
   sysconPeripheral.configureMcuClocks<nucloneClockConfig>();
   // setup systick
   systickPeripheral.init(nucloneClockConfig.getSystemFreq() / TICKS_PER_S);
   systickPeripheral.start(systickIsrLambda);
   // setup UART
-  sysconPeripheral.peripheralClockSource(libMcuLL::syscon::clockSourceSelects::UART0, libMcuLL::syscon::clockSources::MAIN);
+  sysconPeripheral.peripheralClockSource(libmcull::syscon::ClockSourceSelects::UART0, libmcull::syscon::clockSources::MAIN);
   usartPeripheral.init<uart0ClockConfig>(115200);
-  nvicPeripheral.enable(libMcuHw::interrupts::uart0);
+  nvicPeripheral.enable(libmcuhw::Interrupts::uart0);
   // setup spi
-  sysconPeripheral.peripheralClockSource(libMcuLL::syscon::clockSourceSelects::SPI0, libMcuLL::syscon::clockSources::MAIN);
-  spiPeripheral.init<spi0ClockConfig>(1000000, static_cast<std::uint32_t>(libMcuHal::spi::spiSlaveSelects::Select0), 4, 4);
+  sysconPeripheral.peripheralClockSource(libmcull::syscon::ClockSourceSelects::SPI0, libmcull::syscon::clockSources::MAIN);
+  spiPeripheral.init<spi0ClockConfig>(1000000, static_cast<std::uint32_t>(libmcuhal::spi::spiSlaveSelects::Select0), 4, 4);
   display.init();
   display.update();
 }

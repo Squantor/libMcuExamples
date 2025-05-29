@@ -16,7 +16,7 @@ libMcuLL::syscon::syscon<libMcuHw::sysconAddress> sysconPeripheral;
 libMcuLL::systick::systick<libMcuHw::systickAddress> systickPeripheral;
 libMcuLL::nvic::nvic<libMcuHw::nvicAddress, libMcuHw::scbAddress> nvicPeripheral;
 libMcuHal::usart::uartSync<libMcuHw::usart0Address, libMcuHw::nvicAddress, char, 128> usartPeripheral;
-libMcuHal::spi::spiSyncPol<libMcuHw::spi0Address> spiPeripheral;
+libMcuHal::spi::SpiSyncPol<libMcuHw::spi0Address> spiPeripheral;
 libMcuLL::sct::sct<libMcuHw::sct0Address> sctPeripheral;
 libMcuLL::inmux::inmux<libMcuHw::inmuxAddress> inmuxPeripheral;
 

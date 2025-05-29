@@ -19,7 +19,8 @@
 namespace application {
 
 enum class applicationState : std::uint8_t {
-  idle, /*!< idle state */
+  idle,    /*!< idle state */
+  running, /*!< running state */
 };
 
 class application {
@@ -30,9 +31,11 @@ class application {
   applicationState getState() {
     return state;
   }
+  void setState(applicationState newState) {
+    state = newState;
+  }
 
  private:
-  void setUsbPoweredState();
   applicationState state;
 };
 
