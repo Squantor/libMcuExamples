@@ -56,8 +56,8 @@ void application::progress() {
   }
 
   if (currentTicksFaster + 40 < ticks) {
-    for (std::uint32_t x = 0; x < libMcuDrv::memlcd::LS013B4DN04::maxX; x++) {
-      for (std::uint32_t y = 0; y < libMcuDrv::memlcd::LS013B4DN04::maxX; y++) {
+    for (std::uint32_t x = 0; x < TestDisplay::maxX; x++) {
+      for (std::uint32_t y = 0; y < TestDisplay::maxY; y++) {
         display.setPixel(x, y, (x * x + y * y + faster) & 64);
       }
     }

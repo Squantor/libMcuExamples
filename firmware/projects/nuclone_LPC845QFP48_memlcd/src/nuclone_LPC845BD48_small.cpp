@@ -17,8 +17,8 @@ libmcull::systick::systick<libmcuhw::systickAddress> systickPeripheral;
 libmcull::nvic::nvic<libmcuhw::nvicAddress, libmcuhw::scbAddress> nvicPeripheral;
 libmcuhal::usart::SyncUart<libmcuhw::usart0Address, libmcuhw::nvicAddress, char, 128> usartPeripheral;
 libmcuhal::spi::SpiSyncPol<libmcuhw::spi0Address> spiPeripheral;
-libMcuDrv::memlcd::memlcd<libMcuDrv::memlcd::LS013B4DN04, libmcuhal::spi::spiSlaveSelects::Select0, spiPeripheral> memlcdDriver;
-libMcuMid::display::displayMemlcd<libMcuDrv::memlcd::LS013B4DN04, memlcdDriver> display;
+libMcuDrv::memlcd::memlcd<TestDisplay, libmcuhal::spi::spiSlaveSelects::Select0, spiPeripheral> memlcdDriver;
+libMcuMid::display::displayMemlcd<TestDisplay, memlcdDriver> display;
 
 volatile std::uint32_t ticks;
 
