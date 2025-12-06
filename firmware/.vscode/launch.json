@@ -128,10 +128,10 @@
          "debuggerArgs": [],
       },
       {
-         "name": "debug LPC845 small nuclone blinky project",
+         "name": "debug LPC845 small nuclone template project",
          "cwd": "${workspaceRoot}",
          "gdbPath": "/usr/bin/gdb-multiarch",
-         "executable": "${workspaceFolder}/bin/nuclone_LPC845QFP48_small_blinky/debug/nuclone_LPC845QFP48_small_blinky.elf",
+         "executable": "${workspaceFolder}/bin/nuclone_LPC845QFP48_small_template/debug/nuclone_LPC845QFP48_small_template.elf",
          "request": "launch",
          "type": "cortex-debug",
          "servertype": "bmp",
