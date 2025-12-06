@@ -1,18 +1,23 @@
 /*
  * SPDX-License-Identifier: MIT
  *
- * Copyright (c) 2024 Bart Bilos
+ * Copyright (c) 2025 Bart Bilos
  * For conditions of distribution and use, see LICENSE file
  */
 /**
- * @file main.cpp
- * @brief LPC845 QFP48 blink test project
+ * @brief main entry point for LPC845QFP48 blinky project
  */
-#include <nuclone_LPC845BD48_small.hpp>
+#include <nuclone_LPC845BD48_small_blinky.hpp>
+#include <application.hpp>
+
+namespace application {
+Application controller;
+}
 
 int main() {
   BoardInit();
+  application::controller.Init();
   while (1) {
-    libmcull::nop();
+    application::controller.Progress();
   }
 }

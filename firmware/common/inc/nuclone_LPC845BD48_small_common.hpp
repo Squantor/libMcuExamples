@@ -12,8 +12,6 @@
 
 #include <nxp/libmcu_LPC845M301BD48_hal.hpp>
 
-constexpr inline std::uint32_t ticksPerSecond{10u};
-
 // pin types
 // Crystal osillator pins
 using PinXtalIn = libmcuhw::Pin<libmcuhw::IoPorts::Port0, libmcuhw::IoPins::Pin08>;
@@ -24,7 +22,7 @@ using PinDebugUartRx = libmcuhw::Pin<libmcuhw::IoPorts::Port0, libmcuhw::IoPins:
 // bootloader entry switch pin
 using PinBootloader = libmcuhw::Pin<libmcuhw::IoPorts::Port0, libmcuhw::IoPins::Pin12>;
 
-// function types
+// pin function types
 using FunctionXtalIn = libmcuhw::swm::PinFunction<libmcuhw::swm::PinFunctions::XtalIn>;
 using FunctionXtalOut = libmcuhw::swm::PinFunction<libmcuhw::swm::PinFunctions::XtalOut>;
 using FunctionUartDebugTx = libmcuhw::swm::PinFunction<libmcuhw::swm::PinFunctions::Uart0TxOut>;
