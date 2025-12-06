@@ -42,8 +42,8 @@ using functionSctIn1Type = libmcuhw::swm::pinFunction<libmcuhw::swm::PinFunction
 using functionSctOut0Type = libmcuhw::swm::pinFunction<libmcuhw::swm::PinFunctions::SCT_OUT0_O>;
 
 // pin instances
-constexpr pinXtalInType xtalInPin;
-constexpr pinXtalOutType xtalOutPin;
+constexpr pinXtalInType xtal_in_pin;
+constexpr pinXtalOutType xtal_out_pin;
 constexpr pinBootloaderType bootloadPin;
 constexpr pinDebugUartTxType debugUartTxPin;
 constexpr pinDebugUartRxType debugUartRxPin;
@@ -52,8 +52,8 @@ constexpr pinWs2812SpiMosiType ws2812SpiMosiPin;
 constexpr pinWs2812DataPinType ws2812DataPin;
 
 // function instances
-constexpr functionXtalInType xtalInFunction;
-constexpr functionXtalOutType xtalOutFunction;
+constexpr functionXtalInType xtal_in_function;
+constexpr functionXtalOutType xtal_out_function;
 constexpr functionUartDebugTxType uartDebugTxFunction;
 constexpr functionUartDebugRxType uartDebugRxFunction;
 constexpr functionSpiSckType spiSckFunction;
@@ -63,23 +63,23 @@ constexpr functionSctIn1Type sctIn1Function;
 constexpr functionSctOut0Type sctOut0Function;
 
 // peripheral externs
-extern libmcull::iocon::Iocon<libmcuhw::IoconAddress> ioconPeripheral;
-extern libmcull::swm::Swm<libmcuhw::SwmAddress> swmPeriperhal;
-extern libmcull::gpio::Gpio<libmcuhw::GpioAddress> gpioPeripheral;
-extern libmcull::syscon::Syscon<libmcuhw::SysconAddress> sysconPeripheral;
+extern libmcull::iocon::Iocon<libmcuhw::IoconAddress> iocon_peripheral;
+extern libmcull::swm::Swm<libmcuhw::SwmAddress> swm_periperhal;
+extern libmcull::gpio::Gpio<libmcuhw::GpioAddress> gpio_peripheral;
+extern libmcull::syscon::Syscon<libmcuhw::SysconAddress> syscon_peripheral;
 extern libmcull::systick::Systick<libmcuhw::SystickAddress> systickPeripheral;
-extern libMcuHal::usart::uartSync<libmcuhw::Usart0Address, libmcuhw::NvicAddress, char, 128> usartPeripheral;
-extern libMcuHal::spi::SpiSyncPol<libmcuhw::spi0Address> spiPeripheral;
+extern libmcuhal::usart::uartSync<libmcuhw::Usart0Address, libmcuhw::NvicAddress, char, 128> usartPeripheral;
+extern libmcuhal::spi::SpiSyncPol<libmcuhw::spi0Address> spiPeripheral;
 
 constexpr inline libmcuhw::clock::mcuClockConfig<libmcuhw::clock::ClockInputSources::XTAL, 12'000'000u, 30'000'000u>
-  nucloneClockConfig;
-constexpr inline libmcuhw::clock::periClockConfig<nucloneClockConfig, libmcuhw::clock::PeriSelect::UART0,
+  nuclone_clock_config;
+constexpr inline libmcuhw::clock::periClockConfig<nuclone_clock_config, libmcuhw::clock::PeriSelect::UART0,
                                                   libmcuhw::clock::PeriSource::MAIN>
   uart0ClockConfig;
-constexpr inline libmcuhw::clock::periClockConfig<nucloneClockConfig, libmcuhw::clock::PeriSelect::I2C0,
+constexpr inline libmcuhw::clock::periClockConfig<nuclone_clock_config, libmcuhw::clock::PeriSelect::I2C0,
                                                   libmcuhw::clock::PeriSource::MAIN>
   i2c0ClockConfig;
-constexpr inline libmcuhw::clock::periClockConfig<nucloneClockConfig, libmcuhw::clock::PeriSelect::SPI0,
+constexpr inline libmcuhw::clock::periClockConfig<nuclone_clock_config, libmcuhw::clock::PeriSelect::SPI0,
                                                   libmcuhw::clock::PeriSource::MAIN>
   spi0ClockConfig;
 

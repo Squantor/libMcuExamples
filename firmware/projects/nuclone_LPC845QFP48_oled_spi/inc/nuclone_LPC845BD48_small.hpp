@@ -40,8 +40,8 @@ using functionI2cSclType = libmcuhw::swm::pinFunction<libmcuhw::swm::PinFunction
 using functionI2cSdaType = libmcuhw::swm::pinFunction<libmcuhw::swm::PinFunctions::I2C0_SDA_IO>;
 
 // pin instances
-constexpr pinXtalInType xtalInPin;
-constexpr pinXtalOutType xtalOutPin;
+constexpr pinXtalInType xtal_in_pin;
+constexpr pinXtalOutType xtal_out_pin;
 constexpr pinBootloaderType bootloadPin;
 constexpr pinDebugUartTxType debugUartTxPin;
 constexpr pinDebugUartRxType debugUartRxPin;
@@ -49,8 +49,8 @@ constexpr pinI2cSclType i2cSclPin;
 constexpr pinI2cSdaType i2cSdaPin;
 
 // function instances
-constexpr functionXtalInType xtalInFunction;
-constexpr functionXtalOutType xtalOutFunction;
+constexpr functionXtalInType xtal_in_function;
+constexpr functionXtalOutType xtal_out_function;
 constexpr functionUartDebugTxType uartDebugTxFunction;
 constexpr functionUartDebugRxType uartDebugRxFunction;
 constexpr functionI2cSclType i2cSclFunction;
@@ -59,13 +59,13 @@ constexpr functionI2cSdaType i2cSdaFunction;
 constexpr inline libmcu::i2cDeviceAddress SSD1306_I2C_ADDRESS{0x3C};
 
 // peripheral externs
-extern libmcull::iocon::Iocon<libmcuhw::IoconAddress> ioconPeripheral;
-extern libmcull::swm::Swm<libmcuhw::SwmAddress> swmPeriperhal;
-extern libmcull::gpio::Gpio<libmcuhw::GpioAddress> gpioPeripheral;
-extern libmcull::syscon::Syscon<libmcuhw::SysconAddress> sysconPeripheral;
+extern libmcull::iocon::Iocon<libmcuhw::IoconAddress> iocon_peripheral;
+extern libmcull::swm::Swm<libmcuhw::SwmAddress> swm_periperhal;
+extern libmcull::gpio::Gpio<libmcuhw::GpioAddress> gpio_peripheral;
+extern libmcull::syscon::Syscon<libmcuhw::SysconAddress> syscon_peripheral;
 extern libmcull::systick::Systick<libmcuhw::SystickAddress> systickPeripheral;
-extern libMcuHal::usart::uartSync<libmcuhw::Usart0Address, libmcuhw::NvicAddress, char, 128> usartPeripheral;
-extern libMcuHal::i2c::i2cSyncPol<libmcuhw::i2c0Address, 128> i2cPeripheral;
+extern libmcuhal::usart::uartSync<libmcuhw::Usart0Address, libmcuhw::NvicAddress, char, 128> usartPeripheral;
+extern libmcuhal::i2c::i2cSyncPol<libmcuhw::i2c0Address, 128> i2cPeripheral;
 extern libMcuDriver::SSD1306::generic128x32 testDisplay;
 extern libMcuDriver::SSD1306::SSD1306<i2cPeripheral, SSD1306_I2C_ADDRESS, testDisplay> SSD1306;
 extern libMcuMid::display::displayDirSSD1306<testDisplay, SSD1306> display;
@@ -73,11 +73,11 @@ extern sqEmbedded::fonts::mono6x8RowFlip font;
 extern libMcuMid::display::graphicsTerminal<display, font> displayTerminal;
 
 constexpr inline libmcuhw::clock::mcuClockConfig<libmcuhw::clock::ClockInputSources::XTAL, 12'000'000u, 30'000'000u>
-  nucloneClockConfig;
-constexpr inline libmcuhw::clock::periClockConfig<nucloneClockConfig, libmcuhw::clock::PeriSelect::UART0,
+  nuclone_clock_config;
+constexpr inline libmcuhw::clock::periClockConfig<nuclone_clock_config, libmcuhw::clock::PeriSelect::UART0,
                                                   libmcuhw::clock::PeriSource::MAIN>
   uart0ClockConfig;
-constexpr inline libmcuhw::clock::periClockConfig<nucloneClockConfig, libmcuhw::clock::PeriSelect::I2C0,
+constexpr inline libmcuhw::clock::periClockConfig<nuclone_clock_config, libmcuhw::clock::PeriSelect::I2C0,
                                                   libmcuhw::clock::PeriSource::MAIN>
   i2c0ClockConfig;
 

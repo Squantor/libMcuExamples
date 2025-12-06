@@ -9,14 +9,14 @@
  */
 #include <nuclone_LPC845BD48_small.hpp>
 
-libmcull::iocon::Iocon<libmcuhw::IoconAddress> ioconPeripheral;
-libmcull::swm::Swm<libmcuhw::SwmAddress> swmPeriperhal;
-libmcull::gpio::Gpio<libmcuhw::GpioAddress> gpioPeripheral;
-libmcull::syscon::Syscon<libmcuhw::SysconAddress> sysconPeripheral;
+libmcull::iocon::Iocon<libmcuhw::IoconAddress> iocon_peripheral;
+libmcull::swm::Swm<libmcuhw::SwmAddress> swm_periperhal;
+libmcull::gpio::Gpio<libmcuhw::GpioAddress> gpio_peripheral;
+libmcull::syscon::Syscon<libmcuhw::SysconAddress> syscon_peripheral;
 libmcull::systick::Systick<libmcuhw::SystickAddress> systickPeripheral;
 libmcull::nvic::Nvic<libmcuhw::NvicAddress, libmcuhw::ScbAddress> nvicPeripheral;
-libMcuHal::usart::uartSync<libmcuhw::Usart0Address, libmcuhw::NvicAddress, char, 128> usartPeripheral;
-libMcuHal::spi::SpiSyncPol<libmcuhw::spi0Address> spiPeripheral;
+libmcuhal::usart::uartSync<libmcuhw::Usart0Address, libmcuhw::NvicAddress, char, 128> usartPeripheral;
+libmcuhal::spi::SpiSyncPol<libmcuhw::spi0Address> spiPeripheral;
 libmcull::sct::sct<libmcuhw::sct0Address> sctPeripheral;
 libmcull::inmux::inmux<libmcuhw::inmuxAddress> inmuxPeripheral;
 
@@ -41,46 +41,46 @@ auto systickIsrLambda = []() {
 void boardInit(void) {
   ticks = 0;
   // clock, power and reset enables/clears
-  sysconPeripheral.powerPeripherals(libmcull::syscon::powerOptions::SYSOSC);
-  sysconPeripheral.EnablePeripheralClocks(
+  syscon_peripheral.PowerPeripherals(libmcull::syscon::powerOptions::SYSOSC);
+  syscon_peripheral.EnablePeripheralClocks(
     libmcull::syscon::peripheral_clocks_0::Swm | libmcull::syscon::peripheral_clocks_0::Iocon |
       libmcull::syscon::peripheral_clocks_0::Gpio0 | libmcull::syscon::peripheral_clocks_0::Gpio1 |
       libmcull::syscon::peripheral_clocks_0::UART0 | libmcull::syscon::peripheral_clocks_0::SPI0 |
       libmcull::syscon::peripheral_clocks_0::SCT,
     0);
   // setup pins
-  ioconPeripheral.Setup(xtalInPin, libmcull::iocon::PullModes::Inactive);
-  ioconPeripheral.Setup(xtalOutPin, libmcull::iocon::PullModes::Inactive);
-  ioconPeripheral.Setup(bootloadPin, libmcull::iocon::PullModes::PULLUP);
-  ioconPeripheral.Setup(debugUartRxPin, libmcull::iocon::PullModes::PULLUP);
-  ioconPeripheral.Setup(debugUartTxPin, libmcull::iocon::PullModes::Inactive);
-  ioconPeripheral.Setup(ws2812SpiSckPin, libmcull::iocon::PullModes::Inactive);
-  ioconPeripheral.Setup(ws2812SpiMosiPin, libmcull::iocon::PullModes::Inactive);
-  ioconPeripheral.Setup(ws2812DataPin, libmcull::iocon::PullModes::Inactive);
+  iocon_peripheral.Setup(xtal_in_pin, libmcull::iocon::PullModes::Inactive);
+  iocon_peripheral.Setup(xtal_out_pin, libmcull::iocon::PullModes::Inactive);
+  iocon_peripheral.Setup(bootloadPin, libmcull::iocon::PullModes::PULLUP);
+  iocon_peripheral.Setup(debugUartRxPin, libmcull::iocon::PullModes::PULLUP);
+  iocon_peripheral.Setup(debugUartTxPin, libmcull::iocon::PullModes::Inactive);
+  iocon_peripheral.Setup(ws2812SpiSckPin, libmcull::iocon::PullModes::Inactive);
+  iocon_peripheral.Setup(ws2812SpiMosiPin, libmcull::iocon::PullModes::Inactive);
+  iocon_peripheral.Setup(ws2812DataPin, libmcull::iocon::PullModes::Inactive);
 
-  swmPeriperhal.Setup(xtalInPin, xtalInFunction);
-  swmPeriperhal.Setup(xtalOutPin, xtalOutFunction);
-  swmPeriperhal.Setup(debugUartRxPin, uartDebugRxFunction);
-  swmPeriperhal.Setup(debugUartTxPin, uartDebugTxFunction);
-  swmPeriperhal.Setup(ws2812SpiSckPin, spiSckFunction);
-  swmPeriperhal.Setup(ws2812SpiMosiPin, spiMosiFunction);
-  swmPeriperhal.Setup(ws2812SpiSckPin, sctIn0Function);
-  swmPeriperhal.Setup(ws2812SpiMosiPin, sctIn1Function);
-  swmPeriperhal.Setup(ws2812DataPin, sctOut0Function);
+  swm_periperhal.Setup(xtal_in_pin, xtal_in_function);
+  swm_periperhal.Setup(xtal_out_pin, xtal_out_function);
+  swm_periperhal.Setup(debugUartRxPin, uartDebugRxFunction);
+  swm_periperhal.Setup(debugUartTxPin, uartDebugTxFunction);
+  swm_periperhal.Setup(ws2812SpiSckPin, spiSckFunction);
+  swm_periperhal.Setup(ws2812SpiMosiPin, spiMosiFunction);
+  swm_periperhal.Setup(ws2812SpiSckPin, sctIn0Function);
+  swm_periperhal.Setup(ws2812SpiMosiPin, sctIn1Function);
+  swm_periperhal.Setup(ws2812DataPin, sctOut0Function);
   // setup crystal oscillator
-  sysconPeripheral.ConfigureMcuClocks<nucloneClockConfig>();
+  syscon_peripheral.ConfigureMcuClocks<nuclone_clock_config>();
   // setup systick
-  systickPeripheral.Init(nucloneClockConfig.GetSystemFreq() / TICKS_PER_S);
+  systickPeripheral.Init(nuclone_clock_config.GetSystemFreq() / TICKS_PER_S);
   systickPeripheral.Start(systickIsrLambda);
   // setup UART
-  sysconPeripheral.peripheralClockSource(libmcull::syscon::clockSourceSelects::UART0, libmcull::syscon::clockSources::MAIN);
+  syscon_peripheral.peripheralClockSource(libmcull::syscon::clockSourceSelects::UART0, libmcull::syscon::clockSources::MAIN);
   usartPeripheral.Init<uart0ClockConfig>(115200);
   nvicPeripheral.enable(libmcuhw::interrupts::uart0);
   // setup spi
-  sysconPeripheral.peripheralClockSource(libmcull::syscon::clockSourceSelects::SPI0, libmcull::syscon::clockSources::MAIN);
-  spiPeripheral.Init<spi0ClockConfig>(800000, static_cast<std::uint32_t>(libMcuHal::spi::spiSlaveSelects::Select0), 4, 4);
+  syscon_peripheral.peripheralClockSource(libmcull::syscon::clockSourceSelects::SPI0, libmcull::syscon::clockSources::MAIN);
+  spiPeripheral.Init<spi0ClockConfig>(800000, static_cast<std::uint32_t>(libmcuhal::spi::spiSlaveSelects::Select0), 4, 4);
   // setup sct, counter L not used, counter H used for WS2812 waveform generation
-  sysconPeripheral.SetupSctClock(libmcull::syscon::sctClockSources::MAIN, 1);
+  syscon_peripheral.SetupSctClock(libmcull::syscon::sctClockSources::MAIN, 1);
   // setup taken from AN11538 SCT cookbook
   sctPeripheral.Init(sctLL::counterMode::SPLIT, false, false);
   // counts assume 60MHz clock

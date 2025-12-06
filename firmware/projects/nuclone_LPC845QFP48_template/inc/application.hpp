@@ -10,7 +10,7 @@
 #ifndef APPLICATION_HPP
 #define APPLICATION_HPP
 
-#include <nuclone_LPC845BD48_small.hpp>
+#include <nuclone_LPC845BD48_small_template.hpp>
 #include <command_interpreter_number.hpp>
 #include <command_value_stack.hpp>
 #include <command_handlers.hpp>
@@ -18,28 +18,27 @@
 
 namespace application {
 
-enum class applicationState : std::uint8_t {
+enum class ApplicationState : std::uint8_t {
   idle, /*!< idle state */
 };
 
-class application {
+class Application {
  public:
-  application() : state{applicationState::idle} {}
-  void init();
-  void progress();
-  applicationState getState() {
+  Application() : state{ApplicationState::idle} {}
+  void Init();
+  void Progress();
+  ApplicationState GetState() {
     return state;
   }
 
  private:
-  void setUsbPoweredState();
-  applicationState state;
+  ApplicationState state;
 };
 
-extern squLib::console<usartPeripheral> commandConsole;
+extern squLib::console<usart_peripheral> commandConsole;
 extern squLib::commandValueStack<8, commandConsole> commandValues;
 extern squLib::commandInterpreter<commandHandlers, commandValues, commandConsole> commandInterpreter;
-extern application controller;
+extern Application controller;
 
 }  // namespace application
 

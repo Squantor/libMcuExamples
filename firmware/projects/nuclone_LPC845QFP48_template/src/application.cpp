@@ -14,29 +14,30 @@
 
 namespace application {
 
-squLib::console<usartPeripheral> commandConsole;
+squLib::console<usart_peripheral> commandConsole;
 squLib::commandValueStack<8, commandConsole> commandValues;
 squLib::commandInterpreter<commandHandlers, commandValues, commandConsole> commandInterpreter;
 squLib::commandlineSimple<80, commandConsole, commandInterpreter> commandline;
 
-void application::init() {
+void Application::Init() {
   commandConsole.print("LPC845 small nuclone test program\n");
 }
-void application::progress() {
+
+void Application::Progress() {
   static std::uint32_t currentTicks = ticks;
   if (currentTicks + 100 < ticks) {
     // Print("test:\t", currentTicks, "\t", print::Hex{currentTicks}, "\n");
     currentTicks = ticks;
   }
   // echo characters
-  if (usartPeripheral.receiveDataAvailable() > 0) {
+  if (usart_peripheral.GetReceiveLevel() > 0) {
     static std::array<char, 1> data;
-    usartPeripheral.read(data);
+    usart_peripheral.Receive(data);
     commandline.input(data);
   }
   // state handling
   switch (state) {
-    case applicationState::idle:
+    case ApplicationState::idle:
       break;
 
     default:

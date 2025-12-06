@@ -14,10 +14,10 @@ namespace clocks = libmcuhw::clock;
 
 libmcull::systick::Systick<libmcuhw::SystickAddress> systickPeripheral;
 libmcull::nvic::Nvic<libmcuhw::NvicAddress, libmcuhw::ScbAddress> nvicPeripheral;
-libmcull::iocon::Iocon<libmcuhw::IoconAddress> ioconPeripheral;
-libmcull::swm::Swm<libmcuhw::SwmAddress> swmPeriperhal;
-libmcull::gpio::Gpio<libmcuhw::GpioAddress> gpioPeripheral;
-libmcull::syscon::Syscon<libmcuhw::SysconAddress> sysconPeripheral;
+libmcull::iocon::Iocon<libmcuhw::IoconAddress> iocon_peripheral;
+libmcull::swm::Swm<libmcuhw::SwmAddress> swm_periperhal;
+libmcull::gpio::Gpio<libmcuhw::GpioAddress> gpio_peripheral;
+libmcull::syscon::Syscon<libmcuhw::SysconAddress> syscon_peripheral;
 libmcull::usart::UartPolled<libmcuhw::Usart0Address, std::uint8_t> usartPeripheral;
 
 extern "C" {
@@ -27,27 +27,27 @@ void SysTick_Handler(void) {
 }
 
 auto systickIsrLambda = []() {
-  gpioPeripheral.Toggle(ledPin);
+  gpio_peripheral.Toggle(led_pin);
 };
 
-void boardInit(void) {
+void BoardInit(void) {
   // clock enables and resets
-  sysconPeripheral.EnablePeripheralClocks(
+  syscon_peripheral.EnablePeripheralClocks(
     libmcull::syscon::peripheral_clocks_0::Swm | libmcull::syscon::peripheral_clocks_0::Iocon |
       libmcull::syscon::peripheral_clocks_0::Gpio0 | libmcull::syscon::peripheral_clocks_0::Gpio1,
     0);
   // setup IOCON pins
-  ioconPeripheral.Setup(xtalInPin, libmcull::iocon::PullModes::Inactive);
-  ioconPeripheral.Setup(xtalOutPin, libmcull::iocon::PullModes::Inactive);
-  swmPeriperhal.Setup(xtalInPin, xtalInFunction);
-  swmPeriperhal.Setup(xtalOutPin, xtalOutFunction);
+  iocon_peripheral.Setup(xtal_in_pin, libmcull::iocon::PullModes::Inactive);
+  iocon_peripheral.Setup(xtal_out_pin, libmcull::iocon::PullModes::Inactive);
+  swm_periperhal.Setup(xtal_in_pin, xtal_in_function);
+  swm_periperhal.Setup(xtal_out_pin, xtal_out_function);
   // setup clock out test pin
-  // swmPeriperhal.Setup(testPin, clockOutFunction);
-  // sysconPeripheral.setClockOutput(libmcull::syscon::clockOutSources::MAIN, 10u);
-  sysconPeripheral.ConfigureMcuClocks<nucloneClockConfig>();
+  // swm_periperhal.Setup(test_pin, clock_out_function);
+  // syscon_peripheral.setClockOutput(libmcull::syscon::clockOutSources::MAIN, 10u);
+  syscon_peripheral.ConfigureMcuClocks<nuclone_clock_config>();
   // switch mainclock
-  // sysconPeripheral.selectMainClock(libmcull::syscon::mainClockSources::EXT); // for selecting crystal oscillator
-  gpioPeripheral.SetOutput(ledPin);
-  systickPeripheral.Init(nucloneClockConfig.GetSystemFreq() / ticksPerSecond);
+  // syscon_peripheral.selectMainClock(libmcull::syscon::mainClockSources::EXT); // for selecting crystal oscillator
+  gpio_peripheral.SetOutput(led_pin);
+  systickPeripheral.Init(nuclone_clock_config.GetSystemFreq() / ticksPerSecond);
   systickPeripheral.Start(systickIsrLambda);
 }

@@ -11,7 +11,7 @@
 #include <nuclone_LPC845BD48_small.hpp>
 
 int main() {
-  boardInit();
+  BoardInit();
   while (1) {
     libmcull::nop();
   }

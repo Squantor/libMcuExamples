@@ -15,8 +15,8 @@ namespace application {
 
 squLib::results stat(std::span<const char> commandLine) {
   (void)commandLine;
-  switch (controller.getState()) {
-    case applicationState::idle:
+  switch (controller.GetState()) {
+    case ApplicationState::idle:
       commandConsole.print("Application is idle\n");
       break;
 

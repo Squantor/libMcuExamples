@@ -14,7 +14,7 @@
 #define FREQ_RTC (CLOCK_XTAL / 256) /**< RTC frequency */
 #define FREQ_PERI (CLOCK_CPU)       /**< Peripherals frequency */
 
-#include <mcu_ll.h>
+#include <raspberrypi/libmcu_RP2040_ll.h>
 
 #define TICKS_PER_S (8u)
 

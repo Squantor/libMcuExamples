@@ -1,58 +1,65 @@
 {
-  // See https://go.microsoft.com/fwlink/?LinkId=733558
-  // for the documentation about the tasks.json format
-  "version": "2.0.0",
-  "tasks": [
-    {
-      "label": "clean",
-      "type": "shell",
-      "command": "make PROJECT=PC clean",
-      "group": "build",
-      "problemMatcher": [
-        "$gcc"
-      ]
-    },
-    {
-      "label": "build debug STM32F030K6 blinky",
-      "type": "shell",
-      "command": "compiledb make PROJECT=STM32F030K6_blinky CONFIG=debug -j20",
-      "group": "build",
-      "problemMatcher": "$gcc"
-    },
-    {
-      "label": "build debug STM32F031K6 blinky",
-      "type": "shell",
-      "command": "compiledb make PROJECT=STM32F031K6_blinky CONFIG=debug -j20",
-      "group": "build",
-      "problemMatcher": "$gcc"
-    },
-    {
-      "label": "build debug RP2040 blinky project",
-      "type": "shell",
-      "command": "compiledb make PROJECT=RP2040_blinky CONFIG=debug -j20",
-      "group": "build",
-      "problemMatcher": "$gcc"
-    },
-    {
-      "label": "build LPC845 small nuclone blinky project",
-      "type": "shell",
-      "command": "compiledb make PROJECT=nuclone_LPC845QFP48_small_blinky CONFIG=debug -j24",
-      "group": "build",
-      "problemMatcher": "$gcc"
-    },
-    {
-      "label": "build LPC845 small nuclone memory LCD project",
-      "type": "shell",
-      "command": "compiledb make PROJECT=nuclone_LPC845QFP48_small_memlcd CONFIG=debug -j24",
-      "group": "build",
-      "problemMatcher": "$gcc"
-    },
-    {
-      "label": "build LPC845 small nuclone SCT WS2812 project",
-      "type": "shell",
-      "command": "compiledb make PROJECT=nuclone_LPC845QFP48_sct_ws2812 CONFIG=debug -j24",
-      "group": "build",
-      "problemMatcher": "$gcc"
-    },
-  ]
+   // See https://go.microsoft.com/fwlink/?LinkId=733558
+   // for the documentation about the tasks.json format
+   "version": "2.0.0",
+   "tasks": [
+      {
+         "label": "clean",
+         "type": "shell",
+         "command": "make PROJECT=PC clean",
+         "group": "build",
+         "problemMatcher": [
+            "$gcc"
+         ]
+      },
+      {
+         "label": "build LPC845 small nuclone template project",
+         "type": "shell",
+         "command": "compiledb make PROJECT=nuclone_LPC845QFP48_small_template CONFIG=debug -j24",
+         "group": "build",
+         "problemMatcher": "$gcc"
+      },
+      {
+         "label": "build debug STM32F030K6 blinky",
+         "type": "shell",
+         "command": "compiledb make PROJECT=STM32F030K6_blinky CONFIG=debug -j20",
+         "group": "build",
+         "problemMatcher": "$gcc"
+      },
+      {
+         "label": "build debug STM32F031K6 blinky",
+         "type": "shell",
+         "command": "compiledb make PROJECT=STM32F031K6_blinky CONFIG=debug -j20",
+         "group": "build",
+         "problemMatcher": "$gcc"
+      },
+      {
+         "label": "build debug RP2040 blinky project",
+         "type": "shell",
+         "command": "compiledb make PROJECT=RP2040_blinky CONFIG=debug -j20",
+         "group": "build",
+         "problemMatcher": "$gcc"
+      },
+      {
+         "label": "build LPC845 small nuclone blinky project",
+         "type": "shell",
+         "command": "compiledb make PROJECT=nuclone_LPC845QFP48_small_blinky CONFIG=debug -j24",
+         "group": "build",
+         "problemMatcher": "$gcc"
+      },
+      {
+         "label": "build LPC845 small nuclone memory LCD project",
+         "type": "shell",
+         "command": "compiledb make PROJECT=nuclone_LPC845QFP48_small_memlcd CONFIG=debug -j24",
+         "group": "build",
+         "problemMatcher": "$gcc"
+      },
+      {
+         "label": "build LPC845 small nuclone SCT WS2812 project",
+         "type": "shell",
+         "command": "compiledb make PROJECT=nuclone_LPC845QFP48_sct_ws2812 CONFIG=debug -j24",
+         "group": "build",
+         "problemMatcher": "$gcc"
+      },
+   ]
 }

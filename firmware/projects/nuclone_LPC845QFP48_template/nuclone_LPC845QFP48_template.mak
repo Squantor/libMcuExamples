@@ -9,7 +9,7 @@ PROJ_DIR := $(patsubst %/,%,$(dir $(lastword $(MAKEFILE_LIST))))
 
 # project settings
 NAME := nuclone_LPC845QFP48_small_template
-BOARD := nuclone_LPC845BD48_small
+BOARD := nuclone_LPC845BD48_small_template
 $(NAME)_TARGET := MCU
 $(NAME)_MCU := LPC845M301BD48
 $(NAME)_DEFINES += 

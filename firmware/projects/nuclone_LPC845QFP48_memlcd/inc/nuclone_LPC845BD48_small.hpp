@@ -43,8 +43,8 @@ using functionSpiMosiType = libmcuhw::swm::PinFunction<libmcuhw::swm::PinFunctio
 using functionSpiCsType = libmcuhw::swm::PinFunction<libmcuhw::swm::PinFunctions::kSpi0Ssel0InOut>;
 
 // pin instances
-constexpr pinXtalInType xtalInPin;
-constexpr pinXtalOutType xtalOutPin;
+constexpr pinXtalInType xtal_in_pin;
+constexpr pinXtalOutType xtal_out_pin;
 constexpr pinBootloaderType bootloadPin;
 constexpr pinDebugUartTxType debugUartTxPin;
 constexpr pinDebugUartRxType debugUartRxPin;
@@ -56,8 +56,8 @@ constexpr pinDispDonType dispDonPin;
 constexpr pinDispEinType dispEinPin;
 
 // function instances
-constexpr functionXtalInType xtalInFunction;
-constexpr functionXtalOutType xtalOutFunction;
+constexpr functionXtalInType xtal_in_function;
+constexpr functionXtalOutType xtal_out_function;
 constexpr functionUartDebugTxType uartDebugTxFunction;
 constexpr functionUartDebugRxType uartDebugRxFunction;
 constexpr functionSpiSckType spiSckFunction;
@@ -67,10 +67,10 @@ constexpr functionSpiCsType spiCsFunction;
 using TestDisplay = libMcuDrv::memlcd::LS013B7DH05;
 
 // peripheral externs
-extern libmcull::iocon::Iocon<libmcuhw::IoconAddress> ioconPeripheral;
-extern libmcull::swm::Swm<libmcuhw::SwmAddress> swmPeriperhal;
-extern libmcull::gpio::Gpio<libmcuhw::GpioAddress> gpioPeripheral;
-extern libmcull::syscon::Syscon<libmcuhw::SysconAddress> sysconPeripheral;
+extern libmcull::iocon::Iocon<libmcuhw::IoconAddress> iocon_peripheral;
+extern libmcull::swm::Swm<libmcuhw::SwmAddress> swm_periperhal;
+extern libmcull::gpio::Gpio<libmcuhw::GpioAddress> gpio_peripheral;
+extern libmcull::syscon::Syscon<libmcuhw::SysconAddress> syscon_peripheral;
 extern libmcull::systick::Systick<libmcuhw::SystickAddress> systickPeripheral;
 extern libmcuhal::usart::SyncUart<libmcuhw::Usart0Address, libmcuhw::NvicAddress, char, 128> usartPeripheral;
 extern libmcuhal::spi::SpiSyncPol<libmcuhw::spi0Address> spiPeripheral;
@@ -78,14 +78,14 @@ extern libMcuDrv::memlcd::memlcd<TestDisplay, libmcuhal::spi::spiSlaveSelects::S
 extern libMcuMid::display::displayMemlcd<TestDisplay, memlcdDriver> display;
 
 constexpr inline libmcuhw::clock::mcuClockConfig<libmcuhw::clock::ClockInputSources::XTAL, 12'000'000u, 30'000'000u>
-  nucloneClockConfig;
-constexpr inline libmcuhw::clock::periClockConfig<nucloneClockConfig, libmcuhw::clock::PeriSelect::UART0,
+  nuclone_clock_config;
+constexpr inline libmcuhw::clock::periClockConfig<nuclone_clock_config, libmcuhw::clock::PeriSelect::UART0,
                                                   libmcuhw::clock::PeriSource::MAIN>
   uart0ClockConfig;
-constexpr inline libmcuhw::clock::periClockConfig<nucloneClockConfig, libmcuhw::clock::PeriSelect::I2C0,
+constexpr inline libmcuhw::clock::periClockConfig<nuclone_clock_config, libmcuhw::clock::PeriSelect::I2C0,
                                                   libmcuhw::clock::PeriSource::MAIN>
   i2c0ClockConfig;
-constexpr inline libmcuhw::clock::periClockConfig<nucloneClockConfig, libmcuhw::clock::PeriSelect::SPI0,
+constexpr inline libmcuhw::clock::periClockConfig<nuclone_clock_config, libmcuhw::clock::PeriSelect::SPI0,
                                                   libmcuhw::clock::PeriSource::MAIN>
   spi0ClockConfig;
 

@@ -1,23 +1,23 @@
 /*
  * SPDX-License-Identifier: MIT
  *
- * Copyright (c) 2024 Bart Bilos
+ * Copyright (c) 2025 Bart Bilos
  * For conditions of distribution and use, see LICENSE file
  */
 /**
- * @brief main entry point for Diy Solder
+ * @brief main entry point for LPC845QFP48 template project
  */
-#include <nuclone_LPC845BD48_small.hpp>
+#include <nuclone_LPC845BD48_small_template.hpp>
 #include <application.hpp>
 
 namespace application {
-application controller;
+Application controller;
 }
 
 int main() {
-  boardInit();
+  BoardInit();
   application::controller.Init();
   while (1) {
-    application::controller.progress();
+    application::controller.Progress();
   }
 }

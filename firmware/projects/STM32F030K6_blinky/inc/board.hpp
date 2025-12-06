@@ -8,7 +8,7 @@ For conditions of distribution and use, see LICENSE file
 #define BOARD_HPP
 
 #include <nuclone_STM32F030K6.hpp>
-#include <mcu_ll.h>
+#include <st/libmcu_STM32F030K6T_ll.h>
 
 void boardInit(void);
 

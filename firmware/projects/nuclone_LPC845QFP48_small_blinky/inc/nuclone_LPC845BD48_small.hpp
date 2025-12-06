@@ -16,39 +16,39 @@ constexpr inline std::uint32_t ticksPerSecond{10u};
 
 // pin types
 // Crystal osillator pins
-using xtalInPinType = libmcuhw::Pin<libmcuhw::IoPorts::Port0, libmcuhw::IoPins::Pin08>;
-using xtalOutPinType = libmcuhw::Pin<libmcuhw::IoPorts::Port0, libmcuhw::IoPins::Pin09>;
-using testPinType = libmcuhw::Pin<libmcuhw::IoPorts::Port1, libmcuhw::IoPins::Pin05>;
-using ledBlinkPinType = libmcuhw::Pin<libmcuhw::IoPorts::Port1, libmcuhw::IoPins::Pin08>;
+using XtalInPinType = libmcuhw::Pin<libmcuhw::IoPorts::Port0, libmcuhw::IoPins::Pin08>;
+using XtalOutPinType = libmcuhw::Pin<libmcuhw::IoPorts::Port0, libmcuhw::IoPins::Pin09>;
+using TestPinType = libmcuhw::Pin<libmcuhw::IoPorts::Port1, libmcuhw::IoPins::Pin05>;
+using LedBlinkPinType = libmcuhw::Pin<libmcuhw::IoPorts::Port1, libmcuhw::IoPins::Pin08>;
 
 // function types
-using xtalInFunctionType = libmcuhw::swm::PinFunction<libmcuhw::swm::PinFunctions::XtalIn>;
-using xtalOutFunctionType = libmcuhw::swm::PinFunction<libmcuhw::swm::PinFunctions::XtalOut>;
-using clockOutFunctionType = libmcuhw::swm::PinFunction<libmcuhw::swm::PinFunctions::ClkOut>;
+using XtalInFunctionType = libmcuhw::swm::PinFunction<libmcuhw::swm::PinFunctions::XtalIn>;
+using XtalOutFunctionType = libmcuhw::swm::PinFunction<libmcuhw::swm::PinFunctions::XtalOut>;
+using ClockOutFunctionType = libmcuhw::swm::PinFunction<libmcuhw::swm::PinFunctions::ClkOut>;
 
 // pin instances
-constexpr xtalInPinType xtalInPin;
-constexpr xtalOutPinType xtalOutPin;
-constexpr testPinType testPin;
-constexpr ledBlinkPinType ledPin;
+constexpr XtalInPinType xtal_in_pin;
+constexpr XtalOutPinType xtal_out_pin;
+constexpr TestPinType test_pin;
+constexpr LedBlinkPinType led_pin;
 
 // function instances
-constexpr xtalInFunctionType xtalInFunction;
-constexpr xtalOutFunctionType xtalOutFunction;
-constexpr clockOutFunctionType clockOutFunction;
+constexpr XtalInFunctionType xtal_in_function;
+constexpr XtalOutFunctionType xtal_out_function;
+constexpr ClockOutFunctionType clock_out_function;
 
 // peripheral externs
-extern libmcull::iocon::Iocon<libmcuhw::IoconAddress> ioconPeripheral;
-extern libmcull::swm::Swm<libmcuhw::SwmAddress> swmPeriperhal;
-extern libmcull::gpio::Gpio<libmcuhw::GpioAddress> gpioPeripheral;
-extern libmcull::syscon::Syscon<libmcuhw::SysconAddress> sysconPeripheral;
-extern libmcull::usart::UartPolled<libmcuhw::Usart0Address, std::uint8_t> usartPeripheral;
+extern libmcull::iocon::Iocon<libmcuhw::IoconAddress> iocon_peripheral;
+extern libmcull::swm::Swm<libmcuhw::SwmAddress> swm_periperhal;
+extern libmcull::gpio::Gpio<libmcuhw::GpioAddress> gpio_peripheral;
+extern libmcull::syscon::Syscon<libmcuhw::SysconAddress> syscon_peripheral;
+extern libmcull::usart::UartPolled<libmcuhw::Usart0Address, std::uint8_t> usart_peripheral;
 constexpr inline libmcuhw::clock::McuClockConfig<libmcuhw::clock::ClockInputSources::XTAL, 12'000'000u, 30'000'000u>
-  nucloneClockConfig;
-constexpr inline libmcuhw::clock::PeriClockConfig<nucloneClockConfig, libmcuhw::clock::PeriSelect::UART0,
+  nuclone_clock_config;
+constexpr inline libmcuhw::clock::PeriClockConfig<nuclone_clock_config, libmcuhw::clock::PeriSelect::UART0,
                                                   libmcuhw::clock::PeriSource::MAIN>
-  uart0ClockConfig;
+  uart0_clock_config;
 
-void boardInit(void);
+void BoardInit(void);
 
 #endif
