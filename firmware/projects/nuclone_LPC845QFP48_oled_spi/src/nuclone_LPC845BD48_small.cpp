@@ -49,15 +49,15 @@ void boardInit(void) {
       libmcull::syscon::peripheral_clocks_0::UART0 | libmcull::syscon::peripheral_clocks_0::I2C0,
     0);
   // setup pins
-  iocon_peripheral.Setup(xtal_in_pin, libmcull::iocon::PullModes::Inactive);
-  iocon_peripheral.Setup(xtal_out_pin, libmcull::iocon::PullModes::Inactive);
-  iocon_peripheral.Setup(bootloadPin, libmcull::iocon::PullModes::PULLUP);
-  iocon_peripheral.Setup(debugUartRxPin, libmcull::iocon::PullModes::PULLUP);
-  iocon_peripheral.Setup(debugUartTxPin, libmcull::iocon::PullModes::Inactive);
-  swm_periperhal.Setup(xtal_in_pin, xtal_in_function);
-  swm_periperhal.Setup(xtal_out_pin, xtal_out_function);
-  swm_periperhal.Setup(debugUartRxPin, uartDebugRxFunction);
-  swm_periperhal.Setup(debugUartTxPin, uartDebugTxFunction);
+  iocon_peripheral.Setup(pin_xtal_in, libmcull::iocon::PullModes::Inactive);
+  iocon_peripheral.Setup(pin_xtal_out, libmcull::iocon::PullModes::Inactive);
+  iocon_peripheral.Setup(pin_bootload_switch, libmcull::iocon::PullModes::PULLUP);
+  iocon_peripheral.Setup(pin_debug_uart_rx, libmcull::iocon::PullModes::PULLUP);
+  iocon_peripheral.Setup(pin_debug_uart_tx, libmcull::iocon::PullModes::Inactive);
+  swm_periperhal.Setup(pin_xtal_in, function_xtal_in);
+  swm_periperhal.Setup(pin_xtal_out, function_xtal_out);
+  swm_periperhal.Setup(pin_debug_uart_rx, function_debug_uart_rx);
+  swm_periperhal.Setup(pin_debug_uart_tx, function_debug_uart_tx);
   swm_periperhal.Setup(i2cSclPin, i2cSclFunction);
   swm_periperhal.Setup(i2cSdaPin, i2cSdaFunction);
   // setup crystal oscillator

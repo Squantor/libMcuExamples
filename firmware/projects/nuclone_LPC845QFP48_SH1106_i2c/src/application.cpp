@@ -20,7 +20,6 @@ squLib::commandInterpreter<commandHandlers, commandValues, commandConsole> comma
 squLib::commandlineSimple<80, commandConsole, commandInterpreter> commandline;
 
 void Application::Init() {
-  usart_peripheral_ll.Claim();
   commandConsole.print("LPC845 small nuclone test program\n");
 }
 

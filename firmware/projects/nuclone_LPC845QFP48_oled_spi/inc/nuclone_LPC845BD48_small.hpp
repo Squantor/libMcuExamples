@@ -40,19 +40,19 @@ using functionI2cSclType = libmcuhw::swm::pinFunction<libmcuhw::swm::PinFunction
 using functionI2cSdaType = libmcuhw::swm::pinFunction<libmcuhw::swm::PinFunctions::I2C0_SDA_IO>;
 
 // pin instances
-constexpr pinXtalInType xtal_in_pin;
-constexpr pinXtalOutType xtal_out_pin;
-constexpr pinBootloaderType bootloadPin;
-constexpr pinDebugUartTxType debugUartTxPin;
-constexpr pinDebugUartRxType debugUartRxPin;
+constexpr pinXtalInType pin_xtal_in;
+constexpr pinXtalOutType pin_xtal_out;
+constexpr pinBootloaderType pin_bootload_switch;
+constexpr pinDebugUartTxType pin_debug_uart_tx;
+constexpr pinDebugUartRxType pin_debug_uart_rx;
 constexpr pinI2cSclType i2cSclPin;
 constexpr pinI2cSdaType i2cSdaPin;
 
 // function instances
-constexpr functionXtalInType xtal_in_function;
-constexpr functionXtalOutType xtal_out_function;
-constexpr functionUartDebugTxType uartDebugTxFunction;
-constexpr functionUartDebugRxType uartDebugRxFunction;
+constexpr functionXtalInType function_xtal_in;
+constexpr functionXtalOutType function_xtal_out;
+constexpr functionUartDebugTxType function_debug_uart_tx;
+constexpr functionUartDebugRxType function_debug_uart_rx;
 constexpr functionI2cSclType i2cSclFunction;
 constexpr functionI2cSdaType i2cSdaFunction;
 

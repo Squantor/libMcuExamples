@@ -29,17 +29,24 @@ using FunctionUartDebugTx = libmcuhw::swm::PinFunction<libmcuhw::swm::PinFunctio
 using FunctionUartDebugRx = libmcuhw::swm::PinFunction<libmcuhw::swm::PinFunctions::Uart0RxIn>;
 
 // pin instances
-constexpr PinXtalIn xtal_in_pin;
-constexpr PinXtalOut xtal_out_pin;
-constexpr PinBootloader bootloadPin;
-constexpr PinDebugUartTx debugUartTxPin;
-constexpr PinDebugUartRx debugUartRxPin;
+constexpr PinXtalIn pin_xtal_in;
+constexpr PinXtalOut pin_xtal_out;
+constexpr PinBootloader pin_bootload_switch;
+constexpr PinDebugUartTx pin_debug_uart_tx;
+constexpr PinDebugUartRx pin_debug_uart_rx;
 
 // function instances
-constexpr FunctionXtalIn xtal_in_function;
-constexpr FunctionXtalOut xtal_out_function;
-constexpr FunctionUartDebugTx uartDebugTxFunction;
-constexpr FunctionUartDebugRx uartDebugRxFunction;
+constexpr FunctionXtalIn function_xtal_in;
+constexpr FunctionXtalOut function_xtal_out;
+constexpr FunctionUartDebugTx function_debug_uart_tx;
+constexpr FunctionUartDebugRx function_debug_uart_rx;
+
+// clock configs
+constexpr inline libmcuhw::clock::McuClockConfig<libmcuhw::clock::ClockInputSources::XTAL, 12'000'000u, 30'000'000u>
+  nuclone_clock_config;
+constexpr inline libmcuhw::clock::PeriClockConfig<nuclone_clock_config, libmcuhw::clock::PeriSelect::UART0,
+                                                  libmcuhw::clock::PeriSource::MAIN>
+  uart0_clock_config;
 
 // peripheral externs
 extern libmcull::iocon::Iocon<libmcuhw::IoconAddress> iocon_peripheral;
@@ -48,11 +55,6 @@ extern libmcull::gpio::Gpio<libmcuhw::GpioAddress> gpio_peripheral;
 extern libmcull::syscon::Syscon<libmcuhw::SysconAddress> syscon_peripheral;
 extern libmcull::usart::UartInterrupt<libmcuhw::Usart0Address, char, 64> usart_peripheral_ll;
 extern libmcuhal::usart::UartInterrupt<usart_peripheral_ll, char> usart_peripheral;
-constexpr inline libmcuhw::clock::McuClockConfig<libmcuhw::clock::ClockInputSources::XTAL, 12'000'000u, 30'000'000u>
-  nuclone_clock_config;
-constexpr inline libmcuhw::clock::PeriClockConfig<nuclone_clock_config, libmcuhw::clock::PeriSelect::UART0,
-                                                  libmcuhw::clock::PeriSource::MAIN>
-  uart0_clock_config;
 
 void BoardInit(void);
 
