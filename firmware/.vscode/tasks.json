@@ -61,5 +61,12 @@
          "group": "build",
          "problemMatcher": "$gcc"
       },
+      {
+         "label": "build LPC845 small nuclone SH1106 OLED I2C project",
+         "type": "shell",
+         "command": "compiledb make PROJECT=nuclone_LPC845QFP48_small_SH1106_i2c CONFIG=debug -j24",
+         "group": "build",
+         "problemMatcher": "$gcc"
+      },
    ]
 }
