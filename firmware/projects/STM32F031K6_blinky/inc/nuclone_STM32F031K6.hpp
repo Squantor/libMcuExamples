@@ -20,10 +20,10 @@ For conditions of distribution and use, see LICENSE file
 #define TICKS_PER_S 2
 
 // register definitions of peripherals
-static constexpr libMcu::hwAddressType gpioaAddress = libMcuHw::gpioaAddress;
-libMcuHw::gpio::gpio *const gpioaRegisters{reinterpret_cast<libMcuHw::gpio::gpio *>(gpioaAddress)};
-static constexpr libMcu::hwAddressType rccAddress = libMcuHw::rccAddress;
-libMcuHw::rcc::rcc *const rccRegisters{reinterpret_cast<libMcuHw::rcc::rcc *>(rccAddress)};
+static constexpr libmcu::hwAddressType gpioaAddress = libmcuhw::gpioaAddress;
+libmcuhw::gpio::Gpio *const gpioaRegisters{reinterpret_cast<libmcuhw::gpio::Gpio *>(gpioaAddress)};
+static constexpr libmcu::hwAddressType rccAddress = libmcuhw::rccAddress;
+libmcuhw::rcc::rcc *const rccRegisters{reinterpret_cast<libmcuhw::rcc::rcc *>(rccAddress)};
 
 void boardInit(void);
 

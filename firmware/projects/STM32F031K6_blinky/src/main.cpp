@@ -9,6 +9,6 @@ For conditions of distribution and use, see LICENSE file
 int main() {
   boardInit();
   while (1) {
-    libMcuLL::nop();
+    libmcull::nop();
   }
 }

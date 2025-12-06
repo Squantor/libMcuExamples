@@ -9,13 +9,13 @@
  */
 #include <nuclone_LPC845BD48_small.hpp>
 
-libmcull::iocon::Iocon<libmcuhw::ioconAddress> ioconPeripheral;
-libmcull::swm::Swm<libmcuhw::swmAddress> swmPeriperhal;
-libmcull::gpio::gpio<libmcuhw::gpioAddress> gpioPeripheral;
-libmcull::syscon::Syscon<libmcuhw::sysconAddress> sysconPeripheral;
-libmcull::systick::systick<libmcuhw::systickAddress> systickPeripheral;
-libmcull::nvic::nvic<libmcuhw::nvicAddress, libmcuhw::scbAddress> nvicPeripheral;
-libmcuhal::usart::SyncUart<libmcuhw::usart0Address, libmcuhw::nvicAddress, char, 128> usartPeripheral;
+libmcull::iocon::Iocon<libmcuhw::IoconAddress> ioconPeripheral;
+libmcull::swm::Swm<libmcuhw::SwmAddress> swmPeriperhal;
+libmcull::gpio::Gpio<libmcuhw::GpioAddress> gpioPeripheral;
+libmcull::syscon::Syscon<libmcuhw::SysconAddress> sysconPeripheral;
+libmcull::systick::Systick<libmcuhw::SystickAddress> systickPeripheral;
+libmcull::nvic::Nvic<libmcuhw::NvicAddress, libmcuhw::ScbAddress> nvicPeripheral;
+libmcuhal::usart::SyncUart<libmcuhw::Usart0Address, libmcuhw::NvicAddress, char, 128> usartPeripheral;
 libmcuhal::spi::SpiSyncPol<libmcuhw::spi0Address> spiPeripheral;
 libMcuDrv::memlcd::memlcd<TestDisplay, libmcuhal::spi::spiSlaveSelects::Select0, spiPeripheral> memlcdDriver;
 libMcuMid::display::displayMemlcd<TestDisplay, memlcdDriver> display;
@@ -40,51 +40,51 @@ void boardInit(void) {
   ticks = 0;
   // clock, power and reset enables/clears
   sysconPeripheral.powerPeripherals(libmcull::syscon::powerOptions::SYSOSC);
-  sysconPeripheral.enablePeripheralClocks(libmcull::syscon::peripheralClocks0::SWM | libmcull::syscon::peripheralClocks0::IOCON |
-                                            libmcull::syscon::peripheralClocks0::GPIO0 |
-                                            libmcull::syscon::peripheralClocks0::GPIO1 |
-                                            libmcull::syscon::peripheralClocks0::UART0 | libmcull::syscon::peripheralClocks0::SPI0,
-                                          0);
+  sysconPeripheral.EnablePeripheralClocks(
+    libmcull::syscon::peripheral_clocks_0::Swm | libmcull::syscon::peripheral_clocks_0::Iocon |
+      libmcull::syscon::peripheral_clocks_0::Gpio0 | libmcull::syscon::peripheral_clocks_0::Gpio1 |
+      libmcull::syscon::peripheral_clocks_0::UART0 | libmcull::syscon::peripheral_clocks_0::SPI0,
+    0);
   // setup pins
-  ioconPeripheral.setup(xtalInPin, libmcull::iocon::pullModes::INACTIVE);
-  ioconPeripheral.setup(xtalOutPin, libmcull::iocon::pullModes::INACTIVE);
-  ioconPeripheral.setup(bootloadPin, libmcull::iocon::pullModes::PULLUP);
-  ioconPeripheral.setup(debugUartRxPin, libmcull::iocon::pullModes::PULLUP);
-  ioconPeripheral.setup(debugUartTxPin, libmcull::iocon::pullModes::INACTIVE);
-  ioconPeripheral.setup(ws2812SpiSckPin, libmcull::iocon::pullModes::INACTIVE);
-  ioconPeripheral.setup(ws2812SpiMosiPin, libmcull::iocon::pullModes::INACTIVE);
-  ioconPeripheral.setup(dispSpiCsPin, libmcull::iocon::pullModes::INACTIVE);
-  ioconPeripheral.setup(dispEmdPin, libmcull::iocon::pullModes::INACTIVE);
-  ioconPeripheral.setup(dispDonPin, libmcull::iocon::pullModes::INACTIVE);
-  ioconPeripheral.setup(dispEinPin, libmcull::iocon::pullModes::INACTIVE);
+  ioconPeripheral.Setup(xtalInPin, libmcull::iocon::PullModes::Inactive);
+  ioconPeripheral.Setup(xtalOutPin, libmcull::iocon::PullModes::Inactive);
+  ioconPeripheral.Setup(bootloadPin, libmcull::iocon::PullModes::PULLUP);
+  ioconPeripheral.Setup(debugUartRxPin, libmcull::iocon::PullModes::PULLUP);
+  ioconPeripheral.Setup(debugUartTxPin, libmcull::iocon::PullModes::Inactive);
+  ioconPeripheral.Setup(ws2812SpiSckPin, libmcull::iocon::PullModes::Inactive);
+  ioconPeripheral.Setup(ws2812SpiMosiPin, libmcull::iocon::PullModes::Inactive);
+  ioconPeripheral.Setup(dispSpiCsPin, libmcull::iocon::PullModes::Inactive);
+  ioconPeripheral.Setup(dispEmdPin, libmcull::iocon::PullModes::Inactive);
+  ioconPeripheral.Setup(dispDonPin, libmcull::iocon::PullModes::Inactive);
+  ioconPeripheral.Setup(dispEinPin, libmcull::iocon::PullModes::Inactive);
   // serial based com pulsing
   gpioPeripheral.low(dispEmdPin);
-  gpioPeripheral.output(dispEmdPin);
+  gpioPeripheral.Output(dispEmdPin);
   // gpioPeripheral.high(dispDonPin);
-  // gpioPeripheral.output(dispDonPin);
+  // gpioPeripheral.Output(dispDonPin);
   // gpioPeripheral.high(dispEinPin);
-  // gpioPeripheral.output(dispEinPin);
+  // gpioPeripheral.Output(dispEinPin);
 
-  swmPeriperhal.setup(xtalInPin, xtalInFunction);
-  swmPeriperhal.setup(xtalOutPin, xtalOutFunction);
-  swmPeriperhal.setup(debugUartRxPin, uartDebugRxFunction);
-  swmPeriperhal.setup(debugUartTxPin, uartDebugTxFunction);
-  swmPeriperhal.setup(dispSpiCsPin, spiCsFunction);
-  swmPeriperhal.setup(ws2812SpiSckPin, spiSckFunction);
-  swmPeriperhal.setup(ws2812SpiMosiPin, spiMosiFunction);
+  swmPeriperhal.Setup(xtalInPin, xtalInFunction);
+  swmPeriperhal.Setup(xtalOutPin, xtalOutFunction);
+  swmPeriperhal.Setup(debugUartRxPin, uartDebugRxFunction);
+  swmPeriperhal.Setup(debugUartTxPin, uartDebugTxFunction);
+  swmPeriperhal.Setup(dispSpiCsPin, spiCsFunction);
+  swmPeriperhal.Setup(ws2812SpiSckPin, spiSckFunction);
+  swmPeriperhal.Setup(ws2812SpiMosiPin, spiMosiFunction);
   // setup crystal oscillator
   // libmcuhw::clock::configureClocks<sysconPeripheral, diySolderClockConfig>();
-  sysconPeripheral.configureMcuClocks<nucloneClockConfig>();
+  sysconPeripheral.ConfigureMcuClocks<nucloneClockConfig>();
   // setup systick
-  systickPeripheral.init(nucloneClockConfig.getSystemFreq() / TICKS_PER_S);
-  systickPeripheral.start(systickIsrLambda);
+  systickPeripheral.Init(nucloneClockConfig.GetSystemFreq() / TICKS_PER_S);
+  systickPeripheral.Start(systickIsrLambda);
   // setup UART
   sysconPeripheral.peripheralClockSource(libmcull::syscon::ClockSourceSelects::UART0, libmcull::syscon::clockSources::MAIN);
-  usartPeripheral.init<uart0ClockConfig>(115200);
+  usartPeripheral.Init<uart0ClockConfig>(115200);
   nvicPeripheral.enable(libmcuhw::Interrupts::uart0);
   // setup spi
   sysconPeripheral.peripheralClockSource(libmcull::syscon::ClockSourceSelects::SPI0, libmcull::syscon::clockSources::MAIN);
-  spiPeripheral.init<spi0ClockConfig>(1000000, static_cast<std::uint32_t>(libmcuhal::spi::spiSlaveSelects::Select0), 4, 4);
-  display.init();
+  spiPeripheral.Init<spi0ClockConfig>(1000000, static_cast<std::uint32_t>(libmcuhal::spi::spiSlaveSelects::Select0), 4, 4);
+  display.Init();
   display.update();
 }

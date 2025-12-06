@@ -13,6 +13,6 @@
 int main() {
   boardInit();
   while (1) {
-    libMcuLL::nop();
+    libmcull::nop();
   }
 }

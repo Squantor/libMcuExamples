@@ -6,8 +6,8 @@ For conditions of distribution and use, see LICENSE file
 */
 #include <nuclone_STM32F031K6.hpp>
 
-libMcuLL::systick::systick<libMcuHw::systickAddress> systickPeripheral;
-libMcuLL::nvic::nvic<libMcuHw::nvicAddress, libMcuHw::scbAddress> nvicPeripheral;
+libmcull::systick::Systick<libmcuhw::SystickAddress> systickPeripheral;
+libmcull::nvic::Nvic<libmcuhw::NvicAddress, libmcuhw::ScbAddress> nvicPeripheral;
 
 volatile std::uint32_t ticks;
 
@@ -26,6 +26,6 @@ void boardInit(void) {
   rccRegisters->AHBENR = 0x00020014;
   gpioaRegisters->MODER = 0x28000001;
 
-  systickPeripheral.init(CLOCK_HCLK / TICKS_PER_S);
-  systickPeripheral.start(systickIsrLambda);
+  systickPeripheral.Init(CLOCK_HCLK / TICKS_PER_S);
+  systickPeripheral.Start(systickIsrLambda);
 }

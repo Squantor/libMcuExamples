@@ -20,18 +20,18 @@
 
 // pin types
 // Crystal osillator pins
-using pinXtalInType = libmcuhw::pin<libmcuhw::IOports::PORT0, libmcuhw::IOpins::PIN08>;
-using pinXtalOutType = libmcuhw::pin<libmcuhw::IOports::PORT0, libmcuhw::IOpins::PIN09>;
+using pinXtalInType = libmcuhw::Pin<libmcuhw::IoPorts::Port0, libmcuhw::IoPins::Pin08>;
+using pinXtalOutType = libmcuhw::Pin<libmcuhw::IoPorts::Port0, libmcuhw::IoPins::Pin09>;
 // bootloader and uart pins
-using pinBootloaderType = libmcuhw::pin<libmcuhw::IOports::PORT0, libmcuhw::IOpins::PIN12>;
-using pinDebugUartTxType = libmcuhw::pin<libmcuhw::IOports::PORT0, libmcuhw::IOpins::PIN25>;
-using pinDebugUartRxType = libmcuhw::pin<libmcuhw::IOports::PORT0, libmcuhw::IOpins::PIN24>;
-using pinDispSpiSckType = libmcuhw::pin<libmcuhw::IOports::PORT1, libmcuhw::IOpins::PIN00>;
-using pinDispSpiMosiType = libmcuhw::pin<libmcuhw::IOports::PORT1, libmcuhw::IOpins::PIN01>;
-using pinDispSpiCsType = libmcuhw::pin<libmcuhw::IOports::PORT1, libmcuhw::IOpins::PIN02>;
-using pinDispEmdType = libmcuhw::pin<libmcuhw::IOports::PORT1, libmcuhw::IOpins::PIN03>;
-using pinDispDonType = libmcuhw::pin<libmcuhw::IOports::PORT1, libmcuhw::IOpins::PIN04>;
-using pinDispEinType = libmcuhw::pin<libmcuhw::IOports::PORT1, libmcuhw::IOpins::PIN05>;
+using pinBootloaderType = libmcuhw::Pin<libmcuhw::IoPorts::Port0, libmcuhw::IoPins::Pin12>;
+using pinDebugUartTxType = libmcuhw::Pin<libmcuhw::IoPorts::Port0, libmcuhw::IoPins::Pin25>;
+using pinDebugUartRxType = libmcuhw::Pin<libmcuhw::IoPorts::Port0, libmcuhw::IoPins::Pin24>;
+using pinDispSpiSckType = libmcuhw::Pin<libmcuhw::IoPorts::Port1, libmcuhw::IoPins::Pin00>;
+using pinDispSpiMosiType = libmcuhw::Pin<libmcuhw::IoPorts::Port1, libmcuhw::IoPins::Pin01>;
+using pinDispSpiCsType = libmcuhw::Pin<libmcuhw::IoPorts::Port1, libmcuhw::IoPins::Pin02>;
+using pinDispEmdType = libmcuhw::Pin<libmcuhw::IoPorts::Port1, libmcuhw::IoPins::Pin03>;
+using pinDispDonType = libmcuhw::Pin<libmcuhw::IoPorts::Port1, libmcuhw::IoPins::Pin04>;
+using pinDispEinType = libmcuhw::Pin<libmcuhw::IoPorts::Port1, libmcuhw::IoPins::Pin05>;
 
 // function types
 using functionXtalInType = libmcuhw::swm::PinFunction<libmcuhw::swm::PinFunctions::kXtalIn>;
@@ -67,26 +67,26 @@ constexpr functionSpiCsType spiCsFunction;
 using TestDisplay = libMcuDrv::memlcd::LS013B7DH05;
 
 // peripheral externs
-extern libmcull::iocon::Iocon<libmcuhw::ioconAddress> ioconPeripheral;
-extern libmcull::swm::Swm<libmcuhw::swmAddress> swmPeriperhal;
-extern libmcull::gpio::gpio<libmcuhw::gpioAddress> gpioPeripheral;
-extern libmcull::syscon::Syscon<libmcuhw::sysconAddress> sysconPeripheral;
-extern libmcull::systick::systick<libmcuhw::systickAddress> systickPeripheral;
-extern libmcuhal::usart::SyncUart<libmcuhw::usart0Address, libmcuhw::nvicAddress, char, 128> usartPeripheral;
+extern libmcull::iocon::Iocon<libmcuhw::IoconAddress> ioconPeripheral;
+extern libmcull::swm::Swm<libmcuhw::SwmAddress> swmPeriperhal;
+extern libmcull::gpio::Gpio<libmcuhw::GpioAddress> gpioPeripheral;
+extern libmcull::syscon::Syscon<libmcuhw::SysconAddress> sysconPeripheral;
+extern libmcull::systick::Systick<libmcuhw::SystickAddress> systickPeripheral;
+extern libmcuhal::usart::SyncUart<libmcuhw::Usart0Address, libmcuhw::NvicAddress, char, 128> usartPeripheral;
 extern libmcuhal::spi::SpiSyncPol<libmcuhw::spi0Address> spiPeripheral;
 extern libMcuDrv::memlcd::memlcd<TestDisplay, libmcuhal::spi::spiSlaveSelects::Select0, spiPeripheral> memlcdDriver;
 extern libMcuMid::display::displayMemlcd<TestDisplay, memlcdDriver> display;
 
-constexpr inline libmcuhw::clock::mcuClockConfig<libmcuhw::clock::clockInputSources::XTAL, 12'000'000u, 30'000'000u>
+constexpr inline libmcuhw::clock::mcuClockConfig<libmcuhw::clock::ClockInputSources::XTAL, 12'000'000u, 30'000'000u>
   nucloneClockConfig;
-constexpr inline libmcuhw::clock::periClockConfig<nucloneClockConfig, libmcuhw::clock::periSelect::UART0,
-                                                  libmcuhw::clock::periSource::MAIN>
+constexpr inline libmcuhw::clock::periClockConfig<nucloneClockConfig, libmcuhw::clock::PeriSelect::UART0,
+                                                  libmcuhw::clock::PeriSource::MAIN>
   uart0ClockConfig;
-constexpr inline libmcuhw::clock::periClockConfig<nucloneClockConfig, libmcuhw::clock::periSelect::I2C0,
-                                                  libmcuhw::clock::periSource::MAIN>
+constexpr inline libmcuhw::clock::periClockConfig<nucloneClockConfig, libmcuhw::clock::PeriSelect::I2C0,
+                                                  libmcuhw::clock::PeriSource::MAIN>
   i2c0ClockConfig;
-constexpr inline libmcuhw::clock::periClockConfig<nucloneClockConfig, libmcuhw::clock::periSelect::SPI0,
-                                                  libmcuhw::clock::periSource::MAIN>
+constexpr inline libmcuhw::clock::periClockConfig<nucloneClockConfig, libmcuhw::clock::PeriSelect::SPI0,
+                                                  libmcuhw::clock::PeriSource::MAIN>
   spi0ClockConfig;
 
 extern volatile std::uint32_t ticks;  // amount of ticks passed sinds startup
