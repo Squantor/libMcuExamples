@@ -16,7 +16,6 @@ Application controller;
 
 int main() {
   BoardInit();
-  usart_peripheral_ll.Claim();
   application::controller.Init();
   while (1) {
     application::controller.Progress();

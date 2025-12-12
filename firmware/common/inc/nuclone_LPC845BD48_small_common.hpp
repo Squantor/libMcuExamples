@@ -54,7 +54,7 @@ extern libmcull::swm::Swm<libmcuhw::SwmAddress> swm_periperhal;
 extern libmcull::gpio::Gpio<libmcuhw::GpioAddress> gpio_peripheral;
 extern libmcull::syscon::Syscon<libmcuhw::SysconAddress> syscon_peripheral;
 extern libmcull::usart::UartInterrupt<libmcuhw::Usart0Address, char, 64> usart_peripheral_ll;
-extern libmcuhal::usart::UartInterrupt<usart_peripheral_ll, char> usart_peripheral;
+extern libmcuhal::usart::Uart<usart_peripheral_ll, char> usart_peripheral;
 
 void BoardInit(void);
 

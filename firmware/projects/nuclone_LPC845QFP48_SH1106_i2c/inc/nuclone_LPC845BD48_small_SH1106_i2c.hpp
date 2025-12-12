@@ -34,7 +34,7 @@ constexpr inline libmcuhw::clock::PeriClockConfig<nuclone_clock_config, libmcuhw
   i2c0_clock_config;
 
 extern libmcull::i2c::I2cInterrupt<libmcuhw::I2c0Address> i2c_peripheral_ll;
-extern libmcuhal::i2c::I2cInterrupt<i2c_peripheral_ll> i2c_peripheral;
+extern libmcuhal::i2c::I2c<i2c_peripheral_ll> i2c_peripheral;
 extern libMcuDriver::SH1106::Generic128x64 display_config;
 extern libMcuDriver::SH1106::SH1106<i2c_peripheral, SH1106_i2c_address, display_config> display;
 

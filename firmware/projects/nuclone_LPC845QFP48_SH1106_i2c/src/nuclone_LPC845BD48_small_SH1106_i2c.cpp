@@ -16,9 +16,9 @@ libmcull::syscon::Syscon<libmcuhw::SysconAddress> syscon_peripheral;
 libmcull::systick::Systick<libmcuhw::SystickAddress> systick_peripheral;
 libmcull::nvic::Nvic<libmcuhw::NvicAddress, libmcuhw::ScbAddress> nvic_peripheral;
 libmcull::usart::UartInterrupt<libmcuhw::Usart0Address, char, 64> usart_peripheral_ll;
-libmcuhal::usart::UartInterrupt<usart_peripheral_ll, char> usart_peripheral;
 libmcull::i2c::I2cInterrupt<libmcuhw::I2c0Address> i2c_peripheral_ll;
-libmcuhal::i2c::I2cInterrupt<i2c_peripheral_ll> i2c_peripheral;
+libmcuhal::usart::Uart<usart_peripheral_ll, char> usart_peripheral;
+libmcuhal::i2c::I2c<i2c_peripheral_ll> i2c_peripheral;
 libMcuDriver::SH1106::Generic128x64 display_config;
 libMcuDriver::SH1106::SH1106<i2c_peripheral, SH1106_i2c_address, display_config> display;
 
