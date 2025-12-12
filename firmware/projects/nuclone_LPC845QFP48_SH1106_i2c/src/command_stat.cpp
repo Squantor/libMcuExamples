@@ -11,8 +11,6 @@
 #include <commands.hpp>
 #include <application.hpp>
 
-namespace application {
-
 squLib::results stat(std::span<const char> commandLine) {
   (void)commandLine;
   switch (controller.GetState()) {
@@ -28,5 +26,3 @@ squLib::results stat(std::span<const char> commandLine) {
 }
 
 squLib::commandHandler statHandler{"stat", "prints the current application state\n", stat};
-
-}  // namespace application

@@ -9,6 +9,8 @@
  */
 #include <nuclone_LPC845BD48_small_SH1106_i2c.hpp>
 
+libmcu::I2cDeviceAddress SH1106_i2c_address{0x3C};
+
 libmcull::iocon::Iocon<libmcuhw::IoconAddress> iocon_peripheral;
 libmcull::swm::Swm<libmcuhw::SwmAddress> swm_periperhal;
 libmcull::gpio::Gpio<libmcuhw::GpioAddress> gpio_peripheral;
@@ -72,5 +74,8 @@ void BoardInit(void) {
   nvic_peripheral.Enable(libmcuhw::Interrupts::I2c0);
   usart_peripheral.Init<uart0_clock_config>(115200);
   i2c_peripheral.Init<i2c0_clock_config>(400000, 1000);
+  // delay before we turn on screen
+  while (ticks < 10)
+    ;
   display.Init();
 }

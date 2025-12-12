@@ -16,8 +16,6 @@
 #include <command_handlers.hpp>
 #include <console.hpp>
 
-namespace application {
-
 enum class ApplicationState : std::uint8_t {
   idle, /*!< idle state */
 };
@@ -39,7 +37,5 @@ extern squLib::console<usart_peripheral> commandConsole;
 extern squLib::commandValueStack<8, commandConsole> commandValues;
 extern squLib::commandInterpreter<commandHandlers, commandValues, commandConsole> commandInterpreter;
 extern Application controller;
-
-}  // namespace application
 
 #endif

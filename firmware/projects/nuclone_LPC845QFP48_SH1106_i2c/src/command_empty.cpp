@@ -11,8 +11,6 @@
 #include <commands.hpp>
 #include <application.hpp>
 
-namespace application {
-
 squLib::results empty(std::span<const char> commandLine) {
   (void)commandLine;
   commandConsole.print("Your command interpreter works perfectly!\n");
@@ -20,5 +18,3 @@ squLib::results empty(std::span<const char> commandLine) {
 }
 
 squLib::commandHandler emptyHandler{"empty", "Does nothing\n", empty};
-
-}  // namespace application

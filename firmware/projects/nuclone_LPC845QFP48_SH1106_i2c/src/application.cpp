@@ -12,8 +12,6 @@
 #include <cmdline_simple.hpp>
 #include <console.hpp>
 
-namespace application {
-
 squLib::console<usart_peripheral> commandConsole;
 squLib::commandValueStack<8, commandConsole> commandValues;
 squLib::commandInterpreter<commandHandlers, commandValues, commandConsole> commandInterpreter;
@@ -45,5 +43,3 @@ void Application::Progress() {
       break;
   }
 }
-
-}  // namespace application

@@ -10,15 +10,13 @@
 #include <nuclone_LPC845BD48_small_SH1106_i2c.hpp>
 #include <application.hpp>
 
-namespace application {
 Application controller;
-}
 
 int main() {
   BoardInit();
-  application::controller.Init();
+  controller.Init();
   while (1) {
-    application::controller.Progress();
+    controller.Progress();
     usart_peripheral.Progress();
     i2c_peripheral.Progress();
   }

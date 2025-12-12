@@ -11,8 +11,6 @@
 #include <commands.hpp>
 #include <application.hpp>
 
-namespace application {
-
 squLib::results printStack(std::span<const char> commandLine);
 
 squLib::commandHandler stkHandler{"stk", "Prints stack values\n", printStack};
@@ -27,5 +25,3 @@ squLib::results printStack(std::span<const char> commandLine) {
   }
   return squLib::results::ok;
 }
-
-}  // namespace application

@@ -13,7 +13,6 @@
 
 #include <command_handler.hpp>
 
-namespace application {
 extern squLib::commandHandler stkHandler;
 extern squLib::commandHandler emptyHandler;
 extern squLib::commandHandler dupHandler;
@@ -21,6 +20,6 @@ extern squLib::commandHandler dropHandler;
 extern squLib::commandHandler statHandler;
 extern squLib::commandHandler muxHandler;
 extern squLib::commandHandler tcHandler;
-}  // namespace application
+extern squLib::commandHandler contrast_handler;
 
 #endif

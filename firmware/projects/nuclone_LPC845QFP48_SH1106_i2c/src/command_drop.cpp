@@ -11,8 +11,6 @@
 #include <commands.hpp>
 #include <application.hpp>
 
-namespace application {
-
 squLib::results drop(std::span<const char> commandLine);
 
 squLib::commandHandler dropHandler{"drop", "Drops top of stack\n", drop};
@@ -27,5 +25,3 @@ squLib::results drop(std::span<const char> commandLine) {
   commandConsole.print("\n");
   return squLib::results::ok;
 }
-
-}  // namespace application

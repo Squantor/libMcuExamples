@@ -46,7 +46,11 @@ constexpr inline libmcuhw::clock::McuClockConfig<libmcuhw::clock::ClockInputSour
   nuclone_clock_config;
 constexpr inline libmcuhw::clock::PeriClockConfig<nuclone_clock_config, libmcuhw::clock::PeriSelect::UART0,
                                                   libmcuhw::clock::PeriSource::MAIN>
+
   uart0_clock_config;
+constexpr inline libmcuhw::clock::PeriClockConfig<nuclone_clock_config, libmcuhw::clock::PeriSelect::I2C0,
+                                                  libmcuhw::clock::PeriSource::MAIN>
+  i2c0_clock_config;
 
 // peripheral externs
 extern libmcull::iocon::Iocon<libmcuhw::IoconAddress> iocon_peripheral;
@@ -54,7 +58,9 @@ extern libmcull::swm::Swm<libmcuhw::SwmAddress> swm_periperhal;
 extern libmcull::gpio::Gpio<libmcuhw::GpioAddress> gpio_peripheral;
 extern libmcull::syscon::Syscon<libmcuhw::SysconAddress> syscon_peripheral;
 extern libmcull::usart::UartInterrupt<libmcuhw::Usart0Address, char, 64> usart_peripheral_ll;
+extern libmcull::i2c::I2cInterrupt<libmcuhw::I2c0Address> i2c_peripheral_ll;
 extern libmcuhal::usart::Uart<usart_peripheral_ll, char> usart_peripheral;
+extern libmcuhal::i2c::I2c<i2c_peripheral_ll> i2c_peripheral;
 
 void BoardInit(void);
 

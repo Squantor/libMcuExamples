@@ -13,7 +13,6 @@
 
 #include <command_handler.hpp>
 
-namespace application {
 extern std::span<const squLib::commandHandler> commandHandlers;
-}  // namespace application
+
 #endif

@@ -11,8 +11,6 @@
 #include <commands.hpp>
 #include <application.hpp>
 
-namespace application {
-
 squLib::results dup(std::span<const char> commandLine);
 
 squLib::commandHandler dupHandler{"dup", "Duplicates top of the stack\n", dup};
@@ -27,5 +25,3 @@ squLib::results dup(std::span<const char> commandLine) {
   commandConsole.print("\n");
   return squLib::results::ok;
 }
-
-}  // namespace application

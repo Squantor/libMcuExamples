@@ -27,14 +27,7 @@ constexpr PinI2cSda pin_i2c_sda;
 constexpr FunctionMainI2cScl function_main_i2c_scl;
 constexpr FunctionMainI2cSda function_main_i2c_sda;
 
-constexpr libmcu::I2cDeviceAddress SH1106_i2c_address{0x3C};
-
-constexpr inline libmcuhw::clock::PeriClockConfig<nuclone_clock_config, libmcuhw::clock::PeriSelect::I2C0,
-                                                  libmcuhw::clock::PeriSource::MAIN>
-  i2c0_clock_config;
-
-extern libmcull::i2c::I2cInterrupt<libmcuhw::I2c0Address> i2c_peripheral_ll;
-extern libmcuhal::i2c::I2c<i2c_peripheral_ll> i2c_peripheral;
+extern libmcu::I2cDeviceAddress SH1106_i2c_address;
 extern libMcuDriver::SH1106::Generic128x64 display_config;
 extern libMcuDriver::SH1106::SH1106<i2c_peripheral, SH1106_i2c_address, display_config> display;
 
