@@ -18,8 +18,7 @@ extern squLib::commandHandler emptyHandler;
 extern squLib::commandHandler dupHandler;
 extern squLib::commandHandler dropHandler;
 extern squLib::commandHandler statHandler;
-extern squLib::commandHandler muxHandler;
-extern squLib::commandHandler tcHandler;
 extern squLib::commandHandler contrast_handler;
+extern squLib::commandHandler block_handler;
 
 #endif
