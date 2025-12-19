@@ -60,7 +60,7 @@ extern libmcull::syscon::Syscon<libmcuhw::SysconAddress> syscon_peripheral;
 extern libmcull::usart::UartInterrupt<libmcuhw::Usart0Address, char, 64> usart_peripheral_ll;
 extern libmcull::i2c::I2cInterrupt<libmcuhw::I2c0Address> i2c_peripheral_ll;
 extern libmcuhal::usart::Uart<usart_peripheral_ll, char> usart_peripheral;
-extern libmcuhal::i2c::I2c<i2c_peripheral_ll> i2c_peripheral;
+extern libmcuhal::i2c::I2c<i2c_peripheral_ll, 40> i2c_peripheral;
 
 void BoardInit(void);
 
