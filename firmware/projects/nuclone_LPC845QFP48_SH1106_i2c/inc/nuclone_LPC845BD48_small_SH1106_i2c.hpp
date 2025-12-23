@@ -29,7 +29,7 @@ constexpr FunctionMainI2cSda function_main_i2c_sda;
 
 extern libmcu::I2cDeviceAddress SH1106_i2c_address;
 extern libMcuDriver::SH1106::Generic128x64 display_config;
-extern libMcuDriver::SH1106::SH1106<i2c_peripheral, SH1106_i2c_address, display_config> display;
+extern libMcuDriver::SH1106::SH1106<i2c_peripheral, SH1106_i2c_address, display_config, libmcull::AssertBkpt> display;
 
 constexpr inline std::uint32_t ticksPerSecond{100u};
 
