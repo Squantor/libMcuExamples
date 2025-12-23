@@ -24,7 +24,7 @@ squLib::results helpFunction(std::span<const char> commandLine) {
   return squLib::results::ok;
 }
 
-std::array<squLib::commandHandler, 10> commandHandlerTable{helpHandler,      numberHandler, hexNumHandler, stkHandler,
+std::array<squLib::commandHandler, 11> commandHandlerTable{helpHandler,      numberHandler, hexNumHandler, stkHandler,
                                                            emptyHandler,     dropHandler,   dupHandler,    statHandler,
-                                                           contrast_handler, block_handler};
+                                                           contrast_handler, block_handler, print_handler};
 std::span<const squLib::commandHandler> commandHandlers{commandHandlerTable};

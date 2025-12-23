@@ -20,5 +20,6 @@ extern squLib::commandHandler dropHandler;
 extern squLib::commandHandler statHandler;
 extern squLib::commandHandler contrast_handler;
 extern squLib::commandHandler block_handler;
+extern squLib::commandHandler print_handler;
 
 #endif
