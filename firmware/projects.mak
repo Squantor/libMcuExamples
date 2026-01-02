@@ -19,3 +19,4 @@ include $(BASE_DIR)/projects/nuclone_LPC845QFP48_oled_spi/nuclone_LPC845QFP48_ol
 include $(BASE_DIR)/projects/nuclone_LPC845QFP48_memlcd/nuclone_LPC845QFP48_memlcd.mak
 include $(BASE_DIR)/projects/nuclone_LPC845QFP48_sct_ws2812/nuclone_LPC845QFP48_sct_ws2812.mak
 include $(BASE_DIR)/projects/nuclone_LPC845QFP48_SH1106_i2c/nuclone_LPC845QFP48_SH1106_i2c.mak
+include $(BASE_DIR)/projects/nuclone_LPC845_mini_ui_1106_5btn/nuclone_LPC845_mini_ui_1106_5btn.mak
